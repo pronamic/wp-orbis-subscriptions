@@ -120,16 +120,16 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	// OK
 	global $wpdb;
 
+	$company_id  = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
+	$type_id     = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
+	$name        = get_post_meta( $post_id, '_orbis_subscription_name', true );
+
 	// Orbis company ID
 	$query = $wpdb->prepare( "SELECT id FROM orbis_subscriptions WHERE post_id = %d;", $post_id );
 
 	$orbis_id = $wpdb->get_var( $query );
 
 	if ( empty( $orbis_id ) ) {
-		$company_id  = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
-		$type_id     = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
-		$name        = get_post_meta( $post_id, '_orbis_subscription_name', true );
-
 		$license_key     = md5( '' . $company_id . $type_id . $name );
 		$license_key_md5 = md5( $license_key );
 		
@@ -165,6 +165,22 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	
 			update_post_meta( $post_id, '_orbis_subscription_id', $orbis_id );
 		}
+	} else {
+		$result = $wpdb->update(
+			'orbis_subscriptions' ,
+			array(
+				'company_id' => $company_id,
+				'type_id'    => $type_id,
+				'name'       => $name
+			),
+			array( 'id' => $orbis_id ),
+			array(
+				'company_id' => '%d',
+				'type_id'    => '%d',
+				'name'       => '%s'
+			),
+			array( '%d' )
+		);
 	}
 }
 
