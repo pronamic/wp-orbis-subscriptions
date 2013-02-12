@@ -1,14 +1,26 @@
-<?php 
+<?php
 
-global $wpdb;
+global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
 
 $subscription_types   = $wpdb->get_results( 'SELECT * FROM orbis_subscription_types', OBJECT_K );
 
+$orbis_id   = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
 $type_id    = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
- 
+$name       = get_post_meta( $post->ID, '_orbis_subscription_name', true );
+
+if ( empty( $orbis_id ) ) {
+	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
+
+	if ( $subscription ) {
+		$company_id = $subscription->company_id;
+		$type_id    = $subscription->type_id;
+		$name       = $subscription->name;
+	}
+}
+
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -48,7 +60,7 @@ $type_id    = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
 			<label for="orbis_subscription_name"><?php _e( 'Name', 'orbis' ) ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_name', true ); ?>" type="text" class="regular-text" />
+			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo $name; ?>" type="text" class="regular-text" />
 		</td>
 	</tr>
 	
