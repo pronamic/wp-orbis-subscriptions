@@ -13,7 +13,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			),
 			'public'        => true,
 			'menu_position' => 30,
-			'menu_icon'     => plugins_url( 'images/subscription.png', $orbis_subscriptions_plugin->file ),
+			'menu_icon'     => $orbis_subscriptions_plugin->plugin_url( 'images/subscription.png' ),
 			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail' ),
 			'has_archive'   => true,
 			'rewrite'       => array(
@@ -49,7 +49,7 @@ add_action( 'add_meta_boxes', 'orbis_sbuscriptions_add_meta_boxes' );
 function orbis_subscription_details_meta_box( $post ) {
 	global $orbis_subscriptions_plugin;
 
-	include dirname( $orbis_subscriptions_plugin->file ) . '/admin/meta-box-subscription-details.php';
+	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-details.php' );
 }
 
 /**
