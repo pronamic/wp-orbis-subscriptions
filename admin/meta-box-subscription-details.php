@@ -33,7 +33,7 @@ if ( empty( $orbis_id ) ) {
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_type"><?php _e( 'Type', 'orbis_subscriptions' ) ?></label>
+			<label for="orbis_subscription_type"><?php _e( 'Type', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			
@@ -57,7 +57,7 @@ if ( empty( $orbis_id ) ) {
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_name"><?php _e( 'Name', 'orbis_subscriptions' ) ?></label>
+			<label for="orbis_subscription_name"><?php _e( 'Name', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo $name; ?>" type="text" class="regular-text" />
@@ -68,7 +68,7 @@ if ( empty( $orbis_id ) ) {
 	
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ) ?></label>
+				<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
 			</th>
 			<td>
 				<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_activation_date', true ); ?>" type="text" class="regular-text" />
@@ -76,7 +76,7 @@ if ( empty( $orbis_id ) ) {
 		</tr>
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ) ?></label>
+				<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
 			</th>
 			<td>
 				<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true ); ?>" type="text" class="regular-text" />
@@ -87,7 +87,7 @@ if ( empty( $orbis_id ) ) {
 
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_person_id"><?php _e( 'Person', 'orbis_subscriptions' ) ?></label>
+			<label for="orbis_subscription_person_id"><?php _e( 'Person', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>" type="text" class="regular-text" />
