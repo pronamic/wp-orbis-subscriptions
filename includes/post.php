@@ -6,10 +6,10 @@ function orbis_subscriptions_create_initial_post_types() {
 	register_post_type(
 		'orbis_subscription',
 		array(
-			'label'         => __( 'Subscriptions', 'orbis' ),
+			'label'         => __( 'Subscriptions', 'orbis_subscriptions' ),
 			'labels'        => array(
-				'name'          => __( 'Subscriptions', 'orbis' ),
-				'singular_name' => __( 'Subscription', 'orbis' )
+				'name'          => __( 'Subscriptions', 'orbis_subscriptions' ),
+				'singular_name' => __( 'Subscription', 'orbis_subscriptions' )
 			),
 			'public'        => true,
 			'menu_position' => 30,
@@ -17,7 +17,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail' ),
 			'has_archive'   => true,
 			'rewrite'       => array(
-				'slug' => _x( 'subscriptions', 'slug', 'orbis' )
+				'slug' => _x( 'subscriptions', 'slug', 'orbis_subscriptions' )
 			)
 		)
 	);
@@ -31,7 +31,7 @@ add_action( 'init', 'orbis_subscriptions_create_initial_post_types', 0 ); // hig
 function orbis_sbuscriptions_add_meta_boxes() {
 	add_meta_box(
 		'orbis_subscription_details',
-		__( 'Details', 'orbis' ),
+		__( 'Details', 'orbis_subscriptions' ),
 		'orbis_subscription_details_meta_box',
 		'orbis_subscription',
 		'normal',
@@ -198,7 +198,7 @@ function orbis_subscription_the_content( $content ) {
 
 		$str  = '';
 
-		$str .= '<h2>' . __( 'Persons', 'orbis' ) . '</h2>';
+		$str .= '<h2>' . __( 'Persons', 'orbis_subscriptions' ) . '</h2>';
 
 		$str .= '<dl>';
 
@@ -223,11 +223,11 @@ add_filter( 'the_content', 'orbis_subscription_the_content' );
 function orbis_subscription_edit_columns( $columns ) {
 	return array(
 		'cb'                        => '<input type="checkbox" />',
-		'title'                     => __( 'Title', 'orbis' ),
-		'orbis_subscription_person' => __( 'Person', 'orbis' ),
-		'author'                    => __( 'Author', 'orbis' ),
-		'comments'                  => __( 'Comments', 'orbis' ),
-		'date'                      => __( 'Date', 'orbis' )
+		'title'                     => __( 'Title', 'orbis_subscriptions' ),
+		'orbis_subscription_person' => __( 'Person', 'orbis_subscriptions' ),
+		'author'                    => __( 'Author', 'orbis_subscriptions' ),
+		'comments'                  => __( 'Comments', 'orbis_subscriptions' ),
+		'date'                      => __( 'Date', 'orbis_subscriptions' )
 	);
 }
 

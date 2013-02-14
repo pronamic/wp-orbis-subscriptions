@@ -7,4 +7,8 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/api.php' );
 	}
+
+	public function loaded() {
+		$this->load_textdomain( 'orbis_subscriptions', '/languages/' );
+	}
 }
