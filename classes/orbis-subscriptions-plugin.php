@@ -6,6 +6,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/api.php' );
+		$this->plugin_include( 'includes/shortcodes.php' );
 	}
 
 	public function loaded() {
