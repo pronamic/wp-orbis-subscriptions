@@ -2,6 +2,7 @@
 
 function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 	global $wpdb;
+	global $orbis_subscriptions_plugin;
 
 	$query = '
 		SELECT
@@ -10,6 +11,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 			s.type_id,
 			st.name AS subscription_name,
 			st.price,
+			st.twinfield_article,
 			s.name,
 			s.activation_date,
 			DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
@@ -41,48 +43,19 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 		;
 	';
 
-	$results = $wpdb->get_results( $query );
+	global $orbis_subscriptions_to_invoice;
+
+	$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
 
 	$return  = '';
 
-	$return .= '<div class="panel">';
-	$return .= '<table class="table table-striped table-bordered">';
-	$return .= '<thead>';
-	$return .= '<tr>';
-	$return .= '<th scope="col">ID</th>';
-	$return .= '<th scope="col">Company</th>';
-	$return .= '<th scope="col">Subscription</th>';
-	$return .= '<th scope="col">Price</th>';
-	$return .= '<th scope="col">Name</th>';
-	$return .= '<th scope="col">Activation Date</th>';
-	$return .= '<th scope="col">Invoice Number</th>';
-	$return .= '<th scope="col">Notice</th>';
-	$return .= '</tr>';
-	$return .= '</thead>';
-	$return .= '<tbody>';
+	ob_start();
 	
-	foreach ( $results as $result ) {
-		$return .= '<tr>';
-		$return .= '<td>' . $result->id . '</td>';
-		$return .= '<td>' . $result->company_name . '</td>';
-		$return .= '<td>' . $result->subscription_name . '</td>';
-		$return .= '<td>' . $result->price . '</td>';
-		$return .= '<td>' . $result->name . '</td>';
-		$return .= '<td>' . $result->activation_date . '</td>';
-		$return .= '<td>' . $result->invoice_number . '</td>';
-		$return .= '<td>';
-		
-		if ( $result->to_late ) {
-			$return.= '<span class="text-error">!!!</span>';
-		}
-		
-		$return .= '</td>';
-		$return .= '</tr>';
-	}
+	$orbis_subscriptions_plugin->plugin_include( 'templates/subscriptions-to-invoice.php' );
 	
-	$return .= '</tbody>';
-	$return .= '</table>';
-	$return .= '</div>';
+	$return = ob_get_contents();
+	
+	ob_end_clean();
 	
 	return $return;
 }
