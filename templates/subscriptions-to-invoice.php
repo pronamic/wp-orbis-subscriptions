@@ -4,9 +4,20 @@ global $orbis_subscriptions_to_invoice;
 
 $results = $orbis_subscriptions_to_invoice;
 
+$action = '';
+if ( function_exists( 'twinfield_get_form_action' ) ) {
+	$action = twinfield_get_form_action( 'invoice' );
+}
+
 ?>
 <div class="panel">
-	<form method="post" action="">
+	<form method="post" action="<?php echo esc_attr( $action ); ?>">
+		<p>
+			<input type="hidden" name="invoiceType" value="FACTUUR" />
+
+			<button type="submit">Factuur maken</button>
+		</p>
+
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -29,7 +40,7 @@ $results = $orbis_subscriptions_to_invoice;
 					<tr>
 						<?php 
 						
-						$name = 'twinfield_invoice[lines][%d][%s]';
+						$name = 'lines[%d][%s]';
 						
 						$date_start = new DateTime( $result->activation_date );
 						$date_end   = new DateTime( $result->activation_date );
@@ -60,6 +71,7 @@ $results = $orbis_subscriptions_to_invoice;
 							<?php echo $result->subscription_name; ?>
 						</td>
 						<td>
+							<input name="<?php printf( $name, $i, 'quantity' ); ?>" value="1" type="text" />
 							<input name="<?php printf( $name, $i, 'unitspriceexcl' ); ?>" value="<?php echo $result->price; ?>" type="text" />
 							<?php echo $result->price; ?>
 						</td>
