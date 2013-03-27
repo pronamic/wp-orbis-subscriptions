@@ -74,21 +74,21 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 							<?php echo $result->company_name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'article' ); ?>" value="<?php echo $result->twinfield_article; ?>" type="text" />
+							<input name="<?php printf( $name, $i, 'article' ); ?>" value="<?php echo $result->twinfield_article; ?>" type="hidden" />
 							<?php echo $result->subscription_name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'quantity' ); ?>" value="1" type="text" />
-							<input name="<?php printf( $name, $i, 'unitspriceexcl' ); ?>" value="<?php echo $result->price; ?>" type="text" />
+							<input name="<?php printf( $name, $i, 'quantity' ); ?>" value="1" type="hidden" />
+							<input name="<?php printf( $name, $i, 'unitspriceexcl' ); ?>" value="<?php echo $result->price; ?>" type="hidden" />
 							<?php echo $result->price; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'freetext1' ); ?>" value="<?php echo $freetext1; ?>" type="text" />
+							<input name="<?php printf( $name, $i, 'freetext1' ); ?>" value="<?php echo $freetext1; ?>" type="hidden" />
 							<?php echo $result->name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext2; ?>" type="text" />
-							<input name="<?php printf( $name, $i, 'freetext3' ); ?>" value="<?php echo $freetext3; ?>" type="text" />
+							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext2; ?>" type="hidden" />
+							<input name="<?php printf( $name, $i, 'freetext3' ); ?>" value="<?php echo $freetext3; ?>" type="hidden" />
 							<?php echo $result->activation_date; ?>
 						</td>
 						<td>
