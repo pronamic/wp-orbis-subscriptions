@@ -10,26 +10,28 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 }
 
 ?>
-<div class="panel">
-	<form method="post" action="<?php echo esc_attr( $action ); ?>">
-		<p>
+<form method="post" action="<?php echo esc_attr( $action ); ?>">
+	<div class="panel">
+		<div class="content">
 			<input type="hidden" name="invoiceType" value="FACTUUR" />
 
 			<button type="submit">Factuur maken</button>
-		</p>
-
+		</div>
+	</div>
+	
+	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th scope="col"></th>
-					<th scope="col">ID</th>
-					<th scope="col">Company</th>
-					<th scope="col">Subscription</th>
-					<th scope="col">Price</th>
-					<th scope="col">Name</th>
-					<th scope="col">Activation Date</th>
-					<th scope="col">Invoice Number</th>
-					<th scope="col">Notice</th>
+					<th scope="col"><?php _e( 'ID', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Company', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Notice', 'orbis_subscriptions' ); ?></th>
 				</tr>
 			</thead>
 	
@@ -53,8 +55,13 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 						$date_end->setDate( $year + 1, $month, $day );
 						
 						$freetext1 = $result->name;
-						$freetext2 = date_i18n( 'n M Y', $date_start->format( 'U' ) );
-						$freetext3 = date_i18n( 'n M Y', $date_end->format( 'U' ) );
+
+						$date_start = date_i18n( 'n M Y', $date_start->format( 'U' ) );
+						$date_end   = date_i18n( 'n M Y', $date_end->format( 'U' ) );
+						
+						$freetext2 = sprintf( '%s tot %s', $date_start, $date_end );
+						
+						$freetext3 = '';
 
 						?>
 						<td>
@@ -81,7 +88,7 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 						</td>
 						<td>
 							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext2; ?>" type="text" />
-							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext3; ?>" type="text" />
+							<input name="<?php printf( $name, $i, 'freetext3' ); ?>" value="<?php echo $freetext3; ?>" type="text" />
 							<?php echo $result->activation_date; ?>
 						</td>
 						<td>
@@ -98,5 +105,5 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 	
 			</tbody>
 		</table>
-	</form>
-</div>
+	</div>
+</form>
