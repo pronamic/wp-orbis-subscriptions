@@ -1,5 +1,6 @@
 <?php 
 
+global $wpdb;
 global $orbis_subscriptions_to_invoice;
 
 $results = $orbis_subscriptions_to_invoice;
@@ -9,13 +10,60 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 	$action = twinfield_get_form_action( 'invoice' );
 }
 
+if ( isset( $_POST['update'] ) ) {
+	$subscriptions = $_POST['subscriptions'];
+
+	if ( ! empty( $subscriptions ) ) {
+		echo '<ul>';
+
+		foreach ( $subscriptions as $subscription ) {
+			$id             = $subscription['id'];
+			$invoice_number = $subscription['invoice_number'];
+			$date_start     = $subscription['date_start'];
+			$date_end       = $subscription['date_end'];
+
+			if ( ! empty( $invoice_number ) ) {
+				$result = $wpdb->insert(
+					'orbis_subscriptions_invoices',
+					array(
+						'subscription_id' => $id,
+						'invoice_number'  => $invoice_number,
+						'start_date'      => $date_start,
+						'end_date'        => $date_end
+					),
+					array(
+						'%d',
+						'%s',
+						'%s',
+						'%s'
+					)
+				);
+	
+				echo '<li>';
+	
+				if ( $result === false ) {
+					echo 'Failed';
+				} else {
+					echo 'Added';
+				}
+				
+				echo ' - ';
+				
+				printf( 'ID %s, Invoice Number: %s, Periode: %s - %s', $id, $invoice_number, $date_start, $date_end );
+				
+				echo '</li>';
+			}
+		}
+
+		echo '</ul>';
+	}
+}
+
 ?>
-<form method="post" action="<?php echo esc_attr( $action ); ?>">
+<form method="post" action="">
 	<div class="panel">
 		<div class="content">
-			<input type="hidden" name="invoiceType" value="FACTUUR" />
-
-			<button type="submit">Factuur maken</button>
+			<button name="update" type="submit"><?php _e( 'Update', 'orbis_subscriptions' ); ?></button>
 		</div>
 	</div>
 	
@@ -23,7 +71,6 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th scope="col"></th>
 					<th scope="col"><?php _e( 'ID', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Company', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
@@ -42,7 +89,7 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 					<tr>
 						<?php 
 						
-						$name = 'lines[%d][%s]';
+						$name = 'subscriptions[%d][%s]';
 						
 						$date_start = new DateTime( $result->activation_date );
 						$date_end   = new DateTime( $result->activation_date );
@@ -53,20 +100,11 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 
 						$date_start->setDate( $year, $month, $day );
 						$date_end->setDate( $year + 1, $month, $day );
-						
-						$freetext1 = $result->name;
 
-						$date_start = date_i18n( 'n M Y', $date_start->format( 'U' ) );
-						$date_end   = date_i18n( 'n M Y', $date_end->format( 'U' ) );
-						
-						$freetext2 = sprintf( '%s tot %s', $date_start, $date_end );
-						
-						$freetext3 = '';
+						$date_start = $date_start->format( 'Y-m-d H:i:s' );
+						$date_end   = $date_end->format( 'Y-m-d H:i:s' );
 
 						?>
-						<td>
-							<input name="<?php printf( $name, $i, 'active' ); ?>" value="1" type="checkbox" />
-						</td>
 						<td>
 							<?php echo $result->id; ?>
 						</td>
@@ -74,25 +112,23 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 							<?php echo $result->company_name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'article' ); ?>" value="<?php echo $result->twinfield_article; ?>" type="hidden" />
 							<?php echo $result->subscription_name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'quantity' ); ?>" value="1" type="hidden" />
-							<input name="<?php printf( $name, $i, 'unitspriceexcl' ); ?>" value="<?php echo $result->price; ?>" type="hidden" />
 							<?php echo $result->price; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'freetext1' ); ?>" value="<?php echo $freetext1; ?>" type="hidden" />
 							<?php echo $result->name; ?>
 						</td>
 						<td>
-							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext2; ?>" type="hidden" />
-							<input name="<?php printf( $name, $i, 'freetext3' ); ?>" value="<?php echo $freetext3; ?>" type="hidden" />
 							<?php echo $result->activation_date; ?>
 						</td>
 						<td>
 							<?php echo $result->invoice_number; ?>
+							<input name="<?php printf( $name, $i, 'id' ); ?>" value="<?php echo $result->id; ?>" type="hidden" />
+							<input name="<?php printf( $name, $i, 'invoice_number' ); ?>" value="" type="text" />
+							<input name="<?php printf( $name, $i, 'date_start' ); ?>" value="<?php echo $date_start; ?>" type="hidden" />
+							<input name="<?php printf( $name, $i, 'date_end' ); ?>" value="<?php echo $date_end; ?>" type="hidden" />
 						</td>
 						<td>
 							<?php if ( $result->to_late ) : ?>
