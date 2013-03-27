@@ -2,21 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-14 17:00+0100\n"
-"PO-Revision-Date: 2013-02-14 17:01+0100\n"
-"Last-Translator: Remco Tolsma <remco@pronamic.nl>\n"
+"POT-Creation-Date: 2013-03-27 11:03+0100\n"
+"PO-Revision-Date: 2013-03-27 11:04+0100\n"
+"Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_NL\n"
 "X-Poedit-KeywordsList: __;_e;_x:2c,1\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-Language: Dutch\n"
-"X-Poedit-Country: NETHERLANDS\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/meta-box-subscription-details.php:28
@@ -28,10 +26,12 @@ msgid "Type"
 msgstr "Type"
 
 #: admin/meta-box-subscription-details.php:60
+#: templates/subscriptions-to-invoice.php:31
 msgid "Name"
 msgstr "Naam"
 
 #: admin/meta-box-subscription-details.php:71
+#: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
@@ -39,18 +39,16 @@ msgstr "Activatie datum"
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:90
-#: includes/post.php:206
+#: admin/meta-box-subscription-details.php:90 includes/post.php:206
 #: includes/post.php:227
 msgid "Person"
 msgstr "Persoon"
 
-#: includes/post.php:9
-#: includes/post.php:11
+#: includes/post.php:9 includes/post.php:11
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:12
+#: includes/post.php:12 templates/subscriptions-to-invoice.php:29
 msgid "Subscription"
 msgstr "Abonnement"
 
@@ -82,6 +80,26 @@ msgstr "Reacties"
 #: includes/post.php:230
 msgid "Date"
 msgstr "Datum"
+
+#: templates/subscriptions-to-invoice.php:27
+msgid "ID"
+msgstr "ID"
+
+#: templates/subscriptions-to-invoice.php:28
+msgid "Company"
+msgstr "Bedrijf"
+
+#: templates/subscriptions-to-invoice.php:30
+msgid "Price"
+msgstr "Prijs"
+
+#: templates/subscriptions-to-invoice.php:33
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: templates/subscriptions-to-invoice.php:34
+msgid "Notice"
+msgstr "Opmerking"
 
 #~ msgid "FTP"
 #~ msgstr "FTP"
@@ -116,8 +134,8 @@ msgstr "Datum"
 
 #~ msgid "Keychain"
 #~ msgstr "Sleutelhanger"
-#~ msgctxt "orbis_keychain"
 
+#~ msgctxt "orbis_keychain"
 #~ msgid "Add New"
 #~ msgstr "Nieuwe sleutelhanger"
 
@@ -141,8 +159,8 @@ msgstr "Datum"
 
 #~ msgid "No keychains found in Trash"
 #~ msgstr "Geen sleutelhangers gevonden in prullenbak"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "keychains"
 #~ msgstr "sleutelhangers"
 
@@ -184,12 +202,12 @@ msgstr "Datum"
 
 #~ msgid "Tags"
 #~ msgstr "Tags"
-#~ msgctxt "orbis_keychain_category"
 
+#~ msgctxt "orbis_keychain_category"
 #~ msgid "Categories"
 #~ msgstr "Categorieën"
-#~ msgctxt "orbis_keychain_category"
 
+#~ msgctxt "orbis_keychain_category"
 #~ msgid "Category"
 #~ msgstr "Categorie"
 
@@ -216,16 +234,16 @@ msgstr "Datum"
 
 #~ msgid "New Category Name"
 #~ msgstr "Nieuwe categorie naam"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "keychain-categorie"
 #~ msgstr "sleutelhanger-categorie"
-#~ msgctxt "orbis_keychain_category"
 
+#~ msgctxt "orbis_keychain_category"
 #~ msgid "Tags"
 #~ msgstr "Tags"
-#~ msgctxt "orbis_keychain_category"
 
+#~ msgctxt "orbis_keychain_category"
 #~ msgid "Tag"
 #~ msgstr "Tag"
 
@@ -252,8 +270,8 @@ msgstr "Datum"
 
 #~ msgid "New Tag Name"
 #~ msgstr "Nieuwe tag naam"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "keychain-tag"
 #~ msgstr "sleutelhanger-tag"
 
@@ -262,8 +280,8 @@ msgstr "Datum"
 
 #~ msgid "Hosting Groups"
 #~ msgstr "Hosting groepen"
-#~ msgctxt "hosting_group"
 
+#~ msgctxt "hosting_group"
 #~ msgid "Add New"
 #~ msgstr "Nieuwe toevoegen"
 
@@ -275,8 +293,8 @@ msgstr "Datum"
 
 #~ msgid "Domain Name"
 #~ msgstr "Domeinnaam"
-#~ msgctxt "domain_name"
 
+#~ msgctxt "domain_name"
 #~ msgid "Add New"
 #~ msgstr "Nieuwe toevoegen"
 
@@ -288,8 +306,8 @@ msgstr "Datum"
 
 #~ msgid "Project"
 #~ msgstr "Project"
-#~ msgctxt "orbis_project"
 
+#~ msgctxt "orbis_project"
 #~ msgid "Add New"
 #~ msgstr "Nieuw project"
 
@@ -319,19 +337,19 @@ msgstr "Datum"
 
 #~ msgid "Parent Project:"
 #~ msgstr "Bovenliggend project:"
-#~ msgctxt "taxonomy general name"
 
+#~ msgctxt "taxonomy general name"
 #~ msgid "Categories"
 #~ msgstr "Categorieën"
-#~ msgctxt "taxonomy singular name"
 
+#~ msgctxt "taxonomy singular name"
 #~ msgid "Category"
 #~ msgstr "Categorie"
 
 #~ msgid "Companies"
 #~ msgstr "Bedrijven"
-#~ msgctxt "orbis_company"
 
+#~ msgctxt "orbis_company"
 #~ msgid "Add New"
 #~ msgstr "Nieuw bedrijf"
 
@@ -361,20 +379,20 @@ msgstr "Datum"
 
 #~ msgid "Parent Company:"
 #~ msgstr "Bovenliggend bedrijf:"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "companies"
 #~ msgstr "bedrijven"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "persons"
 #~ msgstr "personen"
-#~ msgctxt "taxonomy general name"
 
+#~ msgctxt "taxonomy general name"
 #~ msgid "Genders"
 #~ msgstr "Geslachten"
-#~ msgctxt "taxonomy singular name"
 
+#~ msgctxt "taxonomy singular name"
 #~ msgid "Gender"
 #~ msgstr "Geslacht"
 
@@ -500,9 +518,6 @@ msgstr "Datum"
 #~ msgid "Project is invoiced"
 #~ msgstr "Project is gefactureerd"
 
-#~ msgid "Invoice Number"
-#~ msgstr "Factuurnummer"
-
 #~ msgid "Finished"
 #~ msgstr "Afgerond"
 
@@ -511,9 +526,6 @@ msgstr "Datum"
 
 #~ msgid "No projects founds."
 #~ msgstr "Geen projecten gevonden."
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Post ID"
 #~ msgstr "Bericht ID"
@@ -554,9 +566,6 @@ msgstr "Datum"
 #~ msgid "Update Date"
 #~ msgstr "Update datum"
 
-#~ msgid "Price"
-#~ msgstr "Prijs"
-
 #~ msgid "License Key"
 #~ msgstr "Licentiesleutel"
 
@@ -574,8 +583,8 @@ msgstr "Datum"
 
 #~ msgid "Project invoice is paid"
 #~ msgstr "Project factuur is betaald"
-#~ msgctxt "project"
 
+#~ msgctxt "project"
 #~ msgid "Add New"
 #~ msgstr "Nieuw project"
 
@@ -593,8 +602,8 @@ msgstr "Datum"
 
 #~ msgid "Password Details"
 #~ msgstr "Wachtwoord details"
-#~ msgctxt "orbis_password"
 
+#~ msgctxt "orbis_password"
 #~ msgid "Add New"
 #~ msgstr "Nieuwe toevoegen"
 
@@ -612,8 +621,8 @@ msgstr "Datum"
 
 #~ msgid "No passwords found"
 #~ msgstr "Geen wachtwoorden gevonden"
-#~ msgctxt "slug"
 
+#~ msgctxt "slug"
 #~ msgid "passwords"
 #~ msgstr "wachtwoorden"
 
