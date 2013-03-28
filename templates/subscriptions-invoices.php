@@ -11,6 +11,7 @@ $results = $orbis_subscriptions_invoices;
 			<tr>
 				<th scope="col"><?php _e( 'ID', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Create Date', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php _e( 'User', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Company', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
@@ -31,6 +32,9 @@ $results = $orbis_subscriptions_invoices;
 					</td>
 					<td>
 						<?php echo date_i18n( 'D j M Y', strtotime( $result->create_date ) ); ?>
+					</td>
+					<td>
+						<?php echo $result->user_display_name; ?>
 					</td>
 					<td>
 						<?php echo $result->company_name; ?>
