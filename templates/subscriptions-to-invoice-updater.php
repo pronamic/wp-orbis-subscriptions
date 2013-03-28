@@ -5,57 +5,36 @@ global $orbis_subscriptions_to_invoice;
 
 $results = $orbis_subscriptions_to_invoice;
 
-$action = '';
-if ( function_exists( 'twinfield_get_form_action' ) ) {
-	$action = twinfield_get_form_action( 'invoice' );
-}
+$statuses = array(
+	'inserted' => __( 'Inserted', 'orbis_subscriptions' ),
+	'failed'   => __( 'Failed', 'orbis_subscriptions' )
+);
 
-if ( isset( $_POST['update'] ) ) {
-	$subscriptions = $_POST['subscriptions'];
+foreach ( $statuses as $status => $label ) {
+	if ( isset( $_GET[$status] ) ) {
+		$ids = $_GET[$status];
+		$ids = explode( ',', $ids );
 
-	if ( ! empty( $subscriptions ) ) {
-		echo '<ul>';
-
-		foreach ( $subscriptions as $subscription ) {
-			$id             = $subscription['id'];
-			$invoice_number = $subscription['invoice_number'];
-			$date_start     = $subscription['date_start'];
-			$date_end       = $subscription['date_end'];
-
-			if ( ! empty( $invoice_number ) ) {
-				$result = $wpdb->insert(
-					'orbis_subscriptions_invoices',
-					array(
-						'subscription_id' => $id,
-						'invoice_number'  => $invoice_number,
-						'start_date'      => $date_start,
-						'end_date'        => $date_end
-					),
-					array(
-						'%d',
-						'%s',
-						'%s',
-						'%s'
-					)
-				);
-	
-				echo '<li>';
-	
-				if ( $result === false ) {
-					echo 'Failed';
-				} else {
-					echo 'Added';
+		if ( ! empty( $ids ) ) {
+			echo '<h2>', $label, '</h2>';
+			
+			$subscriptions = get_posts( array(
+				'post_type' => 'any',
+				'post__in'  => $ids
+			) );
+			
+			if ( ! empty( $subscriptions ) ) {
+				echo '<ul>';
+				
+				foreach ( $subscriptions as $subscription ) {
+					echo '<li>';
+					printf( '<a href="%s" target="_blank">%s</a>', get_permalink( $subscription->ID ), get_the_title( $subscription->ID ) );
+					echo '</li>';
 				}
 				
-				echo ' - ';
-				
-				printf( 'ID %s, Invoice Number: %s, Periode: %s - %s', $id, $invoice_number, $date_start, $date_end );
-				
-				echo '</li>';
+				echo '</ul>';
 			}
 		}
-
-		echo '</ul>';
 	}
 }
 
@@ -63,7 +42,7 @@ if ( isset( $_POST['update'] ) ) {
 <form method="post" action="">
 	<div class="panel">
 		<div class="content">
-			<button name="update" type="submit"><?php _e( 'Update', 'orbis_subscriptions' ); ?></button>
+			<button name="subscriptions_invoices_update" type="submit"><?php _e( 'Update', 'orbis_subscriptions' ); ?></button>
 		</div>
 	</div>
 	
@@ -126,6 +105,7 @@ if ( isset( $_POST['update'] ) ) {
 						<td>
 							<?php echo $result->invoice_number; ?>
 							<input name="<?php printf( $name, $i, 'id' ); ?>" value="<?php echo $result->id; ?>" type="hidden" />
+							<input name="<?php printf( $name, $i, 'post_id' ); ?>" value="<?php echo $result->post_id; ?>" type="hidden" />
 							<input name="<?php printf( $name, $i, 'invoice_number' ); ?>" value="" type="text" />
 							<input name="<?php printf( $name, $i, 'date_start' ); ?>" value="<?php echo $date_start; ?>" type="hidden" />
 							<input name="<?php printf( $name, $i, 'date_end' ); ?>" value="<?php echo $date_end; ?>" type="hidden" />
