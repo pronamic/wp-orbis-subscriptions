@@ -29,6 +29,10 @@ $invoices = $wpdb->get_results( $query );
 if ( $invoices ) : ?>
 
 	<div class="panel">
+		<header>
+			<h3><?php _e( 'Invoices', 'orbis_subscriptions' ); ?></h3>
+		</header>
+
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
