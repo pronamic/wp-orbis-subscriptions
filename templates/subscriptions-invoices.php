@@ -27,7 +27,9 @@ $results = $orbis_subscriptions_invoices;
 
 				<tr>
 					<td>
-						<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $result->create_date ) ); ?>
+						<span title="<?php echo $result->sid; ?>">
+							<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $result->create_date ) ); ?>
+						</span>
 					</td>
 					<td>
 						<?php echo $result->user_display_name; ?>

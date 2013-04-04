@@ -163,6 +163,7 @@ function orbis_shortcode_subscriptions_invoices( $atts ) {
 			st.name AS subscription_name,
 			st.price,
 			s.name,
+			si.id AS sid,
 			si.invoice_number,
 			si.start_date,
 			si.end_date,
