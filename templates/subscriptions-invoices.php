@@ -24,7 +24,7 @@ $results = $orbis_subscriptions_invoices;
 		<tbody>
 
 			<?php foreach ( $results as $i => $result ) : ?>
-			
+
 				<tr>
 					<td>
 						<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $result->create_date ) ); ?>
@@ -36,7 +36,9 @@ $results = $orbis_subscriptions_invoices;
 						<?php echo $result->company_name; ?>
 					</td>
 					<td>
-						<?php echo $result->subscription_name; ?>
+						<a href="<?php echo get_permalink( $result->post_id ); ?>" target="_blank">
+							<?php echo $result->subscription_name; ?>
+						</a>
 					</td>
 					<td>
 						<?php echo $result->price; ?>
