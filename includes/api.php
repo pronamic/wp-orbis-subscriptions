@@ -6,7 +6,8 @@ function orbis_subscriptions_api_call() {
 	if ( ! empty( $api_call ) ) {
 		$object = get_query_var( 'api_object' );
 		$method = get_query_var( 'api_method' );
-			
+
+		// @see http://www.hurl.it/hurls/8e92c1758b0ff0258f5bb4f76ab41b8970b653dd/1ead533aa50f71212b5393e43611b42384e40b0f
 		if ( $object == 'licenses' && $method == 'show' ) {
 			$type = INPUT_POST;
 	
