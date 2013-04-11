@@ -37,17 +37,25 @@ if ( true ) { // empty( $orbis_id ) ) {
 			<dt><?php _e( 'Orbis ID', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo $orbis_id; ?></dd>
 
-			<dt><?php _e( 'License Key', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo $license_key; ?></dd>
+			<?php if ( ! empty( $license_key ) ) : ?>
+	
+				<dt><?php _e( 'License Key', 'orbis_subscriptions' ); ?></dt>
+				<dd><?php echo $license_key; ?></dd>
+
+			<?php endif; ?>
 
 			<dt><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
 
 			<dt><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
+			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $expiration_date ) ); ?></dd>
 
-			<dt><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
+			<?php if ( ! empty( $cancel_date ) ) : ?>
+	
+				<dt><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
+				<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $cancel_date ) ); ?></dd>
+
+			<?php endif; ?>
 		</dl>
 	</div>
 </div>
