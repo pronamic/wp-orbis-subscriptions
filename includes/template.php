@@ -19,7 +19,7 @@ function orbis_subscriptions_render_details() {
 	}
 }
 
-add_action( 'orbis_after_side_content', 'orbis_subscriptions_render_details' );
+add_action( 'orbis_before_side_content', 'orbis_subscriptions_render_details' );
 
 
 function orbis_subscriptions_render_company_subscriptions() {
