@@ -6,10 +6,11 @@ wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_m
 
 $subscription_types   = $wpdb->get_results( 'SELECT * FROM orbis_subscription_types', OBJECT_K );
 
-$orbis_id   = get_post_meta( $post->ID, '_orbis_subscription_id', true );
-$company_id = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
-$type_id    = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
-$name       = get_post_meta( $post->ID, '_orbis_subscription_name', true );
+$orbis_id    = get_post_meta( $post->ID, '_orbis_subscription_id', true );
+$company_id  = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
+$type_id     = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
+$name        = get_post_meta( $post->ID, '_orbis_subscription_name', true );
+$license_key = get_post_meta( $post->ID, '_orbis_subscription_license_key', true );
 
 if ( true ) { // empty( $orbis_id ) ) {
 	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-11 08:57+0100\n"
-"PO-Revision-Date: 2013-04-11 08:58+0100\n"
+"POT-Creation-Date: 2013-04-11 09:23+0100\n"
+"PO-Revision-Date: 2013-04-11 09:23+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -17,15 +17,15 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/meta-box-subscription-details.php:29
+#: admin/meta-box-subscription-details.php:30
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:37
+#: admin/meta-box-subscription-details.php:38
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:61
+#: admin/meta-box-subscription-details.php:62
 #: templates/company-subscriptions.php:44
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
@@ -33,22 +33,25 @@ msgstr "Type"
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:69
+#: admin/meta-box-subscription-details.php:70
+#: templates/subscription-details.php:40
 msgid "License Key"
 msgstr "Licentiesleutel"
 
-#: admin/meta-box-subscription-details.php:80
+#: admin/meta-box-subscription-details.php:81
 #: templates/company-subscriptions.php:42
+#: templates/subscription-details.php:43
 #: templates/subscriptions-to-invoice-updater.php:58
 #: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:88
+#: admin/meta-box-subscription-details.php:89
+#: templates/subscription-details.php:46
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:99 includes/post.php:206
+#: admin/meta-box-subscription-details.php:100 includes/post.php:206
 #: includes/post.php:227
 msgid "Person"
 msgstr "Persoon"
@@ -104,6 +107,18 @@ msgstr "Inloggen vereist"
 #: templates/subscriptions-to-invoice.php:30
 msgid "Price"
 msgstr "Prijs"
+
+#: templates/subscription-details.php:32
+msgid "Subscription Details"
+msgstr "Abonnement details"
+
+#: templates/subscription-details.php:37
+msgid "Orbis ID"
+msgstr "Orbis ID"
+
+#: templates/subscription-details.php:49
+msgid "Cancel Date"
+msgstr "Opzeggingsdatum"
 
 #: templates/subscription-invoices.php:33
 msgid "Invoices"
@@ -512,9 +527,6 @@ msgstr "Opmerking"
 
 #~ msgid "Searching..."
 #~ msgstr "Zoeken...."
-
-#~ msgid "Orbis ID"
-#~ msgstr "Orbis ID"
 
 #~ msgid "Principal"
 #~ msgstr "Opdrachtgever"
