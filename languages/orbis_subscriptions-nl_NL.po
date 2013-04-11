@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 09:04+0100\n"
-"PO-Revision-Date: 2013-03-28 09:04+0100\n"
+"POT-Creation-Date: 2013-04-11 08:57+0100\n"
+"PO-Revision-Date: 2013-04-11 08:58+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -17,41 +17,49 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/meta-box-subscription-details.php:28
+#: admin/meta-box-subscription-details.php:29
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:36
+#: admin/meta-box-subscription-details.php:37
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:60
-#: templates/subscriptions-invoices.php:18
+#: admin/meta-box-subscription-details.php:61
+#: templates/company-subscriptions.php:44
+#: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
 #: templates/subscriptions-to-invoice.php:31
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:71
+#: admin/meta-box-subscription-details.php:69
+msgid "License Key"
+msgstr "Licentiesleutel"
+
+#: admin/meta-box-subscription-details.php:80
+#: templates/company-subscriptions.php:42
 #: templates/subscriptions-to-invoice-updater.php:58
 #: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:79
+#: admin/meta-box-subscription-details.php:88
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:90 includes/post.php:206
+#: admin/meta-box-subscription-details.php:99 includes/post.php:206
 #: includes/post.php:227
 msgid "Person"
 msgstr "Persoon"
 
 #: includes/post.php:9 includes/post.php:11
+#: templates/company-subscriptions.php:36
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:12 templates/subscriptions-invoices.php:16
+#: includes/post.php:12 templates/company-subscriptions.php:43
+#: templates/subscriptions-invoices.php:15
 #: templates/subscriptions-to-invoice-updater.php:55
 #: templates/subscriptions-to-invoice.php:29
 msgid "Subscription"
@@ -90,48 +98,49 @@ msgstr "Datum"
 msgid "Login required"
 msgstr "Inloggen vereist"
 
-#: templates/subscription-invoices.php:28
-#: templates/subscriptions-invoices.php:19
+#: templates/company-subscriptions.php:45
+#: templates/subscriptions-invoices.php:16
+#: templates/subscriptions-to-invoice-updater.php:56
+#: templates/subscriptions-to-invoice.php:30
+msgid "Price"
+msgstr "Prijs"
+
+#: templates/subscription-invoices.php:33
+msgid "Invoices"
+msgstr "Facturen"
+
+#: templates/subscription-invoices.php:39
+#: templates/subscriptions-invoices.php:12
+msgid "Create Date"
+msgstr "Aanmaakdatum"
+
+#: templates/subscription-invoices.php:40
+#: templates/subscriptions-invoices.php:13
+msgid "User"
+msgstr "Gebruiker"
+
+#: templates/subscription-invoices.php:41
+#: templates/subscriptions-invoices.php:18
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: templates/subscription-invoices.php:29
-#: templates/subscriptions-invoices.php:20
+#: templates/subscription-invoices.php:42
+#: templates/subscriptions-invoices.php:19
 msgid "End Date"
 msgstr "Einddatum"
 
-#: templates/subscription-invoices.php:30
-#: templates/subscriptions-invoices.php:21
+#: templates/subscription-invoices.php:43
+#: templates/subscriptions-invoices.php:20
 #: templates/subscriptions-to-invoice-updater.php:59
 #: templates/subscriptions-to-invoice.php:33
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
-#: templates/subscriptions-invoices.php:12
-#: templates/subscriptions-to-invoice-updater.php:53
-#: templates/subscriptions-to-invoice.php:27
-msgid "ID"
-msgstr "ID"
-
-#: templates/subscriptions-invoices.php:13
-msgid "Create Date"
-msgstr "Aanmaakdatum"
-
 #: templates/subscriptions-invoices.php:14
-msgid "User"
-msgstr "Gebruiker"
-
-#: templates/subscriptions-invoices.php:15
 #: templates/subscriptions-to-invoice-updater.php:54
 #: templates/subscriptions-to-invoice.php:28
 msgid "Company"
 msgstr "Bedrijf"
-
-#: templates/subscriptions-invoices.php:17
-#: templates/subscriptions-to-invoice-updater.php:56
-#: templates/subscriptions-to-invoice.php:30
-msgid "Price"
-msgstr "Prijs"
 
 #: templates/subscriptions-to-invoice-updater.php:9
 msgid "Inserted"
@@ -144,6 +153,11 @@ msgstr "Mislukt"
 #: templates/subscriptions-to-invoice-updater.php:45
 msgid "Update"
 msgstr "Update"
+
+#: templates/subscriptions-to-invoice-updater.php:53
+#: templates/subscriptions-to-invoice.php:27
+msgid "ID"
+msgstr "ID"
 
 #: templates/subscriptions-to-invoice-updater.php:60
 #: templates/subscriptions-to-invoice.php:34
@@ -558,9 +572,6 @@ msgstr "Opmerking"
 #~ msgid "Project is invoicable"
 #~ msgstr "Project is factureerbaar"
 
-#~ msgid "Invoiced"
-#~ msgstr "Gefactureerd"
-
 #~ msgid "Project is invoiced"
 #~ msgstr "Project is gefactureerd"
 
@@ -605,9 +616,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Domain Name Post"
 #~ msgstr "Bewerk domeinnaam bericht"
-
-#~ msgid "License Key"
-#~ msgstr "Licentiesleutel"
 
 #~ msgid "Actions"
 #~ msgstr "Acties"

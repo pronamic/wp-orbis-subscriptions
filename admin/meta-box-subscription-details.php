@@ -11,13 +11,14 @@ $company_id = get_post_meta( $post->ID, '_orbis_subscription_company_id', true )
 $type_id    = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
 $name       = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 
-if ( empty( $orbis_id ) ) {
+if ( true ) { // empty( $orbis_id ) ) {
 	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
 	if ( $subscription ) {
-		$company_id = $subscription->company_id;
-		$type_id    = $subscription->type_id;
-		$name       = $subscription->name;
+		$company_id  = $subscription->company_id;
+		$type_id     = $subscription->type_id;
+		$name        = $subscription->name;
+		$license_key = $subscription->license_key;
 	}
 }
 
@@ -61,6 +62,14 @@ if ( empty( $orbis_id ) ) {
 		</th>
 		<td>
 			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo $name; ?>" type="text" class="regular-text" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_license_key"><?php _e( 'License Key', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo $license_key; ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
 	
