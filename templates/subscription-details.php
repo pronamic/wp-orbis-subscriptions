@@ -29,24 +29,24 @@ if ( true ) { // empty( $orbis_id ) ) {
 ?>
 <div class="panel">
 	<header>
-		<h3><?php _e( 'Subscription Details', 'orbis' ); ?></h3>
+		<h3><?php _e( 'Subscription Details', 'orbis_subscriptions' ); ?></h3>
 	</header>
 
 	<div class="content">
 		<dl>
-			<dt><?php _e( 'Orbis ID', 'orbis' ); ?></dt>
+			<dt><?php _e( 'Orbis ID', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo $orbis_id; ?></dd>
 
-			<dt><?php _e( 'License Key', 'orbis' ); ?></dt>
+			<dt><?php _e( 'License Key', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo $license_key; ?></dd>
 
-			<dt><?php _e( 'Activation Date', 'orbis' ); ?></dt>
+			<dt><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
 
-			<dt><?php _e( 'Expiration Date', 'orbis' ); ?></dt>
+			<dt><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
 
-			<dt><?php _e( 'Cancel Date', 'orbis' ); ?></dt>
+			<dt><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php echo date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ); ?></dd>
 		</dl>
 	</div>
