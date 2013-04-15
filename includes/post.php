@@ -1,5 +1,14 @@
 <?php
 
+add_action( 'init', 'testing' );
+function testing() {
+	$subscription = new Orbis_Subscription( 3352 );
+	
+	print_r('<pre>');
+	var_dump($subscription);
+	print_r('</pre>');
+}
+
 function orbis_subscriptions_create_initial_post_types() {
 	global $orbis_subscriptions_plugin;
 

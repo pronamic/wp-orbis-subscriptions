@@ -24,6 +24,10 @@ function orbis_subscriptions_bootstrap() {
 	global $orbis_subscriptions_plugin;
 	
 	$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin( __FILE__ );
+	
+	include 'classes/orbis-subscription.php';
+	
+	include 'includes/functions-subscription.php';
 }
 
 add_action( 'orbis_bootstrap', 'orbis_subscriptions_bootstrap' );
