@@ -5,6 +5,14 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 	class Orbis_Subscription {
 	
 		/**
+		 * Holds the WPDB class object
+		 * 
+		 * @access private
+		 * @var WPDB
+		 */
+		private $db;
+		
+		/**
 		 * Holds the Post object that this
 		 * subscription represents
 		 * 
@@ -120,7 +128,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		private $license_key_md5;
 
 		public function __construct( $subscription = null ) {
-			global $post;
+			global $post, $wpdb;
+			$this->db = $wpdb;
 
 			// Use global post or get post from ID
 			if ( null === $subscription ) {
@@ -161,8 +170,29 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			
 		}
 
-		public function extend() {
+		public function extend( DateInterval $date_interval = null ) {
+			// If no date interval supplied, default to 1 year
+			if ( ! $date_interval )
+				$date_interval = new DateInterval( 'P1Y' );
 			
+			// Add the interval period to the expiration date
+			$this->expiration_date->add( $date_interval );
+			
+			// Query string
+			$query = "
+				UPDATE
+					orbis_subscriptions
+				SET
+					expiration_date = '%s',
+					update_date = NOW()
+				WHERE
+					id = %d
+			";
+			
+			// Update the database
+			$this->db->query( 
+				$this->db->prepare( $query, $this->get_expiration_date(), $this->get_id() ) 
+			);
 		}
 
 		public function send_reminder() {
