@@ -136,32 +136,31 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		private $license_key_md5;
 
-		/**
-		 * Fills this class with the data of the subscription from the 
-		 * orbis_subscription table.
-		 * 
-		 * If no parameter passed, then will take the global WP_Post
-		 * object.
-		 * 
-		 * If that isn't a orbis_subscription post type then false is returned.
-		 * 
-		 * @internal Probably too much of a god function. Requires seperation
-		 * 
-		 * @global WP_Post $post
-		 * @global WPDB $wpdb
-		 * 
-		 * @param int $subscription ID of a Subscription/Post
-		 * @return boolean
-		 */
 		public function __construct( $subscription = null ) {
-			global $post, $wpdb;
+			global $wpdb;
 			$this->db = $wpdb;
-
-			// Use global post or get post from ID
+			
+			if ( null !== $subscription )
+				$this->load( $subscription );
+		}
+		
+		public function load( $subscription = null ) {
+			// Will get global post if null set
 			if ( null === $subscription ) {
+				
+				global $post;
 				$this->post = $post;
+			
+			// Or if a raw WP_Post object, load that
+			} elseif ( $subscription instanceof WP_Post ) {
+				
+				$this->post = $subscription;
+				
+			// Or if just an id, find that post!
 			} elseif ( is_numeric( $subscription ) ) {
+				
 				$this->post = get_post( $subscription );
+				
 			}
 
 			// Check the subscription from post exists
@@ -190,6 +189,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 				$this->set_license_key( $subscription_data->license_key );
 				$this->set_license_key_md5( $subscription_data->license_key_md5 );
+				
 			} else {
 				return false;
 			}
@@ -248,19 +248,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @access public
 		 * @return boolean
 		 */
-		public function send_reminder() {
+		public function send_reminder( $raw_subject, $raw_body, $url ) {
 			// Check email is set and valid
 			if ( is_email( $this->get_email() ) ) {
-				
-				// Get the configured settings
-				$raw_subject = Orbis_Subscriptions_Settings::get_mail_subject();
-				$raw_body = Orbis_Subscription_Settings::get_mail_contents();
 				
 				// Get interval till expiration
 				$expiration_interval = $this->until_expiration();
 				
 				// Build the renew url
-				$update_url = $this->renew_url();
+				$update_url = $this->renew_url( $url );
 				
 				// Keys in body
 				$content_keys = array(
@@ -304,10 +300,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @access public
 		 * @return string
 		 */
-		public function renew_url() {
-			// Get the URL from the settings
-			$url = Orbis_Subscriptions_Settings::get_update_url();
-			
+		public function renew_url( $url ) {			
 			return add_query_arg( array( 'license' => $this->get_license_key_md5() ), $url );
 		}
 		
