@@ -23,7 +23,6 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 		$query = "
 			SELECT
 				s.id,
-				s.company_id,
 				s.post_id,
 				s.name,
 				s.activation_date,
@@ -31,9 +30,25 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 				s.cancel_date,
 				s.update_date,
 				s.license_key,
-				s.license_key_md5
+				s.license_key_md5,
+				c.id as company_id,
+				c.name as company_name,
+				c.e_mail as company_email,
+				t.id as type_id,
+				t.name as type_name,
+				t.price as type_price,
+				d.domain_name as domain_name
 			FROM
 				orbis_subscriptions as s
+			LEFT JOIN
+				orbis_companies as c
+				ON s.company_id = c.id
+			LEFT JOIN
+				orbis_subscription_types as t
+				ON s.type_id = t.id
+			LEFT JOIN
+				orbis_domain_names as d
+				ON s.domain_name_id = d.id
 			WHERE
 				s.post_id = %d
 			ORDER BY
