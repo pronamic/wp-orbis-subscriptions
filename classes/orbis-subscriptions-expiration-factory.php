@@ -45,8 +45,6 @@ class Orbis_Subscriptions_Expiration_Factory {
 			LEFT JOIN
 				orbis_domain_names AS domain_name
 				ON subscription.domain_name_id = domain_name.id
-			WHERE
-				type_id IN (11, 12, 20)
 			ORDER BY
 				subscription.update_date ,
 				subscription.id
@@ -83,9 +81,6 @@ class Orbis_Subscriptions_Expiration_Factory {
 			LEFT JOIN
 				orbis_domain_names AS domain_name
 				ON subscription.domain_name_id = domain_name.id
-			WHERE
-				type_id IN (11, 12, 20)
-			AND
 			WHERE
 				expirationDate BETWEEN NOW() AND %s
 			ORDER BY
