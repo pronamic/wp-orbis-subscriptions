@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'init', 'testing' );
+//add_action( 'init', 'testing' );
 function testing() {
 	$subscription = new Orbis_Subscription( 3352 );
 	
@@ -126,71 +126,38 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		return;
 	}
 
-	// OK
-	global $wpdb;
-
 	$company_id  = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
 	$type_id     = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
 	$name        = get_post_meta( $post_id, '_orbis_subscription_name', true );
-
-	// Orbis company ID
-	$query = $wpdb->prepare( "SELECT id FROM orbis_subscriptions WHERE post_id = %d;", $post_id );
-
-	$orbis_id = $wpdb->get_var( $query );
-
-	if ( empty( $orbis_id ) ) {
-		$license_key     = md5( '' . $company_id . $type_id . $name );
-		$license_key_md5 = md5( $license_key );
+	
+	// Get the subscription object
+	$subscription = new Orbis_Subscription( $post );
+	
+	// Set this subscriptions details
+	$subscription
+			->set_company_id( $company_id )
+			->set_type_id( $type_id )
+			->set_post_id( $post_id )
+			->set_name( $name );
+	
+	// Must be new, make a new license key for this subscription
+	if ( ! $subscription->get_id() ) {
+		$subscription->generate_license_key();
 		
-		$activation_time = time();
-		$expiration_time = strtotime( '+1 year', $activation_time ); 
-
-		$result = $wpdb->insert(
-			'orbis_subscriptions' ,
-			array(
-				'company_id'      => $company_id,
-				'type_id'         => $type_id,
-				'post_id'         => $post_id,
-				'name'            => $name,
-				'activation_date' => date( 'Y-m-d H:i:s', $activation_time ),
-				'expiration_date' => date( 'Y-m-d H:i:s', $expiration_time ),
-				'license_key'     => $license_key,
-				'license_key_md5' => $license_key_md5
-			),
-			array(
-				'company_id'      => '%d',
-				'type_id'         => '%d',
-				'post_id'         => '%d',
-				'name'            => '%s',
-				'activation_date' => '%s',
-				'expiration_date' => '%s',
-				'license_key'     => '%s',
-				'license_key_md5' => '%s'
-			)
-		);
-	
-		if ( $result !== false ) {
-			$orbis_id = $wpdb->insert_id;
-	
-			update_post_meta( $post_id, '_orbis_subscription_id', $orbis_id );
-		}
-	} else {
-		$result = $wpdb->update(
-			'orbis_subscriptions' ,
-			array(
-				'company_id' => $company_id,
-				'type_id'    => $type_id,
-				'name'       => $name
-			),
-			array( 'id' => $orbis_id ),
-			array(
-				'company_id' => '%d',
-				'type_id'    => '%d',
-				'name'       => '%s'
-			),
-			array( '%d' )
-		);
+		// Current DateTime
+		$current = new DateTime();
+		
+		$subscription->set_activation_date( $current );
+		
+		// Expiration DateTime
+		$expiration = new DateTime();
+		$expiration->add( new DateInterval( 'P1Y' ) );
+		
+		$subscription->set_expiration_date( $expiration );
 	}
+	
+	// Save this subscription!
+	$subscription->save();
 }
 
 add_action( 'save_post', 'orbis_save_subscription_sync', 20, 2 );
