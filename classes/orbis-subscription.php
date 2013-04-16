@@ -307,13 +307,17 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 
 		/**
 		 * Generates and sets a license key for this subscription
+		 * 
+		 * Uses an md5 string of the company id, type id and name.
+		 * 
+		 * @access public
 		 * @return string
 		 */
 		public function generate_license_key() {
 			if ( !isset( $this->company_id ) && !isset( $this->type_id ) && !isset( $this->name ) )
 				return false;
 
-			$license_key = md5( '' . $company_id . $type_id . $name );
+			$license_key = md5( '' . $this->get_company_id() . $this->get_type_id() . $this->get_name() );
 			$license_key_md5 = md5( $license_key );
 
 			$this->set_license_key( $license_key );
