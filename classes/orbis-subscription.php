@@ -305,12 +305,74 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			return add_query_arg( array( 'license' => $this->get_license_key_md5() ), $url );
 		}
 
+		/**
+		 * Generates and sets a license key for this subscription
+		 * @return string
+		 */
+		public function generate_license_key() {
+			if ( !isset( $this->company_id ) && !isset( $this->type_id ) && !isset( $this->name ) )
+				return false;
+
+			$license_key = md5( '' . $company_id . $type_id . $name );
+			$license_key_md5 = md5( $license_key );
+
+			$this->set_license_key( $license_key );
+			$this->set_license_key_md5( $license_key_md5 );
+
+			return $license_key;
+		}
+
 		public function activate() {
 			
 		}
 
 		public function save() {
-			
+			// Must be new
+			if ( !$this->get_id() ) {
+
+				$data = array(
+					'company_id' => $this->get_company_id(),
+					'type_id' => $this->get_type_id(),
+					'post_id' => $this->get_post_id(),
+					'name' => $this->get_name(),
+					'activation_date' => $this->get_activation_date(),
+					'expiration_date' => $this->get_expiration_date(),
+					'license_key' => $this->get_license_key(),
+					'license_key_md5' => $this->get_license_key_md5()
+				);
+
+				$format = array(
+					'company_id' => '%d',
+					'type_id' => '%d',
+					'post_id' => '%d',
+					'name' => '%s',
+					'activation_date' => '%s',
+					'expiration_date' => '%s',
+					'license_key' => '%s',
+					'license_key_md5' => '%s'
+				);
+
+				$result = $this->db->insert( 'orbis_subscriptions', $data, $format );
+			} else {
+				$data = array(
+					'company_id' => $this->get_company_id(),
+					'type_id' => $this->get_type_id(),
+					'name' => $this->get_name()
+				);
+
+				$where = array( 'id' => $this->get_id() );
+
+				$format = array(
+					'company_id' => '%d',
+					'type_id' => '%d',
+					'name' => '%s'
+				);
+
+				// Update!
+				$result = $this->db->update( 'orbis_subscriptions', $data, $where, $format );
+			}
+
+			return $result;
 		}
 
 		public function remove() {
@@ -458,6 +520,32 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 	}
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
 
 	
 
