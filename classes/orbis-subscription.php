@@ -345,6 +345,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_id( $id ) {
 			$this->id = $id;
+			return $this;
 		}
 
 		public function get_company_id() {
@@ -353,6 +354,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_company_id( $company_id ) {
 			$this->company_id = $company_id;
+			return $this;
 		}
 
 		public function get_type_id() {
@@ -361,6 +363,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_type_id( $type_id ) {
 			$this->type_id = $type_id;
+			return $this;
 		}
 
 		public function get_domain_name_id() {
@@ -369,6 +372,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_domain_name_id( $domain_name_id ) {
 			$this->domain_name_id = $domain_name_id;
+			return $this;
 		}
 
 		public function get_post_id() {
@@ -377,6 +381,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_post_id( $post_id ) {
 			$this->post_id = $post_id;
+			return $this;
 		}
 
 		public function get_name() {
@@ -385,6 +390,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_name( $name ) {
 			$this->name = $name;
+			return $this;
 		}
 		
 		public function get_email() {
@@ -393,6 +399,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		
 		public function set_email( $email ) {
 			$this->email = $email;
+			return $this;
 		}
 
 		public function get_activation_date() {
@@ -401,6 +408,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_activation_date( DateTime $activation_date ) {
 			$this->activation_date = $activation_date;
+			return $this;
 		}
 
 		public function get_expiration_date() {
@@ -409,6 +417,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_expiration_date( DateTime $expiration_date ) {
 			$this->expiration_date = $expiration_date;
+			return $this;
 		}
 
 		public function get_cancel_date() {
@@ -417,6 +426,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_cancel_date( DateTime $cancel_date ) {
 			$this->cancel_date = $cancel_date;
+			return $this;
 		}
 
 		public function get_update_date() {
@@ -425,6 +435,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_update_date( DateTime $update_date ) {
 			$this->update_date = $update_date;
+			return $this;
 		}
 
 		public function get_license_key() {
@@ -433,6 +444,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_license_key( $license_key ) {
 			$this->license_key = $license_key;
+			return $this;
 		}
 
 		public function get_license_key_md5() {
@@ -441,6 +453,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_license_key_md5( $license_key_md5 ) {
 			$this->license_key_md5 = $license_key_md5;
+			return $this;
 		}
 
 	}
