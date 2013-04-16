@@ -38,7 +38,31 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var int
 		 */
 		private $company_id;
-
+		
+		/**
+		 * Holds the company name.
+		 * 
+		 * This company information could probably
+		 * be split into its own class. That is outside
+		 * the scope of this project for now.
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $company_name;
+		
+		/**
+		 * Holds the company email
+		 * 
+		 * This company information could probably
+		 * be split into its own class. That is outside
+		 * the scope of this project for now.
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $company_email;
+		
 		/**
 		 * Holds the type associated id,
 		 * from the orbis_subscription table
@@ -47,6 +71,22 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var int
 		 */
 		private $type_id;
+		
+		/**
+		 * Holds the type name from the
+		 * orbis_subscription table.
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $type_name;
+		
+		/**
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $type_price;
 
 		/**
 		 * Holds the domain name id,
@@ -158,7 +198,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 
 				// Or if just an id, find that post!
 			} elseif ( is_numeric( $subscription ) ) {
-
+				
 				$this->post = get_post( $subscription );
 			}
 
@@ -167,20 +207,26 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 				return false;
 
 			// Get the subscription id and post type
-			$subscription_id = absint( $this->post->ID );
+			$post_id = absint( $this->post->ID );
 			$post_type = $this->post->post_type;
+			
 
 			// Check this is a orbis_subscription
 			if ( 'orbis_subscription' === $post_type ) {
 
 				// Get all data from the custom table
-				$subscription_data = orbis_subscription_get_data( $subscription_id );
+				$subscription_data = orbis_subscription_get_data( $post_id );
 
 				if ( !empty( $subscription_data ) ) {
 					// Set the properties for this subscription
 					$this->set_id( $subscription_data->id );
 					$this->set_company_id( $subscription_data->company_id );
+					$this->set_company_name( $subscription_data->company_name );
+					$this->set_company_email( $subscription_data->company_email );
 					$this->set_post_id( $subscription_data->post_id );
+					$this->set_type_id( $subscription_data->type_id );
+					$this->set_type_name( $subscription_data->type_name );
+					$this->set_type_price( $subscription_data->type_price );
 					$this->set_name( $subscription_data->name );
 					$this->set_email( $subscription_data->email );
 					$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
@@ -423,13 +469,49 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->company_id = $company_id;
 			return $this;
 		}
+		
+		public function get_company_name() {
+			return $this->company_name;
+		}
 
+		public function set_company_name( $company_name ) {
+			$this->company_name = $company_name;
+			return $this;
+		}
+		
+		public function get_company_email() {
+			return $this->company_email;
+		}
+
+		public function set_company_email( $company_email ) {
+			$this->company_email = $company_email;
+			return $this;
+		}
+		
 		public function get_type_id() {
 			return $this->type_id;
 		}
 
 		public function set_type_id( $type_id ) {
 			$this->type_id = $type_id;
+			return $this;
+		}
+		
+		public function get_type_name() {
+			return $this->type_name;
+		}
+
+		public function set_type_name( $type_name ) {
+			$this->type_name = $type_name;
+			return $this;
+		}
+		
+		public function get_type_price( $symbol = '', $dec_point = ',', $thousand = '.' ) {
+			return $symbol . number_format( $this->type_price, 2, $dec_point, $thousand );
+		}
+		
+		public function set_type_price( $type_price ) {
+			$this->type_price = $type_price;
 			return $this;
 		}
 
