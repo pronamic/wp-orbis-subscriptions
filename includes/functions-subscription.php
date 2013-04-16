@@ -8,7 +8,16 @@
 
 if ( ! defined( 'orbis_subscription_get_data' ) ) :
 	
-	function orbis_subscription_get_data( $subscription_id ) {
+	/**
+	 * Returns a row from the orbis_subscriptions table 
+	 * where the post_id matches the parameter
+	 * 
+	 * @global type $wpdb
+	 * 
+	 * @param int $post_id
+	 * @return object
+	 */
+	function orbis_subscription_get_data( $post_id ) {
 		global $wpdb;
 		
 		$query = "
@@ -32,7 +41,7 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 				s.update_date
 		";
 		
-		return $wpdb->get_row( $wpdb->prepare( $query, $subscription_id ) );
+		return $wpdb->get_row( $wpdb->prepare( $query, $post_id ) );
 	}
 	
 endif;
