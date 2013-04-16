@@ -18,6 +18,9 @@ License: GPL
 GitHub URI: https://github.com/pronamic/wp-orbis-subscriptions
 */
 
+DEFINE( 'ORBIS_SUBSCRIPTIONS_FILE', __FILE__ );
+DEFINE( 'ORBIS_SUBSCRIPTIONS_FOLDER', dirname( ORBIS_SUBSCRIPTIONS_FILE ) );
+
 function orbis_subscriptions_bootstrap() {
 	include 'classes/orbis-subscriptions-plugin.php';
 
@@ -25,9 +28,15 @@ function orbis_subscriptions_bootstrap() {
 	
 	$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin( __FILE__ );
 	
+	// Classes
 	include 'classes/orbis-subscription.php';
+	include 'classes/orbis-subscriptions-settings.php';
 	
+	// Functions
 	include 'includes/functions-subscription.php';
+	
+	// Load settings
+	$settings = new Orbis_Subscriptions_Settings();
 }
 
 add_action( 'orbis_bootstrap', 'orbis_subscriptions_bootstrap' );
