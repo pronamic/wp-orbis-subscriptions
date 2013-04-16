@@ -74,6 +74,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @var string
 		 */
 		private $name;
+		
+		/**
+		 * Holds the email from the
+		 * orbis_subscription table
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $email;
 
 		/**
 		 * Holds the activation date
@@ -127,6 +136,23 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		private $license_key_md5;
 
+		/**
+		 * Fills this class with the data of the subscription from the 
+		 * orbis_subscription table.
+		 * 
+		 * If no parameter passed, then will take the global WP_Post
+		 * object.
+		 * 
+		 * If that isn't a orbis_subscription post type then false is returned.
+		 * 
+		 * @internal Probably too much of a god function. Requires seperation
+		 * 
+		 * @global WP_Post $post
+		 * @global WPDB $wpdb
+		 * 
+		 * @param int $subscription ID of a Subscription/Post
+		 * @return boolean
+		 */
 		public function __construct( $subscription = null ) {
 			global $post, $wpdb;
 			$this->db = $wpdb;
@@ -139,7 +165,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			}
 
 			// Check the subscription from post exists
-			if ( ! $subscription )
+			if ( ! $this->post )
 				return false;
 
 			// Get the subscription id and post type
@@ -157,12 +183,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$this->set_company_id( $subscription_data->company_id );
 				$this->set_post_id( $subscription_data->post_id );
 				$this->set_name( $subscription_data->name );
+				$this->set_email( $subscription_data->email );
 				$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
 				$this->set_expiration_date( new DateTime( $subscription_data->expiration_date ) );
 				$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
 				$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 				$this->set_license_key( $subscription_data->license_key );
 				$this->set_license_key_md5( $subscription_data->license_key_md5 );
+			} else {
+				return false;
 			}
 		}
 
@@ -170,6 +199,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			
 		}
 
+		/**
+		 * Extends the subscription for a passed DateInterval.
+		 * 
+		 * If no DateInterval is passed, then it defaults to 1 year extension.
+		 * 
+		 * @access public
+		 * @param DateInterval $date_interval
+		 * @return boolean
+		 */
 		public function extend( DateInterval $date_interval = null ) {
 			// If no date interval supplied, default to 1 year
 			if ( ! $date_interval )
@@ -190,15 +228,89 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			";
 			
 			// Update the database
-			$this->db->query( 
+			$response = $this->db->query( 
 				$this->db->prepare( $query, $this->get_expiration_date(), $this->get_id() ) 
 			);
-		}
-
-		public function send_reminder() {
 			
+			// Because 0 can be returned, a boolean type response will return a false negative
+			if ( false === $response ) return false;
+			else return true;
 		}
 
+		/**
+		 * Using wp_mail, a mail is sent to this subscriptions
+		 * stored company_email
+		 * 
+		 * If isn't a valid email, or isn't set, false is returned
+		 * 
+		 * Uses the mail_subject and mail_contents from the settings
+		 * 
+		 * @access public
+		 * @return boolean
+		 */
+		public function send_reminder() {
+			// Check email is set and valid
+			if ( is_email( $this->get_email() ) ) {
+				
+				// Get the configured settings
+				$raw_subject = Orbis_Subscriptions_Settings::get_mail_subject();
+				$raw_body = Orbis_Subscription_Settings::get_mail_contents();
+				
+				// Get interval till expiration
+				$expiration_interval = $this->until_expiration();
+				
+				// Build the renew url
+				$update_url = $this->renew_url();
+				
+				// Keys in body
+				$content_keys = array(
+					'%company_name%' => $this->get_name(),
+					'%days_to_expiration%' => $expiration_interval->format( '%r%a' ),
+					'%renew_license_url%' => $update_url
+				);
+				
+				// Replace the placeholder body contents
+				$body = str_replace( array_keys( $content_keys ), $content_keys, $raw_body );
+				
+				// Attempt to send the mail
+				if ( wp_mail( $this->get_email(), $raw_subject, $body ) ) {
+					// Store a comment note of successful reminder
+					$this->store_note();
+				} else {
+					return false;
+				}
+				
+			} else {
+				return false;
+			}
+		}
+		
+		/**
+		 * Determine how long till this account expires.  Will return
+		 * a DateInterval of the difference from now till expiration
+		 * 
+		 * @access public
+		 * @return DateInterval
+		 */
+		public function until_expiration() {
+			// Current DateTime
+			$date_now = new DateTime();
+			return $date_now->diff( $this->get_expiration_date() );
+		}
+		
+		/**
+		 * Returns the url to update this subscription
+		 * 
+		 * @access public
+		 * @return string
+		 */
+		public function renew_url() {
+			// Get the URL from the settings
+			$url = Orbis_Subscriptions_Settings::get_update_url();
+			
+			return add_query_arg( array( 'license' => $this->get_license_key_md5() ), $url );
+		}
+		
 		public function activate() {
 			
 		}
@@ -209,6 +321,22 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function remove() {
 			
+		}
+		
+		/**
+		 * Stores a note of a sent expiration reminder
+		 * 
+		 * @access private
+		 * @return void
+		 */
+		private function store_note() {
+			$comment = array(
+				'comment_post_ID' => $this->get_post_id(),
+				'comment_author' => 'System',
+				'comment_content' => 'A license expiration reminder has been sent to ' . $this->get_name() . ' ( ' . $this->get_email() . ' ) '
+			);
+			
+			return wp_insert_comment( $comment );
 		}
 
 		/**
@@ -264,6 +392,14 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 		public function set_name( $name ) {
 			$this->name = $name;
+		}
+		
+		public function get_email() {
+			return $this->email;
+		}
+		
+		public function set_email( $email ) {
+			$this->email = $email;
 		}
 
 		public function get_activation_date() {
