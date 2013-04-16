@@ -30,13 +30,17 @@ function orbis_subscriptions_bootstrap() {
 	
 	// Classes
 	include 'classes/orbis-subscription.php';
+	include 'classes/orbis-subscriptions-expiration-factory.php';
+	include 'classes/orbis-subscriptions-expiration.php';
 	include 'classes/orbis-subscriptions-settings.php';
 	
 	// Functions
 	include 'includes/functions-subscription.php';
 	
 	// Load settings
+	$expiration = new Orbis_Subscriptions_Expiration();
 	$settings = new Orbis_Subscriptions_Settings();
+	
 }
 
 add_action( 'orbis_bootstrap', 'orbis_subscriptions_bootstrap' );
