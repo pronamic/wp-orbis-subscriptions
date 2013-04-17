@@ -56,62 +56,10 @@
 				</td>
 				<td>
 					<?php _e('The following variable tags can be used in the template:', 'pronamic-ideal-license-manager'); ?><br /><br />
-					<?php foreach( array( '%company_name%', '%days_to_expiration%', '%renew_license_url%' ) as $tag ): ?>
+					<?php foreach( array( '{{company_name}}', '{{days_to_expiration}}', '{{renew_license_url}}' ) as $tag ): ?>
 						<i><?php echo $tag; ?></i><br />
 					<?php endforeach; ?>
 				</td>
-			</tr>
-			
-			<tr>
-				<th colspan="3"><?php _e('Reminder settings', 'pronamic-ideal-license-manager'); ?></th>
-			</tr>
-			
-			<tr>
-				<td><?php _e('', 'pronamic-ideal-license-manager'); ?></td>
-				<td>
-					<input 
-						type="text"
-						name="orbis_subscriptions_days_before_expiration"
-						value="<?php echo $remind_days_before_expiration; ?>"
-						size="50"
-					/>
-					<label for="orbis_subscriptions_days_before_expiration">
-						<?php _e('Number of days within expiration date to start reminding users of their expiring licenses', 'pronamic-ideal-license-manager'); ?>
-					</label>
-				</td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<td><?php _e('', 'pronamic-ideal-license-manager'); ?></td>
-				<td>
-					<input 
-						type="text"
-						name="orbis_subscriptions_maximum_reminders"
-						value="<?php echo $max_number_of_reminders; ?>"
-						size="50"
-					/>
-					<label for="orbis_subscriptions_maximum_reminders">
-						<?php _e('Maximum number of reminders', 'pronamic-ideal-license-manager'); ?>
-					</label>
-				</td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<td><?php _e('', 'pronamic-ideal-license-manager'); ?></td>
-				<td>
-					<input 
-						type="text"
-						name="orbis_subscriptions_between_reminders"
-						value="<?php echo $minimum_days_between_reminders; ?>"
-						size="50"
-					/>
-					<label for="orbis_subscriptions_between_reminders">
-						<?php _e('Minimum number of days between reminders', 'pronamic-ideal-license-manager'); ?>
-					</label>
-				</td>
-				<td></td>
 			</tr>
 			
 		</table>

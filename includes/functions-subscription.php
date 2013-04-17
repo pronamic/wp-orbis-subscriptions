@@ -25,6 +25,7 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 				s.id,
 				s.post_id,
 				s.name,
+				s.email,
 				s.activation_date,
 				s.expiration_date,
 				s.cancel_date,

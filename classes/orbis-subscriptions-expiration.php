@@ -24,10 +24,12 @@ class Orbis_Subscriptions_Expiration {
 		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
 		
 		// 7 Days
-		$next_week = new DateTime();
-		$next_week->add( new DateInterval( 'P1W') );
+		$one_week = new DateTime();
+		$one_week->add( new DateInterval( 'P1W') );
 		
-		$subscriptions = $subscription_factory->get_expiring_in( $next_week );
+		$subscriptions = $subscription_factory->get_expiring_in( $one_week );
+		
+		$nonce = wp_nonce_field( 'orbis_subscription_expiration_manager', 'orbis_subscription_expiration_manager_nonce', true, false );
 				
 		// Load view
 		include ORBIS_SUBSCRIPTIONS_FOLDER . '/templates/expiring_licenses_manager.php';
@@ -36,22 +38,22 @@ class Orbis_Subscriptions_Expiration {
 	public function expiring_licenses_submit() {
 		if ( ! isset( $_POST ) )
 			return;
-		
+				
 		if ( ! isset( $_POST['orbis_subscription_expiration_manager_nonce' ] ) )
 			return;
 		
-		if ( wp_verify_nonce( $_POST['orbis_subscription_expiration_manager_nonce'], 'orbis_subscription_expiration_manager' ) )
+		if ( ! wp_verify_nonce( $_POST['orbis_subscription_expiration_manager_nonce'], 'orbis_subscription_expiration_manager' ) )
 			return;
 		
 		// Get mail contents
 		$mail_subject = Orbis_Subscriptions_Settings::get_mail_subject();
 		$mail_body = Orbis_Subscriptions_Settings::get_mail_body();
 		$url = Orbis_Subscriptions_Settings::get_update_url();
-		
-		if ( isset( $_POST['submit-single'] ) ) {
-			$subscription_ids = array( filter_input( INPUT_POST, 'subscription_id', FILTER_VALIDATE_INT ) );
+				
+		if ( isset( $_POST['submit_single'] ) ) {
+			$subscription_ids = array( filter_input( INPUT_POST, 'submit_single', FILTER_VALIDATE_INT ) );
 		} else {
-			$subscription_ids = filter_input( INPUT_POST, 'subscription_ids', FILTER_REQUIRE_ARRAY );
+			$subscription_ids = filter_input( INPUT_POST, 'subscription_ids', FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY );
 		}
 		
 		foreach ( $subscription_ids as $subscription_id ) {
@@ -64,11 +66,11 @@ class Orbis_Subscriptions_Expiration {
 	public function extend_license_submit() {
 		if ( ! isset( $_POST ) )
 			return;
-		
-		if ( ! isset( $_POST['orbis_subscription_extend_action'] ) )
+				
+		if ( ! isset( $_POST['submit_extend'] ) )
 			return;
 		
-		$subscription_id = filter_input( INPUT_POST, 'subscription_id', FILTER_VALIDATE_INT );
+		$subscription_id = filter_input( INPUT_POST, 'submit_extend', FILTER_VALIDATE_INT );
 		
 		// Extend the license
 		$subscription = new Orbis_Subscription( $subscription_id );

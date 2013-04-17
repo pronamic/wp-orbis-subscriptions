@@ -176,6 +176,24 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		private $license_key_md5;
 
+		/**
+		 * Holds the subject sent
+		 * out with the email notification
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $email_subject;
+
+		/**
+		 * Holds the body sent
+		 * out with the email notification
+		 * 
+		 * @access private
+		 * @var string
+		 */
+		private $email_body;
+
 		public function __construct( $subscription = null ) {
 			global $wpdb;
 			$this->db = $wpdb;
@@ -259,30 +277,33 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			if ( ! $date_interval )
 				$date_interval = new DateInterval( 'P1Y' );
 
+			// wpdb->update doesn't support mysql NOW()
+			$now = new DateTime();
+
 			// Add the interval period to the expiration date
-			$this->expiration_date->add( $date_interval );
+			$expiration = $this->get_expiration_date()->add( $date_interval );
 
-			// Query string
-			$query = "
-				UPDATE
-					orbis_subscriptions
-				SET
-					expiration_date = '%s',
-					update_date = NOW()
-				WHERE
-					id = %d
-			";
-
-			// Update the database
-			$response = $this->db->query(
-					$this->db->prepare( $query, $this->get_expiration_date(), $this->get_id() )
+			$data = array(
+				'expiration_date'	 => $expiration->format( 'Y-m-d H:i:s' ),
+				'update_date'		 => $now->format( 'Y-m-d H:i:s' )
 			);
 
+			$where = array( 'id' => $this->get_id() );
+
+			$format = array(
+				'expiration_date'	 => '%s',
+				'update_date'		 => '%s'
+			);
+
+			$response = $this->db->update( 'orbis_subscriptions', $data, $where, $format );
+
 			// Because 0 can be returned, a boolean type response will return a false negative
-			if ( false === $response )
+			if ( false === $response ) {
 				return false;
-			else
+			} else {
+				$this->set_expiration_date( $expiration );
 				return true;
+			}
 		}
 
 		/**
@@ -300,24 +321,22 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			// Check email is set and valid
 			if ( is_email( $this->get_email() ) ) {
 
-				// Get interval till expiration
-				$expiration_interval = $this->until_expiration();
-
 				// Build the renew url
 				$update_url = $this->renew_url( $url );
 
 				// Keys in body
 				$content_keys = array(
-					'%company_name%'		 => $this->get_name(),
-					'%days_to_expiration%'	 => $expiration_interval->format( '%r%a' ),
-					'%renew_license_url%'	 => $update_url
+					'{{company_name}}'		 => $this->get_company_name(),
+					'{{days_to_expiration}}' => $this->until_expiration_human(),
+					'{{renew_license_url}}'	 => $update_url
 				);
 
 				// Replace the placeholder body contents
-				$body = str_replace( array_keys( $content_keys ), $content_keys, $raw_body );
+				$this->email_subject = $raw_subject;
+				$this->email_body	 = str_replace( array_keys( $content_keys ), $content_keys, $raw_body );
 
 				// Attempt to send the mail
-				if ( wp_mail( $this->get_email(), $raw_subject, $body ) ) {
+				if ( wp_mail( $this->get_email(), $this->email_subject, $this->email_body ) ) {
 					// Store a comment note of successful reminder
 					$this->store_note();
 				} else {
@@ -326,6 +345,21 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			} else {
 				return false;
 			}
+		}
+		
+		/**
+		 * Conditional method to determine if this subscription has passed
+		 * expiration or not.
+		 * 
+		 * @access public
+		 * @param DateTime $now | A custom comparison datetime
+		 * @return boolean
+		 */
+		public function passed_expiration( DateTime $now = null ) {
+			if ( ! $now )
+				$now = new DateTime();
+			
+			return ( $now > $this->get_expiration_date() );
 		}
 
 		/**
@@ -353,14 +387,13 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @return string
 		 */
 		public function until_expiration_human( $passed = 'ago', $till = 'In' ) {
-			$now	 = new DateTime();
-			$expires = $this->get_expiration_date();
+			$expires = $this->get_expiration_date()->format( 'U' );
 
 			// If now is greater, then its already expired
-			if ( $now > $expires ) {
-				return human_time_diff( $expires->format( 'U' ) ) . ' ' . $passed;
+			if ( $this->passed_expiration() ) {
+				return human_time_diff( $expires ) . ' ' . $passed;
 			} else {
-				return $till . ' ' . human_time_diff( $expires->format( 'U' ) );
+				return $till . ' ' . human_time_diff( $expires );
 			}
 		}
 
@@ -408,6 +441,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					'type_id'			 => $this->get_type_id(),
 					'post_id'			 => $this->get_post_id(),
 					'name'				 => $this->get_name(),
+					'email'				 => $this->get_email(),
 					'activation_date'	 => $this->get_activation_date(),
 					'expiration_date'	 => $this->get_expiration_date(),
 					'license_key'		 => $this->get_license_key(),
@@ -419,6 +453,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					'type_id'			 => '%d',
 					'post_id'			 => '%d',
 					'name'				 => '%s',
+					'email'				 => '%s',
 					'activation_date'	 => '%s',
 					'expiration_date'	 => '%s',
 					'license_key'		 => '%s',
@@ -430,7 +465,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$data = array(
 					'company_id' => $this->get_company_id(),
 					'type_id'	 => $this->get_type_id(),
-					'name'		 => $this->get_name()
+					'name'		 => $this->get_name(),
+					'email'		 => $this->get_email()
 				);
 
 				$where = array( 'id' => $this->get_id() );
@@ -438,7 +474,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$format = array(
 					'company_id' => '%d',
 					'type_id'	 => '%d',
-					'name'		 => '%s'
+					'name'		 => '%s',
+					'email'		 => '%s'
 				);
 
 				// Update!
@@ -462,7 +499,10 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			$comment = array(
 				'comment_post_ID'	 => $this->get_post_id(),
 				'comment_author'	 => 'System',
-				'comment_content'	 => 'A license expiration reminder has been sent to ' . $this->get_name() . ' ( ' . $this->get_email() . ' ) '
+				'comment_content'	 => "A license expiration reminder has been sent to " . $this->get_company_name() . " ( " . $this->get_email() . " ) \n
+				<blockquote>" .
+				$this->email_body
+				. "</blockquote>"
 			);
 
 			return wp_insert_comment( $comment );
@@ -629,6 +669,10 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 	}
+
+	
+
+	
 
 	
 
