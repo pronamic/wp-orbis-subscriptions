@@ -1,6 +1,6 @@
 <?php
 
-if ( !class_exists( 'Orbis_Subscription' ) ) :
+if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 	class Orbis_Subscription {
 
@@ -38,7 +38,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var int
 		 */
 		private $company_id;
-		
+
 		/**
 		 * Holds the company name.
 		 * 
@@ -50,7 +50,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var string
 		 */
 		private $company_name;
-		
+
 		/**
 		 * Holds the company email
 		 * 
@@ -62,7 +62,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var string
 		 */
 		private $company_email;
-		
+
 		/**
 		 * Holds the type associated id,
 		 * from the orbis_subscription table
@@ -71,7 +71,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var int
 		 */
 		private $type_id;
-		
+
 		/**
 		 * Holds the type name from the
 		 * orbis_subscription table.
@@ -80,7 +80,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @var string
 		 */
 		private $type_name;
-		
+
 		/**
 		 * 
 		 * @access private
@@ -198,18 +198,18 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 
 				// Or if just an id, find that post!
 			} elseif ( is_numeric( $subscription ) ) {
-				
+
 				$this->post = get_post( $subscription );
 			}
 
 			// Check the subscription from post exists
-			if ( !$this->post )
+			if ( ! $this->post )
 				return false;
 
 			// Get the subscription id and post type
-			$post_id = absint( $this->post->ID );
-			$post_type = $this->post->post_type;
-			
+			$post_id	 = absint( $this->post->ID );
+			$post_type	 = $this->post->post_type;
+
 
 			// Check this is a orbis_subscription
 			if ( 'orbis_subscription' === $post_type ) {
@@ -217,7 +217,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 				// Get all data from the custom table
 				$subscription_data = orbis_subscription_get_data( $post_id );
 
-				if ( !empty( $subscription_data ) ) {
+				if ( ! empty( $subscription_data ) ) {
 					// Set the properties for this subscription
 					$this->set_id( $subscription_data->id );
 					$this->set_company_id( $subscription_data->company_id );
@@ -256,7 +256,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		public function extend( DateInterval $date_interval = null ) {
 			// If no date interval supplied, default to 1 year
-			if ( !$date_interval )
+			if ( ! $date_interval )
 				$date_interval = new DateInterval( 'P1Y' );
 
 			// Add the interval period to the expiration date
@@ -308,9 +308,9 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 
 				// Keys in body
 				$content_keys = array(
-					'%company_name%' => $this->get_name(),
-					'%days_to_expiration%' => $expiration_interval->format( '%r%a' ),
-					'%renew_license_url%' => $update_url
+					'%company_name%'		 => $this->get_name(),
+					'%days_to_expiration%'	 => $expiration_interval->format( '%r%a' ),
+					'%renew_license_url%'	 => $update_url
 				);
 
 				// Replace the placeholder body contents
@@ -342,6 +342,29 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 		/**
+		 * Returns a human readable difference between the expiration date
+		 * and now.
+		 * 
+		 * Perhaps requires parameters to be changed to sprintf formats so you
+		 * can have the order how you want.
+		 * 
+		 * @param string $passed | default: 'ago'
+		 * @param string $till | default: 'In'
+		 * @return string
+		 */
+		public function until_expiration_human( $passed = 'ago', $till = 'In' ) {
+			$now	 = new DateTime();
+			$expires = $this->get_expiration_date();
+
+			// If now is greater, then its already expired
+			if ( $now > $expires ) {
+				return human_time_diff( $expires->format( 'U' ) ) . ' ' . $passed;
+			} else {
+				return $till . ' ' . human_time_diff( $expires->format( 'U' ) );
+			}
+		}
+
+		/**
 		 * Returns the url to update this subscription
 		 * 
 		 * @access public
@@ -360,10 +383,10 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 * @return string
 		 */
 		public function generate_license_key() {
-			if ( !isset( $this->company_id ) && !isset( $this->type_id ) && !isset( $this->name ) )
+			if ( ! isset( $this->company_id ) && ! isset( $this->type_id ) && ! isset( $this->name ) )
 				return false;
 
-			$license_key = md5( '' . $this->get_company_id() . $this->get_type_id() . $this->get_name() );
+			$license_key	 = md5( '' . $this->get_company_id() . $this->get_type_id() . $this->get_name() );
 			$license_key_md5 = md5( $license_key );
 
 			$this->set_license_key( $license_key );
@@ -378,44 +401,44 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 
 		public function save() {
 			// Must be new
-			if ( !$this->get_id() ) {
+			if ( ! $this->get_id() ) {
 
 				$data = array(
-					'company_id' => $this->get_company_id(),
-					'type_id' => $this->get_type_id(),
-					'post_id' => $this->get_post_id(),
-					'name' => $this->get_name(),
-					'activation_date' => $this->get_activation_date(),
-					'expiration_date' => $this->get_expiration_date(),
-					'license_key' => $this->get_license_key(),
-					'license_key_md5' => $this->get_license_key_md5()
+					'company_id'		 => $this->get_company_id(),
+					'type_id'			 => $this->get_type_id(),
+					'post_id'			 => $this->get_post_id(),
+					'name'				 => $this->get_name(),
+					'activation_date'	 => $this->get_activation_date(),
+					'expiration_date'	 => $this->get_expiration_date(),
+					'license_key'		 => $this->get_license_key(),
+					'license_key_md5'	 => $this->get_license_key_md5()
 				);
 
 				$format = array(
-					'company_id' => '%d',
-					'type_id' => '%d',
-					'post_id' => '%d',
-					'name' => '%s',
-					'activation_date' => '%s',
-					'expiration_date' => '%s',
-					'license_key' => '%s',
-					'license_key_md5' => '%s'
+					'company_id'		 => '%d',
+					'type_id'			 => '%d',
+					'post_id'			 => '%d',
+					'name'				 => '%s',
+					'activation_date'	 => '%s',
+					'expiration_date'	 => '%s',
+					'license_key'		 => '%s',
+					'license_key_md5'	 => '%s'
 				);
 
 				$result = $this->db->insert( 'orbis_subscriptions', $data, $format );
 			} else {
 				$data = array(
 					'company_id' => $this->get_company_id(),
-					'type_id' => $this->get_type_id(),
-					'name' => $this->get_name()
+					'type_id'	 => $this->get_type_id(),
+					'name'		 => $this->get_name()
 				);
 
 				$where = array( 'id' => $this->get_id() );
 
 				$format = array(
 					'company_id' => '%d',
-					'type_id' => '%d',
-					'name' => '%s'
+					'type_id'	 => '%d',
+					'name'		 => '%s'
 				);
 
 				// Update!
@@ -437,9 +460,9 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		private function store_note() {
 			$comment = array(
-				'comment_post_ID' => $this->get_post_id(),
-				'comment_author' => 'System',
-				'comment_content' => 'A license expiration reminder has been sent to ' . $this->get_name() . ' ( ' . $this->get_email() . ' ) '
+				'comment_post_ID'	 => $this->get_post_id(),
+				'comment_author'	 => 'System',
+				'comment_content'	 => 'A license expiration reminder has been sent to ' . $this->get_name() . ' ( ' . $this->get_email() . ' ) '
 			);
 
 			return wp_insert_comment( $comment );
@@ -469,7 +492,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->company_id = $company_id;
 			return $this;
 		}
-		
+
 		public function get_company_name() {
 			return $this->company_name;
 		}
@@ -478,7 +501,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->company_name = $company_name;
 			return $this;
 		}
-		
+
 		public function get_company_email() {
 			return $this->company_email;
 		}
@@ -487,7 +510,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->company_email = $company_email;
 			return $this;
 		}
-		
+
 		public function get_type_id() {
 			return $this->type_id;
 		}
@@ -496,7 +519,7 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->type_id = $type_id;
 			return $this;
 		}
-		
+
 		public function get_type_name() {
 			return $this->type_name;
 		}
@@ -505,11 +528,11 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 			$this->type_name = $type_name;
 			return $this;
 		}
-		
+
 		public function get_type_price( $symbol = '', $dec_point = ',', $thousand = '.' ) {
 			return $symbol . number_format( $this->type_price, 2, $dec_point, $thousand );
 		}
-		
+
 		public function set_type_price( $type_price ) {
 			$this->type_price = $type_price;
 			return $this;
@@ -606,6 +629,10 @@ if ( !class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 	}
+
+	
+
+	
 
 	
 
