@@ -33,6 +33,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 				company.e_mail AS companyEMail ,
 				type.name AS typeName ,
 				type.price AS price ,
+				type.auto_renew as auto_renew ,
 				domain_name.domain_name AS domainName
 			FROM
 				orbis_subscriptions AS subscription
@@ -45,6 +46,8 @@ class Orbis_Subscriptions_Expiration_Factory {
 			LEFT JOIN
 				orbis_domain_names AS domain_name
 				ON subscription.domain_name_id = domain_name.id
+			WHERE
+				type.auto_renew = 0
 			ORDER BY
 				subscription.update_date ,
 				subscription.id
@@ -58,13 +61,18 @@ class Orbis_Subscriptions_Expiration_Factory {
 			SELECT
 				subscription.id,
 				subscription.post_id,
-				subscription.expiration_date
+				subscription.expiration_date,
+				type.auto_renew
 			FROM
 				orbis_subscriptions AS subscription
+			LEFT JOIN
+				orbis_subscription_types as type
 			WHERE
 				( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() )
 			OR
 				subscription.expiration_date <= NOW()
+			AND WHERE
+				type.auto_renew = 0
 			ORDER BY
 				subscription.id
 		";
