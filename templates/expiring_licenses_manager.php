@@ -25,8 +25,9 @@
 				<?php if ( ! empty( $subscriptions ) ) : ?>
 					<?php $datetime_zone = new DateTimeZone( 'Europe/Amsterdam' ); ?>
 					<?php $days	 = new DateInterval( 'P2D' ); ?>
+					<?php $now = new DateTime(); ?>
 					<?php foreach ( $subscriptions as $subscription ) : ?>
-						<?php if ( $subscription->since_last_reminder( $days ) ) : ?>
+						<?php if ( $subscription->since_last_reminder( $days, $now ) ) : ?>
 							<tr class="subscription">
 								<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
 								<td><?php echo $subscription->get_id(); ?></td>

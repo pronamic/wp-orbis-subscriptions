@@ -320,15 +320,26 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * Determines if this subscription has been the
 		 * DateInterval parameter since the last reminder.
 		 * 
+		 * You can supply a DateTime object as the second
+		 * param, if you wish to compare with another time
+		 * other than current.
+		 * 
+		 * Would also be a good idea to fill with an object
+		 * outside the loop, if this is called from within.
 		 * 
 		 * @param DateInterval $interval
+		 * @param DateTime $now
 		 * @return boolean
 		 */
-		public function since_last_reminder( DateInterval $interval ) {
+		public function since_last_reminder( DateInterval $interval, DateTime $now = null ) {
+			// Get this subscriptions update date, 
 			$date = $this->get_update_date();
+			
+			//and add the interval
 			$date->add( $interval );
 			
-			$now = new DateTime();
+			// If no datetime supplied, make a new one
+			if ( ! $now ) $now = new DateTime();
 			
 			return ( $now > $date );
 		}
