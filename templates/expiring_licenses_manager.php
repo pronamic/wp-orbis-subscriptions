@@ -23,24 +23,28 @@
 			</thead>
 			<tbody>
 				<?php if ( ! empty( $subscriptions ) ) : ?>
+					<?php $datetime_zone = new DateTimeZone( 'Europe/Amsterdam' ); ?>
+					<?php $days	 = new DateInterval( 'P2D' ); ?>
 					<?php foreach ( $subscriptions as $subscription ) : ?>
-						<tr class="subscription">
-							<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
-							<td><?php echo $subscription->get_id(); ?></td>
-							<td><?php echo $subscription->get_company_name(); ?></td>
-							<td><?php echo $subscription->get_type_name(); ?></td>
-							<td><?php echo $subscription->get_name(); ?></td>
-							<td><?php echo $subscription->get_activation_date()->format( 'd-m-Y' ); ?></td>
-							<td><?php echo $subscription->until_expiration_human(); ?></td>
-							<td><?php echo $subscription->get_update_date()->format( 'd-m-Y' ); ?></td>
-							<td><?php echo $subscription->get_type_price( '&euro;' ); ?></td>
-							<td><?php echo $subscription->get_license_key(); ?></td>
-							<td><?php echo $subscription->get_sent_notifications(); ?></td>
-							<td>
-								<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis' ); ?></button>
-								<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis' ); ?></button>
-							</td>
-						</tr>
+						<?php if ( $subscription->since_last_reminder( $days ) ) : ?>
+							<tr class="subscription">
+								<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
+								<td><?php echo $subscription->get_id(); ?></td>
+								<td><?php echo $subscription->get_company_name(); ?></td>
+								<td><?php echo $subscription->get_type_name(); ?></td>
+								<td><?php echo $subscription->get_name(); ?></td>
+								<td><?php echo $subscription->get_activation_date()->setTimezone( $datetime_zone )->format( 'd-m-Y' ); ?></td>
+								<td><?php echo $subscription->until_expiration_human(); ?></td>
+								<td><?php echo $subscription->get_update_date()->setTimezone( $datetime_zone )->format( 'd-m-Y @ H:i' ); ?></td>
+								<td><?php echo $subscription->get_type_price( '&euro;' ); ?></td>
+								<td><?php echo $subscription->get_license_key(); ?></td>
+								<td><?php echo $subscription->get_sent_notifications(); ?></td>
+								<td>
+									<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis' ); ?></button>
+									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis' ); ?></button>
+								</td>
+							</tr>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				<?php else: ?>
 					<tr>

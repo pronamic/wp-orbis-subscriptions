@@ -317,6 +317,23 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 		/**
+		 * Determines if this subscription has been the
+		 * DateInterval parameter since the last reminder.
+		 * 
+		 * 
+		 * @param DateInterval $interval
+		 * @return boolean
+		 */
+		public function since_last_reminder( DateInterval $interval ) {
+			$date = $this->get_update_date();
+			$date->add( $interval );
+			
+			$now = new DateTime();
+			
+			return ( $now > $date );
+		}
+		
+		/**
 		 * Using wp_mail, a mail is sent to this subscriptions
 		 * stored company_email
 		 * 

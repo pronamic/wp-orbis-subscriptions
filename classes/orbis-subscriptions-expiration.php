@@ -68,7 +68,7 @@ class Orbis_Subscriptions_Expiration {
 				
 		if ( ! isset( $_POST['submit_extend'] ) )
 			return;
-		
+				
 		$subscription_id = filter_input( INPUT_POST, 'submit_extend', FILTER_VALIDATE_INT );
 		
 		// Extend the license
