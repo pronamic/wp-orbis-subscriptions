@@ -61,20 +61,21 @@ class Orbis_Subscriptions_Expiration_Factory {
 			SELECT
 				subscription.id,
 				subscription.post_id,
+				subscription.type_id,
 				subscription.expiration_date,
+				type.id,
 				type.auto_renew
 			FROM
 				orbis_subscriptions AS subscription
 			LEFT JOIN
 				orbis_subscription_types as type
-			WHERE
-				( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() )
-			OR
-				subscription.expiration_date <= NOW()
-			AND WHERE
+				ON subscription.type_id = type.id
+			WHERE 
 				type.auto_renew = 0
-			ORDER BY
-				subscription.id
+			AND 
+				( subscription.expiration_date <= NOW() 
+				OR ( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() ) )
+			
 		";
 		
 		$results = $this->db->get_results( $this->db->prepare( $query, $date->format( 'Y-m-d H:i:s' ) ) );

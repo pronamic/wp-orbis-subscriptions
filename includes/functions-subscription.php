@@ -32,12 +32,14 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 				s.update_date,
 				s.license_key,
 				s.license_key_md5,
+				s.sent_notifications,
 				c.id as company_id,
 				c.name as company_name,
 				c.e_mail as company_email,
 				t.id as type_id,
 				t.name as type_name,
 				t.price as type_price,
+				t.auto_renew as type_auto_renew,
 				d.domain_name as domain_name
 			FROM
 				orbis_subscriptions as s
@@ -52,6 +54,8 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 				ON s.domain_name_id = d.id
 			WHERE
 				s.post_id = %d
+			AND
+				t.auto_renew = 0
 			ORDER BY
 				s.id,
 				s.update_date

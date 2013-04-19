@@ -184,7 +184,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @var int
 		 */
 		private $sent_notifications;
-		
+
 		/**
 		 * Holds the subject sent
 		 * out with the email notification
@@ -350,7 +350,10 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 					// Update the date this was updated (-_-)
 					$this->set_update_date( new DateTime() );
-					$this->set_sent_notifications( ++ $this->get_sent_notifications() );
+
+					$sent = $this->get_sent_notifications();
+
+					$this->set_sent_notifications(  ++ $sent );
 					$this->save();
 
 					// Store a comment note of successful reminder
@@ -479,21 +482,23 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$result = $this->db->insert( 'orbis_subscriptions', $data, $format );
 			} else {
 				$data = array(
-					'company_id'	 => $this->get_company_id(),
-					'type_id'		 => $this->get_type_id(),
-					'name'			 => $this->get_name(),
-					'email'			 => $this->get_email(),
-					'update_date'	 => $this->get_update_date()->format( 'Y-m-d H:i:s' )
+					'company_id'		 => $this->get_company_id(),
+					'type_id'			 => $this->get_type_id(),
+					'name'				 => $this->get_name(),
+					'email'				 => $this->get_email(),
+					'update_date'		 => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
+					'sent_notifications' => $this->get_sent_notifications()
 				);
 
 				$where = array( 'id' => $this->get_id() );
 
 				$format = array(
-					'company_id'	 => '%d',
-					'type_id'		 => '%d',
-					'name'			 => '%s',
-					'email'			 => '%s',
-					'update_date'	 => '%s'
+					'company_id'		 => '%d',
+					'type_id'			 => '%d',
+					'name'				 => '%s',
+					'email'				 => '%s',
+					'update_date'		 => '%s',
+					'sent_notifications' => '%d'
 				);
 
 				// Update!
@@ -685,7 +690,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			$this->license_key_md5 = $license_key_md5;
 			return $this;
 		}
-		
+
 		public function get_sent_notifications() {
 			return $this->sent_notifications;
 		}
@@ -693,7 +698,11 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		public function set_sent_notifications( $sent_notifications ) {
 			$this->sent_notifications = $sent_notifications;
 		}
-	
+
 	}
+
+	
+
+	
 
 endif;
