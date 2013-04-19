@@ -472,7 +472,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					'type_id'		 => $this->get_type_id(),
 					'name'			 => $this->get_name(),
 					'email'			 => $this->get_email(),
-					'update_date'	 => $this->get_update_date()
+					'update_date'	 => $this->get_update_date()->format( 'Y-m-d H:i:s')
 				);
 
 				$where = array( 'id' => $this->get_id() );
