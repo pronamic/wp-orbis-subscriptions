@@ -10,7 +10,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 	global $wpdb;
 	global $orbis_subscriptions_plugin;
 
-	$query = '
+	$query = "
 		SELECT
 			c.name AS company_name,
 			s.id,
@@ -25,15 +25,15 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 			si.start_date,
 			DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() ) AS to_late
 		FROM
-			orbis_subscriptions AS s
+			$wpdb->orbis_subscriptions AS s
 				LEFT JOIN
 			orbis_companies AS c
 					ON s.company_id = c.id
 				LEFT JOIN
-			orbis_subscription_types AS st
+			$wpdb->orbis_subscription_types AS st
 					ON s.type_id = st.id
 				LEFT JOIN
-			orbis_subscriptions_invoices AS si
+			$wpdb->orbis_subscriptions_invoices AS si
 					ON
 						s.id = si.subscription_id
 							AND
@@ -47,7 +47,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 		ORDER BY
 			DAYOFYEAR( s.activation_date )
 		;
-	';
+	";
 
 	global $orbis_subscriptions_to_invoice;
 
@@ -81,7 +81,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 	$return  = '';
 
 	if ( is_user_logged_in() ) {
-		$query = '
+		$query = "
 			SELECT
 				c.name AS company_name,
 				s.id,
@@ -97,15 +97,15 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 				si.start_date,
 				DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() ) AS to_late
 			FROM
-				orbis_subscriptions AS s
+				$wpdb->orbis_subscriptions AS s
 					LEFT JOIN
 				orbis_companies AS c
 						ON s.company_id = c.id
 					LEFT JOIN
-				orbis_subscription_types AS st
+				$wpdb->orbis_subscription_types AS st
 						ON s.type_id = st.id
 					LEFT JOIN
-				orbis_subscriptions_invoices AS si
+				$wpdb->orbis_subscriptions_invoices AS si
 						ON
 							s.id = si.subscription_id
 								AND
@@ -121,7 +121,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 			ORDER BY
 				DAYOFYEAR( s.activation_date )
 			;
-		';
+		";
 	
 		global $orbis_subscriptions_to_invoice;
 	

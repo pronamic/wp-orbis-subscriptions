@@ -42,12 +42,12 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 				t.auto_renew as type_auto_renew,
 				d.domain_name as domain_name
 			FROM
-				orbis_subscriptions as s
+				$wpdb->orbis_subscriptions as s
 			LEFT JOIN
 				orbis_companies as c
 				ON s.company_id = c.id
 			LEFT JOIN
-				orbis_subscription_types as t
+				$wpdb->orbis_subscription_types as t
 				ON s.type_id = t.id
 			LEFT JOIN
 				orbis_domain_names as d

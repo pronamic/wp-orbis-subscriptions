@@ -18,7 +18,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 	 * @return array
 	 */
 	public function get_all() {
-		$query = '
+		$query = "
 			SELECT
 				subscription.id ,
 				subscription.post_id AS postId ,
@@ -36,12 +36,12 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.auto_renew as auto_renew ,
 				domain_name.domain_name AS domainName
 			FROM
-				orbis_subscriptions AS subscription
+				 $wpdb->orbis_subscriptions AS subscription
 			LEFT JOIN
 				orbis_companies AS company
 				ON subscription.company_id = company.id
 			LEFT JOIN
-				orbis_subscription_types AS type
+				$wpdb->orbis_subscription_types AS type
 				ON subscription.type_id = type.id
 			LEFT JOIN
 				orbis_domain_names AS domain_name
@@ -51,7 +51,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 			ORDER BY
 				subscription.update_date ,
 				subscription.id
-		';
+		";
 		
 		return $this->db->get_results( $query );
 	}
@@ -66,9 +66,9 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.id,
 				type.auto_renew
 			FROM
-				orbis_subscriptions AS subscription
+				$wpdb->orbis_subscriptions AS subscription
 			LEFT JOIN
-				orbis_subscription_types as type
+				$wpdb->orbis_subscription_types as type
 				ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0

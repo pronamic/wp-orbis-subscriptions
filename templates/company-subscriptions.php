@@ -4,7 +4,7 @@ global $wpdb;
 
 $id = $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM orbis_companies WHERE post_id = %d;', get_the_ID() ) );
 
-$query = $wpdb->prepare( '
+$query = $wpdb->prepare( "
 	SELECT
 		s.id, 
 		s.type_id,
@@ -15,7 +15,7 @@ $query = $wpdb->prepare( '
 		s.cancel_date IS NOT NULL AS canceled,
 		s.post_id
 	FROM
-		orbis_subscriptions AS s
+		$wpdb->orbis_subscriptions AS s
 			LEFT JOIN
 		orbis_subscription_types AS st
 				ON s.type_id = st.id
@@ -23,7 +23,7 @@ $query = $wpdb->prepare( '
 		company_id = %d
 	ORDER BY
 		activation_date ASC
-	;',
+	;",
 	$id
 );
 
