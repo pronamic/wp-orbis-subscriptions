@@ -668,44 +668,6 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			return $this;
 		}
 
-	}
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
+	}	
 
 endif;
