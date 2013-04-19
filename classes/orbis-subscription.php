@@ -177,6 +177,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		private $license_key_md5;
 
 		/**
+		 * Holds the total sent number of
+		 * notifications to this subscription
+		 * 
+		 * @access private
+		 * @var int
+		 */
+		private $sent_notifications;
+		
+		/**
 		 * Holds the subject sent
 		 * out with the email notification
 		 * 
@@ -253,6 +262,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 					$this->set_license_key( $subscription_data->license_key );
 					$this->set_license_key_md5( $subscription_data->license_key_md5 );
+					$this->set_sent_notifications( $subscription_data->sent_notifications );
 				}
 			} else {
 				return false;
@@ -340,6 +350,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 					// Update the date this was updated (-_-)
 					$this->set_update_date( new DateTime() );
+					$this->set_sent_notifications( ++ $this->get_sent_notifications() );
 					$this->save();
 
 					// Store a comment note of successful reminder
@@ -674,9 +685,15 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			$this->license_key_md5 = $license_key_md5;
 			return $this;
 		}
-
-	}
-
 		
+		public function get_sent_notifications() {
+			return $this->sent_notifications;
+		}
+
+		public function set_sent_notifications( $sent_notifications ) {
+			$this->sent_notifications = $sent_notifications;
+		}
+	
+	}
 
 endif;
