@@ -252,7 +252,6 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
 					$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 					$this->set_license_key( $subscription_data->license_key );
-					$this->set_license_key_md5( $subscription_data->license_key_md5 );
 				}
 			} else {
 				return false;
@@ -404,7 +403,10 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @return string
 		 */
 		public function renew_url( $url ) {
-			return add_query_arg( array( 'license' => $this->get_license_key_md5() ), $url );
+			return add_query_arg( array( 
+				'name'    => $this->get_name(),
+				'license' => $this->get_license_key() 
+			), $url );
 		}
 
 		/**
@@ -420,10 +422,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				return false;
 
 			$license_key	 = md5( '' . $this->get_company_id() . $this->get_type_id() . $this->get_name() );
-			$license_key_md5 = md5( $license_key );
 
 			$this->set_license_key( $license_key );
-			$this->set_license_key_md5( $license_key_md5 );
 
 			return $license_key;
 		}
@@ -657,17 +657,13 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		}
 
 		public function set_license_key( $license_key ) {
-			$this->license_key = $license_key;
+			$this->license_key     = $license_key;
+			$this->license_key_md5 = md5( $license_key );
 			return $this;
 		}
 
 		public function get_license_key_md5() {
 			return $this->license_key_md5;
-		}
-
-		public function set_license_key_md5( $license_key_md5 ) {
-			$this->license_key_md5 = $license_key_md5;
-			return $this;
 		}
 
 	}	
