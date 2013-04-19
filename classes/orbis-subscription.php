@@ -337,6 +337,11 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 				// Attempt to send the mail
 				if ( wp_mail( $this->get_email(), $this->email_subject, $this->email_body ) ) {
+
+					// Update the date this was updated (-_-)
+					$this->set_update_date( new DateTime() );
+					$this->save();
+
 					// Store a comment note of successful reminder
 					$this->store_note();
 				} else {
@@ -346,7 +351,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				return false;
 			}
 		}
-		
+
 		/**
 		 * Conditional method to determine if this subscription has passed
 		 * expiration or not.
@@ -358,7 +363,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		public function passed_expiration( DateTime $now = null ) {
 			if ( ! $now )
 				$now = new DateTime();
-			
+
 			return ( $now > $this->get_expiration_date() );
 		}
 
@@ -463,19 +468,21 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				$result = $this->db->insert( 'orbis_subscriptions', $data, $format );
 			} else {
 				$data = array(
-					'company_id' => $this->get_company_id(),
-					'type_id'	 => $this->get_type_id(),
-					'name'		 => $this->get_name(),
-					'email'		 => $this->get_email()
+					'company_id'	 => $this->get_company_id(),
+					'type_id'		 => $this->get_type_id(),
+					'name'			 => $this->get_name(),
+					'email'			 => $this->get_email(),
+					'update_date'	 => $this->get_update_date()
 				);
 
 				$where = array( 'id' => $this->get_id() );
 
 				$format = array(
-					'company_id' => '%d',
-					'type_id'	 => '%d',
-					'name'		 => '%s',
-					'email'		 => '%s'
+					'company_id'	 => '%d',
+					'type_id'		 => '%d',
+					'name'			 => '%s',
+					'email'			 => '%s',
+					'update_date'	 => '%s'
 				);
 
 				// Update!
@@ -668,6 +675,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			return $this;
 		}
 
-	}	
+	}
+
+		
 
 endif;
