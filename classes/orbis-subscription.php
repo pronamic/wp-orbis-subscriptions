@@ -404,8 +404,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 */
 		public function renew_url( $url ) {
 			return add_query_arg( array( 
-				'name'    => $this->get_name(),
-				'license' => $this->get_license_key() 
+				'domain_name' => $this->get_name(),
+				'license'     => $this->get_license_key() 
 			), $url );
 		}
 
