@@ -3,7 +3,7 @@
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<form method="POST">
 		<?php echo $nonce; ?>
-		<?php submit_button( __( 'Send Reminder', 'orbis' ) ); ?>
+		<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
 		<table class="widefat">
 			<thead>
 				<tr>
@@ -45,8 +45,8 @@
 								<td><?php echo $subscription->get_license_key(); ?></td>
 								<td><?php echo $subscription->get_sent_notifications(); ?></td>
 								<td>
-									<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis' ); ?></button>
-									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis' ); ?></button>
+									<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis_subscriptions' ); ?></button>
+									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
 								</td>
 							</tr>
 						<?php endif; ?>
