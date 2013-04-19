@@ -163,8 +163,8 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		$subscription->set_activation_date( $current );
 		
 		// Expiration DateTime
-		$expiration = new DateTime();
-		$expiration->add( new DateInterval( 'P1Y' ) );
+		$expiration = clone $current;
+		$expiration->modify( '+1 year' );
 		
 		$subscription->set_expiration_date( $expiration );
 	}
