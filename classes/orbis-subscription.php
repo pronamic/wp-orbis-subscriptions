@@ -442,8 +442,8 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					'post_id'			 => $this->get_post_id(),
 					'name'				 => $this->get_name(),
 					'email'				 => $this->get_email(),
-					'activation_date'	 => $this->get_activation_date(),
-					'expiration_date'	 => $this->get_expiration_date(),
+					'activation_date'	 => orbis_date2mysql( $this->get_activation_date() ),
+					'expiration_date'	 => orbis_date2mysql( $this->get_expiration_date() ),
 					'license_key'		 => $this->get_license_key(),
 					'license_key_md5'	 => $this->get_license_key_md5()
 				);

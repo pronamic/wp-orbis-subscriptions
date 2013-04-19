@@ -63,4 +63,17 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 endif;
 
 
+if ( ! function_exists( 'orbis_date2mysql' ) ) :
+
+	function orbis_date2mysql( DateTime $date = null ) {
+		$result = null;
+
+		if ( $date !== null ) {
+			$result = $date->format( 'Y-m-d H:i:s' );
+		}
+
+		return $result;
+	}
+
+endif;
 	
