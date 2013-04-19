@@ -18,6 +18,8 @@ class Orbis_Subscriptions_Expiration_Factory {
 	 * @return array
 	 */
 	public function get_all() {
+		global $wpdb;
+
 		$query = "
 			SELECT
 				subscription.id ,
@@ -57,6 +59,8 @@ class Orbis_Subscriptions_Expiration_Factory {
 	}
 	
 	public function get_expiring_in( DateTime $date ) {
+		global $wpdb;
+
 		$query = "
 			SELECT
 				subscription.id,

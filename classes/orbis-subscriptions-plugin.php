@@ -5,7 +5,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.1' );
+		$this->set_db_version( '1.0' );
 
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/api.php' );
@@ -36,7 +36,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			license_key VARCHAR(32) DEFAULT NULL,
 			license_key_md5 VARCHAR(32) DEFAULT NULL,
 			email VARCHAR(64) DEFAULT NULL,
-			send_reminders TINYINT(2) DEFAULT 0,
+			sent_notifications TINYINT(2) DEFAULT 0,
 			PRIMARY KEY  (id),
 			UNIQUE KEY license_key (license_key),
 			UNIQUE KEY license_key_md5 (license_key_md5),
@@ -53,7 +53,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			cost_price FLOAT NULL,
 			notes TEXT NULL,
 			legacy_id BIGINT(16) UNSIGNED NULL,
-			default BOOLEAN NOT NULL DEFAULT FALSE,
+			`default` BOOLEAN NOT NULL DEFAULT FALSE,
 			twinfield_article VARCHAR(8) NOT NULL,
 			auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
 			PRIMARY KEY  (id)
