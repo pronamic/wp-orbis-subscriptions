@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 09:18+0100\n"
-"PO-Revision-Date: 2013-04-19 09:18+0100\n"
+"POT-Creation-Date: 2013-04-19 09:47+0100\n"
+"PO-Revision-Date: 2013-04-19 09:47+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -64,6 +64,11 @@ msgstr "Persoon"
 #: admin/meta-box-subscription-details.php:102
 msgid "Email"
 msgstr "E-mailadres"
+
+#: classes/orbis-subscription.php:503
+#, php-format
+msgid "A license expiration reminder has been sent to %s (%s)."
+msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
 #: classes/orbis-subscriptions-expiration.php:14
 #: classes/orbis-subscriptions-expiration.php:15
@@ -155,8 +160,8 @@ msgid "The following variable tags can be used in the template:"
 msgstr "De volgende variabelen kunnen gebruikt worden in het sjabloon:"
 
 #: templates/expiring_licenses_manager.php:6
-#: templates/expiring_licenses_manager.php:38
-#: templates/expiring_licenses_manager.php:50
+#: templates/expiring_licenses_manager.php:42
+#: templates/expiring_licenses_manager.php:54
 msgid "Send Reminder"
 msgstr "Verstuur herinnering"
 
@@ -181,11 +186,11 @@ msgstr "Update datum"
 msgid "Actions"
 msgstr "Acties"
 
-#: templates/expiring_licenses_manager.php:39
+#: templates/expiring_licenses_manager.php:43
 msgid "Extend License"
 msgstr "Licentie verlegen"
 
-#: templates/expiring_licenses_manager.php:45
+#: templates/expiring_licenses_manager.php:49
 msgid "No subscriptions will expire within the next week"
 msgstr "Er zullen volgende week geen abonnementen verlopen"
 

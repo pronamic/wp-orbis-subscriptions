@@ -499,10 +499,12 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 			$comment = array(
 				'comment_post_ID'	 => $this->get_post_id(),
 				'comment_author'	 => 'System',
-				'comment_content'	 => "A license expiration reminder has been sent to " . $this->get_company_name() . " ( " . $this->get_email() . " ) \n
-				<blockquote>" .
-				$this->email_body
-				. "</blockquote>"
+				'comment_content'	 => sprintf(
+					__( 'A license expiration reminder has been sent to %s (%s).', 'orbis_subscriptions' ),
+					$this->get_company_name(),
+					$this->get_email()
+				) . 
+				'<blockquote>' . $this->email_body . '</blockquote>'
 			);
 
 			return wp_insert_comment( $comment );
