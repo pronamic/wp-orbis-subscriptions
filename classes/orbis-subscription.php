@@ -372,10 +372,14 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 
 				// Replace the placeholder body contents
 				$this->email_subject = $raw_subject;
-				$this->email_body	 = str_replace( array_keys( $content_keys ), $content_keys, $raw_body );
+				$this->email_body	 = wpautop( str_replace( array_keys( $content_keys ), $content_keys, $raw_body ) );
+
+				$headers = array( 
+					'Content-Type: text/html' 
+				);
 
 				// Attempt to send the mail
-				if ( wp_mail( $this->get_email(), $this->email_subject, $this->email_body ) ) {
+				if ( wp_mail( $this->get_email(), $this->email_subject, $this->email_body, $headers ) ) {
 
 					// Update the date this was updated (-_-)
 					$this->set_update_date( new DateTime() );
