@@ -6,7 +6,7 @@
  * @author Leon Rowland <leon@rowland.nl>
  */
 
-if ( ! defined( 'orbis_subscription_get_data' ) ) :
+if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 	
 	/**
 	 * Returns a row from the orbis_subscriptions table 
@@ -61,4 +61,6 @@ if ( ! defined( 'orbis_subscription_get_data' ) ) :
 	}
 	
 endif;
+
+
 	
