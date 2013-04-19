@@ -21,8 +21,8 @@ class Orbis_Subscriptions_Settings {
 	public function admin_menu() {
 		add_submenu_page(
 			'edit.php?post_type=orbis_subscription',
-			__('Expiration settings', 'orbis'),
-			__('Expiration settings', 'orbis'),
+			__( 'Expiration settings', 'orbis_subscriptions' ),
+			__( 'Expiration settings', 'orbis_subscriptions' ),
 			'orbis_subscriptions_settings',
 			'orbis_subscriptions_settings',
 			array( $this, 'expiration_settings_page' )
