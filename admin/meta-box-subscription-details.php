@@ -1,28 +1,27 @@
 <?php
-
 global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
 
-$subscription_types   = $wpdb->get_results( 'SELECT * FROM orbis_subscription_types', OBJECT_K );
+$subscription_types = $wpdb->get_results( 'SELECT * FROM orbis_subscription_types', OBJECT_K );
 
-$orbis_id    = get_post_meta( $post->ID, '_orbis_subscription_id', true );
-$company_id  = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
-$type_id     = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
-$name        = get_post_meta( $post->ID, '_orbis_subscription_name', true );
+$orbis_id	 = get_post_meta( $post->ID, '_orbis_subscription_id', true );
+$company_id	 = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
+$type_id	 = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
+$name		 = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 $license_key = get_post_meta( $post->ID, '_orbis_subscription_license_key', true );
+$email		 = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 
 if ( true ) { // empty( $orbis_id ) ) {
-	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
+	$subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
 	if ( $subscription ) {
-		$company_id  = $subscription->company_id;
-		$type_id     = $subscription->type_id;
-		$name        = $subscription->name;
+		$company_id	 = $subscription->company_id;
+		$type_id	 = $subscription->type_id;
+		$name		 = $subscription->name;
 		$license_key = $subscription->license_key;
 	}
 }
-
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -38,21 +37,16 @@ if ( true ) { // empty( $orbis_id ) ) {
 			<label for="orbis_subscription_type"><?php _e( 'Type', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			
+
 			<select id="orbis_subscription_type" name="_orbis_subscription_type_id">
 				<option value=""></option>
 
-				<?php 
-				
+				<?php
 				foreach ( $subscription_types as $subscription_type ) {
 					printf(
-						'<option value="%s" %s>%s</option>',
-						esc_attr( $subscription_type->id ),
-						selected( $subscription_type->id, $type_id, false ),
-						$subscription_type->name
+							'<option value="%s" %s>%s</option>', esc_attr( $subscription_type->id ), selected( $subscription_type->id, $type_id, false ), $subscription_type->name
 					);
 				}
-				
 				?>
 			</select>
 		</td>
@@ -73,9 +67,9 @@ if ( true ) { // empty( $orbis_id ) ) {
 			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo $license_key; ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
-	
+
 	<?php if ( false ) : ?>
-	
+
 		<tr valign="top">
 			<th scope="row">
 				<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
@@ -92,7 +86,7 @@ if ( true ) { // empty( $orbis_id ) ) {
 				<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true ); ?>" type="text" class="regular-text" />
 			</td>
 		</tr>
-	
+
 	<?php endif; ?>
 
 	<tr valign="top">
@@ -102,5 +96,11 @@ if ( true ) { // empty( $orbis_id ) ) {
 		<td>
 			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>" type="text" class="regular-text" />
 		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscription' ); ?></label>
+		</th>
+		<td><input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_email', true ); ?>" type="text" class="regular-text" /></td>
 	</tr>
 </table>
