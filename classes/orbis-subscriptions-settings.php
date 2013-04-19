@@ -88,15 +88,9 @@ class Orbis_Subscriptions_Settings {
 	}
 
 	public function expiration_settings_page() {
-		$url = self::get_update_url();
-		$mail_contents = self::get_mail_body();
-		$mail_subject = self::get_mail_subject();
-		
-		$remind_days_before_expiration = self::get_remind_days_before_expiration();
-		$max_number_of_reminders = self::get_max_number_of_reminders();
-		$minimum_days_between_reminders = self::get_minimum_days_between_reminders();
-		
-		include ORBIS_SUBSCRIPTIONS_FOLDER . '/admin/settings.php';
+		global $orbis_subscriptions_plugin;
+	
+		$orbis_subscriptions_plugin->plugin_include( 'admin/settings.php' );
 	}
 	
 	public static function get_mail_subject() {
