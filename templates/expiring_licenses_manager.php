@@ -25,7 +25,7 @@
 				<?php if ( ! empty( $subscriptions ) ) : ?>
 					<?php $datetime_zone = new DateTimeZone( 'Europe/Amsterdam' ); ?>
 					<?php $days	 = new DateInterval( 'P2D' ); ?>
-					<?php $now = new DateTime(); ?>
+					<?php $now = new DateTime( '', $datetime_zone ); ?>
 					<?php foreach ( $subscriptions as $subscription ) : ?>
 						<?php if ( $subscription->since_last_reminder( $days, $now ) ) : ?>
 							<tr class="subscription">
