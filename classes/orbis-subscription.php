@@ -467,11 +467,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @return string
 		 */
 		public function generate_license_key() {
-			if ( ! isset( $this->company_id ) && ! isset( $this->type_id ) && ! isset( $this->name ) )
-				return false;
-
-			$license_key	 = md5( '' . $this->get_company_id() . $this->get_type_id() . $this->get_name() );
-
+			$license_key	 = md5( uniqid() );
 			$this->set_license_key( $license_key );
 
 			return $license_key;
