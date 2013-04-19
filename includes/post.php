@@ -17,8 +17,18 @@ function orbis_subscriptions_create_initial_post_types() {
 		array(
 			'label'         => __( 'Subscriptions', 'orbis_subscriptions' ),
 			'labels'        => array(
-				'name'          => __( 'Subscriptions', 'orbis_subscriptions' ),
-				'singular_name' => __( 'Subscription', 'orbis_subscriptions' )
+				'name'               => _x( 'Subscriptions', 'post type general name', 'orbis_subscriptions' ),
+				'singular_name'      => _x( 'Subscription', 'post type singular name', 'orbis_subscriptions' ),
+				'add_new'            => _x( 'Add New', 'orbis_subscription', 'orbis_subscriptions' ),
+				'add_new_item'       => __( 'Add New Subscription', 'orbis_subscriptions' ),
+				'edit_item'          => __( 'Edit Subscription', 'orbis_subscriptions' ),
+				'new_item'           => __( 'New Subscription', 'orbis_subscriptions' ),
+				'view_item'          => __( 'View Subscription', 'orbis_subscriptions' ),
+				'search_items'       => __( 'Search Subscriptions', 'orbis_subscriptions' ),
+				'not_found'          => __( 'No subscriptions found', 'orbis_subscriptions' ),
+				'not_found_in_trash' => __( 'No subscriptions found in Trash', 'orbis_subscriptions' ),
+				'parent_item_colon'  => __( 'Parent Subscription:', 'orbis_subscriptions' ),
+				'menu_name'          => __( 'Subscriptions', 'orbis_subscriptions' )
 			),
 			'public'        => true,
 			'menu_position' => 30,

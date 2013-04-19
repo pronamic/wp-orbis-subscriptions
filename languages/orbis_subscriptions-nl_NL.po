@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 10:44+0100\n"
-"PO-Revision-Date: 2013-04-19 10:44+0100\n"
+"POT-Creation-Date: 2013-04-19 11:25+0100\n"
+"PO-Revision-Date: 2013-04-19 11:25+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -58,8 +58,8 @@ msgstr "Activatie datum"
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:94 includes/post.php:185
-#: includes/post.php:206
+#: admin/meta-box-subscription-details.php:94 includes/post.php:195
+#: includes/post.php:216
 msgid "Person"
 msgstr "Persoon"
 
@@ -104,52 +104,99 @@ msgstr "Orbis abonnementen instellingen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/post.php:18 includes/post.php:20
+#: includes/post.php:18 includes/post.php:31
 #: templates/company-subscriptions.php:36
 #: templates/domain-name-subscriptions.php:34
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:21 templates/company-subscriptions.php:43
-#: templates/domain-name-subscriptions.php:41
-#: templates/subscriptions-invoices.php:15
-#: templates/subscriptions-to-invoice-updater.php:55
-#: templates/subscriptions-to-invoice.php:29
+#: includes/post.php:20
+msgctxt "post type general name"
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/post.php:21
+msgctxt "post type singular name"
 msgid "Subscription"
 msgstr "Abonnement"
 
+#: includes/post.php:22
+msgctxt "orbis_subscription"
+msgid "Add New"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:23
+msgid "Add New Subscription"
+msgstr "Nieuwe abonnement toevoegen"
+
+#: includes/post.php:24
+msgid "Edit Subscription"
+msgstr "Bewerk abonnement"
+
+#: includes/post.php:25
+msgid "New Subscription"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:26
+msgid "View Subscription"
+msgstr "Bekijk abonnement"
+
+#: includes/post.php:27
+msgid "Search Subscriptions"
+msgstr "Abonnementen zoeken"
+
+#: includes/post.php:28
+msgid "No subscriptions found"
+msgstr "Geen abonnementen gevonden"
+
 #: includes/post.php:29
+msgid "No subscriptions found in Trash"
+msgstr "Geen abonnementen gevonden in prullenbak"
+
+#: includes/post.php:30
+msgid "Parent Subscription:"
+msgstr "Bovenliggend abonnement"
+
+#: includes/post.php:39
 msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: includes/post.php:43
+#: includes/post.php:53
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:180
+#: includes/post.php:190
 msgid "Persons"
 msgstr "Personen"
 
-#: includes/post.php:205
+#: includes/post.php:215
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:207
+#: includes/post.php:217
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:208
+#: includes/post.php:218
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:209
+#: includes/post.php:219
 msgid "Date"
 msgstr "Datum"
 
 #: includes/shortcodes.php:138
 msgid "Login required"
 msgstr "Inloggen vereist"
+
+#: templates/company-subscriptions.php:43
+#: templates/domain-name-subscriptions.php:41
+#: templates/subscriptions-invoices.php:15
+#: templates/subscriptions-to-invoice-updater.php:55
+#: templates/subscriptions-to-invoice.php:29
+msgid "Subscription"
+msgstr "Abonnement"
 
 #: templates/company-subscriptions.php:45
 #: templates/domain-name-subscriptions.php:43
@@ -296,10 +343,6 @@ msgstr "Opmerking"
 #~ msgid "Keychain"
 #~ msgstr "Sleutelhanger"
 
-#~ msgctxt "orbis_keychain"
-#~ msgid "Add New"
-#~ msgstr "Nieuwe sleutelhanger"
-
 #~ msgid "Add New Keychain"
 #~ msgstr "Nieuw sleutelhanger toevoegen"
 
@@ -317,9 +360,6 @@ msgstr "Opmerking"
 
 #~ msgid "No keychains found"
 #~ msgstr "Geen sleutelhangers gevonden"
-
-#~ msgid "No keychains found in Trash"
-#~ msgstr "Geen sleutelhangers gevonden in prullenbak"
 
 #~ msgctxt "slug"
 #~ msgid "keychains"
@@ -705,9 +745,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Domain Name Post"
 #~ msgstr "Bewerk domeinnaam bericht"
-
-#~ msgid "Edit Subscription Post"
-#~ msgstr "Bewerk abonnement bericht"
 
 #~ msgid "Invoice Paid"
 #~ msgstr "Factuur betaald"
