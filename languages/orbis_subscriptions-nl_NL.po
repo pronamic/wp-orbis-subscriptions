@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-11 09:23+0100\n"
-"PO-Revision-Date: 2013-04-11 09:23+0100\n"
+"POT-Creation-Date: 2013-04-19 09:18+0100\n"
+"PO-Revision-Date: 2013-04-19 09:18+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -17,83 +17,103 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/meta-box-subscription-details.php:30
+#: admin/meta-box-subscription-details.php:29
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:38
+#: admin/meta-box-subscription-details.php:37
+#: templates/expiring_licenses_manager.php:13
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:62
+#: admin/meta-box-subscription-details.php:56
 #: templates/company-subscriptions.php:44
+#: templates/expiring_licenses_manager.php:14
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
 #: templates/subscriptions-to-invoice.php:31
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:70
-#: templates/subscription-details.php:40
+#: admin/meta-box-subscription-details.php:64
+#: templates/expiring_licenses_manager.php:19
+#: templates/subscription-details.php:42
 msgid "License Key"
 msgstr "Licentiesleutel"
 
-#: admin/meta-box-subscription-details.php:81
+#: admin/meta-box-subscription-details.php:75
 #: templates/company-subscriptions.php:42
-#: templates/subscription-details.php:43
+#: templates/expiring_licenses_manager.php:15
+#: templates/subscription-details.php:47
 #: templates/subscriptions-to-invoice-updater.php:58
 #: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:89
-#: templates/subscription-details.php:46
+#: admin/meta-box-subscription-details.php:83
+#: templates/expiring_licenses_manager.php:16
+#: templates/subscription-details.php:50
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:100 includes/post.php:206
-#: includes/post.php:227
+#: admin/meta-box-subscription-details.php:94 includes/post.php:185
+#: includes/post.php:206
 msgid "Person"
 msgstr "Persoon"
 
-#: includes/post.php:9 includes/post.php:11
+#: admin/meta-box-subscription-details.php:102
+msgid "Email"
+msgstr "E-mailadres"
+
+#: classes/orbis-subscriptions-expiration.php:14
+#: classes/orbis-subscriptions-expiration.php:15
+msgid "Expiring licenses"
+msgstr "Aflopende licenties"
+
+#: classes/orbis-subscriptions-settings.php:24
+#: classes/orbis-subscriptions-settings.php:25
+#: templates/expiration_settings_page.php:6
+msgid "Expiration settings"
+msgstr "Verval instellingen"
+
+#: includes/post.php:18 includes/post.php:20
 #: templates/company-subscriptions.php:36
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:12 templates/company-subscriptions.php:43
+#: includes/post.php:21 templates/company-subscriptions.php:43
 #: templates/subscriptions-invoices.php:15
 #: templates/subscriptions-to-invoice-updater.php:55
 #: templates/subscriptions-to-invoice.php:29
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: includes/post.php:20
+#: includes/post.php:29
 msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: includes/post.php:34
+#: includes/post.php:43
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:201
+#: includes/post.php:180
 msgid "Persons"
 msgstr "Personen"
 
-#: includes/post.php:226
+#: includes/post.php:205
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:228
+#: includes/post.php:207
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:229
+#: includes/post.php:208
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:230
+#: includes/post.php:209
 msgid "Date"
 msgstr "Datum"
 
@@ -102,11 +122,72 @@ msgid "Login required"
 msgstr "Inloggen vereist"
 
 #: templates/company-subscriptions.php:45
+#: templates/expiring_licenses_manager.php:18
 #: templates/subscriptions-invoices.php:16
 #: templates/subscriptions-to-invoice-updater.php:56
 #: templates/subscriptions-to-invoice.php:30
 msgid "Price"
 msgstr "Prijs"
+
+#: templates/expiration_settings_page.php:16
+msgid "E-Mail settings"
+msgstr "E-mail instellingen"
+
+#: templates/expiration_settings_page.php:20
+msgid "URL"
+msgstr "URL"
+
+#: templates/expiration_settings_page.php:29
+msgid "The URL linking to the webpage the user can renew its subscription"
+msgstr ""
+"De URL naar de webpagina waar de gebruiker zijn abonnement kan verlengen"
+
+#: templates/expiration_settings_page.php:36
+msgid "Mail subject"
+msgstr "E-mail onderwerp"
+
+#: templates/expiration_settings_page.php:49
+msgid "Mail template"
+msgstr "E-mail sjabloon"
+
+#: templates/expiration_settings_page.php:58
+msgid "The following variable tags can be used in the template:"
+msgstr "De volgende variabelen kunnen gebruikt worden in het sjabloon:"
+
+#: templates/expiring_licenses_manager.php:6
+#: templates/expiring_licenses_manager.php:38
+#: templates/expiring_licenses_manager.php:50
+msgid "Send Reminder"
+msgstr "Verstuur herinnering"
+
+#: templates/expiring_licenses_manager.php:11
+#: templates/subscriptions-to-invoice-updater.php:53
+#: templates/subscriptions-to-invoice.php:27
+msgid "ID"
+msgstr "ID"
+
+#: templates/expiring_licenses_manager.php:12
+#: templates/subscriptions-invoices.php:14
+#: templates/subscriptions-to-invoice-updater.php:54
+#: templates/subscriptions-to-invoice.php:28
+msgid "Company"
+msgstr "Bedrijf"
+
+#: templates/expiring_licenses_manager.php:17
+msgid "Update Date"
+msgstr "Update datum"
+
+#: templates/expiring_licenses_manager.php:20
+msgid "Actions"
+msgstr "Acties"
+
+#: templates/expiring_licenses_manager.php:39
+msgid "Extend License"
+msgstr "Licentie verlegen"
+
+#: templates/expiring_licenses_manager.php:45
+msgid "No subscriptions will expire within the next week"
+msgstr "Er zullen volgende week geen abonnementen verlopen"
 
 #: templates/subscription-details.php:32
 msgid "Subscription Details"
@@ -116,7 +197,7 @@ msgstr "Abonnement details"
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: templates/subscription-details.php:49
+#: templates/subscription-details.php:55
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
@@ -151,12 +232,6 @@ msgstr "Einddatum"
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
-#: templates/subscriptions-invoices.php:14
-#: templates/subscriptions-to-invoice-updater.php:54
-#: templates/subscriptions-to-invoice.php:28
-msgid "Company"
-msgstr "Bedrijf"
-
 #: templates/subscriptions-to-invoice-updater.php:9
 msgid "Inserted"
 msgstr "Toegevoegd"
@@ -168,11 +243,6 @@ msgstr "Mislukt"
 #: templates/subscriptions-to-invoice-updater.php:45
 msgid "Update"
 msgstr "Update"
-
-#: templates/subscriptions-to-invoice-updater.php:53
-#: templates/subscriptions-to-invoice.php:27
-msgid "ID"
-msgstr "ID"
 
 #: templates/subscriptions-to-invoice-updater.php:60
 #: templates/subscriptions-to-invoice.php:34
@@ -187,9 +257,6 @@ msgstr "Opmerking"
 
 #~ msgid "WordPress"
 #~ msgstr "WordPress"
-
-#~ msgid "URL"
-#~ msgstr "URL"
 
 #~ msgid ""
 #~ "Use an full URL: for HTTP <code>http://</code>, for FTP <code>ftp://</"
@@ -300,9 +367,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Category"
 #~ msgstr "Bewerk categorie"
-
-#~ msgid "Update Category"
-#~ msgstr "Update categorie"
 
 #~ msgid "Add New Category"
 #~ msgstr "Nieuwe categorie"
@@ -477,9 +541,6 @@ msgstr "Opmerking"
 #~ msgid "All Genders"
 #~ msgstr "Alle geslachten"
 
-#~ msgid "Parent Gender"
-#~ msgstr "Bovenliggend geslacht"
-
 #~ msgid "Parent Gender:"
 #~ msgstr "Bovenliggend geslacht:"
 
@@ -602,9 +663,6 @@ msgstr "Opmerking"
 #~ msgid "Edit Project Post"
 #~ msgstr "Bewerk project bericht"
 
-#~ msgid "Settings"
-#~ msgstr "Instellingen"
-
 #~ msgid "Stats"
 #~ msgstr "Statistieken"
 
@@ -628,9 +686,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Domain Name Post"
 #~ msgstr "Bewerk domeinnaam bericht"
-
-#~ msgid "Actions"
-#~ msgstr "Acties"
 
 #~ msgid "Edit Subscription Post"
 #~ msgstr "Bewerk abonnement bericht"
