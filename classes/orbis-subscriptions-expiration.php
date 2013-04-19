@@ -11,8 +11,8 @@ class Orbis_Subscriptions_Expiration {
 	public function admin_menu() {
 		add_submenu_page(
 			'edit.php?post_type=orbis_subscription',
-			__( 'Expiring licenses', 'orbis_subscriptions' ),
-			__( 'Expiring licenses', 'orbis_subscriptions' ),
+			__( 'Orbis Expiring Subscriptions', 'orbis_subscriptions' ),
+			__( 'Expiring Subscriptions', 'orbis_subscriptions' ),
 			'orbis_view_subscriptions',
 			'orbis_view_subscriptions',
 			array( $this, 'expiring_licenses_manager' )

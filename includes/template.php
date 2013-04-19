@@ -31,3 +31,14 @@ function orbis_subscriptions_render_company_subscriptions() {
 }
 
 add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_company_subscriptions' );
+
+
+function orbis_subscriptions_render_domain_name_subscriptions() {
+	if ( is_singular( 'orbis_domain_name' ) ) {
+		global $orbis_subscriptions_plugin;
+
+		$orbis_subscriptions_plugin->plugin_include( 'templates/domain-name-subscriptions.php' );
+	}
+}
+
+add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_domain_name_subscriptions' );

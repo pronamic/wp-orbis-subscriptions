@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 09:18+0100\n"
-"PO-Revision-Date: 2013-04-19 09:18+0100\n"
+"POT-Creation-Date: 2013-04-19 11:25+0100\n"
+"PO-Revision-Date: 2013-04-19 11:25+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -28,6 +28,7 @@ msgstr "Type"
 
 #: admin/meta-box-subscription-details.php:56
 #: templates/company-subscriptions.php:44
+#: templates/domain-name-subscriptions.php:42
 #: templates/expiring_licenses_manager.php:14
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
@@ -43,6 +44,7 @@ msgstr "Licentiesleutel"
 
 #: admin/meta-box-subscription-details.php:75
 #: templates/company-subscriptions.php:42
+#: templates/domain-name-subscriptions.php:40
 #: templates/expiring_licenses_manager.php:15
 #: templates/subscription-details.php:47
 #: templates/subscriptions-to-invoice-updater.php:58
@@ -56,8 +58,8 @@ msgstr "Activatie datum"
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:94 includes/post.php:185
-#: includes/post.php:206
+#: admin/meta-box-subscription-details.php:94 includes/post.php:195
+#: includes/post.php:216
 msgid "Person"
 msgstr "Persoon"
 
@@ -65,55 +67,122 @@ msgstr "Persoon"
 msgid "Email"
 msgstr "E-mailadres"
 
+#: classes/orbis-subscription.php:503
+#, php-format
+msgid "A license expiration reminder has been sent to %s (%s)."
+msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
+
 #: classes/orbis-subscriptions-expiration.php:14
+msgid "Orbis Expiring Subscriptions"
+msgstr "Orbis aflopende abonnementen"
+
 #: classes/orbis-subscriptions-expiration.php:15
-msgid "Expiring licenses"
-msgstr "Aflopende licenties"
+msgid "Expiring Subscriptions"
+msgstr "Aflopende abonnementen"
 
-#: classes/orbis-subscriptions-settings.php:24
-#: classes/orbis-subscriptions-settings.php:25
-#: templates/expiration_settings_page.php:6
-msgid "Expiration settings"
-msgstr "Verval instellingen"
+#: classes/orbis-subscriptions-settings.php:14
+msgid "Reminder"
+msgstr "Herinnering"
 
-#: includes/post.php:18 includes/post.php:20
+#: classes/orbis-subscriptions-settings.php:21
+msgid "URL"
+msgstr "URL"
+
+#: classes/orbis-subscriptions-settings.php:30
+msgid "Subject"
+msgstr "Onderwerp"
+
+#: classes/orbis-subscriptions-settings.php:39
+msgid "Template"
+msgstr "Sjabloon"
+
+#: classes/orbis-subscriptions-settings.php:55
+msgid "Orbis Subscriptions Settings"
+msgstr "Orbis abonnementen instellingen"
+
+#: classes/orbis-subscriptions-settings.php:56
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/post.php:18 includes/post.php:31
 #: templates/company-subscriptions.php:36
+#: templates/domain-name-subscriptions.php:34
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:21 templates/company-subscriptions.php:43
-#: templates/subscriptions-invoices.php:15
-#: templates/subscriptions-to-invoice-updater.php:55
-#: templates/subscriptions-to-invoice.php:29
+#: includes/post.php:20
+msgctxt "post type general name"
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/post.php:21
+msgctxt "post type singular name"
 msgid "Subscription"
 msgstr "Abonnement"
 
+#: includes/post.php:22
+msgctxt "orbis_subscription"
+msgid "Add New"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:23
+msgid "Add New Subscription"
+msgstr "Nieuwe abonnement toevoegen"
+
+#: includes/post.php:24
+msgid "Edit Subscription"
+msgstr "Bewerk abonnement"
+
+#: includes/post.php:25
+msgid "New Subscription"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:26
+msgid "View Subscription"
+msgstr "Bekijk abonnement"
+
+#: includes/post.php:27
+msgid "Search Subscriptions"
+msgstr "Abonnementen zoeken"
+
+#: includes/post.php:28
+msgid "No subscriptions found"
+msgstr "Geen abonnementen gevonden"
+
 #: includes/post.php:29
+msgid "No subscriptions found in Trash"
+msgstr "Geen abonnementen gevonden in prullenbak"
+
+#: includes/post.php:30
+msgid "Parent Subscription:"
+msgstr "Bovenliggend abonnement"
+
+#: includes/post.php:39
 msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: includes/post.php:43
+#: includes/post.php:53
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:180
+#: includes/post.php:190
 msgid "Persons"
 msgstr "Personen"
 
-#: includes/post.php:205
+#: includes/post.php:215
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:207
+#: includes/post.php:217
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:208
+#: includes/post.php:218
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:209
+#: includes/post.php:219
 msgid "Date"
 msgstr "Datum"
 
@@ -121,7 +190,16 @@ msgstr "Datum"
 msgid "Login required"
 msgstr "Inloggen vereist"
 
+#: templates/company-subscriptions.php:43
+#: templates/domain-name-subscriptions.php:41
+#: templates/subscriptions-invoices.php:15
+#: templates/subscriptions-to-invoice-updater.php:55
+#: templates/subscriptions-to-invoice.php:29
+msgid "Subscription"
+msgstr "Abonnement"
+
 #: templates/company-subscriptions.php:45
+#: templates/domain-name-subscriptions.php:43
 #: templates/expiring_licenses_manager.php:18
 #: templates/subscriptions-invoices.php:16
 #: templates/subscriptions-to-invoice-updater.php:56
@@ -129,34 +207,9 @@ msgstr "Inloggen vereist"
 msgid "Price"
 msgstr "Prijs"
 
-#: templates/expiration_settings_page.php:16
-msgid "E-Mail settings"
-msgstr "E-mail instellingen"
-
-#: templates/expiration_settings_page.php:20
-msgid "URL"
-msgstr "URL"
-
-#: templates/expiration_settings_page.php:29
-msgid "The URL linking to the webpage the user can renew its subscription"
-msgstr ""
-"De URL naar de webpagina waar de gebruiker zijn abonnement kan verlengen"
-
-#: templates/expiration_settings_page.php:36
-msgid "Mail subject"
-msgstr "E-mail onderwerp"
-
-#: templates/expiration_settings_page.php:49
-msgid "Mail template"
-msgstr "E-mail sjabloon"
-
-#: templates/expiration_settings_page.php:58
-msgid "The following variable tags can be used in the template:"
-msgstr "De volgende variabelen kunnen gebruikt worden in het sjabloon:"
-
 #: templates/expiring_licenses_manager.php:6
-#: templates/expiring_licenses_manager.php:38
-#: templates/expiring_licenses_manager.php:50
+#: templates/expiring_licenses_manager.php:42
+#: templates/expiring_licenses_manager.php:54
 msgid "Send Reminder"
 msgstr "Verstuur herinnering"
 
@@ -181,11 +234,11 @@ msgstr "Update datum"
 msgid "Actions"
 msgstr "Acties"
 
-#: templates/expiring_licenses_manager.php:39
+#: templates/expiring_licenses_manager.php:43
 msgid "Extend License"
 msgstr "Licentie verlegen"
 
-#: templates/expiring_licenses_manager.php:45
+#: templates/expiring_licenses_manager.php:49
 msgid "No subscriptions will expire within the next week"
 msgstr "Er zullen volgende week geen abonnementen verlopen"
 
@@ -249,6 +302,19 @@ msgstr "Update"
 msgid "Notice"
 msgstr "Opmerking"
 
+#~ msgid "Expiring licenses"
+#~ msgstr "Aflopende licenties"
+
+#~ msgid "Expiration settings"
+#~ msgstr "Verval instellingen"
+
+#~ msgid "The URL linking to the webpage the user can renew its subscription"
+#~ msgstr ""
+#~ "De URL naar de webpagina waar de gebruiker zijn abonnement kan verlengen"
+
+#~ msgid "The following variable tags can be used in the template:"
+#~ msgstr "De volgende variabelen kunnen gebruikt worden in het sjabloon:"
+
 #~ msgid "FTP"
 #~ msgstr "FTP"
 
@@ -277,10 +343,6 @@ msgstr "Opmerking"
 #~ msgid "Keychain"
 #~ msgstr "Sleutelhanger"
 
-#~ msgctxt "orbis_keychain"
-#~ msgid "Add New"
-#~ msgstr "Nieuwe sleutelhanger"
-
 #~ msgid "Add New Keychain"
 #~ msgstr "Nieuw sleutelhanger toevoegen"
 
@@ -298,9 +360,6 @@ msgstr "Opmerking"
 
 #~ msgid "No keychains found"
 #~ msgstr "Geen sleutelhangers gevonden"
-
-#~ msgid "No keychains found in Trash"
-#~ msgstr "Geen sleutelhangers gevonden in prullenbak"
 
 #~ msgctxt "slug"
 #~ msgid "keychains"
@@ -686,9 +745,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Domain Name Post"
 #~ msgstr "Bewerk domeinnaam bericht"
-
-#~ msgid "Edit Subscription Post"
-#~ msgstr "Bewerk abonnement bericht"
 
 #~ msgid "Invoice Paid"
 #~ msgstr "Factuur betaald"

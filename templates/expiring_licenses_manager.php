@@ -8,17 +8,17 @@
 			<thead>
 				<tr>
 					<th scope="col" class="manage-column check-column"><input type="checkbox"/></th>
-					<th scope="col" class="manage-column" style="width:3em;"><?php _e( 'ID', 'orbis' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Company', 'orbis' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Type', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Name', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Activation Date', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Expiration Date', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Update Date', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Price', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'License Key', 'orbis' ) ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Sent', 'orbis' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Actions', 'orbis' ) ?></th>
+					<th scope="col" class="manage-column" style="width:3em;"><?php _e( 'ID', 'orbis_subscriptions' ); ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Company', 'orbis_subscriptions' ); ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Type', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Name', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Activation Date', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Expiration Date', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Update Date', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Price', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'License Key', 'orbis_subscriptions' ) ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Sent', 'orbis_subscriptions' ); ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'Actions', 'orbis_subscriptions' ) ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +33,11 @@
 								<td><?php echo $subscription->get_id(); ?></td>
 								<td><?php echo $subscription->get_company_name(); ?></td>
 								<td><?php echo $subscription->get_type_name(); ?></td>
-								<td><?php echo $subscription->get_name(); ?></td>
+								<td>
+									<a href="<?php echo get_permalink( $subscription->get_post_id() ); ?>" target="_blank">
+										<?php echo $subscription->get_name(); ?>
+									</a>
+								</td>
 								<td><?php echo $subscription->get_activation_date()->setTimezone( $datetime_zone )->format( 'd-m-Y' ); ?></td>
 								<td><?php echo $subscription->until_expiration_human(); ?></td>
 								<td><?php echo $subscription->get_update_date()->setTimezone( $datetime_zone )->format( 'd-m-Y @ H:i' ); ?></td>
@@ -49,11 +53,11 @@
 					<?php endforeach; ?>
 				<?php else: ?>
 					<tr>
-						<td colspan="10"><?php _e( 'No subscriptions will expire within the next week', 'orbis' ); ?></td>
+						<td colspan="10"><?php _e( 'No subscriptions will expire within the next week', 'orbis_subscriptions' ); ?></td>
 					</tr>
 				<?php endif; ?>
 			</tbody>
 		</table>
-		<?php submit_button( __( 'Send Reminder', 'orbis' ) ); ?>
+		<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
 	</form>
 </div>
