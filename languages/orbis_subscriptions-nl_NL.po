@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 10:38+0100\n"
-"PO-Revision-Date: 2013-04-19 10:38+0100\n"
+"POT-Creation-Date: 2013-04-19 10:44+0100\n"
+"PO-Revision-Date: 2013-04-19 10:44+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -73,9 +73,12 @@ msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
 #: classes/orbis-subscriptions-expiration.php:14
+msgid "Orbis Expiring Subscriptions"
+msgstr "Orbis aflopende abonnementen"
+
 #: classes/orbis-subscriptions-expiration.php:15
-msgid "Expiring licenses"
-msgstr "Aflopende licenties"
+msgid "Expiring Subscriptions"
+msgstr "Aflopende abonnementen"
 
 #: classes/orbis-subscriptions-settings.php:14
 msgid "Reminder"
@@ -251,6 +254,9 @@ msgstr "Update"
 #: templates/subscriptions-to-invoice.php:34
 msgid "Notice"
 msgstr "Opmerking"
+
+#~ msgid "Expiring licenses"
+#~ msgstr "Aflopende licenties"
 
 #~ msgid "Expiration settings"
 #~ msgstr "Verval instellingen"
