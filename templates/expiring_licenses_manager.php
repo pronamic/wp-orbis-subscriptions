@@ -18,6 +18,7 @@
 					<th scope="col" class="manage-column"><?php _e( 'Price', 'orbis_subscriptions' ) ?></th>
 					<th scope="col" class="manage-column"><?php _e( 'License Key', 'orbis_subscriptions' ) ?></th>
 					<th scope="col" class="manage-column"><?php _e( 'Sent', 'orbis_subscriptions' ); ?></th>
+					<th scope="col" class="manage-column"><?php _e( 'E-Mail', 'orbis_subscriptions' ); ?></th>
 					<th scope="col" class="manage-column"><?php _e( 'Actions', 'orbis_subscriptions' ) ?></th>
 				</tr>
 			</thead>
@@ -37,6 +38,14 @@
 									<a href="<?php echo get_permalink( $subscription->get_post_id() ); ?>" target="_blank">
 										<?php echo $subscription->get_name(); ?>
 									</a>
+
+									<div class="row-actions">
+										<span class="edit">
+											<a href="<?php echo get_edit_post_link( $subscription->get_post_id() ); ?>" target="_blank">
+												<?php _e( 'Edit', 'orbis_subscriptions' ); ?>
+											</a>
+										</span>
+									</div>
 								</td>
 								<td><?php echo $subscription->get_activation_date()->setTimezone( $datetime_zone )->format( 'd-m-Y' ); ?></td>
 								<td><?php echo $subscription->until_expiration_human(); ?></td>
@@ -44,6 +53,7 @@
 								<td><?php echo $subscription->get_type_price( '&euro;' ); ?></td>
 								<td><?php echo $subscription->get_license_key(); ?></td>
 								<td><?php echo $subscription->get_sent_notifications(); ?></td>
+								<td><?php echo $subscription->get_email(); ?></td>
 								<td>
 									<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis_subscriptions' ); ?></button>
 									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
