@@ -4,6 +4,7 @@
  * File for generate functions for subscription usages
  * 
  * @author Leon Rowland <leon@rowland.nl>
+ * @author Remco Tolsma <remcotolsma@pronamic.nl>
  */
 
 if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
