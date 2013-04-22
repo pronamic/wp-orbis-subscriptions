@@ -1,12 +1,12 @@
 <div class="wrap">
 	<?php screen_icon( 'orbis' ); ?>
 	<h2 class="nav-tab-wrapper">
-		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_view_subscriptions' ); ?>" class="nav-tab nav-tab-active"><?php echo get_admin_page_title(); ?></a>
-		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab"><?php _e( 'Sent Reminders', 'orbis_twinfield' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_view_subscriptions' ); ?>" class="nav-tab"><?php _e( 'Orbis Expiring Subscriptions', 'orbis_twinfield' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab nav-tab-active"><?php _e( 'Sent Reminders', 'orbis_twinfield' ); ?></a>
 	</h2>
+	<br/>
 	<form method="POST">
 	<?php echo $nonce; ?>
-	<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
 	<table class="widefat">
 		<thead>
 			<tr>
@@ -58,7 +58,6 @@
 							<td><?php echo $subscription->get_sent_notifications(); ?></td>
 							<td><?php echo $subscription->get_email(); ?></td>
 							<td>
-								<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis_subscriptions' ); ?></button>
 								<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
 							</td>
 						</tr>
@@ -66,11 +65,10 @@
 				<?php endforeach; ?>
 			<?php else: ?>
 				<tr>
-					<td colspan="10"><?php _e( 'No subscriptions will expire within the next week', 'orbis_subscriptions' ); ?></td>
+					<td colspan="10"><?php _e( 'No reminders sent in the last week', 'orbis_subscriptions' ); ?></td>
 				</tr>
 			<?php endif; ?>
 		</tbody>
 	</table>
-	<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
 </form>
 </div>

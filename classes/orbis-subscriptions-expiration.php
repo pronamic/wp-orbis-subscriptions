@@ -17,6 +17,15 @@ class Orbis_Subscriptions_Expiration {
 			'orbis_view_subscriptions',
 			array( $this, 'expiring_licenses_manager' )
 		);
+		
+		add_submenu_page(
+			'edit.php?post_type=orbis_subscription',
+			__( 'Orbis Sent Reminders', 'orbis_subscriptions' ),
+			__( 'Sent Reminders', 'orbis_subscriptions' ),
+			'orbis_view_subscriptions',
+			'orbis_sent_reminders',
+			array( $this, 'sent_licenses_reminder' )
+		);
 	}
 	
 	public function expiring_licenses_manager() {
@@ -33,6 +42,21 @@ class Orbis_Subscriptions_Expiration {
 				
 		// Load view
 		include ORBIS_SUBSCRIPTIONS_FOLDER . '/templates/expiring_licenses_manager.php';
+	}
+	
+	public function sent_licenses_reminder() {
+		// Get subscription factory
+		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
+		
+		// 7 days
+		$datetime = new DateTime();
+		$datetime->add( new DateInterval( 'P1W' ) );
+		
+		$subscriptions = $subscription_factory->get_sent_reminders( $datetime );
+		
+		$nonce = wp_nonce_field( 'orbis_subscription_expiration_manager', 'orbis_subscription_expiration_manager_nonce', true, false );
+		
+		include ORBIS_SUBSCRIPTIONS_FOLDER . '/templates/orbis_sent_reminders.php';
 	}
 	
 	public function expiring_licenses_submit() {

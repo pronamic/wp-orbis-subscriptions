@@ -8,6 +8,39 @@ class Orbis_Subscriptions_Expiration_Factory {
 		$this->db = $wpdb;
 	}
 	
+	public function get_sent_reminders( DateTime $from ) {
+		$query = "
+			SELECT
+				subscription.id,
+				subscription.post_id,
+				subscription.type_id,
+				subscription.expiration_date,
+				type.id,
+				type.auto_renew
+			FROM
+				{$this->db->orbis_subscriptions} AS subscription
+			LEFT JOIN
+				{$this->db->orbis_subscription_types} as type
+				ON subscription.type_id = type.id
+			WHERE 
+				type.auto_renew = 0
+			AND 
+				subscription.update_date <= %s
+		";
+		
+		$results = $this->db->get_results( $this->db->prepare( $query, $from->format( 'Y-m-d H:i:s' ) ) );
+		
+		if ( empty( $results ) )
+			return array();
+		
+		$subscriptions = array();
+		foreach ( $results as $result ) {
+			$subscriptions[] = new Orbis_Subscription( $result->post_id );
+		}
+		
+		return $subscriptions;
+	}
+	
 	/**
 	 * Returns an array of results, that get all subscriptions
 	 * 
@@ -18,8 +51,6 @@ class Orbis_Subscriptions_Expiration_Factory {
 	 * @return array
 	 */
 	public function get_all() {
-		global $wpdb;
-
 		$query = "
 			SELECT
 				subscription.id ,
@@ -38,12 +69,12 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.auto_renew as auto_renew ,
 				domain_name.domain_name AS domainName
 			FROM
-				 $wpdb->orbis_subscriptions AS subscription
+				{$this->db->orbis_subscriptions} AS subscription
 			LEFT JOIN
 				orbis_companies AS company
 				ON subscription.company_id = company.id
 			LEFT JOIN
-				$wpdb->orbis_subscription_types AS type
+				{$this->db->orbis_subscription_types} AS type
 				ON subscription.type_id = type.id
 			LEFT JOIN
 				orbis_domain_names AS domain_name
@@ -59,8 +90,6 @@ class Orbis_Subscriptions_Expiration_Factory {
 	}
 	
 	public function get_expiring_in( DateTime $date ) {
-		global $wpdb;
-
 		$query = "
 			SELECT
 				subscription.id,
@@ -70,9 +99,9 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.id,
 				type.auto_renew
 			FROM
-				$wpdb->orbis_subscriptions AS subscription
+				{$this->db->orbis_subscriptions} AS subscription
 			LEFT JOIN
-				$wpdb->orbis_subscription_types as type
+				{$this->db->orbis_subscription_types} as type
 				ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0
