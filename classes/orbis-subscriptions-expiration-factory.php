@@ -26,6 +26,8 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.auto_renew = 0
 			AND 
 				subscription.update_date <= %s
+			AND
+				sent_notifications > 0
 		";
 		
 		$results = $this->db->get_results( $this->db->prepare( $query, $from->format( 'Y-m-d H:i:s' ) ) );
@@ -108,14 +110,16 @@ class Orbis_Subscriptions_Expiration_Factory {
 			AND 
 				( subscription.expiration_date <= NOW() 
 				OR ( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() ) )
-			
+			ORDER BY
+				subscription.sent_notifications ASC,
+				subscription.expiration_date ASC
 		";
 		
 		$results = $this->db->get_results( $this->db->prepare( $query, $date->format( 'Y-m-d H:i:s' ) ) );
 		
 		if ( empty( $results ) )
 			return array();
-		
+
 		$subscriptions = array();
 		foreach ( $results as $result ) {
 			$subscriptions[] = new Orbis_Subscription( $result->post_id );

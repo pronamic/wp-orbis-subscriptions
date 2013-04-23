@@ -36,8 +36,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
 		
 		// 7 Days
-		$one_week = new DateTime();
-		$one_week->add( new DateInterval( 'P1W' ) );
+		$one_week = new DateTime( '+1 week' );
 		
 		$subscriptions = $subscription_factory->get_expiring_in( $one_week );
 
@@ -53,8 +52,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
 		
 		// 7 days
-		$datetime = new DateTime();
-		$datetime->add( new DateInterval( 'P1W' ) );
+		$datetime = new DateTime( '+1 week' );
 		
 		$subscriptions = $subscription_factory->get_sent_reminders( $datetime );
 		
