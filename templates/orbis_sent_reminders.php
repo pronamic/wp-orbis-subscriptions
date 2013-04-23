@@ -1,3 +1,8 @@
+<?php 
+
+global $subscriptions;
+
+?>
 <div class="wrap">
 	<?php screen_icon( 'orbis' ); ?>
 	<h2 class="nav-tab-wrapper">
@@ -6,7 +11,7 @@
 	</h2>
 	<br/>
 	<form method="POST">
-	<?php echo $nonce; ?>
+	<?php wp_nonce_field( 'orbis_subscription_expiration_manager', 'orbis_subscription_expiration_manager_nonce' ); ?>
 	<table class="widefat">
 		<thead>
 			<tr>

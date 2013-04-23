@@ -1,3 +1,8 @@
+<?php 
+
+global $subscriptions;
+
+?>
 <div class="wrap">
 	<?php screen_icon( 'orbis' ); ?>
 	<h2 class="nav-tab-wrapper">
@@ -5,7 +10,7 @@
 		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab"><?php _e( 'Sent Reminders', 'orbis_twinfield' ); ?></a>
 	</h2>
 	<form method="POST">
-	<?php echo $nonce; ?>
+	<?php wp_nonce_field( 'orbis_subscription_expiration_manager', 'orbis_subscription_expiration_manager_nonce' ); ?>
 	<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
 	<table class="widefat">
 		<thead>
