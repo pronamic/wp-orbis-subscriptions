@@ -35,7 +35,7 @@ function orbis_subscriptions_bootstrap() {
 	include 'classes/orbis-subscriptions-settings.php';
 	
 	// Functions
-	include 'includes/functions-subscription.php';
+	include 'includes/functions.php';
 	
 	// Load settings
 	$expiration = new Orbis_Subscriptions_Expiration();
