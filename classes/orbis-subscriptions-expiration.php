@@ -42,7 +42,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscriptions = $subscription_factory->get_expiring_in( $one_week );
 
 		// View
-		$orbis_subscriptions_plugin->plugin_include( '/templates/expiring_licenses_manager.php' );
+		$orbis_subscriptions_plugin->plugin_include( '/admin/expiring_licenses_manager.php' );
 	}
 	
 	public function sent_licenses_reminder() {
@@ -59,7 +59,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscriptions = $subscription_factory->get_sent_reminders( $datetime );
 		
 		// View
-		$orbis_subscriptions_plugin->plugin_include( '/templates/orbis_sent_reminders.php' );
+		$orbis_subscriptions_plugin->plugin_include( '/admin/orbis_sent_reminders.php' );
 	}
 	
 	public function expiring_licenses_submit() {
