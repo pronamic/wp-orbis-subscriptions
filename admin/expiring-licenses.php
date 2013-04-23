@@ -8,7 +8,7 @@ global $subscriptions;
 
 	<h2 class="nav-tab-wrapper">
 		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_view_subscriptions' ); ?>" class="nav-tab nav-tab-active"><?php echo get_admin_page_title(); ?></a>
-		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab"><?php _e( 'Sent Reminders', 'orbis_twinfield' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab"><?php _e( 'Sent Reminders', 'orbis_subscriptions' ); ?></a>
 	</h2>
 
 	<form method="POST">
