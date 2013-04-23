@@ -37,7 +37,6 @@ function orbis_subscriptions_bootstrap() {
 	// Load settings
 	$expiration = new Orbis_Subscriptions_Expiration();
 	$settings   = new Orbis_Subscriptions_Settings();
-	
 }
 
 add_action( 'orbis_bootstrap', 'orbis_subscriptions_bootstrap' );
