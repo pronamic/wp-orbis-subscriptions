@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 11:25+0100\n"
-"PO-Revision-Date: 2013-04-19 11:25+0100\n"
+"POT-Creation-Date: 2013-04-23 09:49+0100\n"
+"PO-Revision-Date: 2013-04-23 09:51+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -22,14 +22,16 @@ msgid "Company ID"
 msgstr "Bedrijf ID"
 
 #: admin/meta-box-subscription-details.php:37
-#: templates/expiring_licenses_manager.php:13
+#: templates/expiring_licenses_manager.php:16
+#: templates/orbis_sent_reminders.php:16
 msgid "Type"
 msgstr "Type"
 
 #: admin/meta-box-subscription-details.php:56
 #: templates/company-subscriptions.php:44
 #: templates/domain-name-subscriptions.php:42
-#: templates/expiring_licenses_manager.php:14
+#: templates/expiring_licenses_manager.php:17
+#: templates/orbis_sent_reminders.php:17
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
 #: templates/subscriptions-to-invoice.php:31
@@ -37,24 +39,24 @@ msgid "Name"
 msgstr "Naam"
 
 #: admin/meta-box-subscription-details.php:64
-#: templates/expiring_licenses_manager.php:19
-#: templates/subscription-details.php:42
+#: templates/expiring_licenses_manager.php:22
+#: templates/orbis_sent_reminders.php:22 templates/subscription-details.php:42
 msgid "License Key"
 msgstr "Licentiesleutel"
 
 #: admin/meta-box-subscription-details.php:75
 #: templates/company-subscriptions.php:42
 #: templates/domain-name-subscriptions.php:40
-#: templates/expiring_licenses_manager.php:15
-#: templates/subscription-details.php:47
+#: templates/expiring_licenses_manager.php:18
+#: templates/orbis_sent_reminders.php:18 templates/subscription-details.php:47
 #: templates/subscriptions-to-invoice-updater.php:58
 #: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
 #: admin/meta-box-subscription-details.php:83
-#: templates/expiring_licenses_manager.php:16
-#: templates/subscription-details.php:50
+#: templates/expiring_licenses_manager.php:19
+#: templates/orbis_sent_reminders.php:19 templates/subscription-details.php:50
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
@@ -67,18 +69,29 @@ msgstr "Persoon"
 msgid "Email"
 msgstr "E-mailadres"
 
-#: classes/orbis-subscription.php:503
+#: classes/orbis-subscription.php:556
 #, php-format
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
 #: classes/orbis-subscriptions-expiration.php:14
+#: templates/orbis_sent_reminders.php:4
 msgid "Orbis Expiring Subscriptions"
 msgstr "Orbis aflopende abonnementen"
 
 #: classes/orbis-subscriptions-expiration.php:15
 msgid "Expiring Subscriptions"
 msgstr "Aflopende abonnementen"
+
+#: classes/orbis-subscriptions-expiration.php:23
+msgid "Orbis Sent Reminders"
+msgstr "Orbis verzonden herinneringen"
+
+#: classes/orbis-subscriptions-expiration.php:24
+#: templates/expiring_licenses_manager.php:5
+#: templates/orbis_sent_reminders.php:5
+msgid "Sent Reminders"
+msgstr "Verzonden herinneringen"
 
 #: classes/orbis-subscriptions-settings.php:14
 msgid "Reminder"
@@ -200,47 +213,72 @@ msgstr "Abonnement"
 
 #: templates/company-subscriptions.php:45
 #: templates/domain-name-subscriptions.php:43
-#: templates/expiring_licenses_manager.php:18
+#: templates/expiring_licenses_manager.php:21
+#: templates/orbis_sent_reminders.php:21
 #: templates/subscriptions-invoices.php:16
 #: templates/subscriptions-to-invoice-updater.php:56
 #: templates/subscriptions-to-invoice.php:30
 msgid "Price"
 msgstr "Prijs"
 
-#: templates/expiring_licenses_manager.php:6
-#: templates/expiring_licenses_manager.php:42
-#: templates/expiring_licenses_manager.php:54
+#: templates/expiring_licenses_manager.php:9
+#: templates/expiring_licenses_manager.php:61
+#: templates/expiring_licenses_manager.php:74
 msgid "Send Reminder"
 msgstr "Verstuur herinnering"
 
-#: templates/expiring_licenses_manager.php:11
+#: templates/expiring_licenses_manager.php:14
+#: templates/orbis_sent_reminders.php:14
 #: templates/subscriptions-to-invoice-updater.php:53
 #: templates/subscriptions-to-invoice.php:27
 msgid "ID"
 msgstr "ID"
 
-#: templates/expiring_licenses_manager.php:12
+#: templates/expiring_licenses_manager.php:15
+#: templates/orbis_sent_reminders.php:15
 #: templates/subscriptions-invoices.php:14
 #: templates/subscriptions-to-invoice-updater.php:54
 #: templates/subscriptions-to-invoice.php:28
 msgid "Company"
 msgstr "Bedrijf"
 
-#: templates/expiring_licenses_manager.php:17
+#: templates/expiring_licenses_manager.php:20
+#: templates/orbis_sent_reminders.php:20
 msgid "Update Date"
 msgstr "Update datum"
 
-#: templates/expiring_licenses_manager.php:20
+#: templates/expiring_licenses_manager.php:23
+#: templates/orbis_sent_reminders.php:23
+msgid "Sent"
+msgstr "Verzonden"
+
+#: templates/expiring_licenses_manager.php:24
+#: templates/orbis_sent_reminders.php:24
+msgid "E-Mail"
+msgstr "E-mailadres"
+
+#: templates/expiring_licenses_manager.php:25
+#: templates/orbis_sent_reminders.php:25
 msgid "Actions"
 msgstr "Acties"
 
-#: templates/expiring_licenses_manager.php:43
+#: templates/expiring_licenses_manager.php:48
+#: templates/orbis_sent_reminders.php:48
+msgid "Edit"
+msgstr "Bewerken"
+
+#: templates/expiring_licenses_manager.php:62
+#: templates/orbis_sent_reminders.php:61
 msgid "Extend License"
 msgstr "Licentie verlegen"
 
-#: templates/expiring_licenses_manager.php:49
+#: templates/expiring_licenses_manager.php:69
 msgid "No subscriptions will expire within the next week"
 msgstr "Er zullen volgende week geen abonnementen verlopen"
+
+#: templates/orbis_sent_reminders.php:68
+msgid "No reminders sent in the last week"
+msgstr "Geen herinneringen verzonden afgelopen week"
 
 #: templates/subscription-details.php:32
 msgid "Subscription Details"
@@ -367,9 +405,6 @@ msgstr "Opmerking"
 
 #~ msgid "Administrator"
 #~ msgstr "Beheerder"
-
-#~ msgid "Editor"
-#~ msgstr "Auteur"
 
 #~ msgid "Keychain Details"
 #~ msgstr "Sleutelhanger details"
