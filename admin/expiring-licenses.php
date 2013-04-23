@@ -10,12 +10,18 @@ global $subscriptions;
 		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_view_subscriptions' ); ?>" class="nav-tab nav-tab-active"><?php echo get_admin_page_title(); ?></a>
 		<a href="<?php echo admin_url( 'edit.php?post_type=orbis_subscription&page=orbis_sent_reminders' ); ?>" class="nav-tab"><?php _e( 'Sent Reminders', 'orbis_subscriptions' ); ?></a>
 	</h2>
-
+	
 	<form method="post" action="">
 		<?php wp_nonce_field( 'orbis_subscription_expiration_manager', 'orbis_subscription_expiration_manager_nonce' ); ?>
 		
-		<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
-	
+		<div class="tablenav top">
+			<div class="alignleft actions">
+				<?php submit_button( __( 'Send Reminder', 'orbis_subscriptions' ) ); ?>
+			</div>
+
+			<br class="clear" />
+		</div>
+		
 		<table class="widefat">
 			<thead>
 				<tr>
