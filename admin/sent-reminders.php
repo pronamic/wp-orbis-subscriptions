@@ -39,12 +39,17 @@ global $subscriptions;
 				</tr>
 			</thead>
 			<tbody>
+
 				<?php if ( ! empty( $subscriptions ) ) : ?>
+
 					<?php $datetime_zone	 = new DateTimeZone( 'Europe/Amsterdam' ); ?>
 					<?php $days			 = new DateInterval( 'P2D' ); ?>
 					<?php $now			 = new DateTime( '', $datetime_zone ); ?>
+
 					<?php foreach ( $subscriptions as $subscription ) : ?>
+
 						<?php if ( $subscription->since_last_reminder( $days, $now ) ) : ?>
+
 							<tr class="subscription">
 								<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
 								<td><?php echo $subscription->get_id(); ?></td>
@@ -74,13 +79,19 @@ global $subscriptions;
 									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
 								</td>
 							</tr>
+
 						<?php endif; ?>
+
 					<?php endforeach; ?>
+
 				<?php else: ?>
+
 					<tr>
 						<td colspan="10"><?php _e( 'No reminders sent in the last week', 'orbis_subscriptions' ); ?></td>
 					</tr>
+
 				<?php endif; ?>
+
 			</tbody>
 		</table>
 	</form>
