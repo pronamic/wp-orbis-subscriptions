@@ -262,8 +262,6 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 					$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 					$this->set_license_key( $subscription_data->license_key );
 					$this->set_sent_notifications( $subscription_data->sent_notifications );
-					
-					$this->license_key_md5 = $subscription_data->license_key_md5;
 				}
 			} else {
 				return false;
