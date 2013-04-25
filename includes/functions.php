@@ -46,13 +46,13 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 				$wpdb->orbis_subscriptions as s
 			LEFT JOIN
 				orbis_companies as c
-				ON s.company_id = c.id
+					ON s.company_id = c.id
 			LEFT JOIN
 				$wpdb->orbis_subscription_types as t
-				ON s.type_id = t.id
+					ON s.type_id = t.id
 			LEFT JOIN
 				orbis_domain_names as d
-				ON s.domain_name_id = d.id
+					ON s.domain_name_id = d.id
 			WHERE
 				s.post_id = %d
 			AND
@@ -61,7 +61,7 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 				s.id,
 				s.update_date
 		";
-		
+echo $query;
 		return $wpdb->get_row( $wpdb->prepare( $query, $post_id ) );
 	}
 	
