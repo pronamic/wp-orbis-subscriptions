@@ -40,29 +40,22 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 				t.id as type_id,
 				t.name as type_name,
 				t.price as type_price,
-				t.auto_renew as type_auto_renew,
-				d.domain_name as domain_name
+				t.auto_renew as type_auto_renew
 			FROM
 				$wpdb->orbis_subscriptions as s
-			LEFT JOIN
-				orbis_companies as c
-					ON s.company_id = c.id
-			LEFT JOIN
+					LEFT JOIN
 				$wpdb->orbis_subscription_types as t
-					ON s.type_id = t.id
-			LEFT JOIN
-				orbis_domain_names as d
-					ON s.domain_name_id = d.id
+						ON s.type_id = t.id
+					LEFT JOIN
+				orbis_companies as c
+						ON s.company_id = c.id
 			WHERE
 				s.post_id = %d
-			AND
-				t.auto_renew = 0
-			ORDER BY
-				s.id,
-				s.update_date
 		";
-echo $query;
-		return $wpdb->get_row( $wpdb->prepare( $query, $post_id ) );
+		
+		$query =  $wpdb->prepare( $query, $post_id );
+
+		return $wpdb->get_row( $query );
 	}
 	
 endif;

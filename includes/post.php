@@ -247,3 +247,30 @@ function orbis_subscription_column( $column ) {
 }
 
 add_action( 'manage_posts_custom_column' , 'orbis_subscription_column' );
+
+/**
+ * Insert post data
+ * 
+ * @see https://github.com/WordPress/WordPress/blob/3.5.1/wp-includes/post.php#L2864
+ */
+function orbis_subscriptions_insert_post_data( $data, $postarr ) {
+	if ( isset( $data['post_type'] ) && $data['post_type'] == 'orbis_subscription' ) {
+		global $wpdb;
+
+		$type_id   = filter_input( INPUT_POST, '_orbis_subscription_type_id', FILTER_SANITIZE_STRING );
+		$name      = filter_input( INPUT_POST, '_orbis_subscription_name', FILTER_SANITIZE_STRING );
+
+		$type_name = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_subscription_types WHERE id = %d;", $type_id ) );
+
+		if ( ! empty( $type_name ) && ! empty( $name ) ) {
+			$post_title = $type_name . ' - ' . $name;
+			
+			$data['post_title'] = $post_title;
+			$data['post_name']  = null;
+		}
+	}
+	
+	return $data;
+}
+
+add_filter( 'wp_insert_post_data', 'orbis_subscriptions_insert_post_data', 10, 2 );
