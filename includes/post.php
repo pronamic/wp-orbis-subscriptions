@@ -1,14 +1,5 @@
 <?php
 
-//add_action( 'init', 'testing' );
-function testing() {
-	$subscription = new Orbis_Subscription( 3352 );
-	
-	print_r('<pre>');
-	var_dump($subscription);
-	print_r('</pre>');
-}
-
 function orbis_subscriptions_create_initial_post_types() {
 	global $orbis_subscriptions_plugin;
 
@@ -147,11 +138,11 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	
 	// Set this subscriptions details
 	$subscription
-			->set_company_id( $company_id )
-			->set_type_id( $type_id )
-			->set_post_id( $post_id )
-			->set_email( $email )
-			->set_name( $name );
+		->set_company_id( $company_id )
+		->set_type_id( $type_id )
+		->set_post_id( $post_id )
+		->set_email( $email )
+		->set_name( $name );
 	
 	// Must be new, make a new license key for this subscription
 	if ( ! $subscription->get_id() ) {
@@ -175,9 +166,8 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 
 add_action( 'save_post', 'orbis_save_subscription_sync', 20, 2 );
 
-
 /**
- * Keychain content
+ * Subscription content
 */
 function orbis_subscription_the_content( $content ) {
 	if ( get_post_type() == 'orbis_subscription' ) {
@@ -257,8 +247,8 @@ function orbis_subscriptions_insert_post_data( $data, $postarr ) {
 	if ( isset( $data['post_type'] ) && $data['post_type'] == 'orbis_subscription' ) {
 		global $wpdb;
 
-		$type_id   = filter_input( INPUT_POST, '_orbis_subscription_type_id', FILTER_SANITIZE_STRING );
-		$name      = filter_input( INPUT_POST, '_orbis_subscription_name', FILTER_SANITIZE_STRING );
+		$type_id = filter_input( INPUT_POST, '_orbis_subscription_type_id', FILTER_SANITIZE_STRING );
+		$name    = filter_input( INPUT_POST, '_orbis_subscription_name', FILTER_SANITIZE_STRING );
 
 		$type_name = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $wpdb->orbis_subscription_types WHERE id = %d;", $type_id ) );
 
