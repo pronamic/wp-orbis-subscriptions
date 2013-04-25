@@ -128,10 +128,10 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		return;
 	}
 
-	$company_id  = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
-	$type_id     = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
-	$name        = get_post_meta( $post_id, '_orbis_subscription_name', true );
-	$email		 = get_post_meta( $post_id, '_orbis_subscription_email', true );
+	$company_id = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
+	$type_id    = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
+	$name       = get_post_meta( $post_id, '_orbis_subscription_name', true );
+	$email      = get_post_meta( $post_id, '_orbis_subscription_email', true );
 	
 	// Get the subscription object
 	$subscription = new Orbis_Subscription( $post );
