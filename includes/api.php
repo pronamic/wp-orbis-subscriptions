@@ -73,4 +73,5 @@ function orbis_subscriptions_api_call() {
 	}
 }
 
-add_action( 'template_redirect', 'orbis_subscriptions_api_call', 0 ); // highest priority
+// High priority because the API is public avaiable (members plugin)
+add_action( 'template_redirect', 'orbis_subscriptions_api_call', 0 );
