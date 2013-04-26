@@ -30,7 +30,9 @@ class Orbis_Subscriptions_Expiration_Factory {
 				sent_notifications > 0
 		";
 		
-		$results = $this->db->get_results( $this->db->prepare( $query, $from->format( 'Y-m-d H:i:s' ) ) );
+		$query = $this->db->prepare( $query, $from->format( 'Y-m-d H:i:s' ) );
+
+		$results = $this->db->get_results( $query );
 		
 		if ( empty( $results ) )
 			return array();
@@ -39,7 +41,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 		foreach ( $results as $result ) {
 			$subscriptions[] = new Orbis_Subscription( $result->post_id );
 		}
-		
+
 		return $subscriptions;
 	}
 	

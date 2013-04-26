@@ -45,44 +45,38 @@ global $subscriptions;
 					<?php
 
 					$datetime_zone = new DateTimeZone( 'Europe/Amsterdam' );
-					$days          = new DateInterval( 'P2D' );
-					$now           = new DateTime( '', $datetime_zone );
 
 					foreach ( $subscriptions as $subscription ) : ?>
 
-						<?php if ( $subscription->since_last_reminder( $days, $now ) ) : ?>
+						<tr class="subscription">
+							<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
+							<td><?php echo $subscription->get_id(); ?></td>
+							<td><?php echo $subscription->get_company_name(); ?></td>
+							<td><?php echo $subscription->get_type_name(); ?></td>
+							<td>
+								<a href="<?php echo get_permalink( $subscription->get_post_id() ); ?>" target="_blank">
+									<?php echo $subscription->get_name(); ?>
+								</a>
 
-							<tr class="subscription">
-								<td><input name="subscription_ids[]" type="checkbox" value="<?php echo $subscription->get_post_id(); ?>" /></td>
-								<td><?php echo $subscription->get_id(); ?></td>
-								<td><?php echo $subscription->get_company_name(); ?></td>
-								<td><?php echo $subscription->get_type_name(); ?></td>
-								<td>
-									<a href="<?php echo get_permalink( $subscription->get_post_id() ); ?>" target="_blank">
-										<?php echo $subscription->get_name(); ?>
-									</a>
-	
-									<div class="row-actions">
-										<span class="edit">
-											<a href="<?php echo get_edit_post_link( $subscription->get_post_id() ); ?>" target="_blank">
-												<?php _e( 'Edit', 'orbis_subscriptions' ); ?>
-											</a>
-										</span>
-									</div>
-								</td>
-								<td><?php echo $subscription->get_activation_date()->setTimezone( $datetime_zone )->format( 'd-m-Y' ); ?></td>
-								<td><?php echo $subscription->until_expiration_human(); ?></td>
-								<td><?php echo $subscription->get_update_date()->setTimezone( $datetime_zone )->format( 'd-m-Y @ H:i' ); ?></td>
-								<td><?php echo $subscription->get_type_price( '&euro;' ); ?></td>
-								<td><?php echo $subscription->get_license_key(); ?></td>
-								<td><?php echo $subscription->get_sent_notifications(); ?></td>
-								<td><?php echo $subscription->get_email(); ?></td>
-								<td>
-									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
-								</td>
-							</tr>
-
-						<?php endif; ?>
+								<div class="row-actions">
+									<span class="edit">
+										<a href="<?php echo get_edit_post_link( $subscription->get_post_id() ); ?>" target="_blank">
+											<?php _e( 'Edit', 'orbis_subscriptions' ); ?>
+										</a>
+									</span>
+								</div>
+							</td>
+							<td><?php echo $subscription->get_activation_date()->setTimezone( $datetime_zone )->format( 'd-m-Y' ); ?></td>
+							<td><?php echo $subscription->until_expiration_human(); ?></td>
+							<td><?php echo $subscription->get_update_date()->setTimezone( $datetime_zone )->format( 'd-m-Y @ H:i' ); ?></td>
+							<td><?php echo $subscription->get_type_price( '&euro;' ); ?></td>
+							<td><?php echo $subscription->get_license_key(); ?></td>
+							<td><?php echo $subscription->get_sent_notifications(); ?></td>
+							<td><?php echo $subscription->get_email(); ?></td>
+							<td>
+								<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
+							</td>
+						</tr>
 
 					<?php endforeach; ?>
 
