@@ -27,6 +27,8 @@ class Orbis_Subscriptions_Expiration_Factory {
 			AND 
 				subscription.update_date <= %s
 			AND
+				expiration_date < NOW() + INTERVAL 3 MONTH
+			AND
 				sent_notifications > 0
 		";
 		
