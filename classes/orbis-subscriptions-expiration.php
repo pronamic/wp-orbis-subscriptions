@@ -70,6 +70,9 @@ class Orbis_Subscriptions_Expiration {
 		if ( ! wp_verify_nonce( $_POST['orbis_subscription_expiration_manager_nonce'], 'orbis_subscription_expiration_manager' ) )
 			return;
 		
+		if ( ! empty( $_POST['submit_extend'] ) )
+			return;
+		
 		// Get mail contents
 		$mail_subject = Orbis_Subscriptions_Settings::get_mail_subject();
 		$mail_body = Orbis_Subscriptions_Settings::get_mail_body();
@@ -91,13 +94,16 @@ class Orbis_Subscriptions_Expiration {
 		if ( ! isset( $_POST ) )
 			return;
 				
-		if ( ! isset( $_POST['submit_extend'] ) )
+		if ( empty( $_POST['submit_extend'] ) )
 			return;
 				
-		$subscription_id = filter_input( INPUT_POST, 'submit_extend', FILTER_VALIDATE_INT );
+		$submit = $_POST['submit_extend'];
+				
+		$subscription_id = $submit['id'];
+		$subscription_message = $submit['message'];
 		
 		// Extend the license
 		$subscription = new Orbis_Subscription( $subscription_id );
-		$subscription->extend();
+		$subscription->extend( filter_var( $subscription_message, FILTER_SANITIZE_STRING ) );
 	}
 }

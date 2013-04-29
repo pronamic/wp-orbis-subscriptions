@@ -281,7 +281,7 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 		 * @param DateInterval $date_interval
 		 * @return boolean
 		 */
-		public function extend( DateInterval $date_interval = null ) {
+		public function extend( $message, DateInterval $date_interval = null ) {
 			// If no date interval supplied, default to 1 year
 			if ( ! $date_interval )
 				$date_interval = new DateInterval( 'P1Y' );
@@ -303,6 +303,12 @@ if ( ! class_exists( 'Orbis_Subscription' ) ) :
 				'expiration_date'	 => '%s',
 				'update_date'		 => '%s'
 			);
+			
+			wp_insert_comment( array(
+				'comment_post_ID' => $this->get_post_id(),
+				'comment_author' => 'Orbis Subscriptions',
+				'comment_content' => $message
+			) );
 
 			$response = $this->db->update( 'orbis_subscriptions', $data, $where, $format );
 

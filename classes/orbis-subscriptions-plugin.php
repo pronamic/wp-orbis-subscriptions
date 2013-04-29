@@ -5,7 +5,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.0' );
+		$this->set_db_version( '1.5' );
 
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/api.php' );
@@ -53,7 +53,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			cost_price FLOAT NULL,
 			notes TEXT NULL,
 			legacy_id BIGINT(16) UNSIGNED NULL,
-			`default` BOOLEAN NOT NULL DEFAULT FALSE,
+			`type_default` BOOLEAN NOT NULL DEFAULT FALSE,
 			twinfield_article VARCHAR(8) NOT NULL,
 			auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
 			PRIMARY KEY  (id)
