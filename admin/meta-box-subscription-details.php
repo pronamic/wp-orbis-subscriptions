@@ -1,4 +1,5 @@
 <?php
+
 global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
@@ -22,6 +23,7 @@ if ( true ) { // empty( $orbis_id ) ) {
 		$license_key = $subscription->license_key;
 	}
 }
+
 ?>
 <table class="form-table">
 	<tr valign="top">
