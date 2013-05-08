@@ -92,7 +92,21 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 							<?php echo $result->activation_date; ?>
 						</td>
 						<td>
-							<?php echo $result->invoice_number; ?>
+							<?php 
+							
+							$invoice_link = orbis_get_invoice_link( $result->invoice_number );
+							
+							if ( ! empty( $invoice_link ) ) {
+								printf(
+									'<a href="%s" target="_blank">%s</a>',
+									esc_attr( $invoice_link ),
+									$result->invoice_number
+								);
+							} else {
+								echo $result->invoice_number;
+							}
+							
+							?>
 						</td>
 						<td>
 							<?php if ( $result->to_late ) : ?>
