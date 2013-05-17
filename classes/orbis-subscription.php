@@ -291,12 +291,6 @@ class Orbis_Subscription {
 			'expiration_date'	 => '%s',
 			'update_date'		 => '%s'
 		);
-		
-		wp_insert_comment( array(
-			'comment_post_ID' => $this->get_post_id(),
-			'comment_author' => 'Orbis Subscriptions',
-			'comment_content' => $message
-		) );
 
 		$response = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
 
