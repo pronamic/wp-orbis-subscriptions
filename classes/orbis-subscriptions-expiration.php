@@ -5,7 +5,6 @@ class Orbis_Subscriptions_Expiration {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		
 		add_action( 'init', array( $this, 'expiring_licenses_submit' ) );
-		add_action( 'init', array( $this, 'extend_license_submit' ) );
 	}
 	
 	public function admin_menu() {
@@ -88,22 +87,5 @@ class Orbis_Subscriptions_Expiration {
 			$subscription = new Orbis_Subscription( $subscription_id );
 			$subscription->send_reminder( $mail_subject, $mail_body, $url );
 		}
-	}
-	
-	public function extend_license_submit() {
-		if ( ! isset( $_POST ) )
-			return;
-				
-		if ( empty( $_POST['submit_extend'] ) )
-			return;
-				
-		$submit = $_POST['submit_extend'];
-				
-		$subscription_id = $submit['id'];
-		$subscription_message = $submit['message'];
-		
-		// Extend the license
-		$subscription = new Orbis_Subscription( $subscription_id );
-		$subscription->extend( filter_var( $subscription_message, FILTER_SANITIZE_STRING ) );
 	}
 }
