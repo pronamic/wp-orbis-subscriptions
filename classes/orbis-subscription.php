@@ -264,21 +264,17 @@ class Orbis_Subscription {
 	 * If no DateInterval is passed, then it defaults to 1 year extension.
 	 * 
 	 * @access public
-	 * @param DateInterval $date_interval
+	 * @param string $modify
 	 * @return boolean
 	 */
-	public function extend( $message, DateInterval $date_interval = null ) {
+	public function extend( $modify = '+1 year' ) {
 		global $wpdb;
-
-		// If no date interval supplied, default to 1 year
-		if ( ! $date_interval )
-			$date_interval = new DateInterval( 'P1Y' );
 
 		// wpdb->update doesn't support mysql NOW()
 		$now = new DateTime();
 
 		// Add the interval period to the expiration date
-		$expiration = $this->get_expiration_date()->add( $date_interval );
+		$expiration = $this->get_expiration_date()->modify( $modify );
 
 		$data = array(
 			'expiration_date' => $expiration->format( 'Y-m-d H:i:s' ),
