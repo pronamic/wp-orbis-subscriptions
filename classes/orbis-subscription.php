@@ -344,9 +344,10 @@ class Orbis_Subscription {
 
 			// Keys in body
 			$content_keys = array(
-				'{{company_name}}'		 => $this->get_company_name(),
-				'{{days_to_expiration}}' => $this->until_expiration_human(),
-				'{{renew_license_url}}'	 => $update_url
+				'{company_name}'       => $this->get_company_name(),
+				'{days_to_expiration}' => $this->until_expiration_human(),
+				'{expiration_date}'    => $this->get_expiration_date()->format( __( 'j F, Y @ G:i:s', 'orbis_subscriptions' ) ),
+				'{renew_license_url}'  => $update_url
 			);
 
 			// Replace the placeholder body contents
