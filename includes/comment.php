@@ -67,7 +67,7 @@ function orbis_subscription_get_comment_text( $text, $comment ) {
 
 		$str .= '<p>';
 		$str .= '	' . sprintf(
-			__( 'This comment was an subscription extend request (before: %s, after: %s)', 'orbis_subscriptions' ),
+			__( 'This comment was an subscription extend request (before: %s, after: %s).', 'orbis_subscriptions' ),
 			$expiration_date_before,
 			$expriation_date_after
 		);
