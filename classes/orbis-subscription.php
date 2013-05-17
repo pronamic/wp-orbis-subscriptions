@@ -2,14 +2,6 @@
 
 class Orbis_Subscription {
 	/**
-	 * Holds the WPDB class object
-	 * 
-	 * @access private
-	 * @var WPDB
-	 */
-	private $db;
-
-	/**
 	 * Holds the Post object that this
 	 * subscription represents
 	 * 
@@ -201,9 +193,6 @@ class Orbis_Subscription {
 	private $email_body;
 
 	public function __construct( $subscription = null ) {
-		global $wpdb;
-		$this->db = $wpdb;
-
 		if ( null !== $subscription )
 			$this->load( $subscription );
 	}
@@ -279,6 +268,8 @@ class Orbis_Subscription {
 	 * @return boolean
 	 */
 	public function extend( $message, DateInterval $date_interval = null ) {
+		global $wpdb;
+
 		// If no date interval supplied, default to 1 year
 		if ( ! $date_interval )
 			$date_interval = new DateInterval( 'P1Y' );
@@ -307,7 +298,7 @@ class Orbis_Subscription {
 			'comment_content' => $message
 		) );
 
-		$response = $this->db->update( 'orbis_subscriptions', $data, $where, $format );
+		$response = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
 
 		// Because 0 can be returned, a boolean type response will return a false negative
 		if ( false === $response ) {
@@ -483,6 +474,8 @@ class Orbis_Subscription {
 	}
 
 	public function save() {
+		global $wpdb;
+
 		// Must be new
 		if ( ! $this->get_id() ) {
 
@@ -510,7 +503,7 @@ class Orbis_Subscription {
 				'license_key_md5'	 => '%s'
 			);
 
-			$result = $this->db->insert( 'orbis_subscriptions', $data, $format );
+			$result = $wpdb->insert( 'orbis_subscriptions', $data, $format );
 		} else {
 			$data = array(
 				'company_id'		 => $this->get_company_id(),
@@ -533,7 +526,7 @@ class Orbis_Subscription {
 			);
 
 			// Update!
-			$result = $this->db->update( 'orbis_subscriptions', $data, $where, $format );
+			$result = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
 		}
 
 		return $result;
