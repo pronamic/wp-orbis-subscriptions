@@ -342,11 +342,14 @@ class Orbis_Subscription {
 			// Build the renew url
 			$update_url = $this->renew_url( $url );
 
+			$timestamp       = $this->get_expiration_date()->format( 'U' );
+			$expiration_date = date_i18n( __( 'j F, Y @ G:i:s', 'orbis_subscriptions' ), $timestamp );
+
 			// Keys in body
 			$content_keys = array(
 				'{company_name}'       => $this->get_company_name(),
 				'{days_to_expiration}' => $this->until_expiration_human(),
-				'{expiration_date}'    => $this->get_expiration_date()->format( __( 'j F, Y @ G:i:s', 'orbis_subscriptions' ) ),
+				'{expiration_date}'    => $expiration_date,
 				'{renew_license_url}'  => $update_url
 			);
 
