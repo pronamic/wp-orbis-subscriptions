@@ -454,7 +454,7 @@ class Orbis_Subscription {
 	 * @return string
 	 */
 	public function generate_license_key() {
-		$license_key	 = md5( uniqid() );
+		$license_key = md5( uniqid() );
 		$this->set_license_key( $license_key );
 
 		return $license_key;
@@ -471,48 +471,48 @@ class Orbis_Subscription {
 		if ( ! $this->get_id() ) {
 
 			$data = array(
-				'company_id'		 => $this->get_company_id(),
-				'type_id'			 => $this->get_type_id(),
-				'post_id'			 => $this->get_post_id(),
-				'name'				 => $this->get_name(),
-				'email'				 => $this->get_email(),
-				'activation_date'	 => orbis_date2mysql( $this->get_activation_date() ),
-				'expiration_date'	 => orbis_date2mysql( $this->get_expiration_date() ),
-				'license_key'		 => $this->get_license_key(),
-				'license_key_md5'	 => $this->license_key_md5
+				'company_id'      => $this->get_company_id(),
+				'type_id'         => $this->get_type_id(),
+				'post_id'         => $this->get_post_id(),
+				'name'            => $this->get_name(),
+				'email'           => $this->get_email(),
+				'activation_date' => orbis_date2mysql( $this->get_activation_date() ),
+				'expiration_date' => orbis_date2mysql( $this->get_expiration_date() ),
+				'license_key'     => $this->get_license_key(),
+				'license_key_md5' => $this->license_key_md5
 			);
 
 			$format = array(
-				'company_id'		 => '%d',
-				'type_id'			 => '%d',
-				'post_id'			 => '%d',
-				'name'				 => '%s',
-				'email'				 => '%s',
-				'activation_date'	 => '%s',
-				'expiration_date'	 => '%s',
-				'license_key'		 => '%s',
-				'license_key_md5'	 => '%s'
+				'company_id'      => '%d',
+				'type_id'         => '%d',
+				'post_id'         => '%d',
+				'name'            => '%s',
+				'email'           => '%s',
+				'activation_date' => '%s',
+				'expiration_date' => '%s',
+				'license_key'     => '%s',
+				'license_key_md5' => '%s'
 			);
 
 			$result = $wpdb->insert( 'orbis_subscriptions', $data, $format );
 		} else {
 			$data = array(
-				'company_id'		 => $this->get_company_id(),
-				'type_id'			 => $this->get_type_id(),
-				'name'				 => $this->get_name(),
-				'email'				 => $this->get_email(),
-				'update_date'		 => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
+				'company_id'         => $this->get_company_id(),
+				'type_id'            => $this->get_type_id(),
+				'name'               => $this->get_name(),
+				'email'              => $this->get_email(),
+				'update_date'        => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
 				'sent_notifications' => $this->get_sent_notifications()
 			);
 
 			$where = array( 'id' => $this->get_id() );
 
 			$format = array(
-				'company_id'		 => '%d',
-				'type_id'			 => '%d',
-				'name'				 => '%s',
-				'email'				 => '%s',
-				'update_date'		 => '%s',
+				'company_id'         => '%d',
+				'type_id'            => '%d',
+				'name'               => '%s',
+				'email'              => '%s',
+				'update_date'        => '%s',
 				'sent_notifications' => '%d'
 			);
 
@@ -535,9 +535,9 @@ class Orbis_Subscription {
 	 */
 	private function store_note() {
 		$comment = array(
-			'comment_post_ID'	 => $this->get_post_id(),
-			'comment_author'	 => 'System',
-			'comment_content'	 => sprintf(
+			'comment_post_ID' => $this->get_post_id(),
+			'comment_author'  => 'System',
+			'comment_content' => sprintf(
 				__( 'A license expiration reminder has been sent to %s (%s).', 'orbis_subscriptions' ),
 				$this->get_company_name(),
 				$this->get_email()
