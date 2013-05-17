@@ -81,7 +81,6 @@ global $subscriptions;
 								<td><?php echo $subscription->get_email(); ?></td>
 								<td>
 									<button class="button-primary" name="submit_single" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Send Reminder', 'orbis_subscriptions' ); ?></button>
-									<button class="button-secondary" name="submit_extend" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
 								</td>
 							</tr>
 
