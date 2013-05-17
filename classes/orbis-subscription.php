@@ -281,15 +281,15 @@ class Orbis_Subscription {
 		$expiration = $this->get_expiration_date()->add( $date_interval );
 
 		$data = array(
-			'expiration_date'	 => $expiration->format( 'Y-m-d H:i:s' ),
-			'update_date'		 => $now->format( 'Y-m-d H:i:s' )
+			'expiration_date' => $expiration->format( 'Y-m-d H:i:s' ),
+			'update_date'     => $now->format( 'Y-m-d H:i:s' )
 		);
 
 		$where = array( 'id' => $this->get_id() );
 
 		$format = array(
-			'expiration_date'	 => '%s',
-			'update_date'		 => '%s'
+			'expiration_date' => '%s',
+			'update_date'     => '%s'
 		);
 
 		$response = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
