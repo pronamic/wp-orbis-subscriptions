@@ -35,8 +35,6 @@ global $subscriptions;
 					<th scope="col" class="manage-column"><?php _e( 'License Key', 'orbis_subscriptions' ) ?></th>
 					<th scope="col" class="manage-column"><?php _e( 'Sent', 'orbis_subscriptions' ); ?></th>
 					<th scope="col" class="manage-column"><?php _e( 'E-Mail', 'orbis_subscriptions' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Message', 'orbis_subscriptions' ); ?></th>
-					<th scope="col" class="manage-column"><?php _e( 'Actions', 'orbis_subscriptions' ) ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -74,12 +72,6 @@ global $subscriptions;
 							<td><?php echo $subscription->get_license_key(); ?></td>
 							<td><?php echo $subscription->get_sent_notifications(); ?></td>
 							<td><?php echo $subscription->get_email(); ?></td>
-							<td>
-								<textarea name="submit_extend[message]"></textarea>
-							</td>
-							<td>
-								<button class="button-secondary" name="submit_extend[id]" type="submit" value="<?php echo $subscription->get_post_id(); ?>"><?php _e( 'Extend License', 'orbis_subscriptions' ); ?></button>
-							</td>
 						</tr>
 
 					<?php endforeach; ?>
