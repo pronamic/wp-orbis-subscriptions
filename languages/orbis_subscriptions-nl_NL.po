@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-17 10:13+0100\n"
-"PO-Revision-Date: 2013-05-17 10:13+0100\n"
+"POT-Creation-Date: 2013-05-17 10:30+0100\n"
+"PO-Revision-Date: 2013-05-17 10:30+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -127,7 +127,11 @@ msgstr "Orbis aflopende abonnementen"
 msgid "No reminders sent in the last week"
 msgstr "Geen herinneringen verzonden afgelopen week"
 
-#: classes/orbis-subscription.php:537
+#: classes/orbis-subscription.php:349
+msgid "j F, Y @ G:i:s"
+msgstr "j F Y @ H:i"
+
+#: classes/orbis-subscription.php:538
 #, php-format
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
