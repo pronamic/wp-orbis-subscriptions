@@ -270,15 +270,12 @@ class Orbis_Subscription {
 	public function extend( $modify = '+1 year' ) {
 		global $wpdb;
 
-		// wpdb->update doesn't support mysql NOW()
-		$now = new DateTime();
-
 		// Add the interval period to the expiration date
 		$expiration = $this->get_expiration_date()->modify( $modify );
 
 		$data = array(
 			'expiration_date' => $expiration->format( 'Y-m-d H:i:s' ),
-			'update_date'     => $now->format( 'Y-m-d H:i:s' )
+			'update_date'     => date( 'Y-m-d H:i:s' )
 		);
 
 		$where = array( 'id' => $this->get_id() );
