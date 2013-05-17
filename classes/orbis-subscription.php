@@ -270,7 +270,7 @@ class Orbis_Subscription {
 	public function extend( $modify = '+1 year' ) {
 		global $wpdb;
 
-		// Add the interval period to the expiration date
+		// Modify the expiration date
 		$expiration = $this->get_expiration_date()->modify( $modify );
 
 		$data = array(
