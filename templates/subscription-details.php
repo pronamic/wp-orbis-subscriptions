@@ -26,6 +26,8 @@ if ( true ) { // empty( $orbis_id ) ) {
 	}
 }
 
+$company_post_id = $wpdb->get_var( $wpdb->prepare( 'SELECT post_id FROM orbis_companies WHERE id = %d;', $company_id ) );
+
 ?>
 <div class="panel">
 	<header>
@@ -34,8 +36,10 @@ if ( true ) { // empty( $orbis_id ) ) {
 
 	<div class="content">
 		<dl>
-			<dt><?php _e( 'Orbis ID', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo $orbis_id; ?></dd>
+			<dt><?php _e( 'Company', 'orbis_subscriptions' ); ?></dt>
+			<dd>
+				<a href="<?php echo get_permalink( $company_post_id ); ?>"><?php echo get_the_title( $company_post_id ); ?></a>
+			</dd>
 
 			<?php if ( ! empty( $license_key ) ) : ?>
 	
