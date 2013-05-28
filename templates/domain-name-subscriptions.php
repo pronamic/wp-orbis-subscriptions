@@ -27,7 +27,7 @@ $query = $wpdb->prepare( '
 	ORDER BY
 		activation_date ASC
 	;',
-	'%' . get_the_title() . '%'
+	get_the_title() . '%'
 );
 
 $subscriptions = $wpdb->get_results( $query );
