@@ -66,6 +66,8 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( 'SELECT post_id FROM orbis_co
 		<form method="post" action="" class="form-inline">
 			<?php wp_nonce_field( 'orbis_subscription_mail_license_key', 'orbis_subscriptions_nonce' ); ?>
 
+			<input name="orbis_subscription_subject" type="hidden" value="<?php echo esc_attr__( 'Pronamic iDEAL License Key', 'orbis_subscriptions' ); ?>" />
+
 			<div class="input-append"> 
 				<input name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" class="span2" />
 				

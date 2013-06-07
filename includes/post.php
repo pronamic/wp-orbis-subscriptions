@@ -176,8 +176,11 @@ function orbis_subscriptions_maybe_mail_license_key() {
 		if ( wp_verify_nonce( $nonce, 'orbis_subscription_mail_license_key' ) ) {
 			global $orbis_subscriptions_plugin;
 			global $orbis_email_title;
+
+			$to      = filter_input( INPUT_POST, 'orbis_subscription_email', FILTER_VALIDATE_EMAIL );
+			$subject = filter_input( INPUT_POST, 'orbis_subscription_subject', FILTER_SANITIZE_STRING );
 			
-			$orbis_email_title = __( 'License Key', 'orbis_subscriptions' );
+			$orbis_email_title = $subject;
 
 			$message_html = $orbis_subscriptions_plugin->get_template( 'emails/subscription-license.php', false );
 
@@ -188,11 +191,7 @@ function orbis_subscriptions_maybe_mail_license_key() {
 				'Content-Type: text/html'
 			);
 
-			$to = filter_input( INPUT_POST, 'orbis_subscription_email', FILTER_VALIDATE_EMAIL );
-
-			if ( $to ) {
-				$subject = __( 'License Key', 'orbis_subscriptions' );
-				
+			if ( $to ) {				
 				$result = wp_mail( $to, $subject, $message_html, $headers );
 	
 				if ( $result ) {
