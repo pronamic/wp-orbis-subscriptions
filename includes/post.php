@@ -167,34 +167,76 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 add_action( 'save_post', 'orbis_save_subscription_sync', 20, 2 );
 
 /**
- * Subscription content
-*/
-function orbis_subscription_the_content( $content ) {
-	if ( get_post_type() == 'orbis_subscription' ) {
-		$id = get_the_ID();
+ * Maybe mail license key
+ */
+function orbis_subscriptions_maybe_mail_license_key() {
+	if ( isset( $_POST['orbis_subscriptions_nonce'] ) ) {
+		$nonce = filter_input( INPUT_POST, 'orbis_subscriptions_nonce', FILTER_SANITIZE_STRING );
 
-		$person_id = get_post_meta( $id, '_orbis_subscription_person_id', true );
+		if ( wp_verify_nonce( $nonce, 'orbis_subscription_mail_license_key' ) ) {
+			global $orbis_subscriptions_plugin;
+			global $orbis_email_title;
+			
+			$orbis_email_title = __( 'License Key', 'orbis_subscriptions' );
 
-		$str  = '';
+			$message_html = $orbis_subscriptions_plugin->get_template( 'emails/subscription-license.php', false );
 
-		$str .= '<h2>' . __( 'Persons', 'orbis_subscriptions' ) . '</h2>';
+			$message_plain = wpautop( wptexturize( strip_tags( $message_html ) ) );
 
-		$str .= '<dl>';
+			$headers = array(
+				'From: Pronamic <support@pronamic.nl>',
+				'Content-Type: text/html'
+			);
 
-		if ( ! empty( $person_id ) ) {
-			$str .= '	<dt>' . __( 'Person', 'orbis' ) . '</dt>';
-			$str .= '	<dd>' . sprintf( '<a href="%s">%s</a>', get_permalink( $person_id ), get_the_title( $person_id ) ) . '</dd>';
+			$to = filter_input( INPUT_POST, 'orbis_subscription_email', FILTER_VALIDATE_EMAIL );
+
+			if ( $to ) {
+				$subject = __( 'License Key', 'orbis_subscriptions' );
+				
+				$result = wp_mail( $to, $subject, $message_html, $headers );
+	
+				if ( $result ) {
+					$comment_content = sprintf( 
+						__( 'I sent the following message to %s: <blockquote>%s</blockquote>', 'orbis_subscriptions' ),
+						$to,
+						$message_plain
+					);
+	
+					global $wpdb;
+	
+					$user = wp_get_current_user();
+	
+					if ( empty( $user->display_name ) )
+						$user->display_name = $user->user_login;
+	
+					$comment_author       = $wpdb->escape( $user->display_name );
+					$comment_author_email = $wpdb->escape( $user->user_email );
+					$comment_author_url   = $wpdb->escape( $user->user_url );
+	
+					$comment_id = wp_insert_comment( array(
+						'comment_post_ID'      => get_the_ID(),
+						'comment_content'      => $comment_content,
+						'comment_author'       => $comment_author,
+						'comment_author_email' => $comment_author_email,
+						'comment_author_url'   => $comment_author_url
+					) );
+					
+					wp_safe_redirect( get_comment_link( $comment_id ) );
+	
+					exit;
+				}
+				
+				$url = add_query_arg( 'mailed', $result ? 'yes' : 'no' );
+	
+				wp_redirect( $url );
+				
+				exit;
+			}
 		}
-
-		$str .= '</dl>';
-
-		$content .= $str;
 	}
-
-	return $content;
 }
 
-add_filter( 'the_content', 'orbis_subscription_the_content' );
+add_action( 'template_redirect', 'orbis_subscriptions_maybe_mail_license_key' );
 
 /**
  * Keychain edit columns
