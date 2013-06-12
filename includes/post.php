@@ -324,9 +324,12 @@ function orbis_subscriptions_insert_post_data( $data, $postarr ) {
 
 		if ( ! empty( $type_name ) && ! empty( $name ) ) {
 			$post_title = $type_name . ' - ' . $name;
+
+			// Add unique post ID in front of post name if available
+			$post_name  = sanitize_title_with_dashes( ( isset( $postarr['ID'] ) ? $postarr['ID'] . '. ' : '' ) . $post_title );
 			
 			$data['post_title'] = $post_title;
-			$data['post_name']  = null;
+			$data['post_name']  = $post_name;
 		}
 	}
 	
