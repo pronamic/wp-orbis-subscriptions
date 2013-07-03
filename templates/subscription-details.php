@@ -61,6 +61,9 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( 'SELECT post_id FROM orbis_co
 				<dd><?php echo $license_key; ?></dd>
 
 			<?php endif; ?>
+
+			<dt><?php _e( 'Price', 'orbis_subscriptions' ); ?></dt>
+			<dd><?php orbis_subscription_the_price(); ?></dd>
 		</dl>
 
 		<form method="post" action="" class="form-inline">

@@ -8,10 +8,12 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		$this->set_db_version( '1.5' );
 
 		$this->plugin_include( 'includes/post.php' );
+		$this->plugin_include( 'includes/subscription.php' );
 		$this->plugin_include( 'includes/comment.php' );
 		$this->plugin_include( 'includes/api.php' );
 		$this->plugin_include( 'includes/shortcodes.php' );
 		$this->plugin_include( 'includes/template.php' );
+		$this->plugin_include( 'includes/subscription-template.php' );
 
 		orbis_register_table( 'orbis_subscriptions', false, '' );
 		orbis_register_table( 'orbis_subscription_types', false, '' );
