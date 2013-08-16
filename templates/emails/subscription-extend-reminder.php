@@ -59,7 +59,7 @@ $extend_url = add_query_arg(
 </p>
 
 <p>
-	<?php echo $extend_url; ?>
+	<a href="<?php echo esc_attr( $extend_url ); ?>"><?php echo $extend_url; ?></a>
 </p>
 
 <p>

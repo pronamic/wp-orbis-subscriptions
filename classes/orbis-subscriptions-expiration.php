@@ -35,7 +35,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
 		
 		// 7 Days
-		$one_week = new DateTime( '+1 week' );
+		$one_week = new DateTime( '+1 month' );
 		
 		$subscriptions = $subscription_factory->get_expiring_in( $one_week );
 
