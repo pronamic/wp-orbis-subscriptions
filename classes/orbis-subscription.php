@@ -347,22 +347,46 @@ class Orbis_Subscription {
 
 			// Keys in body
 			$content_keys = array(
-				'{company_name}'       => $this->get_company_name(),
-				'{days_to_expiration}' => $this->until_expiration_human(),
-				'{expiration_date}'    => $expiration_date,
-				'{renew_license_url}'  => $update_url
+					'{company_name}'       => $this->get_company_name(),
+					'{days_to_expiration}' => $this->until_expiration_human(),
+					'{expiration_date}'    => $expiration_date,
+					'{renew_license_url}'  => $update_url
+			);
+			
+			// Mail
+			global $orbis_subscriptions_plugin;
+			global $orbis_email_title;
+			global $post;
+			global $orbis_subscription;
+			
+			$post = $this->post;
+			$orbis_subscription = $this;
+			
+			$to      = $this->get_email();
+			$subject = $raw_subject;
+				
+			$orbis_email_title = $raw_subject;
+			
+			$message_html  = $orbis_subscriptions_plugin->get_template( 'emails/subscription-extend-reminder.php', false );
+			$message_plain = wpautop( wptexturize( strip_tags( $message_html ) ) );
+
+			$headers = array(
+				'From: Pronamic <support@pronamic.nl>',
+				'Content-Type: text/html'
 			);
 
 			// Replace the placeholder body contents
-			$this->email_subject = $raw_subject;
-			$this->email_body	 = wpautop( str_replace( array_keys( $content_keys ), $content_keys, $raw_body ) );
+			// $this->email_subject = $raw_subject;
+			// $this->email_body	 = wpautop( str_replace( array_keys( $content_keys ), $content_keys, $raw_body ) );
 
-			$headers = array( 
-				'Content-Type: text/html' 
-			);
+			// $headers = array( 
+			// 	'Content-Type: text/html' 
+			// );
+
+			$result = wp_mail( $to, $subject, $message_html, $headers );
 
 			// Attempt to send the mail
-			if ( wp_mail( $this->get_email(), $this->email_subject, $this->email_body, $headers ) ) {
+			if ( $result ) {
 
 				// Update the date this was updated (-_-)
 				$this->set_update_date( new DateTime() );
@@ -373,7 +397,7 @@ class Orbis_Subscription {
 				$this->save();
 
 				// Store a comment note of successful reminder
-				$this->store_note();
+				$comment_id = orbis_subscriptions_comment_email( $to, $message_plain );
 			} else {
 				return false;
 			}

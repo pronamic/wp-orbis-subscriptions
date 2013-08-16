@@ -224,30 +224,7 @@ function orbis_subscriptions_maybe_mail_license_key() {
 				$result = wp_mail( $to, $subject, $message_html, $headers );
 	
 				if ( $result ) {
-					$comment_content = sprintf( 
-						__( 'I sent the following message to %s: <blockquote>%s</blockquote>', 'orbis_subscriptions' ),
-						$to,
-						$message_plain
-					);
-	
-					global $wpdb;
-	
-					$user = wp_get_current_user();
-	
-					if ( empty( $user->display_name ) )
-						$user->display_name = $user->user_login;
-	
-					$comment_author       = $wpdb->escape( $user->display_name );
-					$comment_author_email = $wpdb->escape( $user->user_email );
-					$comment_author_url   = $wpdb->escape( $user->user_url );
-	
-					$comment_id = wp_insert_comment( array(
-						'comment_post_ID'      => get_the_ID(),
-						'comment_content'      => $comment_content,
-						'comment_author'       => $comment_author,
-						'comment_author_email' => $comment_author_email,
-						'comment_author_url'   => $comment_author_url
-					) );
+					$comment_id = orbis_subscriptions_comment_email( $to, $message_plain );
 					
 					wp_safe_redirect( get_comment_link( $comment_id ) );
 	

@@ -74,4 +74,36 @@ if ( ! function_exists( 'orbis_date2mysql' ) ) :
 	}
 
 endif;
+
+
+function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null ) {
+	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
+
+	$comment_content = sprintf(
+		__( 'I sent the following message to %s: <blockquote>%s</blockquote>', 'orbis_subscriptions' ),
+		$to,
+		$message_plain
+	);
+
+	$user = wp_get_current_user();
+	
+	if ( empty( $user->display_name ) )
+		$user->display_name = $user->user_login;
+	
+	$comment_author       = esc_sql( $user->display_name );
+	$comment_author_email = esc_sql( $user->user_email );
+	$comment_author_url   = esc_sql( $user->user_url );
+	
+	$comment_id = wp_insert_comment( array(
+		'comment_post_ID'      => $post_id,
+		'comment_content'      => $comment_content,
+		'comment_author'       => $comment_author,
+		'comment_author_email' => $comment_author_email,
+		'comment_author_url'   => $comment_author_url
+	) );
+	
+	return $comment_id;
+}
+
+
 	

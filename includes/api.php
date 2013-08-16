@@ -1,7 +1,7 @@
 <?php
 
 function orbis_subscriptions_api_call() {
-	$api_call = get_query_var('api_call');
+	$api_call = get_query_var( 'api_call' );
 	
 	if ( ! empty( $api_call ) ) {
 		$object = get_query_var( 'api_object' );

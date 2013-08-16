@@ -3,7 +3,7 @@
 /**
  * Comment form defaults
  */
-function orbis_subscriptions_comment_form($post_id) {
+function orbis_subscriptions_comment_form( $post_id ) {
 	// Some themes call this function, don't show the checkbox again
 	remove_action( 'comment_form', __FUNCTION__ );
 
