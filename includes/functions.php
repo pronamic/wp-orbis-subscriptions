@@ -76,14 +76,17 @@ if ( ! function_exists( 'orbis_date2mysql' ) ) :
 endif;
 
 
-function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null ) {
-	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
-
-	$comment_content = sprintf(
+function orbis_subscription_get_email_comment( $to, $message_plain ) {
+	return sprintf(
 		__( 'I sent the following message to %s: <blockquote>%s</blockquote>', 'orbis_subscriptions' ),
 		$to,
 		$message_plain
 	);
+}
+
+
+function orbis_subscriptions_comment( $comment_content, $post_id = null ) {
+	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
 
 	$user = wp_get_current_user();
 	
@@ -103,6 +106,15 @@ function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null
 	) );
 	
 	return $comment_id;
+}
+
+
+function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null ) {
+	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
+
+	$comment_content = orbis_subscription_get_email_comment( $to, $message_plain );
+
+	return orbis_subscriptions_comment( $comment_content, $post_id );
 }
 
 

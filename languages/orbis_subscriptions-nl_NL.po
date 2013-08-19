@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 11:12+0100\n"
-"PO-Revision-Date: 2013-08-19 11:22+0100\n"
+"POT-Creation-Date: 2013-08-19 13:14+0100\n"
+"PO-Revision-Date: 2013-08-19 13:15+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -47,7 +47,7 @@ msgstr "Bedrijf"
 msgid "Type"
 msgstr "Type"
 
-#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:58
+#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:60
 #: admin/sent-reminders.php:30 templates/company-subscriptions.php:44
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
@@ -56,7 +56,7 @@ msgstr "Type"
 msgid "Name"
 msgstr "Naam"
 
-#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:77
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:79
 #: admin/sent-reminders.php:31 templates/company-subscriptions.php:42
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
@@ -65,7 +65,7 @@ msgstr "Naam"
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:85
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:87
 #: admin/sent-reminders.php:32 templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
@@ -84,7 +84,7 @@ msgstr "Update datum"
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:66
+#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:68
 #: admin/sent-reminders.php:35 templates/subscription-details.php:60
 msgid "License Key"
 msgstr "Licentiesleutel"
@@ -117,12 +117,13 @@ msgstr "Bedrijf ID"
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
-#: admin/meta-box-subscription-details.php:96 includes/post.php:253
+#: admin/meta-box-subscription-details.php:98 includes/post.php:319
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:104
-#: templates/subscription-details.php:75
+#: admin/meta-box-subscription-details.php:106
+#: templates/subscription-details.php:75 templates/subscription-renewal.php:48
+#: templates/subscription-renewal.php:49
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -175,7 +176,7 @@ msgstr "Orbis abonnementen instellingen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/comment.php:16
+#: includes/comment.php:16 templates/subscription-renewal.php:52
 msgid "Extend this subscription with 1 year."
 msgstr "Verleng dit abonnement met 1 jaar."
 
@@ -185,7 +186,7 @@ msgid ""
 "This comment was an subscription extend request (before: %s, after: %s)."
 msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
 
-#: includes/functions.php:83
+#: includes/functions.php:81
 #, php-format
 msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
 msgstr ""
@@ -326,19 +327,24 @@ msgstr "abonnementen"
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:252
+#: includes/post.php:268
+#, php-format
+msgid "I extended this subscription: <blockquote>%s</blockquote>"
+msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
+
+#: includes/post.php:318
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:254
+#: includes/post.php:320
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:255
+#: includes/post.php:321
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:256
+#: includes/post.php:322
 msgid "Date"
 msgstr "Datum"
 
@@ -400,6 +406,22 @@ msgstr "Einddatum"
 #: templates/subscriptions-to-invoice.php:33
 msgid "Invoice Number"
 msgstr "Factuurnummer"
+
+#: templates/subscription-renewal.php:35
+msgid "Subscription Renewal"
+msgstr "Abonnement verlengen"
+
+#: templates/subscription-renewal.php:43
+msgid "Pronamic iDEAL License Key Extended"
+msgstr "Pronamic iDEAL licentiesleutel verlengd"
+
+#: templates/subscription-renewal.php:45
+msgid "Note"
+msgstr "Notitie"
+
+#: templates/subscription-renewal.php:55
+msgid "Extend"
+msgstr "Verleng"
 
 #: templates/subscriptions-to-invoice-updater.php:9
 msgid "Inserted"
@@ -849,9 +871,6 @@ msgstr "Opmerking"
 
 #~ msgid "Annual Revenue"
 #~ msgstr "Jaaromzet"
-
-#~ msgid "Notes"
-#~ msgstr "Notitie"
 
 #~ msgid "Orbis"
 #~ msgstr "Orbis"
