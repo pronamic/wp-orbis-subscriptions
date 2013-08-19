@@ -31,7 +31,7 @@ if ( true ) { // empty( $orbis_id ) ) {
 			<label for="orbis_subscription_company"><?php _e( 'Company ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $company_id ); ?>" class="orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $company_id ); ?>" />
+			<input type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $company_id ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $company_id ); ?>" data-text="<?php echo esc_attr( $company_id ); ?>" placeholder="<?php _e( 'Select Company', 'orbis_subscriptions' ); ?>" />
 		</td>
 	</tr>
 	<tr valign="top">
