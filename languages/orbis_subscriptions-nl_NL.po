@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-07 14:38+0100\n"
-"PO-Revision-Date: 2013-06-07 14:38+0100\n"
+"POT-Creation-Date: 2013-08-19 11:12+0100\n"
+"PO-Revision-Date: 2013-08-19 11:22+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
@@ -77,6 +77,7 @@ msgstr "Update datum"
 #: admin/expiring-licenses.php:36 admin/sent-reminders.php:34
 #: templates/company-subscriptions.php:45
 #: templates/domain-name-subscriptions.php:49
+#: templates/subscription-details.php:65
 #: templates/subscriptions-invoices.php:16
 #: templates/subscriptions-to-invoice-updater.php:56
 #: templates/subscriptions-to-invoice.php:30
@@ -112,12 +113,16 @@ msgstr "Er zullen volgende week geen abonnementen verlopen"
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:96 includes/post.php:247
+#: admin/meta-box-subscription-details.php:34
+msgid "Select Company"
+msgstr "Selecteer bedrijf"
+
+#: admin/meta-box-subscription-details.php:96 includes/post.php:253
 msgid "Person"
 msgstr "Persoon"
 
 #: admin/meta-box-subscription-details.php:104
-#: templates/subscription-details.php:72
+#: templates/subscription-details.php:75
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -133,7 +138,7 @@ msgstr "Geen herinneringen verzonden afgelopen week"
 msgid "j F, Y @ G:i:s"
 msgstr "j F Y @ H:i"
 
-#: classes/orbis-subscription.php:541
+#: classes/orbis-subscription.php:565
 #, php-format
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
@@ -179,6 +184,12 @@ msgstr "Verleng dit abonnement met 1 jaar."
 msgid ""
 "This comment was an subscription extend request (before: %s, after: %s)."
 msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
+
+#: includes/functions.php:83
+#, php-format
+msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
+msgstr ""
+"Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
 
 #: includes/post.php:9 includes/post.php:22
 #: templates/company-subscriptions.php:36
@@ -238,29 +249,96 @@ msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
+#: includes/post.php:38
+#, fuzzy
+msgid "Subscription Types"
+msgstr "Abonnementen"
+
+#: includes/post.php:40
+#, fuzzy
+msgctxt "post type general name"
+msgid "Subscription Types"
+msgstr "Abonnementen"
+
+#: includes/post.php:41
+#, fuzzy
+msgctxt "post type singular name"
+msgid "Subscription Type"
+msgstr "Abonnement"
+
+#: includes/post.php:42
+#, fuzzy
+msgctxt "orbis_subs_type"
+msgid "Add New"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:43
+#, fuzzy
+msgid "Add New Subscription Type"
+msgstr "Nieuwe abonnement toevoegen"
+
 #: includes/post.php:44
+#, fuzzy
+msgid "Edit Subscription Type"
+msgstr "Bewerk abonnement"
+
+#: includes/post.php:45
+#, fuzzy
+msgid "New Subscription Type"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:46
+#, fuzzy
+msgid "View Subscription Type"
+msgstr "Bekijk abonnement"
+
+#: includes/post.php:47
+#, fuzzy
+msgid "Search Subscription Types"
+msgstr "Abonnementen zoeken"
+
+#: includes/post.php:48
+#, fuzzy
+msgid "No subscription types found"
+msgstr "Geen abonnementen gevonden"
+
+#: includes/post.php:49
+#, fuzzy
+msgid "No subscription types found in Trash"
+msgstr "Geen abonnementen gevonden in prullenbak"
+
+#: includes/post.php:50
+#, fuzzy
+msgid "Parent Subscription Type:"
+msgstr "Bovenliggend abonnement"
+
+#: includes/post.php:51
+msgid "Types"
+msgstr "Types"
+
+#: includes/post.php:59
+#, fuzzy
+msgctxt "slug"
+msgid "subscription-types"
+msgstr "abonnementen"
+
+#: includes/post.php:73
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:199
-#, php-format
-msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
-msgstr ""
-"Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
-
-#: includes/post.php:246
+#: includes/post.php:252
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:248
+#: includes/post.php:254
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:249
+#: includes/post.php:255
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:250
+#: includes/post.php:256
 msgid "Date"
 msgstr "Datum"
 
@@ -284,11 +362,11 @@ msgstr "Abonnement details"
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
-#: templates/subscription-details.php:69
+#: templates/subscription-details.php:72
 msgid "Pronamic iDEAL License Key"
 msgstr "Pronamic iDEAL licentiesleutel"
 
-#: templates/subscription-details.php:74
+#: templates/subscription-details.php:77
 msgid "Send License"
 msgstr "Verstuur licentie"
 
@@ -597,9 +675,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Company"
 #~ msgstr "Bedrijf bewerken"
-
-#~ msgid "New Company"
-#~ msgstr "Nieuw bedrijf"
 
 #~ msgid "All Companies"
 #~ msgstr "Alle bedrijven"
