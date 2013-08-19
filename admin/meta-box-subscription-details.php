@@ -44,11 +44,13 @@ if ( true ) { // empty( $orbis_id ) ) {
 				<option value=""></option>
 
 				<?php
+
 				foreach ( $subscription_types as $subscription_type ) {
 					printf(
-							'<option value="%s" %s>%s</option>', esc_attr( $subscription_type->id ), selected( $subscription_type->id, $type_id, false ), $subscription_type->name
+						'<option value="%s" %s>%s</option>', esc_attr( $subscription_type->id ), selected( $subscription_type->id, $type_id, false ), $subscription_type->name
 					);
 				}
+
 				?>
 			</select>
 		</td>
