@@ -24,9 +24,9 @@ if ( true ) {
 </p>
 
 <p>
-	U heeft uw Pronamic iDEAL licentiesleutel verlengd. U ontvangt hiermee weer
-	een jaar updates en support. Uw licentiesleutel blijft ongewijzigd, er hoeft 
-	niet iets gewijzigd te worden op uw website. 
+	Gefeliciteerd, de Pronamic iDEAL licentie is succesvol verlengd. Hiermee 
+	kunt u weer een jaar lang profiteren van updates en support. De 
+	licentiesleutel blijft ongewijzigd dus er hoeft niks gewijzigd te worden.
 </p>
 
 <table>
