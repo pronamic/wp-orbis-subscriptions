@@ -1,6 +1,6 @@
 === Orbis Subscriptions ===
 Contributors: pronamic, remcotolsma
-Donate link: http://orbiswp.com/
+Donate link: http://www.orbiswp.com/
 Tags: orbis, subscription, licence
 Requires at least: 3.5
 Tested up to: 3.5.1
@@ -24,6 +24,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Screenshots ==
 
+
+
+== Developers ==
+
+*	php ~/wp/svn/i18n-tools/makepot.php wp-plugin ~/wp/git/orbis-subscriptions ~/wp/git/orbis-subscriptions/languages/orbis_subscriptions.pot
 
 
 == Changelog ==

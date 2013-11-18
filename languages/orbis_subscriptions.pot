@@ -1,0 +1,446 @@
+# Copyright (C) 2013 Orbis Subscriptions
+# This file is distributed under the same license as the Orbis Subscriptions package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Orbis Subscriptions 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
+"POT-Creation-Date: 2013-11-18 14:32:07+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
+#: classes/orbis-subscriptions-expiration.php:23
+msgid "Sent Reminders"
+msgstr ""
+
+#: admin/expiring-licenses.php:19 admin/expiring-licenses.php:83
+#: admin/expiring-licenses.php:102
+msgid "Send Reminder"
+msgstr ""
+
+#: admin/expiring-licenses.php:29 admin/sent-reminders.php:27
+#: templates/subscriptions-to-invoice-updater.php:53
+#: templates/subscriptions-to-invoice.php:27
+msgid "ID"
+msgstr ""
+
+#: admin/expiring-licenses.php:30 admin/sent-reminders.php:28
+#: templates/domain-name-subscriptions.php:46
+#: templates/subscription-details.php:40
+#: templates/subscriptions-invoices.php:14
+#: templates/subscriptions-to-invoice-updater.php:54
+#: templates/subscriptions-to-invoice.php:28
+msgid "Company"
+msgstr ""
+
+#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:39
+#: admin/sent-reminders.php:29 admin/statistics.php:32
+msgid "Type"
+msgstr ""
+
+#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:60
+#: admin/sent-reminders.php:30 templates/company-subscriptions.php:44
+#: templates/domain-name-subscriptions.php:48
+#: templates/subscriptions-invoices.php:17
+#: templates/subscriptions-to-invoice-updater.php:57
+#: templates/subscriptions-to-invoice.php:31
+msgid "Name"
+msgstr ""
+
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:79
+#: admin/sent-reminders.php:31 templates/company-subscriptions.php:42
+#: templates/domain-name-subscriptions.php:45
+#: templates/subscription-details.php:45
+#: templates/subscriptions-to-invoice-updater.php:58
+#: templates/subscriptions-to-invoice.php:32
+msgid "Activation Date"
+msgstr ""
+
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:87
+#: admin/sent-reminders.php:32 templates/subscription-details.php:48
+msgid "Expiration Date"
+msgstr ""
+
+#: admin/expiring-licenses.php:35 admin/sent-reminders.php:33
+msgid "Update Date"
+msgstr ""
+
+#: admin/expiring-licenses.php:36 admin/sent-reminders.php:34
+#: templates/company-subscriptions.php:45
+#: templates/domain-name-subscriptions.php:49
+#: templates/subscription-details.php:65
+#: templates/subscriptions-invoices.php:16
+#: templates/subscriptions-to-invoice-updater.php:56
+#: templates/subscriptions-to-invoice.php:30
+msgid "Price"
+msgstr ""
+
+#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:68
+#: admin/sent-reminders.php:35 templates/subscription-details.php:60
+msgid "License Key"
+msgstr ""
+
+#: admin/expiring-licenses.php:38 admin/sent-reminders.php:36
+msgid "Sent"
+msgstr ""
+
+#: admin/expiring-licenses.php:39 admin/sent-reminders.php:37
+msgid "E-Mail"
+msgstr ""
+
+#: admin/expiring-licenses.php:40
+msgid "Actions"
+msgstr ""
+
+#: admin/expiring-licenses.php:70 admin/sent-reminders.php:63
+msgid "Edit"
+msgstr ""
+
+#: admin/expiring-licenses.php:94
+msgid "No subscriptions will expire within the next week"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:31
+msgid "Company ID"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:34
+msgid "Select Company"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:98 includes/post.php:318
+msgid "Person"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:106
+#: templates/subscription-details.php:75 templates/subscription-renewal.php:48
+#: templates/subscription-renewal.php:49
+msgid "Email"
+msgstr ""
+
+#: admin/sent-reminders.php:10 classes/orbis-subscriptions-expiration.php:13
+msgid "Orbis Expiring Subscriptions"
+msgstr ""
+
+#: admin/sent-reminders.php:82
+msgid "No reminders sent in the last week"
+msgstr ""
+
+#: admin/statistics.php:33
+msgid "Number"
+msgstr ""
+
+#: classes/orbis-subscription.php:346
+msgid "j F, Y @ G:i:s"
+msgstr ""
+
+#: classes/orbis-subscription.php:565
+msgid "A license expiration reminder has been sent to %s (%s)."
+msgstr ""
+
+#: classes/orbis-subscriptions-expiration.php:14
+msgid "Expiring Subscriptions"
+msgstr ""
+
+#: classes/orbis-subscriptions-expiration.php:22
+msgid "Orbis Sent Reminders"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:14
+msgid "Reminder"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:21
+msgid "URL"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:30
+msgid "Subject"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:39
+msgid "Template"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:55
+msgid "Orbis Subscriptions Settings"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:56
+msgid "Settings"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:64
+msgid "Orbis Subscriptions Statistics"
+msgstr ""
+
+#: classes/orbis-subscriptions-settings.php:65
+msgid "Statistics"
+msgstr ""
+
+#: includes/comment.php:19
+msgid ""
+"This comment was an subscription extend request (before: %s, after: %s)."
+msgstr ""
+
+#: includes/functions.php:81
+msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
+msgstr ""
+
+#: includes/post.php:9 includes/post.php:22
+#: templates/company-subscriptions.php:36
+#: templates/domain-name-subscriptions.php:39
+msgid "Subscriptions"
+msgstr ""
+
+#: includes/post.php:11
+msgctxt "post type general name"
+msgid "Subscriptions"
+msgstr ""
+
+#: includes/post.php:12
+msgctxt "post type singular name"
+msgid "Subscription"
+msgstr ""
+
+#: includes/post.php:13
+msgctxt "orbis_subscription"
+msgid "Add New"
+msgstr ""
+
+#: includes/post.php:14
+msgid "Add New Subscription"
+msgstr ""
+
+#: includes/post.php:15
+msgid "Edit Subscription"
+msgstr ""
+
+#: includes/post.php:16
+msgid "New Subscription"
+msgstr ""
+
+#: includes/post.php:17
+msgid "View Subscription"
+msgstr ""
+
+#: includes/post.php:18
+msgid "Search Subscriptions"
+msgstr ""
+
+#: includes/post.php:19
+msgid "No subscriptions found"
+msgstr ""
+
+#: includes/post.php:20
+msgid "No subscriptions found in Trash"
+msgstr ""
+
+#: includes/post.php:21
+msgid "Parent Subscription:"
+msgstr ""
+
+#: includes/post.php:30
+msgctxt "slug"
+msgid "subscriptions"
+msgstr ""
+
+#: includes/post.php:38
+msgid "Subscription Types"
+msgstr ""
+
+#: includes/post.php:40
+msgctxt "post type general name"
+msgid "Subscription Types"
+msgstr ""
+
+#: includes/post.php:41
+msgctxt "post type singular name"
+msgid "Subscription Type"
+msgstr ""
+
+#: includes/post.php:42
+msgctxt "orbis_subs_type"
+msgid "Add New"
+msgstr ""
+
+#: includes/post.php:43
+msgid "Add New Subscription Type"
+msgstr ""
+
+#: includes/post.php:44
+msgid "Edit Subscription Type"
+msgstr ""
+
+#: includes/post.php:45
+msgid "New Subscription Type"
+msgstr ""
+
+#: includes/post.php:46
+msgid "View Subscription Type"
+msgstr ""
+
+#: includes/post.php:47
+msgid "Search Subscription Types"
+msgstr ""
+
+#: includes/post.php:48
+msgid "No subscription types found"
+msgstr ""
+
+#: includes/post.php:49
+msgid "No subscription types found in Trash"
+msgstr ""
+
+#: includes/post.php:50
+msgid "Parent Subscription Type:"
+msgstr ""
+
+#: includes/post.php:51
+msgid "Types"
+msgstr ""
+
+#: includes/post.php:59
+msgctxt "slug"
+msgid "subscription-types"
+msgstr ""
+
+#: includes/post.php:73
+msgid "Details"
+msgstr ""
+
+#: includes/post.php:267
+msgid "I extended this subscription: <blockquote>%s</blockquote>"
+msgstr ""
+
+#: includes/post.php:317
+msgid "Title"
+msgstr ""
+
+#: includes/post.php:319
+msgid "Author"
+msgstr ""
+
+#: includes/post.php:320
+msgid "Comments"
+msgstr ""
+
+#: includes/post.php:321
+msgid "Date"
+msgstr ""
+
+#: includes/shortcodes.php:138
+msgid "Login required"
+msgstr ""
+
+#: templates/company-subscriptions.php:43
+#: templates/domain-name-subscriptions.php:47
+#: templates/subscriptions-invoices.php:15
+#: templates/subscriptions-to-invoice-updater.php:55
+#: templates/subscriptions-to-invoice.php:29
+msgid "Subscription"
+msgstr ""
+
+#: templates/subscription-details.php:35
+msgid "Subscription Details"
+msgstr ""
+
+#: templates/subscription-details.php:53
+msgid "Cancel Date"
+msgstr ""
+
+#: templates/subscription-details.php:72
+msgid "Pronamic iDEAL License Key"
+msgstr ""
+
+#: templates/subscription-details.php:77
+msgid "Send License"
+msgstr ""
+
+#: templates/subscription-invoices.php:33
+msgid "Invoices"
+msgstr ""
+
+#: templates/subscription-invoices.php:39
+#: templates/subscriptions-invoices.php:12
+msgid "Create Date"
+msgstr ""
+
+#: templates/subscription-invoices.php:40
+#: templates/subscriptions-invoices.php:13
+msgid "User"
+msgstr ""
+
+#: templates/subscription-invoices.php:41
+#: templates/subscriptions-invoices.php:18
+msgid "Start Date"
+msgstr ""
+
+#: templates/subscription-invoices.php:42
+#: templates/subscriptions-invoices.php:19
+msgid "End Date"
+msgstr ""
+
+#: templates/subscription-invoices.php:43
+#: templates/subscriptions-invoices.php:20
+#: templates/subscriptions-to-invoice-updater.php:59
+#: templates/subscriptions-to-invoice.php:33
+msgid "Invoice Number"
+msgstr ""
+
+#: templates/subscription-renewal.php:35
+msgid "Subscription Renewal"
+msgstr ""
+
+#: templates/subscription-renewal.php:43
+msgid "Pronamic iDEAL License Key Extended"
+msgstr ""
+
+#: templates/subscription-renewal.php:45
+msgid "Note"
+msgstr ""
+
+#: templates/subscription-renewal.php:52
+msgid "Extend this subscription with 1 year."
+msgstr ""
+
+#: templates/subscription-renewal.php:55
+msgid "Extend"
+msgstr ""
+
+#: templates/subscriptions-to-invoice-updater.php:9
+msgid "Inserted"
+msgstr ""
+
+#: templates/subscriptions-to-invoice-updater.php:10
+msgid "Failed"
+msgstr ""
+
+#: templates/subscriptions-to-invoice-updater.php:45
+msgid "Update"
+msgstr ""
+
+#: templates/subscriptions-to-invoice-updater.php:60
+#: templates/subscriptions-to-invoice.php:34
+msgid "Notice"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Orbis Subscriptions"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.orbiswp.com/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr ""

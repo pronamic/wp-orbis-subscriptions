@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-19 13:14+0100\n"
-"PO-Revision-Date: 2013-08-19 13:15+0100\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
+"POT-Creation-Date: 2013-11-18 14:32:07+00:00\n"
+"PO-Revision-Date: 2013-11-18 15:32+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -11,11 +11,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
-"X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
 #: classes/orbis-subscriptions-expiration.php:23
@@ -43,7 +41,7 @@ msgid "Company"
 msgstr "Bedrijf"
 
 #: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:39
-#: admin/sent-reminders.php:29
+#: admin/sent-reminders.php:29 admin/statistics.php:32
 msgid "Type"
 msgstr "Type"
 
@@ -117,7 +115,7 @@ msgstr "Bedrijf ID"
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
-#: admin/meta-box-subscription-details.php:98 includes/post.php:319
+#: admin/meta-box-subscription-details.php:98 includes/post.php:318
 msgid "Person"
 msgstr "Persoon"
 
@@ -135,12 +133,15 @@ msgstr "Orbis aflopende abonnementen"
 msgid "No reminders sent in the last week"
 msgstr "Geen herinneringen verzonden afgelopen week"
 
+#: admin/statistics.php:33
+msgid "Number"
+msgstr "Aantal"
+
 #: classes/orbis-subscription.php:346
 msgid "j F, Y @ G:i:s"
 msgstr "j F Y @ H:i"
 
 #: classes/orbis-subscription.php:565
-#, php-format
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
@@ -176,18 +177,20 @@ msgstr "Orbis abonnementen instellingen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/comment.php:16 templates/subscription-renewal.php:52
-msgid "Extend this subscription with 1 year."
-msgstr "Verleng dit abonnement met 1 jaar."
+#: classes/orbis-subscriptions-settings.php:64
+msgid "Orbis Subscriptions Statistics"
+msgstr "Orbis abonnementen statistieken"
 
-#: includes/comment.php:70
-#, php-format
+#: classes/orbis-subscriptions-settings.php:65
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: includes/comment.php:19
 msgid ""
 "This comment was an subscription extend request (before: %s, after: %s)."
 msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
 
 #: includes/functions.php:81
-#, php-format
 msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
 msgstr ""
 "Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
@@ -251,9 +254,8 @@ msgid "subscriptions"
 msgstr "abonnementen"
 
 #: includes/post.php:38
-#, fuzzy
 msgid "Subscription Types"
-msgstr "Abonnementen"
+msgstr "Abonnement types"
 
 #: includes/post.php:40
 #, fuzzy
@@ -327,24 +329,23 @@ msgstr "abonnementen"
 msgid "Details"
 msgstr "Details"
 
-#: includes/post.php:268
-#, php-format
+#: includes/post.php:267
 msgid "I extended this subscription: <blockquote>%s</blockquote>"
 msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
 
-#: includes/post.php:318
+#: includes/post.php:317
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:320
+#: includes/post.php:319
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:321
+#: includes/post.php:320
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:322
+#: includes/post.php:321
 msgid "Date"
 msgstr "Datum"
 
@@ -419,6 +420,10 @@ msgstr "Pronamic iDEAL licentiesleutel verlengd"
 msgid "Note"
 msgstr "Notitie"
 
+#: templates/subscription-renewal.php:52
+msgid "Extend this subscription with 1 year."
+msgstr "Verleng dit abonnement met 1 jaar."
+
 #: templates/subscription-renewal.php:55
 msgid "Extend"
 msgstr "Verleng"
@@ -439,6 +444,22 @@ msgstr "Update"
 #: templates/subscriptions-to-invoice.php:34
 msgid "Notice"
 msgstr "Opmerking"
+
+#. Plugin Name of the plugin/theme
+msgid "Orbis Subscriptions"
+msgstr "Orbis abonnementen"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.orbiswp.com/"
+msgstr "http://www.orbiswp.com/"
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr "http://www.pronamic.eu/"
 
 #~ msgid "Persons"
 #~ msgstr "Personen"
@@ -792,9 +813,6 @@ msgstr "Opmerking"
 #~ msgid "Time"
 #~ msgstr "Tijd"
 
-#~ msgid "KvK Number"
-#~ msgstr "KvK nummer"
-
 #~ msgid "Orbis Log"
 #~ msgstr "Orbis Logboek"
 
@@ -859,9 +877,6 @@ msgstr "Opmerking"
 
 #~ msgid "Edit Project Post"
 #~ msgstr "Bewerk project bericht"
-
-#~ msgid "Stats"
-#~ msgstr "Statistieken"
 
 #~ msgid "Number domains"
 #~ msgstr "Aantal domeinen"
@@ -946,9 +961,6 @@ msgstr "Opmerking"
 
 #~ msgid "Height"
 #~ msgstr "Hoogte"
-
-#~ msgid "Dynamic"
-#~ msgstr "Dynamisch"
 
 #~ msgid "Show Google Maps"
 #~ msgstr "Google Maps weergeven"
