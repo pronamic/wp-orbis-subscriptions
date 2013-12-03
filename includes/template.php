@@ -33,17 +33,6 @@ function orbis_subscriptions_render_renewal() {
 add_action( 'orbis_before_side_content', 'orbis_subscriptions_render_renewal' );
 
 
-function orbis_subscriptions_render_company_subscriptions() {
-	if ( is_singular( 'orbis_company' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/company-subscriptions.php' );
-	}
-}
-
-add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_company_subscriptions' );
-
-
 function orbis_subscriptions_render_domain_name_subscriptions() {
 	if ( is_singular( 'orbis_domain_name' ) ) {
 		global $orbis_subscriptions_plugin;
@@ -53,6 +42,31 @@ function orbis_subscriptions_render_domain_name_subscriptions() {
 }
 
 add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_domain_name_subscriptions' );
+
+/**
+ * Orbis company subscriptions
+ */
+function orbis_subscriptions_render_company_subscriptions() {
+	if ( is_singular( 'orbis_company' ) ) {
+		global $orbis_subscriptions_plugin;
+
+		$orbis_subscriptions_plugin->plugin_include( 'templates/company-subscriptions.php' );
+	}
+}
+
+// add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_company_subscriptions' );
+
+function orbis_company_sections_subscriptions( $sections ) {
+	$sections[] = array(
+		'id'       => 'subscriptions',
+		'name'     => __( 'Subscriptions', 'orbis_subscriptions' ),
+		'callback' => 'orbis_subscriptions_render_company_subscriptions',
+	);
+
+	return $sections;
+}
+
+add_filter( 'orbis_company_sections', 'orbis_company_sections_subscriptions' );
 
 /**
  * Orbis subscriptions post class
