@@ -20,7 +20,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
 					LEFT JOIN
-				{$this->db->orbis_subscription_types} as type
+				{$this->db->orbis_subscription_products} as type
 						ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0
@@ -81,7 +81,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 				orbis_companies AS company
 						ON subscription.company_id = company.id
 					LEFT JOIN
-				{$this->db->orbis_subscription_types} AS type
+				{$this->db->orbis_subscription_products} AS type
 						ON subscription.type_id = type.id
 			WHERE
 				type.auto_renew = 0
@@ -107,7 +107,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
 					LEFT JOIN
-				{$this->db->orbis_subscription_types} as type
+				{$this->db->orbis_subscription_products} as type
 						ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0

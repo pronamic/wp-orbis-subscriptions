@@ -2,7 +2,7 @@
 
 global $wpdb;
 
-$query = $wpdb->prepare( '
+$query = $wpdb->prepare( "
 	SELECT
 		s.id, 
 		s.type_id,
@@ -15,18 +15,18 @@ $query = $wpdb->prepare( '
 		c.post_id AS company_post_id,
 		c.name AS company_name
 	FROM
-		orbis_subscriptions AS s
+		$wpdb->orbis_subscriptions AS s
 			LEFT JOIN
-		orbis_subscription_types AS st
+		$wpdb->orbis_subscription_products AS st
 				ON s.type_id = st.id
 			LEFT JOIN
-		orbis_companies AS c
+		$wpdb->orbis_companies AS c
 				ON s.company_id = c.id
 	WHERE
-		s.name LIKE "%s"
+		s.name LIKE %s
 	ORDER BY
 		activation_date ASC
-	;',
+	;",
 	get_the_title() . '%'
 );
 

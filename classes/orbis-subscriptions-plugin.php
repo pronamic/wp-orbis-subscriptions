@@ -5,7 +5,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.5' );
+		$this->set_db_version( '1.0.0' );
 
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/subscription.php' );
@@ -15,9 +15,9 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		$this->plugin_include( 'includes/template.php' );
 		$this->plugin_include( 'includes/subscription-template.php' );
 
-		orbis_register_table( 'orbis_subscriptions', false, '' );
-		orbis_register_table( 'orbis_subscription_types', false, '' );
-		orbis_register_table( 'orbis_subscriptions_invoices', false, '' );
+		orbis_register_table( 'orbis_subscriptions' );
+		orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
+		orbis_register_table( 'orbis_subscriptions_invoices' );
 	}
 
 	public function loaded() {
@@ -49,8 +49,9 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			KEY domain_name_id (domain_name_id)
 		' );
 
-		orbis_install_table( 'orbis_subscription_types', '
+		orbis_install_table( 'orbis_subscription_products', '
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			name VARCHAR(64) NOT NULL,
 			price FLOAT NOT NULL,
 			cost_price FLOAT NULL,

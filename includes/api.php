@@ -1,6 +1,8 @@
 <?php
 
 function orbis_subscriptions_api_call() {
+	global $wpdb;
+
 	$api_call = get_query_var( 'api_call' );
 	
 	if ( ! empty( $api_call ) ) {
@@ -19,7 +21,7 @@ function orbis_subscriptions_api_call() {
 				$domain = substr( $domain, 4 );
 			}
 	
-			$query = '
+			$query = "
 				SELECT
 					subscription.id ,
 					subscription.name AS subscriptionName ,
@@ -34,19 +36,19 @@ function orbis_subscriptions_api_call() {
 					type.price AS price ,
 					domain_name.domain_name AS domainName
 				FROM
-					orbis_subscriptions AS subscription
+					$wpdb->orbis_subscriptions AS subscription
 						LEFT JOIN
-					orbis_companies AS company
+					$wpdb->orbis_companies AS company
 							ON subscription.company_id = company.id
 						LEFT JOIN
-					orbis_subscription_types AS type
+					$wpdb->orbis_subscription_products AS type
 							ON subscription.type_id = type.id
 						LEFT JOIN
 					orbis_domain_names AS domain_name
 							ON subscription.domain_name_id = domain_name.id
 				WHERE
 					subscription.license_key_md5 = %s
-			';
+			";
 	
 			global $wpdb;
 	

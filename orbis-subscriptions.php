@@ -2,9 +2,9 @@
 /*
 Plugin Name: Orbis Subscriptions
 Plugin URI: http://www.orbiswp.com/
-Description: 
+Description: The Orbis Subscriptions extends your Orbis environment with the option to add subscription types and subscriptions.
 
-Version: 0.1
+Version: 1.0.0
 Requires at least: 3.5
 
 Author: Pronamic
@@ -13,7 +13,7 @@ Author URI: http://www.pronamic.eu/
 Text Domain: orbis_subscriptions
 Domain Path: /languages/
 
-License: GPL
+License: Copyright (c) Pronamic
 
 GitHub URI: https://github.com/pronamic/wp-orbis-subscriptions
 */

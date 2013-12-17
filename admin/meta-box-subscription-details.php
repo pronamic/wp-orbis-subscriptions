@@ -4,7 +4,7 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
 
-$subscription_types = $wpdb->get_results( "SELECT * FROM $wpdb->orbis_subscription_types", OBJECT_K );
+$subscription_types = $wpdb->get_results( "SELECT * FROM $wpdb->orbis_subscription_products", OBJECT_K );
 
 $orbis_id	 = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id	 = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );

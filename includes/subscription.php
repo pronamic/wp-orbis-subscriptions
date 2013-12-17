@@ -32,7 +32,7 @@ function orbis_subscriptions_posts_clauses( $pieces, $query ) {
 				$wpdb->orbis_subscriptions AS subscription
 					ON $wpdb->posts.ID = subscription.post_id
 			LEFT JOIN
-				$wpdb->orbis_subscription_types AS subscription_type
+				$wpdb->orbis_subscription_products AS subscription_type
 					ON subscription.type_id = subscription_type.id
 		";
 

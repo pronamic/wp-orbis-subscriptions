@@ -17,7 +17,7 @@ $query = $wpdb->prepare( "
 	FROM
 		$wpdb->orbis_subscriptions AS s
 			LEFT JOIN
-		orbis_subscription_types AS st
+		$wpdb->orbis_subscription_products AS st
 				ON s.type_id = st.id
 	WHERE
 		company_id = %d

@@ -44,7 +44,7 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 			FROM
 				$wpdb->orbis_subscriptions as s
 					LEFT JOIN
-				$wpdb->orbis_subscription_types as t
+				$wpdb->orbis_subscription_products as t
 						ON s.type_id = t.id
 					LEFT JOIN
 				orbis_companies as c

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2013-11-18 14:32:07+00:00\n"
-"PO-Revision-Date: 2013-11-18 15:32+0100\n"
+"POT-Creation-Date: 2013-12-17 10:10:38+00:00\n"
+"PO-Revision-Date: 2013-12-17 11:10+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.2\n"
 
 #: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
 #: classes/orbis-subscriptions-expiration.php:23
@@ -41,12 +41,12 @@ msgid "Company"
 msgstr "Bedrijf"
 
 #: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:39
-#: admin/sent-reminders.php:29 admin/statistics.php:32
+#: admin/sent-reminders.php:29
 msgid "Type"
 msgstr "Type"
 
 #: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:60
-#: admin/sent-reminders.php:30 templates/company-subscriptions.php:44
+#: admin/sent-reminders.php:30 templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
@@ -55,7 +55,7 @@ msgid "Name"
 msgstr "Naam"
 
 #: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:79
-#: admin/sent-reminders.php:31 templates/company-subscriptions.php:42
+#: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
 #: templates/subscriptions-to-invoice-updater.php:58
@@ -72,8 +72,10 @@ msgstr "Vervaldatum"
 msgid "Update Date"
 msgstr "Update datum"
 
-#: admin/expiring-licenses.php:36 admin/sent-reminders.php:34
-#: templates/company-subscriptions.php:45
+#: admin/expiring-licenses.php:36
+#: admin/meta-box-subscription-product-details.php:25
+#: admin/sent-reminders.php:34 includes/post.php:524
+#: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:49
 #: templates/subscription-details.php:65
 #: templates/subscriptions-invoices.php:16
@@ -115,7 +117,7 @@ msgstr "Bedrijf ID"
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
-#: admin/meta-box-subscription-details.php:98 includes/post.php:318
+#: admin/meta-box-subscription-details.php:98 includes/post.php:338
 msgid "Person"
 msgstr "Persoon"
 
@@ -125,6 +127,22 @@ msgstr "Persoon"
 msgid "Email"
 msgstr "E-mailadres"
 
+#: admin/meta-box-subscription-product-details.php:17 includes/post.php:525
+msgid "Orbis ID"
+msgstr "Orbis ID"
+
+#: admin/meta-box-subscription-product-details.php:33
+msgid "Cost Price"
+msgstr "Kostprijs"
+
+#: admin/meta-box-subscription-product-details.php:42
+msgid "Auto Renew"
+msgstr "Automatisch verlengen"
+
+#: admin/meta-box-subscription-product-details.php:48
+msgid "Auto renew subscription product"
+msgstr "Abonnement product automatisch verlengen"
+
 #: admin/sent-reminders.php:10 classes/orbis-subscriptions-expiration.php:13
 msgid "Orbis Expiring Subscriptions"
 msgstr "Orbis aflopende abonnementen"
@@ -133,9 +151,25 @@ msgstr "Orbis aflopende abonnementen"
 msgid "No reminders sent in the last week"
 msgstr "Geen herinneringen verzonden afgelopen week"
 
-#: admin/statistics.php:33
-msgid "Number"
-msgstr "Aantal"
+#: admin/statistics.php:32
+msgid "All"
+msgstr "Alles"
+
+#: admin/statistics.php:38
+msgid "Product"
+msgstr "Product"
+
+#: admin/statistics.php:39
+msgid "Expired"
+msgstr "Verlopen"
+
+#: admin/statistics.php:40
+msgid "Total"
+msgstr "Totaal"
+
+#: admin/statistics.php:41
+msgid "Expire Rate"
+msgstr "Vervalratio"
 
 #: classes/orbis-subscription.php:346
 msgid "j F, Y @ G:i:s"
@@ -195,8 +229,7 @@ msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
 msgstr ""
 "Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
 
-#: includes/post.php:9 includes/post.php:22
-#: templates/company-subscriptions.php:36
+#: includes/post.php:9 includes/post.php:22 includes/template.php:62
 #: templates/domain-name-subscriptions.php:39
 msgid "Subscriptions"
 msgstr "Abonnementen"
@@ -254,98 +287,90 @@ msgid "subscriptions"
 msgstr "abonnementen"
 
 #: includes/post.php:38
-msgid "Subscription Types"
-msgstr "Abonnement types"
+msgid "Subscription Products"
+msgstr "Abonnement producten"
 
 #: includes/post.php:40
-#, fuzzy
 msgctxt "post type general name"
-msgid "Subscription Types"
-msgstr "Abonnementen"
+msgid "Subscription Products"
+msgstr "Abonnement producten"
 
 #: includes/post.php:41
-#, fuzzy
 msgctxt "post type singular name"
-msgid "Subscription Type"
-msgstr "Abonnement"
+msgid "Subscription Product"
+msgstr "Abonnement product"
 
 #: includes/post.php:42
-#, fuzzy
 msgctxt "orbis_subs_type"
 msgid "Add New"
-msgstr "Nieuwe abonnement"
+msgstr "Nieuw abonnement product"
 
 #: includes/post.php:43
-#, fuzzy
-msgid "Add New Subscription Type"
-msgstr "Nieuwe abonnement toevoegen"
+msgid "Add New Subscription Product"
+msgstr "Nieuwe abonnement product toevoegen"
 
 #: includes/post.php:44
-#, fuzzy
-msgid "Edit Subscription Type"
-msgstr "Bewerk abonnement"
+msgid "Edit Subscription Product"
+msgstr "Bewerk abonnement product"
 
 #: includes/post.php:45
-#, fuzzy
-msgid "New Subscription Type"
-msgstr "Nieuwe abonnement"
+msgid "New Subscription Product"
+msgstr "Nieuwe abonnement product"
 
 #: includes/post.php:46
-#, fuzzy
-msgid "View Subscription Type"
-msgstr "Bekijk abonnement"
+msgid "View Subscription Product"
+msgstr "Bekijk abonnement product"
 
 #: includes/post.php:47
-#, fuzzy
-msgid "Search Subscription Types"
-msgstr "Abonnementen zoeken"
+msgid "Search Subscription Products"
+msgstr "Zoeken abonnement producten"
 
 #: includes/post.php:48
-#, fuzzy
-msgid "No subscription types found"
-msgstr "Geen abonnementen gevonden"
+msgid "No subscription products found"
+msgstr "Geen abonnement producten gevonden"
 
 #: includes/post.php:49
-#, fuzzy
-msgid "No subscription types found in Trash"
-msgstr "Geen abonnementen gevonden in prullenbak"
+msgid "No subscription products found in Trash"
+msgstr "Geen abonnement producten gevonden in prullenbak"
 
 #: includes/post.php:50
-#, fuzzy
-msgid "Parent Subscription Type:"
-msgstr "Bovenliggend abonnement"
+msgid "Parent Subscription Product:"
+msgstr "Bovenliggend abonnement product:"
 
 #: includes/post.php:51
-msgid "Types"
-msgstr "Types"
+msgid "Products"
+msgstr "Producten"
 
 #: includes/post.php:59
-#, fuzzy
 msgctxt "slug"
-msgid "subscription-types"
-msgstr "abonnementen"
+msgid "subscription-products"
+msgstr "abonnement-producten"
 
-#: includes/post.php:73
-msgid "Details"
-msgstr "Details"
+#: includes/post.php:73 templates/subscription-details.php:35
+msgid "Subscription Details"
+msgstr "Abonnement details"
 
-#: includes/post.php:267
+#: includes/post.php:82
+msgid "Subscription Product Details"
+msgstr "Abonnement product details"
+
+#: includes/post.php:287
 msgid "I extended this subscription: <blockquote>%s</blockquote>"
 msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
 
-#: includes/post.php:317
+#: includes/post.php:337 includes/post.php:523
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:319
+#: includes/post.php:339 includes/post.php:526
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:320
+#: includes/post.php:340 includes/post.php:527
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:321
+#: includes/post.php:341 includes/post.php:528
 msgid "Date"
 msgstr "Datum"
 
@@ -353,17 +378,13 @@ msgstr "Datum"
 msgid "Login required"
 msgstr "Inloggen vereist"
 
-#: templates/company-subscriptions.php:43
+#: templates/company-subscriptions.php:38
 #: templates/domain-name-subscriptions.php:47
 #: templates/subscriptions-invoices.php:15
 #: templates/subscriptions-to-invoice-updater.php:55
 #: templates/subscriptions-to-invoice.php:29
 msgid "Subscription"
 msgstr "Abonnement"
-
-#: templates/subscription-details.php:35
-msgid "Subscription Details"
-msgstr "Abonnement details"
 
 #: templates/subscription-details.php:53
 msgid "Cancel Date"
@@ -453,6 +474,14 @@ msgstr "Orbis abonnementen"
 msgid "http://www.orbiswp.com/"
 msgstr "http://www.orbiswp.com/"
 
+#. Description of the plugin/theme
+msgid ""
+"The Orbis Subscriptions extends your Orbis environment with the option to "
+"add subscription types and subscriptions."
+msgstr ""
+"De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
+"abonnement types en abonnement toe te voegen."
+
 #. Author of the plugin/theme
 msgid "Pronamic"
 msgstr "Pronamic"
@@ -461,11 +490,65 @@ msgstr "Pronamic"
 msgid "http://www.pronamic.eu/"
 msgstr "http://www.pronamic.eu/"
 
+#~ msgid "Subscription Product will auto renew"
+#~ msgstr "Abonnement product zal automatisch verlengen"
+
+#~ msgid "Subscription Types"
+#~ msgstr "Abonnement types"
+
+#, fuzzy
+#~ msgctxt "post type general name"
+#~ msgid "Subscription Types"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgctxt "post type singular name"
+#~ msgid "Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "Add New Subscription Type"
+#~ msgstr "Abonnement toevoegen"
+
+#, fuzzy
+#~ msgid "Edit Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "New Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "View Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "Search Subscription Types"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgid "No subscription types found"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgid "No subscription types found in Trash"
+#~ msgstr "Geen sleutelhangers gevonden in prullenbak"
+
+#, fuzzy
+#~ msgid "Parent Subscription Type:"
+#~ msgstr "Type"
+
+#~ msgid "Types"
+#~ msgstr "Types"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "Number"
+#~ msgstr "Aantal"
+
 #~ msgid "Persons"
 #~ msgstr "Personen"
-
-#~ msgid "Orbis ID"
-#~ msgstr "Orbis ID"
 
 #~ msgid "Expiring licenses"
 #~ msgstr "Aflopende licenties"
