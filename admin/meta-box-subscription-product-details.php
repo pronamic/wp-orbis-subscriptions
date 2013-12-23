@@ -8,6 +8,7 @@ $orbis_id    = get_post_meta( $post->ID, '_orbis_subscription_product_id', true 
 $price       = get_post_meta( $post->ID, '_orbis_subscription_product_price', true );
 $cost_price  = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
 $auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
+$deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
 
 ?>
 <table class="form-table">
@@ -46,6 +47,19 @@ $auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew
 				<label for="orbis_subscription_product_auto_renew">
 					<input type="checkbox" value="yes" id="orbis_subscription_product_auto_renew" name="_orbis_subscription_product_auto_renew" <?php checked( $auto_renew ); ?> />
 					<?php _e( 'Auto renew subscription product', 'orbis_subscriptions' ); ?>
+				</label>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_subscription_product_deprecated">
+					<?php _e( 'Deprecated', 'orbis_subscriptions' ); ?>
+				</label>
+			</th>
+			<td>
+				<label for="orbis_subscription_product_deprecated">
+					<input type="checkbox" value="yes" id="orbis_subscription_product_deprecated" name="_orbis_subscription_product_deprecated" <?php checked( $deprecated ); ?> />
+					<?php _e( 'Deprecated subscription product', 'orbis_subscriptions' ); ?>
 				</label>
 			</td>
 		</tr>
