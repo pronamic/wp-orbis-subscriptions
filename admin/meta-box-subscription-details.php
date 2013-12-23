@@ -4,7 +4,9 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
 
-$subscription_types = $wpdb->get_results( "SELECT * FROM $wpdb->orbis_subscription_products", OBJECT_K );
+$query = "SELECT * FROM $wpdb->orbis_subscription_products WHERE NOT deprecated ORDER BY name;";
+
+$subscription_types = $wpdb->get_results( $query );
 
 $orbis_id	 = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id	 = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
@@ -46,8 +48,17 @@ if ( true ) { // empty( $orbis_id ) ) {
 				<?php
 
 				foreach ( $subscription_types as $subscription_type ) {
+					$text = sprintf(
+						'%s (%s)',
+						$subscription_type->name,
+						orbis_price( $subscription_type->price )
+					);
+
 					printf(
-						'<option value="%s" %s>%s</option>', esc_attr( $subscription_type->id ), selected( $subscription_type->id, $type_id, false ), $subscription_type->name
+						'<option value="%s" %s>%s</option>',
+						esc_attr( $subscription_type->id ),
+						selected( $subscription_type->id, $type_id, false ),
+						$text
 					);
 				}
 
