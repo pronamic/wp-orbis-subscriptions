@@ -424,8 +424,16 @@ function orbis_save_subscription_product_details( $post_id, $post ) {
 
 	// OK
 	$definition = array(
-		'_orbis_subscription_product_price'      => FILTER_SANITIZE_NUMBER_FLOAT,
-		'_orbis_subscription_product_cost_price' => FILTER_SANITIZE_NUMBER_FLOAT,
+		'_orbis_subscription_product_price'      => array(
+			'filter'  => FILTER_VALIDATE_FLOAT,
+			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+			'options' => array( 'decimal' => ',' ),
+		),
+		'_orbis_subscription_product_cost_price' => array(
+			'filter'  => FILTER_VALIDATE_FLOAT,
+			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+			'options' => array( 'decimal' => ',' ),
+		),
 		'_orbis_subscription_product_auto_renew' => FILTER_VALIDATE_BOOLEAN,
 		'_orbis_subscription_product_deprecated' => FILTER_VALIDATE_BOOLEAN,
 	);
@@ -528,10 +536,11 @@ function orbis_subscription_product_edit_columns($columns) {
 		'title'                                 => __( 'Title', 'orbis_subscriptions' ),
 		'orbis_subscription_product_price'      => __( 'Price', 'orbis_subscriptions' ),
 		'orbis_subscription_product_cost_price' => __( 'Cost Price', 'orbis_subscriptions' ),
-		'orbis_subscription_product_id'         => __( 'Orbis ID', 'orbis' ),
-		'author'                                => __( 'Author', 'orbis' ),
-		'comments'                              => __( 'Comments', 'orbis' ),
-		'date'                                  => __( 'Date', 'orbis' ),
+		'orbis_subscription_product_deprecated' => __( 'Deprecated', 'orbis_subscriptions' ),
+		'orbis_subscription_product_id'         => __( 'Orbis ID', 'orbis_subscriptions' ),
+		'author'                                => __( 'Author', 'orbis_subscriptions' ),
+		'comments'                              => __( 'Comments', 'orbis_subscriptions' ),
+		'date'                                  => __( 'Date', 'orbis_subscriptions' ),
 	);
 }
 
@@ -573,6 +582,16 @@ function orbis_subscription_product_column( $column, $post_id ) {
 				echo '&mdash;';
 			} else {
 				echo orbis_price( $price );
+			}
+
+			break;
+		case 'orbis_subscription_product_deprecated':
+			$deprecated = get_post_meta( $post_id, '_orbis_subscription_product_deprecated', true );
+			
+			if ( $deprecated == '' ) {
+				echo '&mdash;';
+			} else {
+				echo $deprecated ? __( 'Yes', 'orbis_subscriptions' ) : __( 'No', 'orbis_subscriptions' );
 			}
 
 			break;
