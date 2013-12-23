@@ -4,13 +4,9 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_details', 'orbis_subscription_details_meta_box_nonce' );
 
-$query = "SELECT * FROM $wpdb->orbis_subscription_products WHERE NOT deprecated ORDER BY name;";
-
-$subscription_types = $wpdb->get_results( $query );
-
 $orbis_id	 = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id	 = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
-$type_id	 = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
+$product_id  = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
 $name		 = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 $license_key = get_post_meta( $post->ID, '_orbis_subscription_license_key', true );
 $email		 = get_post_meta( $post->ID, '_orbis_subscription_email', true );
@@ -20,11 +16,15 @@ if ( true ) { // empty( $orbis_id ) ) {
 
 	if ( $subscription ) {
 		$company_id	 = $subscription->company_id;
-		$type_id	 = $subscription->type_id;
-		$name		 = $subscription->name;
+		$product_id  = $subscription->type_id;
+		$name        = $subscription->name;
 		$license_key = $subscription->license_key;
 	}
 }
+
+$query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE ( NOT deprecated OR id = %d ) ORDER BY name;", $product_id );
+
+$subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
 ?>
 <table class="form-table">
@@ -47,17 +47,17 @@ if ( true ) { // empty( $orbis_id ) ) {
 
 				<?php
 
-				foreach ( $subscription_types as $subscription_type ) {
+				foreach ( $subscription_products as $subscription_product ) {
 					$text = sprintf(
 						'%s (%s)',
-						$subscription_type->name,
-						orbis_price( $subscription_type->price )
+						$subscription_product->name,
+						orbis_price( $subscription_product->price )
 					);
 
 					printf(
 						'<option value="%s" %s>%s</option>',
-						esc_attr( $subscription_type->id ),
-						selected( $subscription_type->id, $type_id, false ),
+						esc_attr( $subscription_product->id ),
+						selected( $subscription_product->id, $product_id, false ),
 						$text
 					);
 				}
