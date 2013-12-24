@@ -118,4 +118,41 @@ function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null
 }
 
 
+
+function orbis_subscriptions_suggest_subscription_id() {
+	global $wpdb;
+
+	$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+
+	$query = $wpdb->prepare( "
+		SELECT
+			subscription.id AS id,
+			CONCAT( subscription.id, '. ', product.name, ' - ', subscription.name ) AS text
+		FROM
+			$wpdb->orbis_subscriptions AS subscription
+				LEFT JOIN
+			$wpdb->orbis_subscription_products AS product
+					ON subscription.type_id = product.id
+		WHERE
+			subscription.cancel_date IS NULL
+				AND
+			(
+				subscription.name LIKE '%%%1\$s%%'
+					OR
+				product.name LIKE '%%%1\$s%%'
+			)
+		GROUP BY
+			subscription.id
+		ORDER BY
+			subscription.id
+		", $term
+	);
+
+	$data = $wpdb->get_results( $query );
 	
+	echo json_encode( $data );
+	
+	die();
+}
+
+add_action( 'wp_ajax_subscription_id_suggest', 'orbis_subscriptions_suggest_subscription_id' );
