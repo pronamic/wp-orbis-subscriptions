@@ -15,6 +15,7 @@ if ( true ) { // empty( $orbis_id ) ) {
 	$subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
 	if ( $subscription ) {
+		$orbis_id    = $subscription->id;
 		$company_id	 = $subscription->company_id;
 		$product_id  = $subscription->type_id;
 		$name        = $subscription->name;
@@ -28,6 +29,14 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
 ?>
 <table class="form-table">
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_id"><?php _e( 'Orbis ID', 'orbis' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_id" name="_orbis_subscription_id" value="<?php echo esc_attr( $orbis_id ); ?>" type="text" class="regular-text" readonly="readonly" />
+		</td>
+	</tr>
 	<tr valign="top">
 		<th scope="row">
 			<label for="orbis_subscription_company"><?php _e( 'Company ID', 'orbis_subscriptions' ); ?></label>
