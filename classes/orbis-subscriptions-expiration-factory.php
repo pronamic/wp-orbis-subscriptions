@@ -19,16 +19,18 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.auto_renew
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
-			LEFT JOIN
-				{$this->db->orbis_subscription_types} as type
-				ON subscription.type_id = type.id
+					LEFT JOIN
+				{$this->db->orbis_subscription_products} as type
+						ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0
-			AND 
+					AND 
 				subscription.update_date <= %s
-			AND
+					AND
+				cancel_date IS NULL
+					AND
 				expiration_date < NOW() + INTERVAL 3 MONTH
-			AND
+					AND
 				sent_notifications > 0
 		";
 		
@@ -72,21 +74,19 @@ class Orbis_Subscriptions_Expiration_Factory {
 				company.e_mail AS companyEMail ,
 				type.name AS typeName ,
 				type.price AS price ,
-				type.auto_renew as auto_renew ,
-				domain_name.domain_name AS domainName
+				type.auto_renew as auto_renew
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
-			LEFT JOIN
+					LEFT JOIN
 				orbis_companies AS company
-				ON subscription.company_id = company.id
-			LEFT JOIN
-				{$this->db->orbis_subscription_types} AS type
-				ON subscription.type_id = type.id
-			LEFT JOIN
-				orbis_domain_names AS domain_name
-				ON subscription.domain_name_id = domain_name.id
+						ON subscription.company_id = company.id
+					LEFT JOIN
+				{$this->db->orbis_subscription_products} AS type
+						ON subscription.type_id = type.id
 			WHERE
 				type.auto_renew = 0
+					AND
+				cancel_date IS NULL
 			ORDER BY
 				subscription.update_date ,
 				subscription.id
@@ -106,14 +106,19 @@ class Orbis_Subscriptions_Expiration_Factory {
 				type.auto_renew
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
-			LEFT JOIN
-				{$this->db->orbis_subscription_types} as type
-				ON subscription.type_id = type.id
+					LEFT JOIN
+				{$this->db->orbis_subscription_products} as type
+						ON subscription.type_id = type.id
 			WHERE 
 				type.auto_renew = 0
-			AND 
-				( subscription.expiration_date <= NOW() 
-				OR ( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() ) )
+					AND 
+				( 
+					subscription.expiration_date <= NOW() 
+						OR 
+					( subscription.expiration_date <= %s AND subscription.expiration_date >= NOW() ) 
+				)
+					AND
+				cancel_date IS NULL
 			ORDER BY
 				subscription.sent_notifications ASC,
 				subscription.expiration_date ASC

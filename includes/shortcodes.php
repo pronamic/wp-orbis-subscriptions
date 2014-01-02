@@ -30,7 +30,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 			orbis_companies AS c
 					ON s.company_id = c.id
 				LEFT JOIN
-			$wpdb->orbis_subscription_types AS st
+			$wpdb->orbis_subscription_products AS st
 					ON s.type_id = st.id
 				LEFT JOIN
 			$wpdb->orbis_subscriptions_invoices AS si
@@ -102,7 +102,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 				orbis_companies AS c
 						ON s.company_id = c.id
 					LEFT JOIN
-				$wpdb->orbis_subscription_types AS st
+				$wpdb->orbis_subscription_products AS st
 						ON s.type_id = st.id
 					LEFT JOIN
 				$wpdb->orbis_subscriptions_invoices AS si
@@ -177,7 +177,7 @@ function orbis_shortcode_subscriptions_invoices( $atts ) {
 			orbis_subscriptions AS s
 					ON si.subscription_id = s.id
 				LEFT JOIN
-			orbis_subscription_types AS st
+			orbis_subscription_products AS st
 					ON s.type_id = st.id
 				LEFT JOIN
 			orbis_companies AS c

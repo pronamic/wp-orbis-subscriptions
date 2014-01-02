@@ -62,9 +62,21 @@ if ( $invoices ) : ?>
 							<?php echo date_i18n( 'D j M Y', strtotime( $invoice->end_date ) ); ?>
 						</td>
 						<td>
-							<a href="/facturen/<?php echo $invoice->invoice_number; ?>/" target="_blank">
-								<?php echo $invoice->invoice_number; ?>
-							</a>
+							<?php 
+							
+							$invoice_link = orbis_get_invoice_link( $invoice->invoice_number );
+							
+							if ( ! empty( $invoice_link ) ) {
+								printf(
+									'<a href="%s" target="_blank">%s</a>',
+									esc_attr( $invoice_link ),
+									$invoice->invoice_number
+								);
+							} else {
+								echo $invoice->invoice_number;
+							}
+							
+							?>
 						</td>
 					</tr>
 				

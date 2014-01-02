@@ -44,7 +44,7 @@ if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
 			FROM
 				$wpdb->orbis_subscriptions as s
 					LEFT JOIN
-				$wpdb->orbis_subscription_types as t
+				$wpdb->orbis_subscription_products as t
 						ON s.type_id = t.id
 					LEFT JOIN
 				orbis_companies as c
@@ -74,4 +74,85 @@ if ( ! function_exists( 'orbis_date2mysql' ) ) :
 	}
 
 endif;
+
+
+function orbis_subscription_get_email_comment( $to, $message_plain ) {
+	return sprintf(
+		__( 'I sent the following message to %s: <blockquote>%s</blockquote>', 'orbis_subscriptions' ),
+		$to,
+		$message_plain
+	);
+}
+
+
+function orbis_subscriptions_comment( $comment_content, $post_id = null ) {
+	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
+
+	$user = wp_get_current_user();
 	
+	if ( empty( $user->display_name ) )
+		$user->display_name = $user->user_login;
+	
+	$comment_author       = esc_sql( $user->display_name );
+	$comment_author_email = esc_sql( $user->user_email );
+	$comment_author_url   = esc_sql( $user->user_url );
+	
+	$comment_id = wp_insert_comment( array(
+		'comment_post_ID'      => $post_id,
+		'comment_content'      => $comment_content,
+		'comment_author'       => $comment_author,
+		'comment_author_email' => $comment_author_email,
+		'comment_author_url'   => $comment_author_url
+	) );
+	
+	return $comment_id;
+}
+
+
+function orbis_subscriptions_comment_email( $to, $message_plain, $post_id = null ) {
+	$post_id = ( null === $post_id ) ? get_the_ID() : $post_id;
+
+	$comment_content = orbis_subscription_get_email_comment( $to, $message_plain );
+
+	return orbis_subscriptions_comment( $comment_content, $post_id );
+}
+
+
+
+function orbis_subscriptions_suggest_subscription_id() {
+	global $wpdb;
+
+	$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+
+	$query = $wpdb->prepare( "
+		SELECT
+			subscription.id AS id,
+			CONCAT( subscription.id, '. ', product.name, ' - ', subscription.name ) AS text
+		FROM
+			$wpdb->orbis_subscriptions AS subscription
+				LEFT JOIN
+			$wpdb->orbis_subscription_products AS product
+					ON subscription.type_id = product.id
+		WHERE
+			subscription.cancel_date IS NULL
+				AND
+			(
+				subscription.name LIKE '%%%1\$s%%'
+					OR
+				product.name LIKE '%%%1\$s%%'
+			)
+		GROUP BY
+			subscription.id
+		ORDER BY
+			subscription.id
+		", $term
+	);
+
+	$data = $wpdb->get_results( $query );
+	
+	echo json_encode( $data );
+	
+	die();
+}
+
+add_action( 'wp_ajax_subscription_id_suggest', 'orbis_subscriptions_suggest_subscription_id' );

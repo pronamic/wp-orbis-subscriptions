@@ -5,7 +5,6 @@ class Orbis_Subscriptions_Expiration {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		
 		add_action( 'init', array( $this, 'expiring_licenses_submit' ) );
-		add_action( 'init', array( $this, 'extend_license_submit' ) );
 	}
 	
 	public function admin_menu() {
@@ -36,7 +35,7 @@ class Orbis_Subscriptions_Expiration {
 		$subscription_factory = new Orbis_Subscriptions_Expiration_Factory();
 		
 		// 7 Days
-		$one_week = new DateTime( '+1 week' );
+		$one_week = new DateTime( '+1 month' );
 		
 		$subscriptions = $subscription_factory->get_expiring_in( $one_week );
 
@@ -70,6 +69,9 @@ class Orbis_Subscriptions_Expiration {
 		if ( ! wp_verify_nonce( $_POST['orbis_subscription_expiration_manager_nonce'], 'orbis_subscription_expiration_manager' ) )
 			return;
 		
+		if ( ! empty( $_POST['submit_extend'] ) )
+			return;
+		
 		// Get mail contents
 		$mail_subject = Orbis_Subscriptions_Settings::get_mail_subject();
 		$mail_body = Orbis_Subscriptions_Settings::get_mail_body();
@@ -85,19 +87,5 @@ class Orbis_Subscriptions_Expiration {
 			$subscription = new Orbis_Subscription( $subscription_id );
 			$subscription->send_reminder( $mail_subject, $mail_body, $url );
 		}
-	}
-	
-	public function extend_license_submit() {
-		if ( ! isset( $_POST ) )
-			return;
-				
-		if ( ! isset( $_POST['submit_extend'] ) )
-			return;
-				
-		$subscription_id = filter_input( INPUT_POST, 'submit_extend', FILTER_VALIDATE_INT );
-		
-		// Extend the license
-		$subscription = new Orbis_Subscription( $subscription_id );
-		$subscription->extend();
 	}
 }

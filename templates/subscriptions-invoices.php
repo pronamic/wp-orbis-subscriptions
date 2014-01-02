@@ -55,9 +55,21 @@ $results = $orbis_subscriptions_invoices;
 						<?php echo date_i18n( 'D j M Y', strtotime( $result->end_date ) ); ?>
 					</td>
 					<td>
-						<a href="/facturen/<?php echo $result->invoice_number; ?>" target="_blank">
-							<?php echo $result->invoice_number; ?>
-						</a>
+						<?php 
+						
+						$invoice_link = orbis_get_invoice_link( $result->invoice_number );
+						
+						if ( ! empty( $invoice_link ) ) {
+							printf(
+								'<a href="%s" target="_blank">%s</a>',
+								esc_attr( $invoice_link ),
+								$result->invoice_number
+							);
+						} else {
+							echo $result->invoice_number;
+						}
+						
+						?>
 					</td>
 				</tr>
 			

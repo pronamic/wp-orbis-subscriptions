@@ -1,97 +1,204 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-23 09:51+0100\n"
-"PO-Revision-Date: 2013-04-23 09:59+0100\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
+"POT-Creation-Date: 2014-01-02 14:08:31+00:00\n"
+"PO-Revision-Date: 2014-01-02 15:08+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __;_e;_x:2c,1\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.5\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.6.3\n"
 
-#: admin/meta-box-subscription-details.php:29
-msgid "Company ID"
-msgstr "Bedrijf ID"
+#: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
+#: classes/orbis-subscriptions-expiration.php:23
+msgid "Sent Reminders"
+msgstr "Verzonden herinneringen"
 
-#: admin/meta-box-subscription-details.php:37
-#: templates/expiring_licenses_manager.php:16
-#: templates/orbis_sent_reminders.php:16
+#: admin/expiring-licenses.php:19 admin/expiring-licenses.php:83
+#: admin/expiring-licenses.php:102
+msgid "Send Reminder"
+msgstr "Verstuur herinnering"
+
+#: admin/expiring-licenses.php:29 admin/sent-reminders.php:27
+#: templates/subscriptions-to-invoice-updater.php:53
+#: templates/subscriptions-to-invoice.php:27
+msgid "ID"
+msgstr "ID"
+
+#: admin/expiring-licenses.php:30 admin/sent-reminders.php:28
+#: templates/domain-name-subscriptions.php:46
+#: templates/subscription-details.php:40
+#: templates/subscriptions-invoices.php:14
+#: templates/subscriptions-to-invoice-updater.php:54
+#: templates/subscriptions-to-invoice.php:28
+msgid "Company"
+msgstr "Bedrijf"
+
+#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:50
+#: admin/sent-reminders.php:29
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:56
-#: templates/company-subscriptions.php:44
-#: templates/domain-name-subscriptions.php:42
-#: templates/expiring_licenses_manager.php:17
-#: templates/orbis_sent_reminders.php:17
+#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:80
+#: admin/sent-reminders.php:30 templates/company-subscriptions.php:39
+#: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:57
 #: templates/subscriptions-to-invoice.php:31
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:64
-#: templates/expiring_licenses_manager.php:22
-#: templates/orbis_sent_reminders.php:22 templates/subscription-details.php:42
-msgid "License Key"
-msgstr "Licentiesleutel"
-
-#: admin/meta-box-subscription-details.php:75
-#: templates/company-subscriptions.php:42
-#: templates/domain-name-subscriptions.php:40
-#: templates/expiring_licenses_manager.php:18
-#: templates/orbis_sent_reminders.php:18 templates/subscription-details.php:47
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:99
+#: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
+#: templates/domain-name-subscriptions.php:45
+#: templates/subscription-details.php:45
 #: templates/subscriptions-to-invoice-updater.php:58
 #: templates/subscriptions-to-invoice.php:32
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:83
-#: templates/expiring_licenses_manager.php:19
-#: templates/orbis_sent_reminders.php:19 templates/subscription-details.php:50
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:107
+#: admin/sent-reminders.php:32 templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:94 includes/post.php:195
-#: includes/post.php:216
+#: admin/expiring-licenses.php:35 admin/sent-reminders.php:33
+msgid "Update Date"
+msgstr "Update datum"
+
+#: admin/expiring-licenses.php:36
+#: admin/meta-box-subscription-product-details.php:26
+#: admin/sent-reminders.php:34 includes/post.php:537
+#: templates/company-subscriptions.php:40
+#: templates/domain-name-subscriptions.php:49
+#: templates/subscription-details.php:65
+#: templates/subscriptions-invoices.php:16
+#: templates/subscriptions-to-invoice-updater.php:56
+#: templates/subscriptions-to-invoice.php:30
+msgid "Price"
+msgstr "Prijs"
+
+#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:88
+#: admin/sent-reminders.php:35 templates/subscription-details.php:60
+msgid "License Key"
+msgstr "Licentiesleutel"
+
+#: admin/expiring-licenses.php:38 admin/sent-reminders.php:36
+msgid "Sent"
+msgstr "Verzonden"
+
+#: admin/expiring-licenses.php:39 admin/sent-reminders.php:37
+msgid "E-Mail"
+msgstr "E-mailadres"
+
+#: admin/expiring-licenses.php:40
+msgid "Actions"
+msgstr "Acties"
+
+#: admin/expiring-licenses.php:70 admin/sent-reminders.php:63
+msgid "Edit"
+msgstr "Bewerken"
+
+#: admin/expiring-licenses.php:94
+msgid "No subscriptions will expire within the next week"
+msgstr "Er zullen volgende week geen abonnementen verlopen"
+
+#: admin/meta-box-subscription-details.php:34
+#: admin/meta-box-subscription-product-details.php:18 includes/post.php:540
+msgid "Orbis ID"
+msgstr "Orbis ID"
+
+#: admin/meta-box-subscription-details.php:42
+msgid "Company ID"
+msgstr "Bedrijf ID"
+
+#: admin/meta-box-subscription-details.php:45
+msgid "Select Company"
+msgstr "Selecteer bedrijf"
+
+#: admin/meta-box-subscription-details.php:118 includes/post.php:338
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:102
+#: admin/meta-box-subscription-details.php:126
+#: templates/subscription-details.php:75 templates/subscription-renewal.php:48
+#: templates/subscription-renewal.php:49
 msgid "Email"
 msgstr "E-mailadres"
 
-#: classes/orbis-subscription.php:556
-#, php-format
+#: admin/meta-box-subscription-product-details.php:34 includes/post.php:538
+msgid "Cost Price"
+msgstr "Kostprijs"
+
+#: admin/meta-box-subscription-product-details.php:43
+msgid "Auto Renew"
+msgstr "Automatisch verlengen"
+
+#: admin/meta-box-subscription-product-details.php:49
+msgid "Auto renew subscription product"
+msgstr "Abonnement product automatisch verlengen"
+
+#: admin/meta-box-subscription-product-details.php:56 includes/post.php:539
+msgid "Deprecated"
+msgstr "Vervallen"
+
+#: admin/meta-box-subscription-product-details.php:62
+msgid "Deprecated subscription product"
+msgstr "Vervallen abonnement product"
+
+#: admin/sent-reminders.php:10 classes/orbis-subscriptions-expiration.php:13
+msgid "Orbis Expiring Subscriptions"
+msgstr "Orbis aflopende abonnementen"
+
+#: admin/sent-reminders.php:82
+msgid "No reminders sent in the last week"
+msgstr "Geen herinneringen verzonden afgelopen week"
+
+#: admin/statistics.php:33
+msgid "All"
+msgstr "Alles"
+
+#: admin/statistics.php:39
+msgid "Product"
+msgstr "Product"
+
+#: admin/statistics.php:40
+msgid "Active"
+msgstr "Actief"
+
+#: admin/statistics.php:41
+msgid "Expired"
+msgstr "Verlopen"
+
+#: admin/statistics.php:42
+msgid "Total"
+msgstr "Totaal"
+
+#: admin/statistics.php:43
+msgid "Expire Rate"
+msgstr "Vervalratio"
+
+#: classes/orbis-subscription.php:346
+msgid "j F, Y @ G:i:s"
+msgstr "j F Y @ H:i"
+
+#: classes/orbis-subscription.php:565
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
 #: classes/orbis-subscriptions-expiration.php:14
-#: templates/orbis_sent_reminders.php:4
-msgid "Orbis Expiring Subscriptions"
-msgstr "Orbis aflopende abonnementen"
-
-#: classes/orbis-subscriptions-expiration.php:15
 msgid "Expiring Subscriptions"
 msgstr "Aflopende abonnementen"
 
-#: classes/orbis-subscriptions-expiration.php:23
+#: classes/orbis-subscriptions-expiration.php:22
 msgid "Orbis Sent Reminders"
 msgstr "Orbis verzonden herinneringen"
-
-#: classes/orbis-subscriptions-expiration.php:24
-#: templates/expiring_licenses_manager.php:5
-#: templates/orbis_sent_reminders.php:5
-msgid "Sent Reminders"
-msgstr "Verzonden herinneringen"
 
 #: classes/orbis-subscriptions-settings.php:14
 msgid "Reminder"
@@ -117,180 +224,200 @@ msgstr "Orbis abonnementen instellingen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/post.php:18 includes/post.php:31
-#: templates/company-subscriptions.php:36
-#: templates/domain-name-subscriptions.php:34
+#: classes/orbis-subscriptions-settings.php:64
+msgid "Orbis Subscriptions Statistics"
+msgstr "Orbis abonnementen statistieken"
+
+#: classes/orbis-subscriptions-settings.php:65
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: includes/comment.php:19
+msgid ""
+"This comment was an subscription extend request (before: %s, after: %s)."
+msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
+
+#: includes/functions.php:81
+msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
+msgstr ""
+"Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
+
+#: includes/post.php:9 includes/post.php:22 includes/template.php:62
+#: templates/domain-name-subscriptions.php:39
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:20
+#: includes/post.php:11
 msgctxt "post type general name"
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:21
+#: includes/post.php:12
 msgctxt "post type singular name"
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: includes/post.php:22
+#: includes/post.php:13
 msgctxt "orbis_subscription"
 msgid "Add New"
 msgstr "Nieuwe abonnement"
 
-#: includes/post.php:23
+#: includes/post.php:14
 msgid "Add New Subscription"
 msgstr "Nieuwe abonnement toevoegen"
 
-#: includes/post.php:24
+#: includes/post.php:15
 msgid "Edit Subscription"
 msgstr "Bewerk abonnement"
 
-#: includes/post.php:25
+#: includes/post.php:16
 msgid "New Subscription"
 msgstr "Nieuwe abonnement"
 
-#: includes/post.php:26
+#: includes/post.php:17
 msgid "View Subscription"
 msgstr "Bekijk abonnement"
 
-#: includes/post.php:27
+#: includes/post.php:18
 msgid "Search Subscriptions"
 msgstr "Abonnementen zoeken"
 
-#: includes/post.php:28
+#: includes/post.php:19
 msgid "No subscriptions found"
 msgstr "Geen abonnementen gevonden"
 
-#: includes/post.php:29
+#: includes/post.php:20
 msgid "No subscriptions found in Trash"
 msgstr "Geen abonnementen gevonden in prullenbak"
 
-#: includes/post.php:30
+#: includes/post.php:21
 msgid "Parent Subscription:"
 msgstr "Bovenliggend abonnement"
 
-#: includes/post.php:39
+#: includes/post.php:30
 msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: includes/post.php:53
-msgid "Details"
-msgstr "Details"
+#: includes/post.php:38
+msgid "Subscription Products"
+msgstr "Abonnement producten"
 
-#: includes/post.php:190
-msgid "Persons"
-msgstr "Personen"
+#: includes/post.php:40
+msgctxt "post type general name"
+msgid "Subscription Products"
+msgstr "Abonnement producten"
 
-#: includes/post.php:215
+#: includes/post.php:41
+msgctxt "post type singular name"
+msgid "Subscription Product"
+msgstr "Abonnement product"
+
+#: includes/post.php:42
+msgctxt "orbis_subs_type"
+msgid "Add New"
+msgstr "Nieuw abonnement product"
+
+#: includes/post.php:43
+msgid "Add New Subscription Product"
+msgstr "Nieuwe abonnement product toevoegen"
+
+#: includes/post.php:44
+msgid "Edit Subscription Product"
+msgstr "Bewerk abonnement product"
+
+#: includes/post.php:45
+msgid "New Subscription Product"
+msgstr "Nieuwe abonnement product"
+
+#: includes/post.php:46
+msgid "View Subscription Product"
+msgstr "Bekijk abonnement product"
+
+#: includes/post.php:47
+msgid "Search Subscription Products"
+msgstr "Zoeken abonnement producten"
+
+#: includes/post.php:48
+msgid "No subscription products found"
+msgstr "Geen abonnement producten gevonden"
+
+#: includes/post.php:49
+msgid "No subscription products found in Trash"
+msgstr "Geen abonnement producten gevonden in prullenbak"
+
+#: includes/post.php:50
+msgid "Parent Subscription Product:"
+msgstr "Bovenliggend abonnement product:"
+
+#: includes/post.php:51
+msgid "Products"
+msgstr "Producten"
+
+#: includes/post.php:59
+msgctxt "slug"
+msgid "subscription-products"
+msgstr "abonnement-producten"
+
+#: includes/post.php:73 templates/subscription-details.php:35
+msgid "Subscription Details"
+msgstr "Abonnement details"
+
+#: includes/post.php:82
+msgid "Subscription Product Details"
+msgstr "Abonnement product details"
+
+#: includes/post.php:287
+msgid "I extended this subscription: <blockquote>%s</blockquote>"
+msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
+
+#: includes/post.php:337 includes/post.php:536
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:217
+#: includes/post.php:339 includes/post.php:541
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:218
+#: includes/post.php:340 includes/post.php:542
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:219
+#: includes/post.php:341 includes/post.php:543
 msgid "Date"
 msgstr "Datum"
+
+#: includes/post.php:594
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/post.php:594
+msgid "No"
+msgstr "Nee"
 
 #: includes/shortcodes.php:138
 msgid "Login required"
 msgstr "Inloggen vereist"
 
-#: templates/company-subscriptions.php:43
-#: templates/domain-name-subscriptions.php:41
+#: templates/company-subscriptions.php:38
+#: templates/domain-name-subscriptions.php:47
 #: templates/subscriptions-invoices.php:15
 #: templates/subscriptions-to-invoice-updater.php:55
 #: templates/subscriptions-to-invoice.php:29
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: templates/company-subscriptions.php:45
-#: templates/domain-name-subscriptions.php:43
-#: templates/expiring_licenses_manager.php:21
-#: templates/orbis_sent_reminders.php:21
-#: templates/subscriptions-invoices.php:16
-#: templates/subscriptions-to-invoice-updater.php:56
-#: templates/subscriptions-to-invoice.php:30
-msgid "Price"
-msgstr "Prijs"
-
-#: templates/expiring_licenses_manager.php:9
-#: templates/expiring_licenses_manager.php:61
-#: templates/expiring_licenses_manager.php:74
-msgid "Send Reminder"
-msgstr "Verstuur herinnering"
-
-#: templates/expiring_licenses_manager.php:14
-#: templates/orbis_sent_reminders.php:14
-#: templates/subscriptions-to-invoice-updater.php:53
-#: templates/subscriptions-to-invoice.php:27
-msgid "ID"
-msgstr "ID"
-
-#: templates/expiring_licenses_manager.php:15
-#: templates/orbis_sent_reminders.php:15
-#: templates/subscriptions-invoices.php:14
-#: templates/subscriptions-to-invoice-updater.php:54
-#: templates/subscriptions-to-invoice.php:28
-msgid "Company"
-msgstr "Bedrijf"
-
-#: templates/expiring_licenses_manager.php:20
-#: templates/orbis_sent_reminders.php:20
-msgid "Update Date"
-msgstr "Update datum"
-
-#: templates/expiring_licenses_manager.php:23
-#: templates/orbis_sent_reminders.php:23
-msgid "Sent"
-msgstr "Verzonden"
-
-#: templates/expiring_licenses_manager.php:24
-#: templates/orbis_sent_reminders.php:24
-msgid "E-Mail"
-msgstr "E-mailadres"
-
-#: templates/expiring_licenses_manager.php:25
-#: templates/orbis_sent_reminders.php:25
-msgid "Actions"
-msgstr "Acties"
-
-#: templates/expiring_licenses_manager.php:48
-#: templates/orbis_sent_reminders.php:48
-msgid "Edit"
-msgstr "Bewerken"
-
-#: templates/expiring_licenses_manager.php:62
-#: templates/orbis_sent_reminders.php:61
-msgid "Extend License"
-msgstr "Licentie verlegen"
-
-#: templates/expiring_licenses_manager.php:69
-msgid "No subscriptions will expire within the next week"
-msgstr "Er zullen volgende week geen abonnementen verlopen"
-
-#: templates/orbis_sent_reminders.php:68
-msgid "No reminders sent in the last week"
-msgstr "Geen herinneringen verzonden afgelopen week"
-
-#: templates/subscription-details.php:32
-msgid "Subscription Details"
-msgstr "Abonnement details"
-
-#: templates/subscription-details.php:37
-msgid "Orbis ID"
-msgstr "Orbis ID"
-
-#: templates/subscription-details.php:55
+#: templates/subscription-details.php:53
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
+
+#: templates/subscription-details.php:72
+msgid "Pronamic iDEAL License Key"
+msgstr "Pronamic iDEAL licentiesleutel"
+
+#: templates/subscription-details.php:77
+msgid "Send License"
+msgstr "Verstuur licentie"
 
 #: templates/subscription-invoices.php:33
 msgid "Invoices"
@@ -323,6 +450,26 @@ msgstr "Einddatum"
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
+#: templates/subscription-renewal.php:35
+msgid "Subscription Renewal"
+msgstr "Abonnement verlengen"
+
+#: templates/subscription-renewal.php:43
+msgid "Pronamic iDEAL License Key Extended"
+msgstr "Pronamic iDEAL licentiesleutel verlengd"
+
+#: templates/subscription-renewal.php:45
+msgid "Note"
+msgstr "Notitie"
+
+#: templates/subscription-renewal.php:52
+msgid "Extend this subscription with 1 year."
+msgstr "Verleng dit abonnement met 1 jaar."
+
+#: templates/subscription-renewal.php:55
+msgid "Extend"
+msgstr "Verleng"
+
 #: templates/subscriptions-to-invoice-updater.php:9
 msgid "Inserted"
 msgstr "Toegevoegd"
@@ -339,6 +486,90 @@ msgstr "Update"
 #: templates/subscriptions-to-invoice.php:34
 msgid "Notice"
 msgstr "Opmerking"
+
+#. Plugin Name of the plugin/theme
+msgid "Orbis Subscriptions"
+msgstr "Orbis abonnementen"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.orbiswp.com/"
+msgstr "http://www.orbiswp.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"The Orbis Subscriptions extends your Orbis environment with the option to "
+"add subscription types and subscriptions."
+msgstr ""
+"De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
+"abonnement types en abonnement toe te voegen."
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr "http://www.pronamic.eu/"
+
+#~ msgid "Subscription Product will auto renew"
+#~ msgstr "Abonnement product zal automatisch verlengen"
+
+#~ msgid "Subscription Types"
+#~ msgstr "Abonnement types"
+
+#, fuzzy
+#~ msgctxt "post type general name"
+#~ msgid "Subscription Types"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgctxt "post type singular name"
+#~ msgid "Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "Add New Subscription Type"
+#~ msgstr "Abonnement toevoegen"
+
+#, fuzzy
+#~ msgid "Edit Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "New Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "View Subscription Type"
+#~ msgstr "Type"
+
+#, fuzzy
+#~ msgid "Search Subscription Types"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgid "No subscription types found"
+#~ msgstr "Abonnement"
+
+#, fuzzy
+#~ msgid "No subscription types found in Trash"
+#~ msgstr "Geen sleutelhangers gevonden in prullenbak"
+
+#, fuzzy
+#~ msgid "Parent Subscription Type:"
+#~ msgstr "Type"
+
+#~ msgid "Types"
+#~ msgstr "Types"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "Number"
+#~ msgstr "Aantal"
+
+#~ msgid "Persons"
+#~ msgstr "Personen"
 
 #~ msgid "Expiring licenses"
 #~ msgstr "Aflopende licenties"
@@ -592,9 +823,6 @@ msgstr "Opmerking"
 #~ msgid "Edit Company"
 #~ msgstr "Bedrijf bewerken"
 
-#~ msgid "New Company"
-#~ msgstr "Nieuw bedrijf"
-
 #~ msgid "All Companies"
 #~ msgstr "Alle bedrijven"
 
@@ -689,9 +917,6 @@ msgstr "Opmerking"
 #~ msgid "Time"
 #~ msgstr "Tijd"
 
-#~ msgid "KvK Number"
-#~ msgstr "KvK nummer"
-
 #~ msgid "Orbis Log"
 #~ msgstr "Orbis Logboek"
 
@@ -757,9 +982,6 @@ msgstr "Opmerking"
 #~ msgid "Edit Project Post"
 #~ msgstr "Bewerk project bericht"
 
-#~ msgid "Stats"
-#~ msgstr "Statistieken"
-
 #~ msgid "Number domains"
 #~ msgstr "Aantal domeinen"
 
@@ -768,9 +990,6 @@ msgstr "Opmerking"
 
 #~ msgid "Annual Revenue"
 #~ msgstr "Jaaromzet"
-
-#~ msgid "Notes"
-#~ msgstr "Notitie"
 
 #~ msgid "Orbis"
 #~ msgstr "Orbis"
@@ -846,9 +1065,6 @@ msgstr "Opmerking"
 
 #~ msgid "Height"
 #~ msgstr "Hoogte"
-
-#~ msgid "Dynamic"
-#~ msgstr "Dynamisch"
 
 #~ msgid "Show Google Maps"
 #~ msgstr "Google Maps weergeven"

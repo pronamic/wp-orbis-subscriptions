@@ -58,6 +58,15 @@ class Orbis_Subscriptions_Settings {
 			'orbis_subscriptions_settings',
 			array( $this, 'expiration_settings_page' )
 		);
+
+		add_submenu_page(
+			'edit.php?post_type=orbis_subscription',
+			__( 'Orbis Subscriptions Statistics', 'orbis_subscriptions' ),
+			__( 'Statistics', 'orbis_subscriptions' ),
+			'manage_orbis',
+			'orbis_subscription_statistics',
+			array( $this, 'page_statistics' )
+		);
 	}
 
 	/**
@@ -91,6 +100,12 @@ class Orbis_Subscriptions_Settings {
 		global $orbis_subscriptions_plugin;
 	
 		$orbis_subscriptions_plugin->plugin_include( 'admin/settings.php' );
+	}
+
+	public function page_statistics() {
+		global $orbis_subscriptions_plugin;
+	
+		$orbis_subscriptions_plugin->plugin_include( 'admin/statistics.php' );
 	}
 	
 	public static function get_mail_subject() {
