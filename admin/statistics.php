@@ -10,6 +10,7 @@
 	$query = "
 		SELECT
 			product.name AS name,
+			COUNT( IF( subscription.cancel_date IS NULL, subscription.id, NULL ) ) AS active_count,
 			COUNT( IF( subscription.expiration_date < NOW(), subscription.id, NULL ) ) AS expired_count,
 			COUNT( subscription.id ) AS total_count
 		FROM
@@ -36,6 +37,7 @@
 		<thead>
 			<tr>
 				<th scope="col"><?php _e( 'Product', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php _e( 'Active', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Expired', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Total', 'orbis_subscriptions' ); ?></th>
 				<th scope="col"><?php _e( 'Expire Rate', 'orbis_subscriptions' ); ?></th>
@@ -49,6 +51,9 @@
 				<tr>
 					<td>
 						<?php echo $stat->name; ?>
+					</td>
+					<td>
+						<?php echo $stat->active_count; ?>
 					</td>
 					<td>
 						<?php echo $stat->expired_count; ?>

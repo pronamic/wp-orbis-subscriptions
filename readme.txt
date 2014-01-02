@@ -34,4 +34,4 @@ License URI: http://www.pronamic.eu/copyright/
 == Changelog ==
 
 = 1.0.0 =
-*	Initial release
+*	Initial release.

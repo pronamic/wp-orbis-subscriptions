@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2013-12-23 09:53:25+00:00\n"
-"PO-Revision-Date: 2013-12-23 10:53+0100\n"
+"POT-Creation-Date: 2014-01-02 14:08:31+00:00\n"
+"PO-Revision-Date: 2014-01-02 15:08+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -40,12 +40,12 @@ msgstr "ID"
 msgid "Company"
 msgstr "Bedrijf"
 
-#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:41
+#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:50
 #: admin/sent-reminders.php:29
 msgid "Type"
 msgstr "Type"
 
-#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:71
+#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:80
 #: admin/sent-reminders.php:30 templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
@@ -54,7 +54,7 @@ msgstr "Type"
 msgid "Name"
 msgstr "Naam"
 
-#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:90
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:99
 #: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
@@ -63,7 +63,7 @@ msgstr "Naam"
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:98
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:107
 #: admin/sent-reminders.php:32 templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
@@ -74,7 +74,7 @@ msgstr "Update datum"
 
 #: admin/expiring-licenses.php:36
 #: admin/meta-box-subscription-product-details.php:26
-#: admin/sent-reminders.php:34 includes/post.php:529
+#: admin/sent-reminders.php:34 includes/post.php:537
 #: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:49
 #: templates/subscription-details.php:65
@@ -84,7 +84,7 @@ msgstr "Update datum"
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:79
+#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:88
 #: admin/sent-reminders.php:35 templates/subscription-details.php:60
 msgid "License Key"
 msgstr "Licentiesleutel"
@@ -109,29 +109,30 @@ msgstr "Bewerken"
 msgid "No subscriptions will expire within the next week"
 msgstr "Er zullen volgende week geen abonnementen verlopen"
 
-#: admin/meta-box-subscription-details.php:33
+#: admin/meta-box-subscription-details.php:34
+#: admin/meta-box-subscription-product-details.php:18 includes/post.php:540
+msgid "Orbis ID"
+msgstr "Orbis ID"
+
+#: admin/meta-box-subscription-details.php:42
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:36
+#: admin/meta-box-subscription-details.php:45
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
-#: admin/meta-box-subscription-details.php:109 includes/post.php:338
+#: admin/meta-box-subscription-details.php:118 includes/post.php:338
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:117
+#: admin/meta-box-subscription-details.php:126
 #: templates/subscription-details.php:75 templates/subscription-renewal.php:48
 #: templates/subscription-renewal.php:49
 msgid "Email"
 msgstr "E-mailadres"
 
-#: admin/meta-box-subscription-product-details.php:18 includes/post.php:532
-msgid "Orbis ID"
-msgstr "Orbis ID"
-
-#: admin/meta-box-subscription-product-details.php:34 includes/post.php:530
+#: admin/meta-box-subscription-product-details.php:34 includes/post.php:538
 msgid "Cost Price"
 msgstr "Kostprijs"
 
@@ -143,7 +144,7 @@ msgstr "Automatisch verlengen"
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:56 includes/post.php:531
+#: admin/meta-box-subscription-product-details.php:56 includes/post.php:539
 msgid "Deprecated"
 msgstr "Vervallen"
 
@@ -159,23 +160,27 @@ msgstr "Orbis aflopende abonnementen"
 msgid "No reminders sent in the last week"
 msgstr "Geen herinneringen verzonden afgelopen week"
 
-#: admin/statistics.php:32
+#: admin/statistics.php:33
 msgid "All"
 msgstr "Alles"
 
-#: admin/statistics.php:38
+#: admin/statistics.php:39
 msgid "Product"
 msgstr "Product"
 
-#: admin/statistics.php:39
+#: admin/statistics.php:40
+msgid "Active"
+msgstr "Actief"
+
+#: admin/statistics.php:41
 msgid "Expired"
 msgstr "Verlopen"
 
-#: admin/statistics.php:40
+#: admin/statistics.php:42
 msgid "Total"
 msgstr "Totaal"
 
-#: admin/statistics.php:41
+#: admin/statistics.php:43
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
@@ -366,27 +371,27 @@ msgstr "Abonnement product details"
 msgid "I extended this subscription: <blockquote>%s</blockquote>"
 msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
 
-#: includes/post.php:337 includes/post.php:528
+#: includes/post.php:337 includes/post.php:536
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:339 includes/post.php:533
+#: includes/post.php:339 includes/post.php:541
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:340 includes/post.php:534
+#: includes/post.php:340 includes/post.php:542
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:341 includes/post.php:535
+#: includes/post.php:341 includes/post.php:543
 msgid "Date"
 msgstr "Datum"
 
-#: includes/post.php:586
+#: includes/post.php:594
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/post.php:586
+#: includes/post.php:594
 msgid "No"
 msgstr "Nee"
 
