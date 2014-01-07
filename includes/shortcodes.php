@@ -27,7 +27,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 		FROM
 			$wpdb->orbis_subscriptions AS s
 				LEFT JOIN
-			orbis_companies AS c
+			$wpdb->orbis_companies AS c
 					ON s.company_id = c.id
 				LEFT JOIN
 			$wpdb->orbis_subscription_products AS st
@@ -52,8 +52,6 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 	global $orbis_subscriptions_to_invoice;
 
 	$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
-
-	$return  = '';
 
 	ob_start();
 	
@@ -99,7 +97,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 			FROM
 				$wpdb->orbis_subscriptions AS s
 					LEFT JOIN
-				orbis_companies AS c
+				$wpdb->orbis_companies AS c
 						ON s.company_id = c.id
 					LEFT JOIN
 				$wpdb->orbis_subscription_products AS st
@@ -155,7 +153,7 @@ function orbis_shortcode_subscriptions_invoices( $atts ) {
 	
 	$return  = '';
 
-	$query = '
+	$query = "
 		SELECT
 			s.id,
 			s.type_id,
@@ -172,25 +170,25 @@ function orbis_shortcode_subscriptions_invoices( $atts ) {
 			si.create_date,
 			c.name AS company_name
 		FROM
-			orbis_subscriptions_invoices AS si
+			$wpdb->orbis_subscriptions_invoices AS si
 				LEFT JOIN
-			orbis_subscriptions AS s
+			$wpdb->orbis_subscriptions AS s
 					ON si.subscription_id = s.id
 				LEFT JOIN
-			orbis_subscription_products AS st
+			$wpdb->orbis_subscription_products AS st
 					ON s.type_id = st.id
 				LEFT JOIN
-			orbis_companies AS c
+			$wpdb->orbis_companies AS c
 					ON s.company_id = c.id
 				LEFT JOIN
-			wp_users AS user
+			$wpdb->users AS user
 					ON user.ID = si.user_id
 		ORDER BY
 			si.create_date DESC
 		LIMIT
 			0, 100
 		;
-	';
+	";
 
 	global $orbis_subscriptions_invoices;
 

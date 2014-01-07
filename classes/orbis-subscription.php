@@ -518,7 +518,7 @@ class Orbis_Subscription {
 				'license_key_md5' => '%s'
 			);
 
-			$result = $wpdb->insert( 'orbis_subscriptions', $data, $format );
+			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
 		} else {
 			$data = array(
 				'company_id'         => $this->get_company_id(),
@@ -541,9 +541,9 @@ class Orbis_Subscription {
 			);
 
 			// Update!
-			$result = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
+			$result = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
 		}
-
+        
 		return $result;
 	}
 
@@ -555,7 +555,7 @@ class Orbis_Subscription {
 	 * Stores a note of a sent expiration reminder
 	 * 
 	 * @access private
-	 * @return void
+	 * @return int
 	 */
 	private function store_note() {
 		$comment = array(
