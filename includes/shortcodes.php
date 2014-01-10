@@ -3,57 +3,112 @@
 /**
  * Subscriptions to invoice shortcode
  * 
- * @param unknown $atts
+ * @param mixed $atts
  * @return string
  */
 function orbis_shortcode_subscriptions_to_invoice( $atts ) {
 	global $wpdb;
 	global $orbis_subscriptions_plugin;
 
-	$query = "
-		SELECT
-			c.name AS company_name,
-			s.id,
-			s.type_id,
-			st.name AS subscription_name,
-			st.price,
-			st.twinfield_article,
-			s.name,
-			s.activation_date,
-			DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
-			si.invoice_number,
-			si.start_date,
-			DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() ) AS to_late
-		FROM
-			$wpdb->orbis_subscriptions AS s
-				LEFT JOIN
-			orbis_companies AS c
-					ON s.company_id = c.id
-				LEFT JOIN
-			$wpdb->orbis_subscription_products AS st
-					ON s.type_id = st.id
-				LEFT JOIN
-			$wpdb->orbis_subscriptions_invoices AS si
-					ON
-						s.id = si.subscription_id
-							AND
-						YEAR( si.start_date ) = YEAR( NOW() )
-		WHERE 
-			cancel_date IS NULL
-				AND
-			MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
-				AND 
-					s.type_id NOT IN ( 11, 12 )
-		ORDER BY
-			DAYOFYEAR( s.activation_date )
-		;
-	";
+    $date = date_parse( filter_input( INPUT_GET, 'date', FILTER_SANITIZE_STRING ) );
+
+    if ( ! $date['year'] ) {
+        $date['year'] = date( 'Y' );
+    }
+
+    if ( ! $date['month'] ) {
+        $date['month'] = date( 'm' );
+    }
+
+	$query = $wpdb->prepare(
+        "
+            SELECT
+                c.name AS company_name,
+                s.id,
+                s.type_id,
+                st.name AS subscription_name,
+                st.price,
+                st.twinfield_article,
+                st.interval,
+                s.name,
+                s.activation_date,
+                DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
+                si.invoice_number,
+                si.start_date,
+                (
+                    (
+                        si.id IS NULL
+                            AND
+                        (
+                            (
+                                st.interval = 'Y'
+                                    AND
+                                DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() )
+                            )
+                                OR
+                            (
+                                st.interval = 'M'
+                                    AND
+                                DAYOFMONTH( s.activation_date ) < DAYOFMONTH( NOW() )
+                            )
+                        )
+                    )
+                        OR
+                    (
+                        si.id IS NULL
+                            AND
+                        '%d-%d-31' < NOW()
+                    )
+                ) AS too_late
+            FROM
+                $wpdb->orbis_subscriptions AS s
+                    LEFT JOIN
+                $wpdb->orbis_companies AS c
+                        ON s.company_id = c.id
+                    LEFT JOIN
+                $wpdb->orbis_subscription_products AS st
+                        ON s.type_id = st.id
+                    LEFT JOIN
+                $wpdb->orbis_subscriptions_invoices AS si
+                        ON
+                            s.id = si.subscription_id
+                                AND
+                            (
+                                (
+                                    st.interval = 'Y'
+                                        AND
+                                    YEAR( si.start_date ) = %d
+                                )
+                                    OR
+                                (
+                                    st.interval = 'M'
+                                        AND
+                                    YEAR( si.start_date ) = %d
+                                        AND
+                                    MONTH( si.start_date ) = %d
+                                )
+                            )
+            WHERE
+                cancel_date IS NULL
+                    AND
+                MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
+                    AND
+                        s.type_id NOT IN ( 11, 12 )
+            ORDER BY
+                st.interval,
+                DAYOFYEAR( s.activation_date )
+            ;
+	    ",
+        $date['year'],
+        $date['month'],
+        $date['year'],
+        $date['year'],
+        $date['month']
+    );
 
 	global $orbis_subscriptions_to_invoice;
 
 	$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
-
-	$return  = '';
 
 	ob_start();
 	
@@ -71,57 +126,112 @@ add_shortcode( 'orbis_subscriptions_to_invoice', 'orbis_shortcode_subscriptions_
 /**
  * Subscriptions to invoice updater
  * 
- * @param unknown $atts
+ * @param mixed $atts
  * @return string
  */
 function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 	global $wpdb;
 	global $orbis_subscriptions_plugin;
-	
-	$return  = '';
+
+    $date = date_parse( filter_input( INPUT_GET, 'date', FILTER_SANITIZE_STRING ) );
+
+    if ( ! $date['year'] ) {
+        $date['year'] = date( 'Y' );
+    }
+
+    if ( ! $date['month'] ) {
+        $date['month'] = date( 'm' );
+    }
 
 	if ( is_user_logged_in() ) {
-		$query = "
-			SELECT
-				c.name AS company_name,
-				s.id,
-				s.type_id,
-				s.post_id,
-				st.name AS subscription_name,
-				st.price,
-				st.twinfield_article,
-				s.name,
-				s.activation_date,
-				DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
-				si.invoice_number,
-				si.start_date,
-				DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() ) AS to_late
-			FROM
-				$wpdb->orbis_subscriptions AS s
-					LEFT JOIN
-				orbis_companies AS c
-						ON s.company_id = c.id
-					LEFT JOIN
-				$wpdb->orbis_subscription_products AS st
-						ON s.type_id = st.id
-					LEFT JOIN
-				$wpdb->orbis_subscriptions_invoices AS si
-						ON
-							s.id = si.subscription_id
-								AND
-							YEAR( si.start_date ) = YEAR( NOW() )
-			WHERE
-				cancel_date IS NULL
-					AND
-				invoice_number IS NULL
-					AND
-				MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
-					AND
-						s.type_id NOT IN ( 11, 12 )
-			ORDER BY
-				DAYOFYEAR( s.activation_date )
-			;
-		";
+		$query = $wpdb->prepare(
+            "
+                SELECT
+                    c.name AS company_name,
+                    s.id,
+                    s.type_id,
+                    s.post_id,
+                    st.name AS subscription_name,
+                    st.price,
+                    st.twinfield_article,
+                    st.interval,
+                    s.name,
+                    s.activation_date,
+                    DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
+                    si.invoice_number,
+                    si.start_date,
+                    (
+                        (
+                            si.id IS NULL
+                                AND
+                            (
+                                (
+                                    st.interval = 'Y'
+                                        AND
+                                    DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() )
+                                )
+                                    OR
+                                (
+                                    st.interval = 'M'
+                                        AND
+                                    DAYOFMONTH( s.activation_date ) < DAYOFMONTH( NOW() )
+                                )
+                            )
+                        )
+                            OR
+                        (
+                            si.id IS NULL
+                                AND
+                            '%d-%d-31' < NOW()
+                        )
+                    ) AS too_late
+                FROM
+                    $wpdb->orbis_subscriptions AS s
+                        LEFT JOIN
+                    $wpdb->orbis_companies AS c
+                            ON s.company_id = c.id
+                        LEFT JOIN
+                    $wpdb->orbis_subscription_products AS st
+                            ON s.type_id = st.id
+                        LEFT JOIN
+                    $wpdb->orbis_subscriptions_invoices AS si
+                            ON
+                                s.id = si.subscription_id
+                                    AND
+                                (
+                                    (
+                                        st.interval = 'Y'
+                                            AND
+                                        YEAR( si.start_date ) = %d
+                                    )
+                                        OR
+                                    (
+                                        st.interval = 'M'
+                                            AND
+                                        YEAR( si.start_date ) = %d
+                                            AND
+                                        MONTH( si.start_date ) = %d
+                                    )
+                                )
+                WHERE
+                    cancel_date IS NULL
+                        AND
+                    invoice_number IS NULL
+                        AND
+                    MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
+                        AND
+                            s.type_id NOT IN ( 11, 12 )
+                ORDER BY
+                    st.interval,
+                    DAYOFYEAR( s.activation_date )
+                ;
+            ",
+            $date['year'],
+            $date['month'],
+            $date['year'],
+            $date['year'],
+            $date['month']
+        );
 	
 		global $orbis_subscriptions_to_invoice;
 	
@@ -146,16 +256,14 @@ add_shortcode( 'orbis_subscriptions_to_invoice_updater', 'orbis_shortcode_subscr
 /**
  * Subscriptions to invoice updater
  * 
- * @param unknown $atts
+ * @param mixed $atts
  * @return string
  */
 function orbis_shortcode_subscriptions_invoices( $atts ) {
 	global $wpdb;
 	global $orbis_subscriptions_plugin;
-	
-	$return  = '';
 
-	$query = '
+	$query = "
 		SELECT
 			s.id,
 			s.type_id,
@@ -172,25 +280,25 @@ function orbis_shortcode_subscriptions_invoices( $atts ) {
 			si.create_date,
 			c.name AS company_name
 		FROM
-			orbis_subscriptions_invoices AS si
+			$wpdb->orbis_subscriptions_invoices AS si
 				LEFT JOIN
-			orbis_subscriptions AS s
+			$wpdb->orbis_subscriptions AS s
 					ON si.subscription_id = s.id
 				LEFT JOIN
-			orbis_subscription_products AS st
+			$wpdb->orbis_subscription_products AS st
 					ON s.type_id = st.id
 				LEFT JOIN
-			orbis_companies AS c
+			$wpdb->orbis_companies AS c
 					ON s.company_id = c.id
 				LEFT JOIN
-			wp_users AS user
+			$wpdb->users AS user
 					ON user.ID = si.user_id
 		ORDER BY
 			si.create_date DESC
 		LIMIT
 			0, 100
 		;
-	';
+	";
 
 	global $orbis_subscriptions_invoices;
 
@@ -216,7 +324,6 @@ function orbis_subscriptions_to_invoice_updater() {
 		$subscriptions = $_POST['subscriptions'];
 	
 		if ( ! empty( $subscriptions ) ) {
-			$updated = array();
 			$failed  = array();
 	
 			foreach ( $subscriptions as $subscription ) {
@@ -259,7 +366,7 @@ function orbis_subscriptions_to_invoice_updater() {
 				'inserted' => empty( $inserted ) ? false : implode( $inserted, ',' ),
 				'failed'   => empty( $failed ) ? false : implode( $failed, ',' ),
 			) );
-			
+
 			wp_redirect( $url );
 			
 			exit;

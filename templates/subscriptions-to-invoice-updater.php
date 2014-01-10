@@ -1,4 +1,35 @@
-<?php 
+<?php
+
+$date = date_parse( filter_input( INPUT_GET, 'date', FILTER_SANITIZE_STRING ) );
+
+if ( ! $date['year'] ) {
+    $date['year'] = date( 'Y' );
+}
+
+if ( ! $date['month'] ) {
+    $date['month'] = date( 'm' );
+}
+
+$date_string = '01-' . $date['month'] . '-' . $date['year'];
+
+?>
+
+<form class="form-inline" action="" method="get">
+    <div class="row">
+        <div class="span2">
+            <div class="btn-group">
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 year' ) ) ) ); ?>" class="btn">&lt;&lt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn">&lt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn">&gt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 year' ) ) ) ); ?>" class="btn">&gt;&gt;</a>
+                <a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
+            </div>
+        </div>
+    </div>
+</form>
+<hr />
+
+<?php
 
 global $wpdb;
 global $orbis_subscriptions_to_invoice;
@@ -39,13 +70,18 @@ foreach ( $statuses as $status => $label ) {
 }
 
 ?>
+
+<h2><?php echo date( 'M Y', strtotime( $date_string ) ); ?></h2>
 <form method="post" action="">
 	<div class="panel">
 		<div class="content">
 			<button name="subscriptions_invoices_update" type="submit"><?php _e( 'Update', 'orbis_subscriptions' ); ?></button>
 		</div>
 	</div>
-	
+
+    <?php foreach ( array( 'M' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $interval => $interval_title ) : ?>
+
+    <h3><?php echo $interval_title; ?></h3>
 	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -64,6 +100,8 @@ foreach ( $statuses as $status => $label ) {
 			<tbody>
 	
 				<?php foreach ( $results as $i => $result ) : ?>
+
+                    <?php if ( $result->interval !== $interval ) continue; ?>
 				
 					<tr>
 						<?php 
@@ -72,13 +110,19 @@ foreach ( $statuses as $status => $label ) {
 						
 						$date_start = new DateTime( $result->activation_date );
 						$date_end   = new DateTime( $result->activation_date );
-						
-						$year  = date( 'Y' );
-						$month = $date_start->format( 'm' );
-						$day   = $date_start->format( 'd' );
 
-						$date_start->setDate( $year, $month, $day );
-						$date_end->setDate( $year + 1, $month, $day );
+						$day = $date_start->format( 'd' );
+
+                        if ( $result->interval === 'Y' ) {
+                            $date_end_timestamp = strtotime( $date_string . ' + 1 year' );
+                        } else if ( $result->interval === 'M' ) {
+                            $date_end_timestamp = strtotime( $date_string . ' + 1 month' );
+                        } else {
+                            $date_end_timestamp = strtotime( $date_string );
+                        }
+
+						$date_start->setDate( $date['year'], $date['month'], $day );
+						$date_end->setDate( date( 'Y', $date_end_timestamp ), date( 'm', $date_end_timestamp ), $day );
 
 						$date_start = $date_start->format( 'Y-m-d H:i:s' );
 						$date_end   = $date_end->format( 'Y-m-d H:i:s' );
@@ -111,7 +155,7 @@ foreach ( $statuses as $status => $label ) {
 							<input name="<?php printf( $name, $i, 'date_end' ); ?>" value="<?php echo $date_end; ?>" type="hidden" />
 						</td>
 						<td>
-							<?php if ( $result->to_late ) : ?>
+							<?php if ( $result->too_late ) : ?>
 								<span class="text-error">!!!</span>
 							<?php endif; ?>
 						</td>
@@ -122,4 +166,7 @@ foreach ( $statuses as $status => $label ) {
 			</tbody>
 		</table>
 	</div>
+
+    <?php endforeach; ?>
+
 </form>

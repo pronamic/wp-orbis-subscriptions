@@ -78,7 +78,7 @@ class Orbis_Subscriptions_Expiration_Factory {
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
 					LEFT JOIN
-				orbis_companies AS company
+				{$this->db->orbis_companies} AS company
 						ON subscription.company_id = company.id
 					LEFT JOIN
 				{$this->db->orbis_subscription_products} AS type
