@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-01-10 12:39+0100\n"
-"PO-Revision-Date: 2014-01-10 12:39+0100\n"
+"POT-Creation-Date: 2014-01-10 12:45+0100\n"
+"PO-Revision-Date: 2014-01-10 12:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -159,12 +159,12 @@ msgid "Interval"
 msgstr "Interval"
 
 #: admin/meta-box-subscription-product-details.php:76
-msgid "One year"
-msgstr "Eén jaar"
+msgid "Yearly"
+msgstr "Jaarlijks"
 
 #: admin/meta-box-subscription-product-details.php:77
-msgid "One month"
-msgstr "Eén maand"
+msgid "Monthly"
+msgstr "Maandelijks"
 
 #: admin/sent-reminders.php:10 classes/orbis-subscriptions-expiration.php:13
 msgid "Orbis Expiring Subscriptions"
@@ -519,6 +519,12 @@ msgstr "Jaarlijkse abonnementen"
 #: templates/subscriptions-to-invoice.php:70
 msgid "Notice"
 msgstr "Opmerking"
+
+#~ msgid "One year"
+#~ msgstr "Eén jaar"
+
+#~ msgid "One month"
+#~ msgstr "Eén maand"
 
 #~ msgid "Duration"
 #~ msgstr "Duur"
