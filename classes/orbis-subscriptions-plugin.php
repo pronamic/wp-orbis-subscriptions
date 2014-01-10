@@ -61,7 +61,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			twinfield_article VARCHAR(8) NOT NULL,
 			auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
 			deprecated BOOLEAN NOT NULL DEFAULT FALSE,
-			interval varchar(1) NOT NULL DEFAULT "Y" COMMENT "http://www.php.net/manual/en/function.date.php"
+			interval varchar(1) NOT NULL DEFAULT "Y"
 			PRIMARY KEY  (id)
 		' );
 
