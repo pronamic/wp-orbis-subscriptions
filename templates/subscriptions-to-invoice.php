@@ -52,9 +52,9 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 		</div>
 	</div>
 
-    <?php foreach ( array( 'm' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $duration => $duration_title ) : ?>
+    <?php foreach ( array( 'M' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $interval => $interval_title ) : ?>
 
-    <h3><?php echo $duration_title; ?></h3>
+    <h3><?php echo $interval_title; ?></h3>
 	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -75,7 +75,7 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 	
 				<?php foreach ( $results as $i => $result ) : ?>
 
-                    <?php if ( $result->duration !== $duration ) continue; ?>
+                    <?php if ( $result->interval !== $interval ) continue; ?>
 				
 					<tr>
 						<?php 
@@ -84,13 +84,19 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 						
 						$date_start = new DateTime( $result->activation_date );
 						$date_end   = new DateTime( $result->activation_date );
-						
-						$year  = date( 'Y' );
-						$month = $date_start->format( 'm' );
-						$day   = $date_start->format( 'd' );
 
-						$date_start->setDate( $year, $month, $day );
-						$date_end->setDate( $year + 1, $month, $day );
+                        $day = $date_start->format( 'd' );
+
+                        if ( $result->interval === 'Y' ) {
+                            $date_end_timestamp = strtotime( $date_string . ' + 1 year' );
+                        } else if ( $result->interval === 'M' ) {
+                            $date_end_timestamp = strtotime( $date_string . ' + 1 month' );
+                        } else {
+                            $date_end_timestamp = strtotime( $date_string );
+                        }
+
+                        $date_start->setDate( $date['year'], $date['month'], $day );
+                        $date_end->setDate( date( 'Y', $date_end_timestamp ), date( 'm', $date_end_timestamp ), $day );
 						
 						$freetext1 = $result->name;
 

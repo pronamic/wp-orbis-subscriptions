@@ -29,7 +29,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                 st.name AS subscription_name,
                 st.price,
                 st.twinfield_article,
-                st.duration,
+                st.interval,
                 s.name,
                 s.activation_date,
                 DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
@@ -41,13 +41,13 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                             AND
                         (
                             (
-                                st.duration = 'Y'
+                                st.interval = 'Y'
                                     AND
                                 DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() )
                             )
                                 OR
                             (
-                                st.duration = 'm'
+                                st.interval = 'M'
                                     AND
                                 DAYOFMONTH( s.activation_date ) < DAYOFMONTH( NOW() )
                             )
@@ -75,13 +75,13 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                                 AND
                             (
                                 (
-                                    st.duration = 'Y'
+                                    st.interval = 'Y'
                                         AND
                                     YEAR( si.start_date ) = %d
                                 )
                                     OR
                                 (
-                                    st.duration = 'm'
+                                    st.interval = 'M'
                                         AND
                                     YEAR( si.start_date ) = %d
                                         AND
@@ -95,7 +95,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                     AND
                         s.type_id NOT IN ( 11, 12 )
             ORDER BY
-                st.duration,
+                st.interval,
                 DAYOFYEAR( s.activation_date )
             ;
 	    ",
@@ -154,7 +154,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                     st.name AS subscription_name,
                     st.price,
                     st.twinfield_article,
-                    st.duration,
+                    st.interval,
                     s.name,
                     s.activation_date,
                     DAYOFYEAR( s.activation_date ) AS activation_dayofyear,
@@ -166,13 +166,13 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                                 AND
                             (
                                 (
-                                    st.duration = 'Y'
+                                    st.interval = 'Y'
                                         AND
                                     DAYOFYEAR( s.activation_date ) < DAYOFYEAR( NOW() )
                                 )
                                     OR
                                 (
-                                    st.duration = 'm'
+                                    st.interval = 'M'
                                         AND
                                     DAYOFMONTH( s.activation_date ) < DAYOFMONTH( NOW() )
                                 )
@@ -200,13 +200,13 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                                     AND
                                 (
                                     (
-                                        st.duration = 'Y'
+                                        st.interval = 'Y'
                                             AND
                                         YEAR( si.start_date ) = %d
                                     )
                                         OR
                                     (
-                                        st.duration = 'm'
+                                        st.interval = 'M'
                                             AND
                                         YEAR( si.start_date ) = %d
                                             AND
@@ -222,7 +222,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                         AND
                             s.type_id NOT IN ( 11, 12 )
                 ORDER BY
-                    st.duration,
+                    st.interval,
                     DAYOFYEAR( s.activation_date )
                 ;
             ",

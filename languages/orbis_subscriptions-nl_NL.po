@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-01-10 12:07+0100\n"
-"PO-Revision-Date: 2014-01-10 12:09+0100\n"
+"POT-Creation-Date: 2014-01-10 12:39+0100\n"
+"PO-Revision-Date: 2014-01-10 12:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -155,8 +155,8 @@ msgid "Deprecated subscription product"
 msgstr "Vervallen abonnement product"
 
 #: admin/meta-box-subscription-product-details.php:70
-msgid "Duration"
-msgstr "Duur"
+msgid "Interval"
+msgstr "Interval"
 
 #: admin/meta-box-subscription-product-details.php:76
 msgid "One year"
@@ -519,6 +519,9 @@ msgstr "Jaarlijkse abonnementen"
 #: templates/subscriptions-to-invoice.php:70
 msgid "Notice"
 msgstr "Opmerking"
+
+#~ msgid "Duration"
+#~ msgstr "Duur"
 
 #~ msgid "Orbis Subscriptions"
 #~ msgstr "Orbis abonnementen"

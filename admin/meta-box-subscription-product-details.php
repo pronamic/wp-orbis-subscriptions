@@ -9,7 +9,7 @@ $price       = get_post_meta( $post->ID, '_orbis_subscription_product_price', tr
 $cost_price  = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
 $auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
 $deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
-$duration    = get_post_meta( $post->ID, '_orbis_subscription_product_duration', true );
+$interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
 
 ?>
 <table class="form-table">
@@ -66,15 +66,15 @@ $duration    = get_post_meta( $post->ID, '_orbis_subscription_product_duration',
 		</tr>
         <tr valign="top">
             <th scope="row">
-                <label for="orbis_subscription_product_duration">
-                    <?php _e( 'Duration', 'orbis_subscriptions' ); ?>
+                <label for="orbis_subscription_product_interval">
+                    <?php _e( 'Interval', 'orbis_subscriptions' ); ?>
                 </label>
             </th>
             <td>
-                <label for="orbis_subscription_product_duration">
-                    <select id="orbis_subscription_product_duration" name="_orbis_subscription_product_duration">
-                        <option value="Y" <?php selected( $duration, 'Y' ); ?>><?php _e( 'One year', 'orbis_subscriptions' ); ?></option>
-                        <option value="m" <?php selected( $duration, 'm' ); ?>><?php _e( 'One month', 'orbis_subscriptions' ); ?></option>
+                <label for="orbis_subscription_product_interval">
+                    <select id="orbis_subscription_product_interval" name="_orbis_subscription_product_interval">
+                        <option value="Y" <?php selected( $interval, 'Y' ); ?>><?php _e( 'One year', 'orbis_subscriptions' ); ?></option>
+                        <option value="M" <?php selected( $interval, 'M' ); ?>><?php _e( 'One month', 'orbis_subscriptions' ); ?></option>
                     </select>
                 </label>
             </td>

@@ -79,9 +79,9 @@ foreach ( $statuses as $status => $label ) {
 		</div>
 	</div>
 
-    <?php foreach ( array( 'm' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $duration => $duration_title ) : ?>
+    <?php foreach ( array( 'M' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $interval => $interval_title ) : ?>
 
-    <h3><?php echo $duration_title; ?></h3>
+    <h3><?php echo $interval_title; ?></h3>
 	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -101,7 +101,7 @@ foreach ( $statuses as $status => $label ) {
 	
 				<?php foreach ( $results as $i => $result ) : ?>
 
-                    <?php if ( $result->duration !== $duration ) continue; ?>
+                    <?php if ( $result->interval !== $interval ) continue; ?>
 				
 					<tr>
 						<?php 
@@ -113,9 +113,9 @@ foreach ( $statuses as $status => $label ) {
 
 						$day = $date_start->format( 'd' );
 
-                        if ( $result->duration === 'Y' ) {
+                        if ( $result->interval === 'Y' ) {
                             $date_end_timestamp = strtotime( $date_string . ' + 1 year' );
-                        } else if ( $result->duration === 'm' ) {
+                        } else if ( $result->interval === 'M' ) {
                             $date_end_timestamp = strtotime( $date_string . ' + 1 month' );
                         } else {
                             $date_end_timestamp = strtotime( $date_string );

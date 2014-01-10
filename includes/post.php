@@ -436,7 +436,7 @@ function orbis_save_subscription_product_details( $post_id, $post ) {
 		),
 		'_orbis_subscription_product_auto_renew' => FILTER_VALIDATE_BOOLEAN,
 		'_orbis_subscription_product_deprecated' => FILTER_VALIDATE_BOOLEAN,
-        '_orbis_subscription_product_duration'   => FILTER_SANITIZE_STRING,
+        '_orbis_subscription_product_interval'   => FILTER_SANITIZE_STRING,
 	);
 
 	$data = filter_input_array( INPUT_POST, $definition );
@@ -482,7 +482,7 @@ function orbis_save_subscription_product_sync( $post_id ) {
 	$cost_price  = get_post_meta( $post_id, '_orbis_subscription_product_cost_price', true );
 	$auto_renew  = get_post_meta( $post_id, '_orbis_subscription_product_auto_renew', true );
 	$deprecated  = get_post_meta( $post_id, '_orbis_subscription_product_deprecated', true );
-	$duration    = get_post_meta( $post_id, '_orbis_subscription_product_duration', true );
+	$interval    = get_post_meta( $post_id, '_orbis_subscription_product_interval', true );
 
 	$data = array();
 	$form = array();
@@ -506,8 +506,8 @@ function orbis_save_subscription_product_sync( $post_id ) {
 	$data['deprecated'] = $deprecated;
 	$form['deprecated'] = '%d';
 
-	$data['duration'] = $duration;
-	$form['duration'] = '%s';
+	$data['interval'] = $interval;
+	$form['interval'] = '%s';
 
 	if ( empty( $orbis_id ) ) {
 		$data['post_id'] = $post_id;
