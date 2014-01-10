@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-01-10 12:45+0100\n"
-"PO-Revision-Date: 2014-01-10 12:45+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-01-10 13:20:02+00:00\n"
+"PO-Revision-Date: 2014-01-10 14:20+0100\n"
+"Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
@@ -13,9 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.5\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
 #: classes/orbis-subscriptions-expiration.php:23
@@ -158,11 +156,11 @@ msgstr "Vervallen abonnement product"
 msgid "Interval"
 msgstr "Interval"
 
-#: admin/meta-box-subscription-product-details.php:76
+#: admin/meta-box-subscription-product-details.php:77
 msgid "Yearly"
 msgstr "Jaarlijks"
 
-#: admin/meta-box-subscription-product-details.php:77
+#: admin/meta-box-subscription-product-details.php:78
 msgid "Monthly"
 msgstr "Maandelijks"
 
@@ -203,7 +201,6 @@ msgid "j F, Y @ G:i:s"
 msgstr "j F Y @ H:i"
 
 #: classes/orbis-subscription.php:565
-#, php-format
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
@@ -248,13 +245,11 @@ msgid "Statistics"
 msgstr "Statistieken"
 
 #: includes/comment.php:19
-#, php-format
 msgid ""
 "This comment was an subscription extend request (before: %s, after: %s)."
 msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
 
 #: includes/functions.php:81
-#, php-format
 msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
 msgstr ""
 "Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
@@ -385,7 +380,6 @@ msgid "Subscription Product Details"
 msgstr "Abonnement product details"
 
 #: includes/post.php:287
-#, php-format
 msgid "I extended this subscription: <blockquote>%s</blockquote>"
 msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
 
@@ -520,6 +514,30 @@ msgstr "Jaarlijkse abonnementen"
 msgid "Notice"
 msgstr "Opmerking"
 
+#. Plugin Name of the plugin/theme
+msgid "Orbis Subscriptions"
+msgstr "Orbis abonnementen"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.orbiswp.com/"
+msgstr "http://www.orbiswp.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"The Orbis Subscriptions extends your Orbis environment with the option to "
+"add subscription types and subscriptions."
+msgstr ""
+"De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
+"abonnement types en abonnement toe te voegen."
+
+#. Author of the plugin/theme
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin/theme
+msgid "http://www.pronamic.eu/"
+msgstr "http://www.pronamic.eu/"
+
 #~ msgid "One year"
 #~ msgstr "Eén jaar"
 
@@ -528,25 +546,6 @@ msgstr "Opmerking"
 
 #~ msgid "Duration"
 #~ msgstr "Duur"
-
-#~ msgid "Orbis Subscriptions"
-#~ msgstr "Orbis abonnementen"
-
-#~ msgid "http://www.orbiswp.com/"
-#~ msgstr "http://www.orbiswp.com/"
-
-#~ msgid ""
-#~ "The Orbis Subscriptions extends your Orbis environment with the option to "
-#~ "add subscription types and subscriptions."
-#~ msgstr ""
-#~ "De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
-#~ "abonnement types en abonnement toe te voegen."
-
-#~ msgid "Pronamic"
-#~ msgstr "Pronamic"
-
-#~ msgid "http://www.pronamic.eu/"
-#~ msgstr "http://www.pronamic.eu/"
 
 #~ msgid "Subscription Product will auto renew"
 #~ msgstr "Abonnement product zal automatisch verlengen"

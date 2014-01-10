@@ -34,8 +34,8 @@ License URI: http://www.pronamic.eu/copyright/
 == Changelog ==
 
 = 1.1.0 =
-*   Feature - Added a field for selecting the period of a subscription product.
-*   Feature - Added pagination to invoice shortcodes.
+*   Feature - Added a field for selecting the interval of a subscription product.
+*   Feature - Added pagination to subscriptions invoices updater shortcodes.
 *   Fix - Replaced static table names with variables.
 
 = 1.0.0 =
