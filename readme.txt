@@ -4,7 +4,7 @@ Donate link: http://www.orbiswp.com/
 Tags: orbis, subscription, licence
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: Copyright (c) Pronamic
 License URI: http://www.pronamic.eu/copyright/
 
@@ -32,6 +32,11 @@ License URI: http://www.pronamic.eu/copyright/
 
 
 == Changelog ==
+
+= 1.1.0 =
+*   Feature - Added a field for selecting the period of a subscription product.
+*   Feature - Added pagination to invoice shortcodes.
+*   Fix - Replaced static table names with variables.
 
 = 1.0.0 =
 *	Initial release.
