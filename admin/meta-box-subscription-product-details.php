@@ -9,6 +9,7 @@ $price       = get_post_meta( $post->ID, '_orbis_subscription_product_price', tr
 $cost_price  = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
 $auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
 $deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
+$duration    = get_post_meta( $post->ID, '_orbis_subscription_product_duration', true );
 
 ?>
 <table class="form-table">
@@ -63,5 +64,20 @@ $deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated
 				</label>
 			</td>
 		</tr>
+        <tr valign="top">
+            <th scope="row">
+                <label for="orbis_subscription_product_duration">
+                    <?php _e( 'Duration', 'orbis_subscriptions' ); ?>
+                </label>
+            </th>
+            <td>
+                <label for="orbis_subscription_product_duration">
+                    <select id="orbis_subscription_product_duration" name="_orbis_subscription_product_duration">
+                        <option value="Y" <?php selected( $duration, 'Y' ); ?>><?php _e( 'One year', 'orbis_subscriptions' ); ?></option>
+                        <option value="m" <?php selected( $duration, 'm' ); ?>><?php _e( 'One month', 'orbis_subscriptions' ); ?></option>
+                    </select>
+                </label>
+            </td>
+        </tr>
 	</tbody>
 </table>
