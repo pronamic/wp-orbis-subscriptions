@@ -111,17 +111,21 @@ foreach ( $statuses as $status => $label ) {
 						$date_start = new DateTime( $result->activation_date );
 						$date_end   = new DateTime( $result->activation_date );
 
-						$day = $date_start->format( 'd' );
+						$day   = $date_start->format( 'd' );
+                        $month = $date_start->format( 'm' );
 
                         if ( $result->interval === 'Y' ) {
-                            $date_end_timestamp = strtotime( $date_string . ' + 1 year' );
+                            $date_start->setDate( $date['year'], $month, $day );
+
+                            $date_end_timestamp = strtotime( $date['year'] . '-' . $month . '-' . $day . ' + 1 year' );
                         } else if ( $result->interval === 'M' ) {
-                            $date_end_timestamp = strtotime( $date_string . ' + 1 month' );
+                            $date_start->setDate( $date['year'], $date['month'], $day );
+
+                            $date_end_timestamp = strtotime( $date['year'] . '-' . $date['month'] . '-' . $day . ' + 1 month' );
                         } else {
                             $date_end_timestamp = strtotime( $date_string );
                         }
 
-						$date_start->setDate( $date['year'], $date['month'], $day );
 						$date_end->setDate( date( 'Y', $date_end_timestamp ), date( 'm', $date_end_timestamp ), $day );
 
 						$date_start = $date_start->format( 'Y-m-d H:i:s' );
