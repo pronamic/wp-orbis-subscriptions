@@ -219,7 +219,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                         AND
                     invoice_number IS NULL
                         AND
-                    MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
+                    YEAR( s.activation_date ) <= %d
                         AND
                             s.type_id NOT IN ( 11, 12 )
                 ORDER BY
@@ -231,7 +231,8 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
             $date['month'],
             $date['year'],
             $date['year'],
-            $date['month']
+            $date['month'],
+            $date['year']
         );
 	
 		global $orbis_subscriptions_to_invoice;
