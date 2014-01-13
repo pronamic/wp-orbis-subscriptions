@@ -93,7 +93,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                     AND
                 YEAR( s.activation_date ) <= %d
                     AND
-                        s.type_id NOT IN ( 11, 12 )
+				st.auto_renew
             ORDER BY
                 st.interval,
                 DAYOFYEAR( s.activation_date )
@@ -220,8 +220,8 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                     invoice_number IS NULL
                         AND
                     YEAR( s.activation_date ) <= %d
-                        AND
-                            s.type_id NOT IN ( 11, 12 )
+             	       AND
+					st.auto_renew
                 ORDER BY
                     st.interval,
                     DAYOFYEAR( s.activation_date )
