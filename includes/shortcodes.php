@@ -20,6 +20,8 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
         $date['month'] = date( 'm' );
     }
 
+    $date_plus_two_months = date_parse( date( 'Y-m-d', strtotime( $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' + 2 months' ) ) );
+
 	$query = $wpdb->prepare(
         "
             SELECT
@@ -112,9 +114,9 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
         $date['year'],
         $date['year'],
         $date['month'],
-        $date['year'],
-        $date['year'],
-        $date['month']
+        $date_plus_two_months['year'],
+        $date_plus_two_months['year'],
+        $date_plus_two_months['month']
     );
 
 	global $orbis_subscriptions_to_invoice;
@@ -153,6 +155,8 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
     if ( ! $date['month'] ) {
         $date['month'] = date( 'm' );
     }
+
+    $date_plus_two_months = date_parse( date( 'Y-m-d', strtotime( $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' + 2 months' ) ) );
 
 	if ( is_user_logged_in() ) {
 		$query = $wpdb->prepare(
@@ -250,9 +254,9 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
             $date['year'],
             $date['year'],
             $date['month'],
-            $date['year'],
-            $date['year'],
-            $date['month']
+            $date_plus_two_months['year'],
+            $date_plus_two_months['year'],
+            $date_plus_two_months['month']
         );
 
 		global $orbis_subscriptions_to_invoice;
