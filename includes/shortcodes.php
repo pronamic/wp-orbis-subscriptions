@@ -92,7 +92,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
                 cancel_date IS NULL
                     AND
                 (
-                    YEAR( s.activation_date ) <= %d
+                    YEAR( s.activation_date ) < %d
                         OR
                     (
                         YEAR( s.activation_date ) = %d
@@ -230,7 +230,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                     invoice_number IS NULL
                         AND
                     (
-                        YEAR( s.activation_date ) <= %d
+                        YEAR( s.activation_date ) < %d
                             OR
                         (
                             YEAR( s.activation_date ) = %d
@@ -254,7 +254,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
             $date['year'],
             $date['month']
         );
-	
+
 		global $orbis_subscriptions_to_invoice;
 	
 		$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
