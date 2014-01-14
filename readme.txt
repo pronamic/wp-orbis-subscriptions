@@ -36,6 +36,7 @@ License URI: http://www.pronamic.eu/copyright/
 = 1.1.1 =
 *   Fix - A bug in the invoices query hid subscriptions that had a date in the past, but a month with a higher number than the current month.
 *   Fix - Start and end dates created by the invoice updater are now correctly set.
+*   Fix - Subscriptions in the same year, but with a month later in that year, are now hidden.
 
 = 1.1.0 =
 *   Feature - Added a field for selecting the interval of a subscription product.
