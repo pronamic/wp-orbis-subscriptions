@@ -116,7 +116,7 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
         $date['year'],
         $date['month']
     );
-echo $query;
+
 	global $orbis_subscriptions_to_invoice;
 
 	$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
