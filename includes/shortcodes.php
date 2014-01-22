@@ -20,6 +20,8 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
         $date['month'] = date( 'm' );
     }
 
+    $date_plus_two_months = date_parse( date( 'Y-m-d', strtotime( $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' + 2 months' ) ) );
+
 	$query = $wpdb->prepare(
         "
             SELECT
@@ -91,9 +93,17 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
             WHERE
                 cancel_date IS NULL
                     AND
-                MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
+                (
+                    YEAR( s.activation_date ) < %d
+                        OR
+                    (
+                        YEAR( s.activation_date ) = %d
+                            AND
+                        MONTH( s.activation_date ) <= %d
+                    )
+                )
                     AND
-                        s.type_id NOT IN ( 11, 12 )
+				st.auto_renew
             ORDER BY
                 st.interval,
                 DAYOFYEAR( s.activation_date )
@@ -103,7 +113,10 @@ function orbis_shortcode_subscriptions_to_invoice( $atts ) {
         $date['month'],
         $date['year'],
         $date['year'],
-        $date['month']
+        $date['month'],
+        $date_plus_two_months['year'],
+        $date_plus_two_months['year'],
+        $date_plus_two_months['month']
     );
 
 	global $orbis_subscriptions_to_invoice;
@@ -142,6 +155,8 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
     if ( ! $date['month'] ) {
         $date['month'] = date( 'm' );
     }
+
+    $date_plus_two_months = date_parse( date( 'Y-m-d', strtotime( $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' + 2 months' ) ) );
 
 	if ( is_user_logged_in() ) {
 		$query = $wpdb->prepare(
@@ -218,9 +233,17 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
                         AND
                     invoice_number IS NULL
                         AND
-                    MONTH( s.activation_date ) < ( MONTH( NOW() ) + 2 )
-                        AND
-                            s.type_id NOT IN ( 11, 12 )
+                    (
+                        YEAR( s.activation_date ) < %d
+                            OR
+                        (
+                            YEAR( s.activation_date ) = %d
+                                AND
+                            MONTH( s.activation_date ) <= %d
+                        )
+                    )
+             	       AND
+					st.auto_renew
                 ORDER BY
                     st.interval,
                     DAYOFYEAR( s.activation_date )
@@ -230,9 +253,12 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
             $date['month'],
             $date['year'],
             $date['year'],
-            $date['month']
+            $date['month'],
+            $date_plus_two_months['year'],
+            $date_plus_two_months['year'],
+            $date_plus_two_months['month']
         );
-	
+
 		global $orbis_subscriptions_to_invoice;
 	
 		$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
@@ -335,7 +361,7 @@ function orbis_subscriptions_to_invoice_updater() {
 	
 				if ( ! empty( $invoice_number ) ) {
 					$result = $wpdb->insert(
-						'orbis_subscriptions_invoices',
+						$wpdb->orbis_subscriptions_invoices,
 						array(
 							'subscription_id' => $id,
 							'invoice_number'  => $invoice_number,

@@ -2,7 +2,7 @@
 
 global $wpdb;
 
-$id = $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM orbis_companies WHERE post_id = %d;', get_the_ID() ) );
+$id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_companies WHERE post_id = %d;", get_the_ID() ) );
 
 $query = $wpdb->prepare( "
 	SELECT

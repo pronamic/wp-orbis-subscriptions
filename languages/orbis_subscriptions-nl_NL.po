@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-01-10 13:20:02+00:00\n"
-"PO-Revision-Date: 2014-01-10 14:20+0100\n"
+"POT-Creation-Date: 2014-01-22 15:50:28+00:00\n"
+"PO-Revision-Date: 2014-01-22 16:51+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -407,7 +407,7 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-#: includes/shortcodes.php:248
+#: includes/shortcodes.php:274
 msgid "Login required"
 msgstr "Inloggen vereist"
 
