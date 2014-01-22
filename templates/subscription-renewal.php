@@ -41,18 +41,24 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 				<?php wp_nonce_field( 'orbis_subscription_renew', 'orbis_subscriptions_nonce' ); ?>
 	
 				<input name="orbis_subscription_subject" type="hidden" value="<?php echo esc_attr__( 'Pronamic iDEAL License Key Extended', 'orbis_subscriptions' ); ?>" />
-	
-				<label for="orbis_subscription_extend_note"><?php _e( 'Note', 'orbis_subscriptions' ); ?></label>
-				<textarea id="orbis_subscription_extend_note" name="orbis_subscription_extend_note" rows="3"></textarea>
-	
-				<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscriptions' ); ?></label>
-				<input id="orbis_subscription_email" name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" />
 
-				<label class="checkbox">
-					<input name="orbis_subscrtion_renew_check" value="true" type="checkbox"> <?php  _e( 'Extend this subscription with 1 year.', 'orbis_subscriptions' ); ?>
-				</label>
+				<div class="form-group">
+					<label for="orbis_subscription_extend_note"><?php _e( 'Note', 'orbis_subscriptions' ); ?></label>
+					<textarea id="orbis_subscription_extend_note" class="form-control" name="orbis_subscription_extend_note" rows="3"></textarea>
+				</div>
+  
+  				<div class="form-group">
+					<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscriptions' ); ?></label>
+					<input id="orbis_subscription_email" class="form-control" name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" />
+				</div>
 
-				<button name="orbis_subscrtion_renew" type="submit" class="btn"><?php _e( 'Extend', 'orbis_subscriptions' ); ?></button>
+				<div class="checkbox">
+					<label>
+						<input name="orbis_subscrtion_renew_check" value="true" type="checkbox"><?php  _e( 'Extend this subscription with 1 year.', 'orbis_subscriptions' ); ?>
+					</label>
+				</div>
+
+				<button name="orbis_subscrtion_renew" type="submit" class="btn btn-default"><?php _e( 'Extend', 'orbis_subscriptions' ); ?></button>
 			</fieldset>
 		</form>
 	</div>

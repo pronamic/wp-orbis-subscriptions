@@ -66,15 +66,16 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 			<dd><?php orbis_subscription_the_price(); ?></dd>
 		</dl>
 
-		<form method="post" action="" class="form-inline">
+		<form method="post" action="">
 			<?php wp_nonce_field( 'orbis_subscription_mail_license_key', 'orbis_subscriptions_nonce' ); ?>
 
-			<input name="orbis_subscription_subject" type="hidden" value="<?php echo esc_attr__( 'Pronamic iDEAL License Key', 'orbis_subscriptions' ); ?>" />
+			<div class="input-group">
+				<input name="orbis_subscription_subject" type="hidden" value="<?php echo esc_attr__( 'Pronamic iDEAL License Key', 'orbis_subscriptions' ); ?>" />
+				<input name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" class="form-control" />
 
-			<div class="input-append"> 
-				<input name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" class="span2" />
-				
-				<button name="orbis_subscription_mail" type="submit" class="btn"><?php _e( 'Send License', 'orbis_subscriptions' ); ?></button>
+				<span class="input-group-btn">
+					<button name="orbis_subscription_mail" type="submit" class="btn btn-default"><?php _e( 'Send License', 'orbis_subscriptions' ); ?></button>
+				</span>
 			</div>
 		</form>
 	</div>
