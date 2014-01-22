@@ -2,9 +2,9 @@
 
 global $wpdb;
 
-$id = $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM orbis_subscriptions WHERE post_id = %d;', get_the_ID() ) );
+$id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", get_the_ID() ) );
 
-$query = $wpdb->prepare( '
+$query = $wpdb->prepare( "
 	SELECT
 		user.display_name AS user_display_name,
 		si.create_date,
@@ -12,15 +12,15 @@ $query = $wpdb->prepare( '
 		si.end_date,
 		si.invoice_number
 	FROM
-		orbis_subscriptions_invoices AS si
-				LEFT JOIN
-			wp_users AS user
-					ON user.ID = si.user_id
+		$wpdb->orbis_subscriptions_invoices AS si
+			LEFT JOIN
+		$wpdb->users AS user
+				ON user.ID = si.user_id
 	WHERE
 		subscription_id = %d
 	ORDER BY
 		start_date ASC
-	;',
+	;",
 	$id
 );
 

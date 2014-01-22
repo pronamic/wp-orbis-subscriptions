@@ -285,7 +285,7 @@ class Orbis_Subscription {
 			'update_date'     => '%s'
 		);
 
-		$response = $wpdb->update( 'orbis_subscriptions', $data, $where, $format );
+		$response = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
 
 		// Because 0 can be returned, a boolean type response will return a false negative
 		if ( false === $response ) {

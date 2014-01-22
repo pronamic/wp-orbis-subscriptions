@@ -13,7 +13,7 @@ $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', 
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 
 if ( true ) { // empty( $orbis_id ) ) {
-	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
+	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
 	if ( $subscription ) {
 		$orbis_id        = $subscription->id;
@@ -27,7 +27,7 @@ if ( true ) { // empty( $orbis_id ) ) {
 	}
 }
 
-$company_post_id = $wpdb->get_var( $wpdb->prepare( 'SELECT post_id FROM orbis_companies WHERE id = %d;', $company_id ) );
+$company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
 
 ?>
 <div class="panel">

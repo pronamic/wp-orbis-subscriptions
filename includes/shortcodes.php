@@ -361,7 +361,7 @@ function orbis_subscriptions_to_invoice_updater() {
 	
 				if ( ! empty( $invoice_number ) ) {
 					$result = $wpdb->insert(
-						'orbis_subscriptions_invoices',
+						$wpdb->orbis_subscriptions_invoices,
 						array(
 							'subscription_id' => $id,
 							'invoice_number'  => $invoice_number,

@@ -7,7 +7,7 @@ $license_key     = get_post_meta( $post->ID, '_orbis_subscription_license_key', 
 $expiration_date = '';
 
 if ( true ) {
-	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
+	$subscription =  $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
 	if ( $subscription ) {
 		$name            = $subscription->name;
