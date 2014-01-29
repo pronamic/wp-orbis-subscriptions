@@ -70,40 +70,11 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_license_key"><?php _e( 'License Key', 'orbis_subscriptions' ); ?></label>
-		</th>
-		<td>
-			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo esc_attr( $subscription->get_license_key() ); ?>" type="text" readonly="readonly" class="regular-text" />
-		</td>
-	</tr>
-
-	<?php if ( false ) : ?>
-
-		<tr valign="top">
-			<th scope="row">
-				<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
-			</th>
-			<td>
-				<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_activation_date', true ); ?>" type="text" class="regular-text" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
-			</th>
-			<td>
-				<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true ); ?>" type="text" class="regular-text" />
-			</td>
-		</tr>
-
-	<?php endif; ?>
-
-	<tr valign="top">
-		<th scope="row">
 			<label for="orbis_subscription_person_id"><?php _e( 'Person', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>" type="text" class="regular-text" />
+			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
+			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php _e( 'Select Person', 'orbis_subscriptions' ); ?>" />
 		</td>
 	</tr>
 	<tr valign="top">
@@ -112,6 +83,30 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</th>
 		<td>
 			<input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo esc_attr( $subscription->get_email() ); ?>" type="text" class="regular-text" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_license_key"><?php _e( 'License Key', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo esc_attr( $subscription->get_license_key() ); ?>" type="text" readonly="readonly" class="regular-text" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( date_i18n( 'D j M Y H:i:s', $subscription->get_activation_date()->format( 'U' ) ) ); ?>" type="text" readonly="readonly" class="regular-text" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( date_i18n( 'D j M Y H:i:s', $subscription->get_expiration_date()->format( 'U' ) ) ); ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
 </table>
