@@ -48,3 +48,21 @@ function orbis_subscriptions_posts_clauses( $pieces, $query ) {
 }
 
 add_filter( 'posts_clauses', 'orbis_subscriptions_posts_clauses', 10, 2 );
+
+/**
+ * Get Orbis subscription
+ *
+ * @see https://github.com/woothemes/woocommerce/blob/v2.0.20/woocommerce-core-functions.php#L22
+ * @see https://github.com/woothemes/woocommerce/blob/v2.0.20/classes/class-wc-product-factory.php#L16
+ *
+ * @param unknown $post
+ */
+function get_orbis_subscription( $post = null ) {
+	$post = get_post( $post );
+
+	if ( isset( $post ) && $post->post_type == 'orbis_subscription' ) {
+		$subscription = new Orbis_Subscription( $post );
+	}
+
+	return $subscription;
+}
