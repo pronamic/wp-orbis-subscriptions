@@ -1,64 +1,53 @@
 <?php
 
 /**
- * File for generate functions for subscription usages
+ * Returns a row from the orbis_subscriptions table 
+ * where the post_id matches the parameter
  * 
- * @author Leon Rowland <leon@rowland.nl>
- * @author Remco Tolsma <remco@pronamic.nl>
+ * @global type $wpdb
+ * 
+ * @param int $post_id
+ * @return object
  */
-
-if ( ! function_exists( 'orbis_subscription_get_data' ) ) :
+function orbis_subscription_get_data( $post_id ) {
+	global $wpdb;
 	
-	/**
-	 * Returns a row from the orbis_subscriptions table 
-	 * where the post_id matches the parameter
-	 * 
-	 * @global type $wpdb
-	 * 
-	 * @param int $post_id
-	 * @return object
-	 */
-	function orbis_subscription_get_data( $post_id ) {
-		global $wpdb;
-		
-		$query = "
-			SELECT
-				s.id,
-				s.post_id,
-				s.name,
-				s.email,
-				s.activation_date,
-				s.expiration_date,
-				s.cancel_date,
-				s.update_date,
-				s.license_key,
-				s.license_key_md5,
-				s.sent_notifications,
-				c.id as company_id,
-				c.name as company_name,
-				c.e_mail as company_email,
-				t.id as type_id,
-				t.name as type_name,
-				t.price as type_price,
-				t.auto_renew as type_auto_renew
-			FROM
-				$wpdb->orbis_subscriptions as s
-					LEFT JOIN
-				$wpdb->orbis_subscription_products as t
-						ON s.type_id = t.id
-					LEFT JOIN
-				$wpdb->orbis_companies as c
-						ON s.company_id = c.id
-			WHERE
-				s.post_id = %d
-		";
-		
-		$query =  $wpdb->prepare( $query, $post_id );
-
-		return $wpdb->get_row( $query );
-	}
+	$query = "
+		SELECT
+			subscription.id,
+			subscription.post_id,
+			subscription.name,
+			subscription.email,
+			subscription.activation_date,
+			subscription.expiration_date,
+			subscription.cancel_date,
+			subscription.update_date,
+			subscription.license_key,
+			subscription.license_key_md5,
+			subscription.sent_notifications,
+			company.id AS company_id,
+			company.name AS company_name,
+			company.e_mail AS company_email,
+			product.id AS product_id,
+			product.name AS product_name,
+			product.price AS product_price,
+			product.auto_renew AS product_auto_renew
+		FROM
+			$wpdb->orbis_subscriptions AS subscription
+				LEFT JOIN
+			$wpdb->orbis_subscription_products AS product
+					ON subscription.type_id = product.id
+				LEFT JOIN
+			$wpdb->orbis_companies AS company
+					ON subscription.company_id = company.id
+		WHERE
+			subscription.post_id = %d
+	";
 	
-endif;
+	$query =  $wpdb->prepare( $query, $post_id );
+
+	return $wpdb->get_row( $query );
+}
 
 
 if ( ! function_exists( 'orbis_date2mysql' ) ) :
