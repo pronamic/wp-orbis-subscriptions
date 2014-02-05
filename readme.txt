@@ -3,8 +3,8 @@ Contributors: pronamic, remcotolsma
 Donate link: http://www.orbiswp.com/
 Tags: orbis, subscription, licence
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 1.1.2
+Tested up to: 3.8.1
+Stable tag: 1.1.3
 License: Copyright (c) Pronamic
 License URI: http://www.pronamic.eu/copyright/
 
@@ -32,6 +32,9 @@ License URI: http://www.pronamic.eu/copyright/
 
 
 == Changelog ==
+
+= 1.1.3 =
+*	Tweak - Enabled support for the Orbis persons suggest field.
 
 = 1.1.2 =
 *	Tweak - Updated Bootstrap support from v2.1.1 to v3.0.3.
