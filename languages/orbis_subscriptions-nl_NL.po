@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-01-22 15:50:28+00:00\n"
-"PO-Revision-Date: 2014-01-22 16:51+0100\n"
+"POT-Creation-Date: 2014-02-05 15:01:37+00:00\n"
+"PO-Revision-Date: 2014-02-05 16:01+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -40,12 +40,12 @@ msgstr "ID"
 msgid "Company"
 msgstr "Bedrijf"
 
-#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:50
+#: admin/expiring-licenses.php:31 admin/meta-box-subscription-details.php:35
 #: admin/sent-reminders.php:29
 msgid "Type"
 msgstr "Type"
 
-#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:80
+#: admin/expiring-licenses.php:32 admin/meta-box-subscription-details.php:65
 #: admin/sent-reminders.php:30 templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
@@ -54,7 +54,7 @@ msgstr "Type"
 msgid "Name"
 msgstr "Naam"
 
-#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:99
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:98
 #: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
@@ -63,7 +63,7 @@ msgstr "Naam"
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:107
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:106
 #: admin/sent-reminders.php:32 templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
@@ -84,7 +84,7 @@ msgstr "Update datum"
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:88
+#: admin/expiring-licenses.php:37 admin/meta-box-subscription-details.php:90
 #: admin/sent-reminders.php:35 templates/subscription-details.php:60
 msgid "License Key"
 msgstr "Licentiesleutel"
@@ -109,26 +109,30 @@ msgstr "Bewerken"
 msgid "No subscriptions will expire within the next week"
 msgstr "Er zullen volgende week geen abonnementen verlopen"
 
-#: admin/meta-box-subscription-details.php:34
+#: admin/meta-box-subscription-details.php:19
 #: admin/meta-box-subscription-product-details.php:19 includes/post.php:546
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-subscription-details.php:42
+#: admin/meta-box-subscription-details.php:27
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:45
+#: admin/meta-box-subscription-details.php:30
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
-#: admin/meta-box-subscription-details.php:118 includes/post.php:338
+#: admin/meta-box-subscription-details.php:73 includes/post.php:338
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:126
-#: templates/subscription-details.php:75 templates/subscription-renewal.php:48
-#: templates/subscription-renewal.php:49
+#: admin/meta-box-subscription-details.php:77
+msgid "Select Person"
+msgstr "Selecteer persoon"
+
+#: admin/meta-box-subscription-details.php:82
+#: templates/subscription-details.php:74 templates/subscription-renewal.php:51
+#: templates/subscription-renewal.php:52
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -200,7 +204,7 @@ msgstr "Vervalratio"
 msgid "j F, Y @ G:i:s"
 msgstr "j F Y @ H:i"
 
-#: classes/orbis-subscription.php:565
+#: classes/orbis-subscription.php:564
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
@@ -249,7 +253,7 @@ msgid ""
 "This comment was an subscription extend request (before: %s, after: %s)."
 msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
 
-#: includes/functions.php:81
+#: includes/functions.php:70
 msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
 msgstr ""
 "Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
@@ -423,7 +427,7 @@ msgstr "Abonnement"
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
-#: templates/subscription-details.php:72
+#: templates/subscription-details.php:73
 msgid "Pronamic iDEAL License Key"
 msgstr "Pronamic iDEAL licentiesleutel"
 
@@ -470,15 +474,15 @@ msgstr "Abonnement verlengen"
 msgid "Pronamic iDEAL License Key Extended"
 msgstr "Pronamic iDEAL licentiesleutel verlengd"
 
-#: templates/subscription-renewal.php:45
+#: templates/subscription-renewal.php:46
 msgid "Note"
 msgstr "Notitie"
 
-#: templates/subscription-renewal.php:52
+#: templates/subscription-renewal.php:57
 msgid "Extend this subscription with 1 year."
 msgstr "Verleng dit abonnement met 1 jaar."
 
-#: templates/subscription-renewal.php:55
+#: templates/subscription-renewal.php:61
 msgid "Extend"
 msgstr "Verleng"
 

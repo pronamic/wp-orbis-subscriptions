@@ -4,7 +4,7 @@ Plugin Name: Orbis Subscriptions
 Plugin URI: http://www.orbiswp.com/
 Description: The Orbis Subscriptions extends your Orbis environment with the option to add subscription types and subscriptions.
 
-Version: 1.1.2
+Version: 1.1.3
 Requires at least: 3.5
 
 Author: Pronamic

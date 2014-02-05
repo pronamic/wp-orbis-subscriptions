@@ -53,13 +53,13 @@ class Orbis_Subscription {
 	private $company_email;
 
 	/**
-	 * Holds the type associated id,
+	 * Holds the product associated id,
 	 * from the orbis_subscription table
 	 * 
 	 * @access private
 	 * @var int
 	 */
-	private $type_id;
+	private $product_id;
 
 	/**
 	 * Holds the type name from the
@@ -68,14 +68,14 @@ class Orbis_Subscription {
 	 * @access private
 	 * @var string
 	 */
-	private $type_name;
+	private $product_name;
 
 	/**
 	 * 
 	 * @access private
 	 * @var string
 	 */
-	private $type_price;
+	private $product_price;
 
 	/**
 	 * Holds the domain name id,
@@ -237,7 +237,7 @@ class Orbis_Subscription {
 				$this->set_company_name( $subscription_data->company_name );
 				$this->set_company_email( $subscription_data->company_email );
 				$this->set_post_id( $subscription_data->post_id );
-				$this->set_type_id( $subscription_data->type_id );
+				$this->set_product_id( $subscription_data->product_id );
 				$this->set_type_name( $subscription_data->type_name );
 				$this->set_type_price( $subscription_data->type_price );
 				$this->set_name( $subscription_data->name );
@@ -493,10 +493,9 @@ class Orbis_Subscription {
 
 		// Must be new
 		if ( ! $this->get_id() ) {
-
 			$data = array(
 				'company_id'      => $this->get_company_id(),
-				'type_id'         => $this->get_type_id(),
+				'type_id'         => $this->get_product_id(),
 				'post_id'         => $this->get_post_id(),
 				'name'            => $this->get_name(),
 				'email'           => $this->get_email(),
@@ -522,7 +521,7 @@ class Orbis_Subscription {
 		} else {
 			$data = array(
 				'company_id'         => $this->get_company_id(),
-				'type_id'            => $this->get_type_id(),
+				'type_id'            => $this->get_product_id(),
 				'name'               => $this->get_name(),
 				'email'              => $this->get_email(),
 				'update_date'        => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
@@ -615,12 +614,12 @@ class Orbis_Subscription {
 		return $this;
 	}
 
-	public function get_type_id() {
-		return $this->type_id;
+	public function get_product_id() {
+		return $this->product_id;
 	}
 
-	public function set_type_id( $type_id ) {
-		$this->type_id = $type_id;
+	public function set_product_id( $product_id ) {
+		$this->product_id = $product_id;
 		return $this;
 	}
 
