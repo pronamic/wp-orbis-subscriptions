@@ -188,7 +188,7 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	// Set this subscriptions details
 	$subscription
 		->set_company_id( $company_id )
-		->set_type_id( $type_id )
+		->set_product_id( $type_id )
 		->set_post_id( $post_id )
 		->set_email( $email )
 		->set_name( $name );
