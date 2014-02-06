@@ -5,7 +5,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.1.0' );
+		$this->set_db_version( '1.1.4' );
 
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/subscription.php' );
