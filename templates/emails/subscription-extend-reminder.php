@@ -19,7 +19,8 @@ if ( true ) {
 $extend_url = add_query_arg(
 	array(
 		'domain_name' => $name,
-		'license'     => $license_key
+		'license'     => $license_key,
+		'product'     => $subscription->type_id,
 	),
 	get_option( 'orbis_subscriptions_update_url' )
 );
