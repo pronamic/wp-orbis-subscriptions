@@ -465,7 +465,8 @@ class Orbis_Subscription {
 	public function renew_url( $url ) {
 		return add_query_arg( array( 
 			'domain_name' => $this->get_name(),
-			'license'     => $this->get_license_key() 
+			'license'     => $this->get_license_key(),
+			'product'     => $this->get_product_id(),
 		), $url );
 	}
 
