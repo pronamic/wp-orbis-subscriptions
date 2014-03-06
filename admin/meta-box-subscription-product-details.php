@@ -35,7 +35,7 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
 				<label for="orbis_subscription_product_cost_price"><?php _e( 'Cost Price', 'orbis_subscriptions' ); ?></label>
 			</th>
 			<td>
-				<input type="text" id="orbis_subscription_product_cost_price" name="_orbis_subscription_product_cost_price" value="<?php echo empty( $cost_price ) ? '' : esc_attr( number_format( $cost_price, 2, ',', '.' ) ) ?>" class="regular-text" />
+				<input type="text" id="orbis_subscription_product_cost_price" name="_orbis_subscription_product_cost_price" value="<?php echo empty( $cost_price ) ? '' : esc_attr( number_format( $cost_price, 2, ',', '.' ) ); ?>" class="regular-text" />
 			</td>
 		</tr>
 		<tr valign="top">
