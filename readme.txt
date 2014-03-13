@@ -33,6 +33,9 @@ License URI: http://www.pronamic.eu/copyright/
 
 == Changelog ==
 
+= 1.1.5 =
+*	Tweak - Switched from custom menu icons to the new WordPress [Dashicons](http://melchoyce.github.io/dashicons/).
+
 = 1.1.4 =
 *	Fix - Fatal error: Call to a member function format() on a non-object.
 *	Fix - Fatal error: Call to undefined method Orbis_Subscription::set_type_id().
