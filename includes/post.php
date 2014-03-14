@@ -23,7 +23,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			),
 			'public'        => true,
 			'menu_position' => 30,
-			'menu_icon'     => $orbis_subscriptions_plugin->plugin_url( 'admin/images/subscription.png' ),
+			'menu_icon'     => 'dashicons-share-alt',
 			'supports'      => array( 'editor', 'author', 'comments', 'thumbnail' ),
 			'has_archive'   => true,
 			'rewrite'       => array(

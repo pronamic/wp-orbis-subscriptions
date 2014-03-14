@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-02-05 15:01:37+00:00\n"
-"PO-Revision-Date: 2014-02-05 16:01+0100\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/orbis-"
+"subscriptions\n"
+"POT-Creation-Date: 2014-03-14 15:07:34+00:00\n"
+"PO-Revision-Date: 2014-03-14 16:07+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -13,7 +14,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: admin/expiring-licenses.php:11 admin/sent-reminders.php:11
 #: classes/orbis-subscriptions-expiration.php:23
@@ -54,7 +55,7 @@ msgstr "Type"
 msgid "Name"
 msgstr "Naam"
 
-#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:98
+#: admin/expiring-licenses.php:33 admin/meta-box-subscription-details.php:108
 #: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
@@ -63,7 +64,7 @@ msgstr "Naam"
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:106
+#: admin/expiring-licenses.php:34 admin/meta-box-subscription-details.php:126
 #: admin/sent-reminders.php:32 templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
@@ -204,7 +205,7 @@ msgstr "Vervalratio"
 msgid "j F, Y @ G:i:s"
 msgstr "j F Y @ H:i"
 
-#: classes/orbis-subscription.php:564
+#: classes/orbis-subscription.php:565
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
@@ -263,21 +264,6 @@ msgstr ""
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: includes/post.php:11
-msgctxt "post type general name"
-msgid "Subscriptions"
-msgstr "Abonnementen"
-
-#: includes/post.php:12
-msgctxt "post type singular name"
-msgid "Subscription"
-msgstr "Abonnement"
-
-#: includes/post.php:13
-msgctxt "orbis_subscription"
-msgid "Add New"
-msgstr "Nieuwe abonnement"
-
 #: includes/post.php:14
 msgid "Add New Subscription"
 msgstr "Nieuwe abonnement toevoegen"
@@ -310,29 +296,9 @@ msgstr "Geen abonnementen gevonden in prullenbak"
 msgid "Parent Subscription:"
 msgstr "Bovenliggend abonnement"
 
-#: includes/post.php:30
-msgctxt "slug"
-msgid "subscriptions"
-msgstr "abonnementen"
-
 #: includes/post.php:38
 msgid "Subscription Products"
 msgstr "Abonnement producten"
-
-#: includes/post.php:40
-msgctxt "post type general name"
-msgid "Subscription Products"
-msgstr "Abonnement producten"
-
-#: includes/post.php:41
-msgctxt "post type singular name"
-msgid "Subscription Product"
-msgstr "Abonnement product"
-
-#: includes/post.php:42
-msgctxt "orbis_subs_type"
-msgid "Add New"
-msgstr "Nieuw abonnement product"
 
 #: includes/post.php:43
 msgid "Add New Subscription Product"
@@ -369,11 +335,6 @@ msgstr "Bovenliggend abonnement product:"
 #: includes/post.php:51
 msgid "Products"
 msgstr "Producten"
-
-#: includes/post.php:59
-msgctxt "slug"
-msgid "subscription-products"
-msgstr "abonnement-producten"
 
 #: includes/post.php:73 templates/subscription-details.php:35
 msgid "Subscription Details"
@@ -541,6 +502,46 @@ msgstr "Pronamic"
 #. Author URI of the plugin/theme
 msgid "http://www.pronamic.eu/"
 msgstr "http://www.pronamic.eu/"
+
+#: includes/post.php:11
+msgctxt "post type general name"
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/post.php:40
+msgctxt "post type general name"
+msgid "Subscription Products"
+msgstr "Abonnement producten"
+
+#: includes/post.php:12
+msgctxt "post type singular name"
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: includes/post.php:41
+msgctxt "post type singular name"
+msgid "Subscription Product"
+msgstr "Abonnement product"
+
+#: includes/post.php:13
+msgctxt "orbis_subscription"
+msgid "Add New"
+msgstr "Nieuwe abonnement"
+
+#: includes/post.php:30
+msgctxt "slug"
+msgid "subscriptions"
+msgstr "abonnementen"
+
+#: includes/post.php:59
+msgctxt "slug"
+msgid "subscription-products"
+msgstr "abonnement-producten"
+
+#: includes/post.php:42
+msgctxt "orbis_subs_type"
+msgid "Add New"
+msgstr "Nieuw abonnement product"
 
 #~ msgid "One year"
 #~ msgstr "Eén jaar"

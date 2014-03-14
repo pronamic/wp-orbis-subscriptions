@@ -238,8 +238,8 @@ class Orbis_Subscription {
 				$this->set_company_email( $subscription_data->company_email );
 				$this->set_post_id( $subscription_data->post_id );
 				$this->set_product_id( $subscription_data->product_id );
-				$this->set_type_name( $subscription_data->type_name );
-				$this->set_type_price( $subscription_data->type_price );
+				$this->set_type_name( $subscription_data->product_name );
+				$this->set_type_price( $subscription_data->product_price );
 				$this->set_name( $subscription_data->name );
 				$this->set_email( $subscription_data->email );
 				$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
@@ -465,7 +465,8 @@ class Orbis_Subscription {
 	public function renew_url( $url ) {
 		return add_query_arg( array( 
 			'domain_name' => $this->get_name(),
-			'license'     => $this->get_license_key() 
+			'license'     => $this->get_license_key(),
+			'product'     => $this->get_product_id(),
 		), $url );
 	}
 

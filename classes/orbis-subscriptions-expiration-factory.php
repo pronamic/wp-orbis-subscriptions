@@ -102,15 +102,15 @@ class Orbis_Subscriptions_Expiration_Factory {
 				subscription.post_id,
 				subscription.type_id,
 				subscription.expiration_date,
-				type.id,
-				type.auto_renew
+				product.id,
+				product.auto_renew
 			FROM
 				{$this->db->orbis_subscriptions} AS subscription
 					LEFT JOIN
-				{$this->db->orbis_subscription_products} as type
-						ON subscription.type_id = type.id
+				{$this->db->orbis_subscription_products} AS product
+						ON subscription.type_id = product.id
 			WHERE 
-				type.auto_renew = 0
+				product.auto_renew = 0
 					AND 
 				( 
 					subscription.expiration_date <= NOW() 
