@@ -50,8 +50,8 @@ $statuses = array(
 );
 
 foreach ( $statuses as $status => $label ) {
-	if ( isset( $_GET[$status] ) ) {
-		$ids = $_GET[$status];
+	if ( isset( $_GET[ $status ] ) ) {
+		$ids = $_GET[ $status ];
 		$ids = explode( ',', $ids );
 
 		if ( ! empty( $ids ) ) {
