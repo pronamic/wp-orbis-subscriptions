@@ -162,12 +162,16 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 		switch ( $interval ) {
 			case 'M':
 				$day_function = 'DAYOFMONTH';
-				
+				$join_condition = $wpdb->prepare( 'YEAR( invoice.start_date ) = %d AND MONTH( invoice.start_date ) = %d', date( 'Y', $date ), date( 'n', $date ) );
+				$where_condition = $wpdb->prepare( 'YEAR( subscription.activation_date ) = %d AND MONTH( subscription.activation_date ) <= %d', date( 'Y', $limit ), date( 'n', $limit ) );
+
 				break;
 			case 'Y':
 			default:
 				$day_function = 'DAYOFYEAR';
-				
+				$join_condition = $wpdb->prepare( 'YEAR( invoice.start_date ) = %d', date( 'Y', $date ) );
+				$where_condition = $wpdb->prepare( 'YEAR( subscription.activation_date ) < %d', date( 'Y', $limit ) );
+
 				break;
 		}
 
@@ -187,29 +191,9 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 				invoice.invoice_number,
 				invoice.start_date,
 				(
-					(
-						invoice.id IS NULL
-                                AND
-						(
-							(
-								product.interval = 'Y'
-									AND
-								DAYOFYEAR( subscription.activation_date ) < DAYOFYEAR( NOW() )
-							)
-								OR
-							(
-								product.interval = 'M'
-									AND
-								DAYOFMONTH( subscription.activation_date ) < DAYOFMONTH( NOW() )
-							)
-						)
-					)
-						OR
-					(
-						invoice.id IS NULL
-							AND
-						'%d-%d-31' < NOW()
-					)
+					invoice.id IS NULL
+						AND
+					$day_function( subscription.activation_date ) < $day_function( NOW() )
 				) AS too_late
 			FROM
 				$wpdb->orbis_subscriptions AS subscription
@@ -224,50 +208,20 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 						ON
 							subscription.id = invoice.subscription_id
 								AND
-							(
-								(
-									product.interval = 'Y'
-										AND
-									YEAR( invoice.start_date ) = %d
-								)
-									OR
-								(
-									product.interval = 'M'
-										AND
-									YEAR( invoice.start_date ) = %d
-										AND
-									MONTH( invoice.start_date ) = %d
-								)
-							)
+							( $join_condition )
 			WHERE
 				cancel_date IS NULL
 					AND
 				invoice_number IS NULL
 					AND
-				(
-					YEAR( subscription.activation_date ) < %d
-						OR
-					(
-						YEAR( subscription.activation_date ) = %d
-							AND
-						MONTH( subscription.activation_date ) <= %d
-					)
-				)
+				( $where_condition )
 					AND
 				product.auto_renew
 			ORDER BY
-				product.interval,
 				DAYOFYEAR( subscription.activation_date )
 			;
 		",
-		date( 'Y', $date ),
-		date( 'n', $date ),
-		date( 'Y', $date ),
-		date( 'Y', $date ),
-		date( 'n', $date ),
-		date( 'Y', $limit ),
-		date( 'Y', $limit ),
-		date( 'n', $limit )
+		''
 	);
 
 echo '<pre>';
