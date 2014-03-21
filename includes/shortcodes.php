@@ -153,6 +153,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 
 	// Interval
 	$interval = filter_input( INPUT_GET, 'interval', FILTER_SANITIZE_STRING );
+	$interval = empty( $interval ) ? 'Y' : $interval;
 
 	if ( is_user_logged_in() ) {
 		$query_too_late = '';
