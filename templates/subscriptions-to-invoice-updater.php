@@ -146,7 +146,7 @@ foreach ( $statuses as $status => $label ) {
 
 						?>
 						<td>
-							<?php echo $result->id; echo $result->interval; ?>
+							<?php echo $result->id; ?>
 						</td>
 						<td>
 							<?php echo $result->company_name; ?>
