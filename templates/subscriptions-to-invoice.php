@@ -15,18 +15,23 @@ $date_string = '01-' . $date['month'] . '-' . $date['year'];
 ?>
 
 <form class="form-inline" action="" method="get">
-    <div class="row">
-        <div class="span2">
-            <div class="btn-group">
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 year' ) ) ) ); ?>" class="btn">&lt;&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn">&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn">&gt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 year' ) ) ) ); ?>" class="btn">&gt;&gt;</a>
-                <a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
-            </div>
-        </div>
-    </div>
+	<div class="btn-group">
+		<a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn btn-default">&lt;</a>
+		<a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn btn-default">&gt;</a>
+		<a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn btn-default"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
+	</div>
+
+	<div class="pull-right">
+		<select name="interval" class="form-control">
+			<option value=""></option>
+			<option value="Y" <?php selected( $interval, 'Y' ); ?>><?php _e( 'Yearly', 'orbis_subscriptions' ); ?></option>
+			<option value="M" <?php selected( $interval, 'M' ); ?>><?php _e( 'Monthly', 'orbis_subscriptions' ); ?></option>
+		</select>
+
+		<button class="btn btn-default" type="submit">Filter</button>
+	</div>
 </form>
+
 <hr />
 
 <?php
@@ -52,9 +57,8 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 		</div>
 	</div>
 
-    <?php foreach ( array( 'M' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $interval => $interval_title ) : ?>
+    <h3><?php _e( 'Subscriptions', 'orbis_subscriptions' ); ?></h3>
 
-    <h3><?php echo $interval_title; ?></h3>
 	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -65,9 +69,9 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 					<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Start Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'End Date', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Notice', 'orbis_subscriptions' ); ?></th>
 				</tr>
 			</thead>
 	
@@ -75,9 +79,15 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 	
 				<?php foreach ( $results as $i => $result ) : ?>
 
-                    <?php if ( $result->interval !== $interval ) continue; ?>
-				
-					<tr>
+					<?php 
+					
+					$classes = array();
+					if ( $result->too_late ) {
+						$classes[] = 'warning';
+					}
+					
+					?>
+					<tr class="<?php echo implode( ' ', $classes ); ?>">
 						<?php 
 						
 						$name = 'lines[%d][%s]';
@@ -119,7 +129,10 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 						</td>
 						<td>
 							<input name="<?php printf( $name, $i, 'article' ); ?>" value="<?php echo $result->twinfield_article; ?>" type="hidden" />
-							<?php echo $result->subscription_name; ?>
+
+							<a href="<?php echo get_permalink( $result->post_id ); ?>">
+								<?php echo $result->subscription_name; ?>
+							</a>
 						</td>
 						<td>
 							<input name="<?php printf( $name, $i, 'quantity' ); ?>" value="1" type="hidden" />
@@ -133,7 +146,10 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 						<td>
 							<input name="<?php printf( $name, $i, 'freetext2' ); ?>" value="<?php echo $freetext2; ?>" type="hidden" />
 							<input name="<?php printf( $name, $i, 'freetext3' ); ?>" value="<?php echo $freetext3; ?>" type="hidden" />
-							<?php echo $result->activation_date; ?>
+							<?php echo $result->invoice_start_date; ?>
+						</td>
+						<td>
+							<?php echo $result->invoice_end_date; ?>
 						</td>
 						<td>
 							<?php 
@@ -152,11 +168,6 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 							
 							?>
 						</td>
-						<td>
-							<?php if ( $result->too_late ) : ?>
-								<span class="text-error">!!!</span>
-							<?php endif; ?>
-						</td>
 					</tr>
 				
 				<?php endforeach; ?>
@@ -164,7 +175,4 @@ if ( function_exists( 'twinfield_get_form_action' ) ) {
 			</tbody>
 		</table>
 	</div>
-
-    <?php endforeach; ?>
-
 </form>

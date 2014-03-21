@@ -12,21 +12,29 @@ if ( ! $date['month'] ) {
 
 $date_string = '01-' . $date['month'] . '-' . $date['year'];
 
+// Interval
+$interval = filter_input( INPUT_GET, 'interval', FILTER_SANITIZE_STRING );
+
 ?>
 
 <form class="form-inline" action="" method="get">
-    <div class="row">
-        <div class="span2">
-            <div class="btn-group">
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 year' ) ) ) ); ?>" class="btn">&lt;&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn">&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn">&gt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 year' ) ) ) ); ?>" class="btn">&gt;&gt;</a>
-                <a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
-            </div>
-        </div>
-    </div>
+	<div class="btn-group">
+		<a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn btn-default">&lt;</a>
+		<a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn btn-default">&gt;</a>
+		<a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn btn-default"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
+	</div>
+
+	<div class="pull-right">
+		<select name="interval" class="form-control">
+			<option value=""></option>
+			<option value="Y" <?php selected( $interval, 'Y' ); ?>><?php _e( 'Yearly', 'orbis_subscriptions' ); ?></option>
+			<option value="M" <?php selected( $interval, 'M' ); ?>><?php _e( 'Monthly', 'orbis_subscriptions' ); ?></option>
+		</select>
+
+		<button class="btn btn-default" type="submit">Filter</button>
+	</div>
 </form>
+
 <hr />
 
 <?php
@@ -38,12 +46,12 @@ $results = $orbis_subscriptions_to_invoice;
 
 $statuses = array(
 	'inserted' => __( 'Inserted', 'orbis_subscriptions' ),
-	'failed'   => __( 'Failed', 'orbis_subscriptions' )
+	'failed'   => __( 'Failed', 'orbis_subscriptions' ),
 );
 
 foreach ( $statuses as $status => $label ) {
-	if ( isset( $_GET[$status] ) ) {
-		$ids = $_GET[$status];
+	if ( isset( $_GET[ $status ] ) ) {
+		$ids = $_GET[ $status ];
 		$ids = explode( ',', $ids );
 
 		if ( ! empty( $ids ) ) {
@@ -51,7 +59,7 @@ foreach ( $statuses as $status => $label ) {
 			
 			$subscriptions = get_posts( array(
 				'post_type' => 'any',
-				'post__in'  => $ids
+				'post__in'  => $ids,
 			) );
 			
 			if ( ! empty( $subscriptions ) ) {
@@ -79,9 +87,8 @@ foreach ( $statuses as $status => $label ) {
 		</div>
 	</div>
 
-    <?php foreach ( array( 'M' => __( 'Monthly subscriptions', 'orbis_subscriptions' ), 'Y' => __( 'Yearly subscriptions', 'orbis_subscriptions' ) ) as $interval => $interval_title ) : ?>
+    <h3><?php _e( 'Subscriptions', 'orbis_subscriptions' ); ?></h3>
 
-    <h3><?php echo $interval_title; ?></h3>
 	<div class="panel">
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -91,19 +98,25 @@ foreach ( $statuses as $status => $label ) {
 					<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'Start Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php _e( 'End Date', 'orbis_subscriptions' ); ?></th>
 					<th scope="col"><?php _e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Notice', 'orbis_subscriptions' ); ?></th>
 				</tr>
 			</thead>
 	
 			<tbody>
 	
 				<?php foreach ( $results as $i => $result ) : ?>
-
-                    <?php if ( $result->interval !== $interval ) continue; ?>
-				
-					<tr>
+			
+					<?php 
+					
+					$classes = array();
+					if ( $result->too_late ) {
+						$classes[] = 'warning';
+					}
+					
+					?>
+					<tr class="<?php echo implode( ' ', $classes ); ?>">
 						<?php 
 						
 						$name = 'subscriptions[%d][%s]';
@@ -139,16 +152,21 @@ foreach ( $statuses as $status => $label ) {
 							<?php echo $result->company_name; ?>
 						</td>
 						<td>
-							<?php echo $result->subscription_name; ?>
+							<a href="<?php echo get_permalink( $result->post_id ); ?>">
+								<?php echo $result->subscription_name; ?>
+							</a>
 						</td>
 						<td>
-							<?php echo $result->price; ?>
+							<?php echo orbis_price( $result->price ); ?>
 						</td>
 						<td>
 							<?php echo $result->name; ?>
 						</td>
 						<td>
-							<?php echo $result->activation_date; ?>
+							<?php echo $date_start; ?>
+						</td>
+						<td>
+							<?php echo $date_end; ?>
 						</td>
 						<td>
 							<?php echo $result->invoice_number; ?>
@@ -158,11 +176,6 @@ foreach ( $statuses as $status => $label ) {
 							<input name="<?php printf( $name, $i, 'date_start' ); ?>" value="<?php echo $date_start; ?>" type="hidden" />
 							<input name="<?php printf( $name, $i, 'date_end' ); ?>" value="<?php echo $date_end; ?>" type="hidden" />
 						</td>
-						<td>
-							<?php if ( $result->too_late ) : ?>
-								<span class="text-error">!!!</span>
-							<?php endif; ?>
-						</td>
 					</tr>
 				
 				<?php endforeach; ?>
@@ -170,7 +183,4 @@ foreach ( $statuses as $status => $label ) {
 			</tbody>
 		</table>
 	</div>
-
-    <?php endforeach; ?>
-
 </form>
