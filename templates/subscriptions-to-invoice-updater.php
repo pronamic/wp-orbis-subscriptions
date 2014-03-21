@@ -51,7 +51,7 @@ foreach ( $statuses as $status => $label ) {
 			
 			$subscriptions = get_posts( array(
 				'post_type' => 'any',
-				'post__in'  => $ids
+				'post__in'  => $ids,
 			) );
 			
 			if ( ! empty( $subscriptions ) ) {
