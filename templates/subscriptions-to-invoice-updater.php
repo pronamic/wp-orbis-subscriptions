@@ -146,13 +146,15 @@ foreach ( $statuses as $status => $label ) {
 
 						?>
 						<td>
-							<?php echo $result->id; ?>
+							<?php echo $result->id; echo $result->interval; ?>
 						</td>
 						<td>
 							<?php echo $result->company_name; ?>
 						</td>
 						<td>
-							<?php echo $result->subscription_name; ?>
+							<a href="<?php echo get_permalink( $result->post_id ); ?>">
+								<?php echo $result->subscription_name; ?>
+							</a>
 						</td>
 						<td>
 							<?php echo orbis_price( $result->price ); ?>

@@ -151,8 +151,6 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 		$date = time();
 	}
 
-	$limit = strtotime( '+2 months', $date );
-
 	// Interval
 	$interval = filter_input( INPUT_GET, 'interval', FILTER_SANITIZE_STRING );
 
@@ -163,72 +161,70 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 			case 'M':
 				$day_function = 'DAYOFMONTH';
 				$join_condition = $wpdb->prepare( 'YEAR( invoice.start_date ) = %d AND MONTH( invoice.start_date ) = %d', date( 'Y', $date ), date( 'n', $date ) );
-				$where_condition = $wpdb->prepare( 'YEAR( subscription.activation_date ) = %d AND MONTH( subscription.activation_date ) <= %d', date( 'Y', $limit ), date( 'n', $limit ) );
+				$where_condition = $wpdb->prepare( '( YEAR( subscription.activation_date ) <= %d AND MONTH( subscription.activation_date ) <= %d )', date( 'Y', $date ), date( 'n', $date ) );
 
 				break;
 			case 'Y':
 			default:
 				$day_function = 'DAYOFYEAR';
 				$join_condition = $wpdb->prepare( 'YEAR( invoice.start_date ) = %d', date( 'Y', $date ) );
-				$where_condition = $wpdb->prepare( 'YEAR( subscription.activation_date ) < %d', date( 'Y', $limit ) );
+				$where_condition = $wpdb->prepare( 'YEAR( subscription.activation_date ) <= %d', date( 'Y', $date ) );
 
 				break;
 		}
 
-		$query = $wpdb->prepare( "
-			SELECT
-				company.name AS company_name,
-				product.name AS subscription_name,
-				product.price,
-				product.twinfield_article,
-				product.interval,
-				subscription.id,
-				subscription.type_id,
-				subscription.post_id,
-				subscription.name,
-				subscription.activation_date,
-				DAYOFYEAR( subscription.activation_date ) AS activation_dayofyear,
-				invoice.invoice_number,
-				invoice.start_date,
-				(
-					invoice.id IS NULL
+		$query = $wpdb->prepare(
+			"
+				SELECT
+					company.name AS company_name,
+					product.name AS subscription_name,
+					product.price,
+					product.twinfield_article,
+					product.interval,
+					subscription.id,
+					subscription.type_id,
+					subscription.post_id,
+					subscription.name,
+					subscription.activation_date,
+					DAYOFYEAR( subscription.activation_date ) AS activation_dayofyear,
+					invoice.invoice_number,
+					invoice.start_date,
+					(
+						invoice.id IS NULL
+							AND
+						$day_function( subscription.activation_date ) < $day_function( NOW() )
+					) AS too_late
+				FROM
+					$wpdb->orbis_subscriptions AS subscription
+						LEFT JOIN
+					$wpdb->orbis_companies AS company
+							ON subscription.company_id = company.id
+						LEFT JOIN
+					$wpdb->orbis_subscription_products AS product
+							ON subscription.type_id = product.id
+						LEFT JOIN
+					$wpdb->orbis_subscriptions_invoices AS invoice
+							ON
+								subscription.id = invoice.subscription_id
+									AND
+								( $join_condition )
+				WHERE
+					cancel_date IS NULL
 						AND
-					$day_function( subscription.activation_date ) < $day_function( NOW() )
-				) AS too_late
-			FROM
-				$wpdb->orbis_subscriptions AS subscription
-					LEFT JOIN
-				$wpdb->orbis_companies AS company
-						ON subscription.company_id = company.id
-					LEFT JOIN
-				$wpdb->orbis_subscription_products AS product
-						ON subscription.type_id = product.id
-					LEFT JOIN
-				$wpdb->orbis_subscriptions_invoices AS invoice
-						ON
-							subscription.id = invoice.subscription_id
-								AND
-							( $join_condition )
-			WHERE
-				cancel_date IS NULL
-					AND
-				invoice_number IS NULL
-					AND
-				( $where_condition )
-					AND
-				product.auto_renew
-			ORDER BY
-				DAYOFYEAR( subscription.activation_date )
-			;
-		",
-		''
-	);
+					invoice_number IS NULL
+						AND
+					product.auto_renew
+						AND
+					product.interval = %s
+						AND
+					$where_condition
+				ORDER BY
+					DAYOFYEAR( subscription.activation_date )
+				;
+			",
+			$interval
+		);
 
-echo '<pre>';
-var_dump( $date );
-echo '</pre>';
-
-echo '<pre>', $query, '</pre>';
 		global $orbis_subscriptions_to_invoice;
 	
 		$orbis_subscriptions_to_invoice = $wpdb->get_results( $query );
