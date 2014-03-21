@@ -46,7 +46,7 @@ $results = $orbis_subscriptions_to_invoice;
 
 $statuses = array(
 	'inserted' => __( 'Inserted', 'orbis_subscriptions' ),
-	'failed'   => __( 'Failed', 'orbis_subscriptions' )
+	'failed'   => __( 'Failed', 'orbis_subscriptions' ),
 );
 
 foreach ( $statuses as $status => $label ) {
