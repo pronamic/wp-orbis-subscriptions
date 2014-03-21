@@ -4,7 +4,7 @@ Donate link: http://www.orbiswp.com/
 Tags: orbis, subscription, licence
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: Copyright (c) Pronamic
 License URI: http://www.pronamic.eu/copyright/
 
@@ -26,12 +26,10 @@ License URI: http://www.pronamic.eu/copyright/
 
 
 
-== Developers ==
-
-*	php ~/wp/svn/i18n-tools/makepot.php wp-plugin ~/wp/git/orbis-subscriptions ~/wp/git/orbis-subscriptions/languages/orbis_subscriptions.pot
-
-
 == Changelog ==
+
+= 1.1.6 =
+*	Tweak - Improved the subscriptions to invoice and updater shortcode functionalities.
 
 = 1.1.5 =
 *	Tweak - Switched from custom menu icons to the new WordPress [Dashicons](http://melchoyce.github.io/dashicons/).

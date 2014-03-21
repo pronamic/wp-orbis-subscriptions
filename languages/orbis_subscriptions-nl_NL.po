@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2014-03-14 15:07:34+00:00\n"
-"PO-Revision-Date: 2014-03-14 16:07+0100\n"
+"POT-Creation-Date: 2014-03-21 12:27:08+00:00\n"
+"PO-Revision-Date: 2014-03-21 13:27+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -27,8 +27,8 @@ msgid "Send Reminder"
 msgstr "Verstuur herinnering"
 
 #: admin/expiring-licenses.php:29 admin/sent-reminders.php:27
-#: templates/subscriptions-to-invoice-updater.php:89
-#: templates/subscriptions-to-invoice.php:63
+#: templates/subscriptions-to-invoice-updater.php:96
+#: templates/subscriptions-to-invoice.php:67
 msgid "ID"
 msgstr "ID"
 
@@ -36,8 +36,8 @@ msgstr "ID"
 #: templates/domain-name-subscriptions.php:46
 #: templates/subscription-details.php:40
 #: templates/subscriptions-invoices.php:14
-#: templates/subscriptions-to-invoice-updater.php:90
-#: templates/subscriptions-to-invoice.php:64
+#: templates/subscriptions-to-invoice-updater.php:97
+#: templates/subscriptions-to-invoice.php:68
 msgid "Company"
 msgstr "Bedrijf"
 
@@ -50,8 +50,8 @@ msgstr "Type"
 #: admin/sent-reminders.php:30 templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscriptions-invoices.php:17
-#: templates/subscriptions-to-invoice-updater.php:93
-#: templates/subscriptions-to-invoice.php:67
+#: templates/subscriptions-to-invoice-updater.php:100
+#: templates/subscriptions-to-invoice.php:71
 msgid "Name"
 msgstr "Naam"
 
@@ -59,8 +59,6 @@ msgstr "Naam"
 #: admin/sent-reminders.php:31 templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
 #: templates/subscription-details.php:45
-#: templates/subscriptions-to-invoice-updater.php:94
-#: templates/subscriptions-to-invoice.php:68
 msgid "Activation Date"
 msgstr "Activatie datum"
 
@@ -80,8 +78,8 @@ msgstr "Update datum"
 #: templates/domain-name-subscriptions.php:49
 #: templates/subscription-details.php:65
 #: templates/subscriptions-invoices.php:16
-#: templates/subscriptions-to-invoice-updater.php:92
-#: templates/subscriptions-to-invoice.php:66
+#: templates/subscriptions-to-invoice-updater.php:99
+#: templates/subscriptions-to-invoice.php:70
 msgid "Price"
 msgstr "Prijs"
 
@@ -162,10 +160,14 @@ msgid "Interval"
 msgstr "Interval"
 
 #: admin/meta-box-subscription-product-details.php:77
+#: templates/subscriptions-to-invoice-updater.php:30
+#: templates/subscriptions-to-invoice.php:27
 msgid "Yearly"
 msgstr "Jaarlijks"
 
 #: admin/meta-box-subscription-product-details.php:78
+#: templates/subscriptions-to-invoice-updater.php:31
+#: templates/subscriptions-to-invoice.php:28
 msgid "Monthly"
 msgstr "Maandelijks"
 
@@ -261,6 +263,8 @@ msgstr ""
 
 #: includes/post.php:9 includes/post.php:22 includes/template.php:62
 #: templates/domain-name-subscriptions.php:39
+#: templates/subscriptions-to-invoice-updater.php:90
+#: templates/subscriptions-to-invoice.php:60
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
@@ -372,15 +376,15 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-#: includes/shortcodes.php:274
+#: includes/shortcodes.php:237
 msgid "Login required"
 msgstr "Inloggen vereist"
 
 #: templates/company-subscriptions.php:38
 #: templates/domain-name-subscriptions.php:47
 #: templates/subscriptions-invoices.php:15
-#: templates/subscriptions-to-invoice-updater.php:91
-#: templates/subscriptions-to-invoice.php:65
+#: templates/subscriptions-to-invoice-updater.php:98
+#: templates/subscriptions-to-invoice.php:69
 msgid "Subscription"
 msgstr "Abonnement"
 
@@ -412,18 +416,22 @@ msgstr "Gebruiker"
 
 #: templates/subscription-invoices.php:41
 #: templates/subscriptions-invoices.php:18
+#: templates/subscriptions-to-invoice-updater.php:101
+#: templates/subscriptions-to-invoice.php:72
 msgid "Start Date"
 msgstr "Startdatum"
 
 #: templates/subscription-invoices.php:42
 #: templates/subscriptions-invoices.php:19
+#: templates/subscriptions-to-invoice-updater.php:102
+#: templates/subscriptions-to-invoice.php:73
 msgid "End Date"
 msgstr "Einddatum"
 
 #: templates/subscription-invoices.php:43
 #: templates/subscriptions-invoices.php:20
-#: templates/subscriptions-to-invoice-updater.php:95
-#: templates/subscriptions-to-invoice.php:69
+#: templates/subscriptions-to-invoice-updater.php:103
+#: templates/subscriptions-to-invoice.php:74
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
@@ -447,37 +455,22 @@ msgstr "Verleng dit abonnement met 1 jaar."
 msgid "Extend"
 msgstr "Verleng"
 
-#: templates/subscriptions-to-invoice-updater.php:25
-#: templates/subscriptions-to-invoice.php:25
+#: templates/subscriptions-to-invoice-updater.php:24
+#: templates/subscriptions-to-invoice.php:21
 msgid "This month"
 msgstr "Deze maand"
 
-#: templates/subscriptions-to-invoice-updater.php:40
+#: templates/subscriptions-to-invoice-updater.php:48
 msgid "Inserted"
 msgstr "Toegevoegd"
 
-#: templates/subscriptions-to-invoice-updater.php:41
+#: templates/subscriptions-to-invoice-updater.php:49
 msgid "Failed"
 msgstr "Mislukt"
 
-#: templates/subscriptions-to-invoice-updater.php:78
+#: templates/subscriptions-to-invoice-updater.php:86
 msgid "Update"
 msgstr "Update"
-
-#: templates/subscriptions-to-invoice-updater.php:82
-#: templates/subscriptions-to-invoice.php:55
-msgid "Monthly subscriptions"
-msgstr "Maandelijkse abonnementen"
-
-#: templates/subscriptions-to-invoice-updater.php:82
-#: templates/subscriptions-to-invoice.php:55
-msgid "Yearly subscriptions"
-msgstr "Jaarlijkse abonnementen"
-
-#: templates/subscriptions-to-invoice-updater.php:96
-#: templates/subscriptions-to-invoice.php:70
-msgid "Notice"
-msgstr "Opmerking"
 
 #. Plugin Name of the plugin/theme
 msgid "Orbis Subscriptions"
@@ -542,6 +535,15 @@ msgstr "abonnement-producten"
 msgctxt "orbis_subs_type"
 msgid "Add New"
 msgstr "Nieuw abonnement product"
+
+#~ msgid "Monthly subscriptions"
+#~ msgstr "Maandelijkse abonnementen"
+
+#~ msgid "Yearly subscriptions"
+#~ msgstr "Jaarlijkse abonnementen"
+
+#~ msgid "Notice"
+#~ msgstr "Opmerking"
 
 #~ msgid "One year"
 #~ msgstr "Eén jaar"
