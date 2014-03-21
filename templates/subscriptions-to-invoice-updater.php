@@ -18,11 +18,11 @@ $date_string = '01-' . $date['month'] . '-' . $date['year'];
     <div class="row">
         <div class="span2">
             <div class="btn-group">
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 year' ) ) ) ); ?>" class="btn">&lt;&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn">&lt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn">&gt;</a>
-                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 year' ) ) ) ); ?>" class="btn">&gt;&gt;</a>
-                <a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 year' ) ) ) ); ?>" class="btn btn-default">&lt;&lt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' - 1 month' ) ) ) ); ?>" class="btn btn-default">&lt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 month' ) ) ) ); ?>" class="btn btn-default">&gt;</a>
+                <a href="<?php echo add_query_arg( array( 'date' => date( 'd-m-Y', strtotime( $date_string . ' + 1 year' ) ) ) ); ?>" class="btn btn-default">&gt;&gt;</a>
+                <a href="<?php echo remove_query_arg( array( 'date' ) ); ?>" class="btn btn-default"><?php _e( 'This month', 'orbis_subscriptions' ); ?></a>
             </div>
         </div>
     </div>
