@@ -24,7 +24,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			'public'        => true,
 			'menu_position' => 30,
 			'menu_icon'     => 'dashicons-share-alt',
-			'supports'      => array( 'editor', 'author', 'comments', 'thumbnail' ),
+			'supports'      => array( 'editor', 'author', 'comments', 'revisions' ),
 			'has_archive'   => true,
 			'rewrite'       => array(
 				'slug' => _x( 'subscriptions', 'slug', 'orbis_subscriptions' )
@@ -53,7 +53,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			'public'        => true,
 			'menu_position' => 30,
 			'show_in_menu'  => 'edit.php?post_type=orbis_subscription',
-			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail' ),
+			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail', 'revisions' ),
 			'has_archive'   => true,
 			'rewrite'       => array(
 				'slug' => _x( 'subscription-products', 'slug', 'orbis_subscriptions' )

@@ -28,6 +28,11 @@ License URI: http://www.pronamic.eu/copyright/
 
 == Changelog ==
 
+= 1.1.7 =
+*	Fix - Fixed a bug in the subscription to invoice updater.
+*	Tweak - Enabled 'revisions' for the subscription product and subscription post type.
+*	Tweak - Disable 'thumbnail' for the subscription post type.
+
 = 1.1.6 =
 *	Tweak - Improved the subscriptions to invoice and updater shortcode functionalities.
 
