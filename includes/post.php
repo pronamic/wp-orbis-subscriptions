@@ -266,7 +266,7 @@ function orbis_subscriptions_maybe_renew() {
 		$check = filter_input( INPUT_POST, 'orbis_subscrtion_renew_check', FILTER_VALIDATE_BOOLEAN );
 		$note = filter_input( INPUT_POST, 'orbis_subscription_extend_note', FILTER_SANITIZE_STRING );
 
-		if ( wp_verify_nonce( $nonce, 'orbis_subscription_renew' ) && $check && ( str_word_count( $note ) > 5 ) ) {
+		if ( wp_verify_nonce( $nonce, 'orbis_subscription_renew' ) && $check && ( str_word_count( $note ) >= 4 ) ) {
 			global $orbis_subscriptions_plugin;
 			global $orbis_subscription;
 			global $orbis_email_title;
