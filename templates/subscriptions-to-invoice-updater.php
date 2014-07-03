@@ -157,7 +157,7 @@ foreach ( $statuses as $status => $label ) {
 							</a>
 						</td>
 						<td>
-							<?php echo orbis_price( $result->price ); ?>
+							<?php echo 'test'.orbis_price( $result->price ); ?>
 						</td>
 						<td>
 							<?php echo $result->name; ?>

@@ -422,17 +422,28 @@ function orbis_save_subscription_product_details( $post_id, $post ) {
 		return;
 	}
 
+	$currency_setting = get_option( 'orbis_currency' );
+	switch ($currency_setting) {
+	case 'eur':
+		$currency_decimal = ',';
+	    break;
+	case 'usd':
+		$currency_decimal = '.';
+	    break;
+	}
+
+
 	// OK
 	$definition = array(
 		'_orbis_subscription_product_price'      => array(
 			'filter'  => FILTER_VALIDATE_FLOAT,
 			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-			'options' => array( 'decimal' => ',' ),
+			'options' => array( 'decimal' => $currency_decimal ),
 		),
 		'_orbis_subscription_product_cost_price' => array(
 			'filter'  => FILTER_VALIDATE_FLOAT,
 			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
-			'options' => array( 'decimal' => ',' ),
+			'options' => array( 'decimal' => $currency_decimal ),
 		),
 		'_orbis_subscription_product_auto_renew' => FILTER_VALIDATE_BOOLEAN,
 		'_orbis_subscription_product_deprecated' => FILTER_VALIDATE_BOOLEAN,

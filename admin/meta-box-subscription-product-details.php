@@ -11,6 +11,19 @@ $auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew
 $deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
 $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
 
+$currency_setting = get_option( 'orbis_currency' );
+switch ($currency_setting) {
+case 'eur':
+    $currency = '&euro;';
+    empty( $cost ) ? '' : $price_format = number_format($price, 2, ',', '.');
+    empty( $cost_price ) ? '' : $cost_price_format = number_format($cost_price, 2, ',', '.');
+    break;
+case 'usd':
+    $currency = '$';
+    empty( $price ) ? '' : $price_format = number_format($price, 2, '.', ',');
+    empty( $cost_price ) ? '' : $cost_price_format = number_format($cost_price, 2, '.', ',');
+    break;
+}
 ?>
 <table class="form-table">
 	<tbody>
@@ -27,7 +40,7 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
 				<label for="orbis_subscription_product_price"><?php _e( 'Price', 'orbis_subscriptions' ); ?></label>
 			</th>
 			<td>
-				<input type="text" id="orbis_subscription_product_price" name="_orbis_subscription_product_price" value="<?php echo empty( $price ) ? '' : esc_attr( number_format( $price, 2, ',', '.' ) ); ?>" class="regular-text" />
+				<input type="text" id="orbis_subscription_product_price" name="_orbis_subscription_product_price" value="<?php echo empty( $price ) ? '' : esc_attr( $price_format ); ?>" class="regular-text" />
 			</td>
 		</tr>
 		<tr valign="top">
@@ -35,7 +48,7 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
 				<label for="orbis_subscription_product_cost_price"><?php _e( 'Cost Price', 'orbis_subscriptions' ); ?></label>
 			</th>
 			<td>
-				<input type="text" id="orbis_subscription_product_cost_price" name="_orbis_subscription_product_cost_price" value="<?php echo empty( $cost_price ) ? '' : esc_attr( number_format( $cost_price, 2, ',', '.' ) ); ?>" class="regular-text" />
+				<input type="text" id="orbis_subscription_product_cost_price" name="_orbis_subscription_product_cost_price" value="<?php echo empty( $cost_price ) ? '' : esc_attr( $cost_price_format ); ?>" class="regular-text" />
 			</td>
 		</tr>
 		<tr valign="top">
