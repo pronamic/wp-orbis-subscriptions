@@ -74,7 +74,7 @@ function orbis_sbuscriptions_add_meta_boxes() {
 		'orbis_subscription_details_meta_box',
 		'orbis_subscription',
 		'normal',
-		'default'
+		'high'
 	);
 
 	add_meta_box(
@@ -92,7 +92,7 @@ function orbis_sbuscriptions_add_meta_boxes() {
 		'orbis_subscription_product_details_meta_box',
 		'orbis_subs_product',
 		'normal',
-		'default'
+		'high'
 	);
 }
 
