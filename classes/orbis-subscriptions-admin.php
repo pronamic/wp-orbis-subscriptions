@@ -21,6 +21,6 @@ class Orbis_Subscriptions_Admin {
 	}
 
 	public function page_statistics() {
-		$this->plugin->plugin_include( 'admin/statistics.php' );
+		$this->plugin->plugin_include( 'admin/page-statistics.php' );
 	}
 }

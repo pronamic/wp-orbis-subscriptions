@@ -22,17 +22,6 @@ function orbis_subscriptions_render_details() {
 add_action( 'orbis_before_side_content', 'orbis_subscriptions_render_details' );
 
 
-function orbis_subscriptions_render_renewal() {
-	if ( is_singular( 'orbis_subscription' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/subscription-renewal.php' );
-	}
-}
-
-add_action( 'orbis_before_side_content', 'orbis_subscriptions_render_renewal' );
-
-
 function orbis_subscriptions_render_domain_name_subscriptions() {
 	if ( is_singular( 'orbis_domain_name' ) ) {
 		global $orbis_subscriptions_plugin;
