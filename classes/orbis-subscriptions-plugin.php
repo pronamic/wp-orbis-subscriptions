@@ -18,6 +18,10 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		orbis_register_table( 'orbis_subscriptions' );
 		orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
 		orbis_register_table( 'orbis_subscriptions_invoices' );
+
+		if ( is_admin() ) {
+			$this->admin = new Orbis_Subscriptions_Admin( $this );
+		}
 	}
 
 	public function loaded() {
