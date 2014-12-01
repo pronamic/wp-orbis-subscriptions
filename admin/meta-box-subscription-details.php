@@ -129,4 +129,22 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
+	<tr valign="top">
+		<?php 
+		
+		$date = $subscription->get_cancel_date();
+		
+		$value = '';
+		if ( $date ) {
+			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
+		}
+		
+		?>
+		<th scope="row">
+			<label for="orbis_subscription_cancel_date"><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
+		</td>
+	</tr>
 </table>

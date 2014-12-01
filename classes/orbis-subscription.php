@@ -244,7 +244,9 @@ class Orbis_Subscription {
 				$this->set_email( $subscription_data->email );
 				$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
 				$this->set_expiration_date( new DateTime( $subscription_data->expiration_date ) );
-				$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
+				if ( $subscription_data->cancel_date ) {
+					$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
+				}
 				$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 				$this->set_license_key( $subscription_data->license_key );
 				$this->set_sent_notifications( $subscription_data->sent_notifications );
