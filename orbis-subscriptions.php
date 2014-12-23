@@ -23,13 +23,13 @@ function orbis_subscriptions_bootstrap() {
 	require_once 'classes/orbis-subscriptions-plugin.php';
 	require_once 'classes/orbis-subscriptions-admin.php';
 	require_once 'classes/orbis-subscription.php';
-	
+
 	// Functions
 	require_once 'includes/functions.php';
 
 	// Initialize
 	global $orbis_subscriptions_plugin;
-	
+
 	$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin( __FILE__ );
 }
 
