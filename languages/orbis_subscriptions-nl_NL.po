@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2014-12-01 12:07:30+00:00\n"
-"PO-Revision-Date: 2014-12-01 13:07+0100\n"
+"POT-Creation-Date: 2014-12-23 12:34:09+00:00\n"
+"PO-Revision-Date: 2014-12-23 13:34+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:2c,1;esc_attr__\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.1\n"
 
 #: admin/meta-box-subscription-actions.php:4
 msgid "Cancel"
@@ -59,8 +59,7 @@ msgid "Select Person"
 msgstr "Selecteer persoon"
 
 #: admin/meta-box-subscription-details.php:82
-#: templates/subscription-details.php:74 templates/subscription-renewal.php:51
-#: templates/subscription-renewal.php:52
+#: templates/subscription-details.php:74
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -80,6 +79,11 @@ msgstr "Activatie datum"
 #: templates/subscription-details.php:48
 msgid "Expiration Date"
 msgstr "Vervaldatum"
+
+#: admin/meta-box-subscription-details.php:144
+#: templates/subscription-details.php:53
+msgid "Cancel Date"
+msgstr "Opzeggingsdatum"
 
 #: admin/meta-box-subscription-product-details.php:27 includes/post.php:452
 #: templates/company-subscriptions.php:40
@@ -151,7 +155,7 @@ msgstr "Totaal"
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
-#: classes/orbis-subscription.php:455
+#: classes/orbis-subscription.php:457
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
 
@@ -306,10 +310,6 @@ msgstr "Abonnement"
 msgid "Company"
 msgstr "Bedrijf"
 
-#: templates/subscription-details.php:53
-msgid "Cancel Date"
-msgstr "Opzeggingsdatum"
-
 #: templates/subscription-details.php:73
 msgid "Pronamic iDEAL License Key"
 msgstr "Pronamic iDEAL licentiesleutel"
@@ -352,26 +352,6 @@ msgstr "Einddatum"
 #: templates/subscriptions-to-invoice.php:74
 msgid "Invoice Number"
 msgstr "Factuurnummer"
-
-#: templates/subscription-renewal.php:35
-msgid "Subscription Renewal"
-msgstr "Abonnement verlengen"
-
-#: templates/subscription-renewal.php:43
-msgid "Pronamic iDEAL License Key Extended"
-msgstr "Pronamic iDEAL licentiesleutel verlengd"
-
-#: templates/subscription-renewal.php:46
-msgid "Note"
-msgstr "Notitie"
-
-#: templates/subscription-renewal.php:57
-msgid "Extend this subscription with 1 year."
-msgstr "Verleng dit abonnement met 1 jaar."
-
-#: templates/subscription-renewal.php:61
-msgid "Extend"
-msgstr "Verleng"
 
 #: templates/subscriptions-to-invoice-updater.php:24
 #: templates/subscriptions-to-invoice.php:21
@@ -458,6 +438,21 @@ msgstr "abonnement-producten"
 msgctxt "orbis_subs_type"
 msgid "Add New"
 msgstr "Nieuw abonnement product"
+
+#~ msgid "Subscription Renewal"
+#~ msgstr "Abonnement verlengen"
+
+#~ msgid "Pronamic iDEAL License Key Extended"
+#~ msgstr "Pronamic iDEAL licentiesleutel verlengd"
+
+#~ msgid "Note"
+#~ msgstr "Notitie"
+
+#~ msgid "Extend this subscription with 1 year."
+#~ msgstr "Verleng dit abonnement met 1 jaar."
+
+#~ msgid "Extend"
+#~ msgstr "Verleng"
 
 #~ msgid "Sent Reminders"
 #~ msgstr "Verzonden herinneringen"

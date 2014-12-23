@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions 1.2.0\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/orbis-subscriptions\n"
-"POT-Creation-Date: 2014-12-01 12:07:30+00:00\n"
+"POT-Creation-Date: 2014-12-23 12:34:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,8 +57,7 @@ msgid "Select Person"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:82
-#: templates/subscription-details.php:74 templates/subscription-renewal.php:51
-#: templates/subscription-renewal.php:52
+#: templates/subscription-details.php:74
 msgid "Email"
 msgstr ""
 
@@ -77,6 +76,11 @@ msgstr ""
 #: admin/meta-box-subscription-details.php:126
 #: templates/subscription-details.php:48
 msgid "Expiration Date"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:144
+#: templates/subscription-details.php:53
+msgid "Cancel Date"
 msgstr ""
 
 #: admin/meta-box-subscription-product-details.php:27 includes/post.php:452
@@ -149,7 +153,7 @@ msgstr ""
 msgid "Expire Rate"
 msgstr ""
 
-#: classes/orbis-subscription.php:455
+#: classes/orbis-subscription.php:457
 msgid "A license expiration reminder has been sent to %s (%s)."
 msgstr ""
 
@@ -304,10 +308,6 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#: templates/subscription-details.php:53
-msgid "Cancel Date"
-msgstr ""
-
 #: templates/subscription-details.php:73
 msgid "Pronamic iDEAL License Key"
 msgstr ""
@@ -349,26 +349,6 @@ msgstr ""
 #: templates/subscriptions-to-invoice-updater.php:103
 #: templates/subscriptions-to-invoice.php:74
 msgid "Invoice Number"
-msgstr ""
-
-#: templates/subscription-renewal.php:35
-msgid "Subscription Renewal"
-msgstr ""
-
-#: templates/subscription-renewal.php:43
-msgid "Pronamic iDEAL License Key Extended"
-msgstr ""
-
-#: templates/subscription-renewal.php:46
-msgid "Note"
-msgstr ""
-
-#: templates/subscription-renewal.php:57
-msgid "Extend this subscription with 1 year."
-msgstr ""
-
-#: templates/subscription-renewal.php:61
-msgid "Extend"
 msgstr ""
 
 #: templates/subscriptions-to-invoice-updater.php:24

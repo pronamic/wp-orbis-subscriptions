@@ -29,7 +29,7 @@ class Orbis_Subscriptions_Admin {
 	}
 
 	//////////////////////////////////////////////////
-	
+
 	/**
 	 * Admin menu
 	 */
@@ -77,8 +77,8 @@ class Orbis_Subscriptions_Admin {
 				$user = wp_get_current_user();
 
 				$comment_content = sprintf(
-					__( "This subscription is just '%s' by %s.", 'orbis' ),
-					__( 'canceled', 'orbis' ),
+					__( "This subscription is just '%s' by %s.", 'orbis_subscriptions' ),
+					__( 'canceled', 'orbis_subscriptions' ),
 					$user->display_name
 				);
 
