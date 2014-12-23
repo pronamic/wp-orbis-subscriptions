@@ -16,7 +16,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_id"><?php _e( 'Orbis ID', 'orbis' ); ?></label>
+			<label for="orbis_subscription_id"><?php _e( 'Orbis ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_id" name="_orbis_subscription_id" value="<?php echo esc_attr( $subscription->get_id() ); ?>" type="text" class="regular-text" readonly="readonly" />
@@ -79,7 +79,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscription' ); ?></label>
+			<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo esc_attr( $subscription->get_email() ); ?>" type="text" class="regular-text" />
@@ -94,15 +94,15 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</td>
 	</tr>
 	<tr valign="top">
-		<?php 
-		
+		<?php
+
 		$date = $subscription->get_activation_date();
-		
+
 		$value = '';
 		if ( $date ) {
 			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
 		}
-		
+
 		?>
 		<th scope="row">
 			<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
@@ -112,21 +112,39 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</td>
 	</tr>
 	<tr valign="top">
-		<?php 
-		
+		<?php
+
 		$date = $subscription->get_expiration_date();
-		
+
 		$value = '';
 		if ( $date ) {
 			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
 		}
-		
+
 		?>
 		<th scope="row">
 			<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<?php
+
+		$date = $subscription->get_cancel_date();
+
+		$value = '';
+		if ( $date ) {
+			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
+		}
+
+		?>
+		<th scope="row">
+			<label for="orbis_subscription_cancel_date"><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
 </table>

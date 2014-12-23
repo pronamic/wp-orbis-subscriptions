@@ -143,15 +143,7 @@ function orbis_shortcode_subscriptions_to_invoice_updater( $atts ) {
 			case 'M':
 				$day_function = 'DAYOFMONTH';
 				$join_condition = $wpdb->prepare( '( YEAR( invoice.start_date ) = %d AND MONTH( invoice.start_date ) = %d )', date( 'Y', $date ), date( 'n', $date ) );
-				$where_condition = $wpdb->prepare( '
-					(
-						YEAR( subscription.activation_date ) <= %d
-							AND
-						MONTH( subscription.activation_date ) <= %d
-					)',
-					date( 'Y', $date ),
-					date( 'n', $date )
-				);
+				$where_condition = $wpdb->prepare( 'subscription.activation_date <= %s', date( 'Y-m-d', $date ) );
 
 				break;
 			case 'Y':

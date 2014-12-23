@@ -244,7 +244,9 @@ class Orbis_Subscription {
 				$this->set_email( $subscription_data->email );
 				$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
 				$this->set_expiration_date( new DateTime( $subscription_data->expiration_date ) );
-				$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
+				if ( $subscription_data->cancel_date ) {
+					$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
+				}
 				$this->set_update_date( new DateTime( $subscription_data->update_date ) );
 				$this->set_license_key( $subscription_data->license_key );
 				$this->set_sent_notifications( $subscription_data->sent_notifications );
@@ -293,116 +295,6 @@ class Orbis_Subscription {
 		} else {
 			$this->set_expiration_date( $expiration );
 			return true;
-		}
-	}
-
-	/**
-	 * Determines if this subscription has been the
-	 * DateInterval parameter since the last reminder.
-	 * 
-	 * You can supply a DateTime object as the second
-	 * param, if you wish to compare with another time
-	 * other than current.
-	 * 
-	 * Would also be a good idea to fill with an object
-	 * outside the loop, if this is called from within.
-	 * 
-	 * @param DateInterval $interval
-	 * @param DateTime $now
-	 * @return boolean
-	 */
-	public function since_last_reminder( DateInterval $interval, DateTime $now = null ) {
-		// Get this subscriptions update date, 
-		$date = $this->get_update_date();
-		
-		//and add the interval
-		$date->add( $interval );
-		
-		// If no datetime supplied, make a new one
-		if ( ! $now ) $now = new DateTime();
-		
-		return ( $now > $date );
-	}
-	
-	/**
-	 * Using wp_mail, a mail is sent to this subscriptions
-	 * stored company_email
-	 * 
-	 * If isn't a valid email, or isn't set, false is returned
-	 * 
-	 * Uses the mail_subject and mail_contents from the settings
-	 * 
-	 * @access public
-	 * @return boolean
-	 */
-	public function send_reminder( $raw_subject, $raw_body, $url ) {
-		// Check email is set and valid
-		if ( is_email( $this->get_email() ) ) {
-
-			// Build the renew url
-			$update_url = $this->renew_url( $url );
-
-			$timestamp       = $this->get_expiration_date()->format( 'U' );
-			$expiration_date = date_i18n( __( 'j F, Y @ G:i:s', 'orbis_subscriptions' ), $timestamp );
-
-			// Keys in body
-			$content_keys = array(
-					'{company_name}'       => $this->get_company_name(),
-					'{days_to_expiration}' => $this->until_expiration_human(),
-					'{expiration_date}'    => $expiration_date,
-					'{renew_license_url}'  => $update_url
-			);
-			
-			// Mail
-			global $orbis_subscriptions_plugin;
-			global $orbis_email_title;
-			global $post;
-			global $orbis_subscription;
-			
-			$post = $this->post;
-			$orbis_subscription = $this;
-			
-			$to      = $this->get_email();
-			$subject = $raw_subject;
-				
-			$orbis_email_title = $raw_subject;
-			
-			$message_html  = $orbis_subscriptions_plugin->get_template( 'emails/subscription-extend-reminder.php', false );
-			$message_plain = wpautop( wptexturize( strip_tags( $message_html ) ) );
-
-			$headers = array(
-				'From: Pronamic <support@pronamic.nl>',
-				'Content-Type: text/html'
-			);
-
-			// Replace the placeholder body contents
-			// $this->email_subject = $raw_subject;
-			// $this->email_body	 = wpautop( str_replace( array_keys( $content_keys ), $content_keys, $raw_body ) );
-
-			// $headers = array( 
-			// 	'Content-Type: text/html' 
-			// );
-
-			$result = wp_mail( $to, $subject, $message_html, $headers );
-
-			// Attempt to send the mail
-			if ( $result ) {
-
-				// Update the date this was updated (-_-)
-				$this->set_update_date( new DateTime() );
-
-				$sent = $this->get_sent_notifications();
-
-				$this->set_sent_notifications(  ++ $sent );
-				$this->save();
-
-				// Store a comment note of successful reminder
-				$comment_id = orbis_subscriptions_comment_email( $to, $message_plain );
-			} else {
-				return false;
-			}
-		} else {
-			return false;
 		}
 	}
 
