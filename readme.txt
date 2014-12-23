@@ -1,9 +1,9 @@
 === Orbis Subscriptions ===
 Contributors: pronamic, remcotolsma
-Donate link: http://www.orbiswp.com/
+Donate link: http://www.pronamic.eu/donate/
 Tags: orbis, subscription, licence
 Requires at least: 3.5
-Tested up to: 3.8.1
+Tested up to: 4.1
 Stable tag: 1.2.0
 License: Copyright (c) Pronamic
 License URI: http://www.pronamic.eu/copyright/
@@ -31,6 +31,8 @@ License URI: http://www.pronamic.eu/copyright/
 = 1.2.0 =
 *	Tweak - Removed licenses reminder functions.
 *	Feature - Added an subscriptions actions meta box to cancel subscriptions.
+*	Tweak - Improved a few text domains.
+*	Test - Tested up to WordPress version 4.1.
 
 = 1.1.7 =
 *	Fix - Fixed a bug in the subscription to invoice updater.
