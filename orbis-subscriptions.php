@@ -15,7 +15,7 @@ Domain Path: /languages/
 
 License: Copyright (c) Pronamic
 
-GitHub URI: https://github.com/pronamic/wp-orbis-subscriptions
+GitHub URI: https://github.com/wp-orbis/wp-orbis-subscriptions
 */
 
 function orbis_subscriptions_bootstrap() {
