@@ -60,6 +60,35 @@ function orbis_subscriptions_create_initial_post_types() {
 			)
 		)
 	);
+
+	register_post_type(
+		'orbis_subs_purchase',
+		array(
+			'label'         => __( 'Subscription Purchases', 'orbis_subscriptions' ),
+			'labels'        => array(
+				'name'               => _x( 'Subscription Purchases', 'post type general name', 'orbis_subscriptions' ),
+				'singular_name'      => _x( 'Subscription Purchase', 'post type singular name', 'orbis_subscriptions' ),
+				'add_new'            => _x( 'Add New', 'orbis_subs_purchase', 'orbis_subscriptions' ),
+				'add_new_item'       => __( 'Add New Subscription Purchase', 'orbis_subscriptions' ),
+				'edit_item'          => __( 'Edit Subscription Purchase', 'orbis_subscriptions' ),
+				'new_item'           => __( 'New Subscription Purchase', 'orbis_subscriptions' ),
+				'view_item'          => __( 'View Subscription Purchase', 'orbis_subscriptions' ),
+				'search_items'       => __( 'Search Subscription Purchases', 'orbis_subscriptions' ),
+				'not_found'          => __( 'No subscription purchases found', 'orbis_subscriptions' ),
+				'not_found_in_trash' => __( 'No subscription purchases found in Trash', 'orbis_subscriptions' ),
+				'parent_item_colon'  => __( 'Parent Subscription Purchase:', 'orbis_subscriptions' ),
+				'menu_name'          => __( 'Purchases', 'orbis_subscriptions' )
+			),
+			'public'        => true,
+			'menu_position' => 30,
+			'show_in_menu'  => 'edit.php?post_type=orbis_subscription',
+			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail', 'revisions' ),
+			'has_archive'   => true,
+			'rewrite'       => array(
+				'slug' => _x( 'subscription-purchases', 'slug', 'orbis_subscriptions' )
+			)
+		)
+	);
 }
 
 add_action( 'init', 'orbis_subscriptions_create_initial_post_types', 0 ); // highest priority
