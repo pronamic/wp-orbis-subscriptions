@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2015-02-17 10:39:08+00:00\n"
-"PO-Revision-Date: 2015-02-17 11:39+0100\n"
+"POT-Creation-Date: 2015-02-17 12:50:41+00:00\n"
+"PO-Revision-Date: 2015-02-17 13:51+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -24,7 +24,7 @@ msgid "Cancel Subscription"
 msgstr "Abonnement opzeggen"
 
 #: admin/meta-box-subscription-details.php:19
-#: admin/meta-box-subscription-product-details.php:19 includes/post.php:484
+#: admin/meta-box-subscription-product-details.php:19 includes/post.php:505
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
@@ -43,13 +43,14 @@ msgstr "Type"
 #: admin/meta-box-subscription-details.php:65
 #: templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
+#: templates/subscription-purchase-details.php:33
 #: templates/subscriptions-invoices.php:17
 #: templates/subscriptions-to-invoice-updater.php:100
 #: templates/subscriptions-to-invoice.php:71
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:73 includes/post.php:274
+#: admin/meta-box-subscription-details.php:73 includes/post.php:295
 msgid "Person"
 msgstr "Persoon"
 
@@ -84,17 +85,19 @@ msgstr "Vervaldatum"
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
-#: admin/meta-box-subscription-product-details.php:27 includes/post.php:481
+#: admin/meta-box-subscription-product-details.php:27
+#: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:502
 #: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:49
 #: templates/subscription-details.php:65
+#: templates/subscription-purchase-details.php:34
 #: templates/subscriptions-invoices.php:16
 #: templates/subscriptions-to-invoice-updater.php:99
 #: templates/subscriptions-to-invoice.php:70
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-subscription-product-details.php:35 includes/post.php:482
+#: admin/meta-box-subscription-product-details.php:35 includes/post.php:503
 msgid "Cost Price"
 msgstr "Kostprijs"
 
@@ -106,7 +109,7 @@ msgstr "Automatisch verlengen"
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:57 includes/post.php:483
+#: admin/meta-box-subscription-product-details.php:57 includes/post.php:504
 msgid "Deprecated"
 msgstr "Vervallen"
 
@@ -293,39 +296,43 @@ msgstr "Bovenliggend inkoop abonnement:"
 msgid "Purchases"
 msgstr "Inkopen"
 
-#: includes/post.php:102 templates/subscription-details.php:35
+#: includes/post.php:103 templates/subscription-details.php:35
 msgid "Subscription Details"
 msgstr "Abonnement details"
 
-#: includes/post.php:111
+#: includes/post.php:112
 msgid "Subscription Actions"
 msgstr "Abonnement acties"
 
-#: includes/post.php:120
+#: includes/post.php:121
 msgid "Subscription Product Details"
 msgstr "Abonnement product details"
 
-#: includes/post.php:273 includes/post.php:480
+#: includes/post.php:130
+msgid "Subscription Purchase Details"
+msgstr "Inkoop abonnement details"
+
+#: includes/post.php:294 includes/post.php:501
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:275 includes/post.php:485
+#: includes/post.php:296 includes/post.php:506
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:276 includes/post.php:486
+#: includes/post.php:297 includes/post.php:507
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:277 includes/post.php:487
+#: includes/post.php:298 includes/post.php:508
 msgid "Date"
 msgstr "Datum"
 
-#: includes/post.php:539
+#: includes/post.php:560
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/post.php:539
+#: includes/post.php:560
 msgid "No"
 msgstr "Nee"
 
@@ -391,6 +398,18 @@ msgstr "Einddatum"
 #: templates/subscriptions-to-invoice.php:74
 msgid "Invoice Number"
 msgstr "Factuurnummer"
+
+#: templates/subscription-purchase-details.php:40
+msgid "Revenue"
+msgstr "Inkomsten"
+
+#: templates/subscription-purchase-details.php:44
+msgid "Costs"
+msgstr "Kosten"
+
+#: templates/subscription-purchase-details.php:48
+msgid "Profit"
+msgstr "Winst"
 
 #: templates/subscriptions-to-invoice-updater.php:24
 #: templates/subscriptions-to-invoice.php:21
@@ -483,7 +502,7 @@ msgctxt "slug"
 msgid "subscription-products"
 msgstr "abonnement-producten"
 
-#: includes/post.php:88
+#: includes/post.php:89
 msgctxt "slug"
 msgid "subscription-purchases"
 msgstr "inkoop-abonnementen"

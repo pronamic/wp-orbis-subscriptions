@@ -73,3 +73,16 @@ function orbis_subscriptions_post_class( $classes ) {
 }
 
 add_filter( 'post_class', 'orbis_subscriptions_post_class' );
+
+/**
+ * Orbis subscription purchase
+ */
+function orbis_subscriptions_render_purchase_details() {
+	if ( is_singular( 'orbis_subs_purchase' ) ) {
+		global $orbis_subscriptions_plugin;
+
+		$orbis_subscriptions_plugin->plugin_include( 'templates/subscription-purchase-details.php' );
+	}
+}
+
+add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_purchase_details' );

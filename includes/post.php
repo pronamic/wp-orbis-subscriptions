@@ -124,6 +124,15 @@ function orbis_sbuscriptions_add_meta_boxes() {
 		'normal',
 		'high'
 	);
+
+	add_meta_box(
+		'orbis_subscription_purchase_details',
+		__( 'Subscription Purchase Details', 'orbis_subscriptions' ),
+		'orbis_subscription_purchase_details_meta_box',
+		'orbis_subs_purchase',
+		'normal',
+		'high'
+	);
 }
 
 add_action( 'add_meta_boxes', 'orbis_sbuscriptions_add_meta_boxes' );
@@ -159,6 +168,17 @@ function orbis_subscription_product_details_meta_box( $post ) {
 	global $orbis_subscriptions_plugin;
 
 	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-product-details.php' );
+}
+
+/**
+ * Subscription product details meta box
+ *
+ * @param array $post
+*/
+function orbis_subscription_purchase_details_meta_box( $post ) {
+	global $orbis_subscriptions_plugin;
+
+	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-purchase-details.php' );
 }
 
 /**
@@ -545,3 +565,44 @@ function orbis_subscription_product_column( $column, $post_id ) {
 }
 
 add_action( 'manage_posts_custom_column', 'orbis_subscription_product_column', 10, 2 );
+
+
+
+/**
+ * Save subscription purchase details
+ */
+function orbis_save_subscription_purchase_details( $post_id, $post ) {
+	// Doing autosave
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	// Verify nonce
+	$nonce = filter_input( INPUT_POST, 'orbis_subscription_purchase_details_meta_box_nonce', FILTER_SANITIZE_STRING );
+	if ( ! wp_verify_nonce( $nonce, 'orbis_save_subscription_purchase_details' ) ) {
+		return;
+	}
+
+	// Check permissions
+	if ( ! ( $post->post_type == 'orbis_subs_purchase' && current_user_can( 'edit_post', $post_id ) ) ) {
+		return;
+	}
+
+	// OK
+	global $wp_locale;
+
+	$definition = array(
+		'_orbis_subscription_purchase_price' => array(
+			'filter'  => FILTER_VALIDATE_FLOAT,
+			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
+			'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
+		),
+	);
+
+	$data = filter_input_array( INPUT_POST, $definition );
+
+	update_orbis_subscription_product_meta( $post_id, $data );
+}
+
+add_action( 'save_post', 'orbis_save_subscription_purchase_details', 10, 2 );
+
