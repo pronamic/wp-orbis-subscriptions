@@ -82,7 +82,8 @@ function orbis_subscriptions_create_initial_post_types() {
 			'public'        => true,
 			'menu_position' => 30,
 			'show_in_menu'  => 'edit.php?post_type=orbis_subscription',
-			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail', 'revisions' ),
+			'hierarchical'  => true,
+			'supports'      => array( 'title', 'editor', 'author', 'comments', 'thumbnail', 'revisions', 'page-attributes' ),
 			'has_archive'   => true,
 			'rewrite'       => array(
 				'slug' => _x( 'subscription-purchases', 'slug', 'orbis_subscriptions' )
