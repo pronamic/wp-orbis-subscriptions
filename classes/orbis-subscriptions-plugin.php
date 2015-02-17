@@ -24,6 +24,17 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		if ( is_admin() ) {
 			$this->admin = new Orbis_Subscriptions_Admin( $this );
 		}
+
+		// Actions
+		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+	}
+
+	public function p2p_init() {
+		p2p_register_connection_type( array(
+			'name' => 'orbis_subscriptions_to_purchases',
+			'from' => 'orbis_subscription',
+			'to'   => 'orbis_subs_purchase'
+		) );
 	}
 
 	public function loaded() {
