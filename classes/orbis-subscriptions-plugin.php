@@ -7,6 +7,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		$this->set_name( 'orbis_subscriptions' );
 		$this->set_db_version( '1.1.6' );
 
+		// Includes
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/subscription.php' );
 		$this->plugin_include( 'includes/api.php' );
@@ -14,10 +15,12 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		$this->plugin_include( 'includes/template.php' );
 		$this->plugin_include( 'includes/subscription-template.php' );
 
+		// Tables
 		orbis_register_table( 'orbis_subscriptions' );
 		orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
 		orbis_register_table( 'orbis_subscriptions_invoices' );
 
+		// Admin
 		if ( is_admin() ) {
 			$this->admin = new Orbis_Subscriptions_Admin( $this );
 		}
