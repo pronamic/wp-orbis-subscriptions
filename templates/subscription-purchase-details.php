@@ -15,13 +15,19 @@ $costs = get_post_meta( $post->ID, '_orbis_subscription_purchase_price', true );
 // Revenue
 $revenue = 0;
 
-while ( $query->have_posts() ) {
-	$query->the_post();
+if ( $query->have_posts() ) {
+	while ( $query->have_posts() ) {
+		$query->the_post();
 
-	if ( empty( $post->subscription_cancel_date ) ) {
-		$revenue += orbis_subscription_get_the_price();
+		if ( empty( $post->subscription_cancel_date ) ) {
+			$revenue += orbis_subscription_get_the_price();
+		}
 	}
+
+	wp_reset_postdata();
 }
+
+update_post_meta( $post->ID, '_orbis_subscription_purchase_revenue', $revenue );
 
 // Profit
 $profit = $revenue - $costs;
@@ -76,4 +82,3 @@ $profit = $revenue - $costs;
 <?php 
 
 wp_reset_postdata();
-
