@@ -495,18 +495,28 @@ function orbis_save_subscription_product_sync( $post_id ) {
 /**
  * Subscription product edit columns
  */
-function orbis_subscription_product_edit_columns($columns) {
-	return array(
-		'cb'                                    => '<input type="checkbox" />',
-		'title'                                 => __( 'Title', 'orbis_subscriptions' ),
-		'orbis_subscription_product_price'      => __( 'Price', 'orbis_subscriptions' ),
-		'orbis_subscription_product_cost_price' => __( 'Cost Price', 'orbis_subscriptions' ),
-		'orbis_subscription_product_deprecated' => __( 'Deprecated', 'orbis_subscriptions' ),
-		'orbis_subscription_product_id'         => __( 'Orbis ID', 'orbis_subscriptions' ),
-		'author'                                => __( 'Author', 'orbis_subscriptions' ),
-		'comments'                              => __( 'Comments', 'orbis_subscriptions' ),
-		'date'                                  => __( 'Date', 'orbis_subscriptions' ),
-	);
+function orbis_subscription_product_edit_columns( $columns ) {
+	$columns['orbis_subscription_product_price']      = __( 'Price', 'orbis_subscriptions' );
+	$columns['orbis_subscription_product_cost_price'] = __( 'Cost Price', 'orbis_subscriptions' );
+	$columns['orbis_subscription_product_deprecated'] = __( 'Deprecated', 'orbis_subscriptions' );
+	$columns['orbis_subscription_product_id']         = __( 'Orbis ID', 'orbis_subscriptions' );
+
+	$new_columns = array();
+	
+	foreach ( $columns as $name => $label ) {
+		if ( 'author' === $name || 'twinfield_article' === $name ) {
+			$new_columns['orbis_subscription_product_price']      = $columns['orbis_subscription_product_price'];
+			$new_columns['orbis_subscription_product_cost_price'] = $columns['orbis_subscription_product_cost_price'];
+			$new_columns['orbis_subscription_product_deprecated'] = $columns['orbis_subscription_product_deprecated'];
+			$new_columns['orbis_subscription_product_id']         = $columns['orbis_subscription_product_id'];
+		}
+
+		$new_columns[ $name ] = $label;
+	}
+
+	$columns = $new_columns;
+
+	return $columns;
 }
 
 add_filter( 'manage_edit-orbis_subs_product_columns' , 'orbis_subscription_product_edit_columns' );
