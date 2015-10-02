@@ -627,4 +627,32 @@ class Orbis_Subscription {
 	public function set_sent_notifications( $sent_notifications ) {
 		$this->sent_notifications = $sent_notifications;
 	}
+
+	//////////////////////////////////////////////////
+
+	public function register_invoice( $invoice_number, DateTime $start_date, DateTime $end_date ) {
+		global $wpdb;
+
+		$result = $wpdb->insert(
+			$wpdb->orbis_subscriptions_invoices,
+			array(
+				'subscription_id' => $this->get_id(),
+				'invoice_number'  => $invoice_number,
+				'start_date'      => $start_date->format( 'Y-m-d H:i:s' ),
+				'end_date'        => $end_date->format( 'Y-m-d H:i:s' ),
+				'user_id'         => get_current_user_id(),
+				'create_date'     => date( 'Y-m-d H:i:s' )
+			),
+			array(
+				'%d',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s'
+			)
+		);
+
+		return $result;
+	}
 }
