@@ -83,7 +83,7 @@ class Orbis_Subscriptions_Admin {
 				);
 
 				$content = wp_kses_post( filter_input( INPUT_POST, 'orbis_subscription_cancel_content', FILTER_UNSAFE_RAW ), wp_kses_allowed_html() );
-				if ( ! empty ( $content ) ) {
+				if ( ! empty( $content ) ) {
 					$comment_content .= "\r\n\r\n";
 
 					$comment_content .= $content;

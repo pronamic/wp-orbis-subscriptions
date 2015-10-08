@@ -32,7 +32,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		p2p_register_connection_type( array(
 			'name' => 'orbis_subscriptions_to_purchases',
 			'from' => 'orbis_subscription',
-			'to'   => 'orbis_subs_purchase'
+			'to'   => 'orbis_subs_purchase',
 		) );
 	}
 

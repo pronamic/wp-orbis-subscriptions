@@ -1,7 +1,7 @@
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
-			<?php _e( 'Cancel', 'orbis_subscriptions' ); ?>
+			<?php esc_html_e( 'Cancel', 'orbis_subscriptions' ); ?>
 		</th>
 		<td>
 			<?php wp_nonce_field( 'orbis_subscription_cancel', 'orbis_subscription_cancel_nonce' ); ?>

@@ -4,16 +4,16 @@ class Orbis_Subscription {
 	/**
 	 * Holds the Post object that this
 	 * subscription represents
-	 * 
+	 *
 	 * @access private
 	 * @var WP_Post
 	 */
 	private $post;
 
 	/**
-	 * Holds the PK for this subscription, 
+	 * Holds the PK for this subscription,
 	 * from the orbis_subscription table
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
@@ -22,7 +22,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the company associated id,
 	 * from the orbis_subscription table
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
@@ -30,11 +30,11 @@ class Orbis_Subscription {
 
 	/**
 	 * Holds the company name.
-	 * 
+	 *
 	 * This company information could probably
 	 * be split into its own class. That is outside
 	 * the scope of this project for now.
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -42,11 +42,11 @@ class Orbis_Subscription {
 
 	/**
 	 * Holds the company email
-	 * 
+	 *
 	 * This company information could probably
 	 * be split into its own class. That is outside
 	 * the scope of this project for now.
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -55,7 +55,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the product associated id,
 	 * from the orbis_subscription table
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
@@ -64,14 +64,15 @@ class Orbis_Subscription {
 	/**
 	 * Holds the type name from the
 	 * orbis_subscription table.
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
 	private $product_name;
 
 	/**
-	 * 
+	 * Product price.
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -80,7 +81,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the domain name id,
 	 * from the orbis_subscription table
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
@@ -89,16 +90,15 @@ class Orbis_Subscription {
 	/**
 	 * Holds the associated post_id with
 	 * this subscription
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
 	private $post_id;
 
 	/**
-	 * Holds the name from the 
-	 * orbis_subscription table
-	 * 
+	 * Holds the name from the orbis_subscription table.
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -107,7 +107,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the email from the
 	 * orbis_subscription table
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -116,7 +116,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the activation date
 	 * of the subscription.  In DateTime
-	 * 
+	 *
 	 * @access private
 	 * @var DateTime
 	 */
@@ -125,7 +125,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the expiration date
 	 * of the subscription. In DateTime
-	 * 
+	 *
 	 * @access private
 	 * @var DateTime
 	 */
@@ -134,7 +134,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the cancel date
 	 * of the subscription. In DateTime
-	 * 
+	 *
 	 * @access private
 	 * @var DateTime
 	 */
@@ -143,7 +143,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the update date
 	 * of the subscription. In DateTime
-	 * 
+	 *
 	 * @access private
 	 * @var DateTime
 	 */
@@ -151,7 +151,7 @@ class Orbis_Subscription {
 
 	/**
 	 * Holds the license key
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -159,7 +159,7 @@ class Orbis_Subscription {
 
 	/**
 	 * Holds the md5'ed license key
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -168,7 +168,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the total sent number of
 	 * notifications to this subscription
-	 * 
+	 *
 	 * @access private
 	 * @var int
 	 */
@@ -177,7 +177,7 @@ class Orbis_Subscription {
 	/**
 	 * Holds the subject sent
 	 * out with the email notification
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
@@ -186,15 +186,16 @@ class Orbis_Subscription {
 	/**
 	 * Holds the body sent
 	 * out with the email notification
-	 * 
+	 *
 	 * @access private
 	 * @var string
 	 */
 	private $email_body;
 
 	public function __construct( $subscription = null ) {
-		if ( null !== $subscription )
+		if ( null !== $subscription ) {
 			$this->load( $subscription );
+		}
 	}
 
 	public function load( $subscription = null ) {
@@ -216,13 +217,13 @@ class Orbis_Subscription {
 		}
 
 		// Check the subscription from post exists
-		if ( ! $this->post )
+		if ( ! $this->post ) {
 			return false;
+		}
 
 		// Get the subscription id and post type
-		$post_id	 = absint( $this->post->ID );
-		$post_type	 = $this->post->post_type;
-
+		$post_id   = absint( $this->post->ID );
+		$post_type = $this->post->post_type;
 
 		// Check this is a orbis_subscription
 		if ( 'orbis_subscription' === $post_type ) {
@@ -257,14 +258,14 @@ class Orbis_Subscription {
 	}
 
 	public function expire() {
-		
+
 	}
 
 	/**
 	 * Extends the subscription for a passed DateInterval.
-	 * 
+	 *
 	 * If no DateInterval is passed, then it defaults to 1 year extension.
-	 * 
+	 *
 	 * @access public
 	 * @param string $modify
 	 * @return boolean
@@ -277,14 +278,14 @@ class Orbis_Subscription {
 
 		$data = array(
 			'expiration_date' => $expiration->format( 'Y-m-d H:i:s' ),
-			'update_date'     => date( 'Y-m-d H:i:s' )
+			'update_date'     => date( 'Y-m-d H:i:s' ),
 		);
 
 		$where = array( 'id' => $this->get_id() );
 
 		$format = array(
 			'expiration_date' => '%s',
-			'update_date'     => '%s'
+			'update_date'     => '%s',
 		);
 
 		$response = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
@@ -301,14 +302,15 @@ class Orbis_Subscription {
 	/**
 	 * Conditional method to determine if this subscription has passed
 	 * expiration or not.
-	 * 
+	 *
 	 * @access public
 	 * @param DateTime $now | A custom comparison datetime
 	 * @return boolean
 	 */
 	public function passed_expiration( DateTime $now = null ) {
-		if ( ! $now )
+		if ( ! $now ) {
 			$now = new DateTime();
+		}
 
 		return ( $now > $this->get_expiration_date() );
 	}
@@ -316,7 +318,7 @@ class Orbis_Subscription {
 	/**
 	 * Determine how long till this account expires.  Will return
 	 * a DateInterval of the difference from now till expiration
-	 * 
+	 *
 	 * @access public
 	 * @return DateInterval
 	 */
@@ -329,10 +331,10 @@ class Orbis_Subscription {
 	/**
 	 * Returns a human readable difference between the expiration date
 	 * and now.
-	 * 
+	 *
 	 * Perhaps requires parameters to be changed to sprintf formats so you
 	 * can have the order how you want.
-	 * 
+	 *
 	 * @param string $passed | default: 'ago'
 	 * @param string $till | default: 'In'
 	 * @return string
@@ -350,12 +352,12 @@ class Orbis_Subscription {
 
 	/**
 	 * Returns the url to update this subscription
-	 * 
+	 *
 	 * @access public
 	 * @return string
 	 */
 	public function renew_url( $url ) {
-		return add_query_arg( array( 
+		return add_query_arg( array(
 			'domain_name' => $this->get_name(),
 			'license'     => $this->get_license_key(),
 			'product'     => $this->get_product_id(),
@@ -364,9 +366,9 @@ class Orbis_Subscription {
 
 	/**
 	 * Generates and sets a license key for this subscription
-	 * 
+	 *
 	 * Uses an md5 string of the company id, type id and name.
-	 * 
+	 *
 	 * @access public
 	 * @return string
 	 */
@@ -378,7 +380,7 @@ class Orbis_Subscription {
 	}
 
 	public function activate() {
-		
+
 	}
 
 	public function save() {
@@ -395,7 +397,7 @@ class Orbis_Subscription {
 				'activation_date' => orbis_date2mysql( $this->get_activation_date() ),
 				'expiration_date' => orbis_date2mysql( $this->get_expiration_date() ),
 				'license_key'     => $this->get_license_key(),
-				'license_key_md5' => $this->license_key_md5
+				'license_key_md5' => $this->license_key_md5,
 			);
 
 			$format = array(
@@ -407,7 +409,7 @@ class Orbis_Subscription {
 				'activation_date' => '%s',
 				'expiration_date' => '%s',
 				'license_key'     => '%s',
-				'license_key_md5' => '%s'
+				'license_key_md5' => '%s',
 			);
 
 			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
@@ -418,7 +420,7 @@ class Orbis_Subscription {
 				'name'               => $this->get_name(),
 				'email'              => $this->get_email(),
 				'update_date'        => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
-				'sent_notifications' => $this->get_sent_notifications()
+				'sent_notifications' => $this->get_sent_notifications(),
 			);
 
 			$where = array( 'id' => $this->get_id() );
@@ -429,23 +431,23 @@ class Orbis_Subscription {
 				'name'               => '%s',
 				'email'              => '%s',
 				'update_date'        => '%s',
-				'sent_notifications' => '%d'
+				'sent_notifications' => '%d',
 			);
 
 			// Update!
 			$result = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
 		}
-        
+
 		return $result;
 	}
 
 	public function remove() {
-		
+
 	}
 
 	/**
 	 * Stores a note of a sent expiration reminder
-	 * 
+	 *
 	 * @access private
 	 * @return int
 	 */
@@ -457,8 +459,7 @@ class Orbis_Subscription {
 				__( 'A license expiration reminder has been sent to %s (%s).', 'orbis_subscriptions' ),
 				$this->get_company_name(),
 				$this->get_email()
-			) . 
-			'<blockquote>' . $this->email_body . '</blockquote>'
+			) . '<blockquote>' . $this->email_body . '</blockquote>',
 		);
 
 		return wp_insert_comment( $comment );
@@ -466,9 +467,9 @@ class Orbis_Subscription {
 
 	/**
 	 * ====================
-	 * 
+	 *
 	 * SETTERS AND GETTERS
-	 * 
+	 *
 	 * ====================
 	 */
 	public function get_id() {
@@ -641,7 +642,7 @@ class Orbis_Subscription {
 				'start_date'      => $start_date->format( 'Y-m-d H:i:s' ),
 				'end_date'        => $end_date->format( 'Y-m-d H:i:s' ),
 				'user_id'         => get_current_user_id(),
-				'create_date'     => date( 'Y-m-d H:i:s' )
+				'create_date'     => date( 'Y-m-d H:i:s' ),
 			),
 			array(
 				'%d',
@@ -649,7 +650,7 @@ class Orbis_Subscription {
 				'%s',
 				'%s',
 				'%d',
-				'%s'
+				'%s',
 			)
 		);
 

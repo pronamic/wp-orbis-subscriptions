@@ -38,23 +38,23 @@ $profit = $revenue - $costs;
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
 		<tfoot>
 			<tr>
-				<th scope="row"><?php _e( 'Revenue', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo orbis_price( $revenue ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Revenue', 'orbis_subscriptions' ); ?></td>
+				<td><?php echo esc_html( orbis_price( $revenue ) ); ?></td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e( 'Costs', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo orbis_price( $costs ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Costs', 'orbis_subscriptions' ); ?></td>
+				<td><?php echo esc_html( orbis_price( $costs ) ); ?></td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e( 'Profit', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo orbis_price( $profit ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Profit', 'orbis_subscriptions' ); ?></td>
+				<td><?php echo esc_html( orbis_price( $profit ) ); ?></td>
 			</tr>
 		</tfoot>
 
@@ -69,7 +69,7 @@ $profit = $revenue - $costs;
 						</a>
 					</td>
 					<td>
-						<?php echo orbis_subscription_the_price(); ?>
+						<?php echo esc_html( orbis_subscription_the_price() ); ?>
 					</td>
 				</tr>
 			
@@ -79,6 +79,6 @@ $profit = $revenue - $costs;
 	</table>
 </div>
 
-<?php 
+<?php
 
 wp_reset_postdata();

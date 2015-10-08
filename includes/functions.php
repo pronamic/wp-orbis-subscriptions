@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Returns a row from the orbis_subscriptions table 
- * where the post_id matches the parameter
- * 
+ * Returns a row from the orbis_subscriptions table where the post_id matches the parameter.
+ *
  * @global type $wpdb
- * 
+ *
  * @param int $post_id
  * @return object
  */
 function orbis_subscription_get_data( $post_id ) {
 	global $wpdb;
-	
+
 	$query = "
 		SELECT
 			subscription.id,
@@ -43,8 +42,8 @@ function orbis_subscription_get_data( $post_id ) {
 		WHERE
 			subscription.post_id = %d
 	";
-	
-	$query =  $wpdb->prepare( $query, $post_id );
+
+	$query = $wpdb->prepare( $query, $post_id );
 
 	return $wpdb->get_row( $query );
 }
@@ -55,7 +54,7 @@ if ( ! function_exists( 'orbis_date2mysql' ) ) :
 	function orbis_date2mysql( DateTime $date = null ) {
 		$result = null;
 
-		if ( $date !== null ) {
+		if ( null !== $date ) {
 			$result = $date->format( 'Y-m-d H:i:s' );
 		}
 
@@ -94,9 +93,9 @@ function orbis_subscriptions_suggest_subscription_id() {
 	);
 
 	$data = $wpdb->get_results( $query );
-	
-	echo json_encode( $data );
-	
+
+	echo wp_json_encode( $data );
+
 	die();
 }
 

@@ -3,8 +3,8 @@
 /**
  * Posts clauses
  *
- * http://codex.wordpress.org/WordPress_Query_Vars
- * http://codex.wordpress.org/Custom_Queries
+ * @see http://codex.wordpress.org/WordPress_Query_Vars
+ * @see http://codex.wordpress.org/Custom_Queries
  *
  * @param array $pieces
  * @param WP_Query $query
@@ -15,16 +15,16 @@ function orbis_subscriptions_posts_clauses( $pieces, $query ) {
 
 	$post_type = $query->get( 'post_type' );
 
-	if ( $post_type == 'orbis_subscription' ) {
+	if ( 'orbis_subscription' === $post_type ) {
 		// Fields
-		$fields = ",
+		$fields = ',
 			subscription.activation_date AS subscription_activation_date,
 			subscription.expiration_date AS subscription_expiration_date,
 			subscription.cancel_date AS subscription_cancel_date,
 			subscription.update_date AS subscription_update_date,
 			subscription_type.name AS subscription_type_name,
 			subscription_type.price AS subscription_type_price
-		";
+		';
 
 		// Join
 		$join = "
@@ -60,7 +60,7 @@ add_filter( 'posts_clauses', 'orbis_subscriptions_posts_clauses', 10, 2 );
 function get_orbis_subscription( $post = null ) {
 	$post = get_post( $post );
 
-	if ( isset( $post ) && $post->post_type == 'orbis_subscription' ) {
+	if ( isset( $post ) && 'orbis_subscription' === get_post_type( $post ) ) {
 		$subscription = new Orbis_Subscription( $post );
 	}
 

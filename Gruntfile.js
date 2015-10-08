@@ -1,4 +1,6 @@
 module.exports = function( grunt ) {
+	require( 'load-grunt-tasks' )( grunt );
+
 	// Project configuration.
 	grunt.initConfig( {
 		// Package
@@ -13,7 +15,22 @@ module.exports = function( grunt ) {
 			},
 			all: [ '**/*.php' ]
 		},
-		
+
+		// PHP Code Sniffer
+		phpcs: {
+			application: {
+				src: [
+					'**/*.php',
+					'!deploy/**',
+					'!node_modules/**'
+				]
+			},
+			options: {
+				standard: 'phpcs.ruleset.xml',
+				showSniffCodes: true
+			}
+		},
+
 		// Check WordPress version
 		checkwpversion: {
 			options: {
@@ -157,18 +174,8 @@ module.exports = function( grunt ) {
 		}
 	} );
 
-	grunt.loadNpmTasks( 'grunt-phplint' );
-	grunt.loadNpmTasks( 'grunt-checktextdomain' );
-	grunt.loadNpmTasks( 'grunt-checkwpversion' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-compress' );
-	grunt.loadNpmTasks( 'grunt-wp-i18n' );
-	grunt.loadNpmTasks( 'grunt-git' );
-	grunt.loadNpmTasks( 'grunt-aws-s3' );
-
 	// Default task(s).
-	grunt.registerTask( 'default', [ 'phplint', 'checkwpversion' ] );
+	grunt.registerTask( 'default', [ 'phplint', 'phpcs', 'checkwpversion' ] );
 	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
 
 	grunt.registerTask( 'deploy', [

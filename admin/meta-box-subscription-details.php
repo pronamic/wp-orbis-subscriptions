@@ -16,7 +16,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_id"><?php _e( 'Orbis ID', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_id"><?php esc_html_e( 'Orbis ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_id" name="_orbis_subscription_id" value="<?php echo esc_attr( $subscription->get_id() ); ?>" type="text" class="regular-text" readonly="readonly" />
@@ -24,18 +24,17 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_company"><?php _e( 'Company ID', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $subscription->get_company_id() ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $subscription->get_company_name() ); ?>" placeholder="<?php _e( 'Select Company', 'orbis_subscriptions' ); ?>" />
+			<input type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $subscription->get_company_id() ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $subscription->get_company_name() ); ?>" placeholder="<?php esc_attr_e( 'Select Company', 'orbis_subscriptions' ); ?>" />
 		</td>
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_type"><?php _e( 'Type', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_type"><?php esc_html_e( 'Type', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-
 			<select id="orbis_subscription_type" name="_orbis_subscription_type_id">
 				<option value=""></option>
 
@@ -52,7 +51,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 						'<option value="%s" %s>%s</option>',
 						esc_attr( $subscription_product->id ),
 						selected( $subscription_product->id, $product_id, false ),
-						$text
+						esc_html( $text )
 					);
 				}
 
@@ -62,7 +61,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_name"><?php _e( 'Name', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_name"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo esc_attr( $subscription->get_name() ); ?>" type="text" class="regular-text" />
@@ -70,16 +69,16 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_person_id"><?php _e( 'Person', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_person_id"><?php esc_html_e( 'Person', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
-			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php _e( 'Select Person', 'orbis_subscriptions' ); ?>" />
+			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php esc_attr_e( 'Select Person', 'orbis_subscriptions' ); ?>" />
 		</td>
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_email"><?php _e( 'Email', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_email"><?php esc_html_e( 'Email', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo esc_attr( $subscription->get_email() ); ?>" type="text" class="regular-text" />
@@ -87,7 +86,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_license_key"><?php _e( 'License Key', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_license_key"><?php esc_html_e( 'License Key', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo esc_attr( $subscription->get_license_key() ); ?>" type="text" readonly="readonly" class="regular-text" />
@@ -105,7 +104,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_activation_date"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_activation_date"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
@@ -123,7 +122,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_expiration_date"><?php _e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_expiration_date"><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
@@ -141,7 +140,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_cancel_date"><?php _e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_cancel_date"><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />

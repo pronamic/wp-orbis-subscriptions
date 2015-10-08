@@ -1,6 +1,6 @@
 <?php
 
-function orbis_subscription_get_the_price( ) {
+function orbis_subscription_get_the_price() {
 	global $post;
 
 	$price = null;
@@ -12,6 +12,6 @@ function orbis_subscription_get_the_price( ) {
 	return $price;
 }
 
-function orbis_subscription_the_price( ) {
-	echo orbis_price( orbis_subscription_get_the_price() );
+function orbis_subscription_the_price() {
+	echo esc_html( orbis_price( orbis_subscription_get_the_price() ) );
 }

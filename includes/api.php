@@ -4,23 +4,23 @@ function orbis_subscriptions_api_call() {
 	global $wpdb;
 
 	$api_call = get_query_var( 'api_call' );
-	
+
 	if ( ! empty( $api_call ) ) {
 		$object = get_query_var( 'api_object' );
 		$method = get_query_var( 'api_method' );
 
 		// @see http://www.hurl.it/hurls/8e92c1758b0ff0258f5bb4f76ab41b8970b653dd/1ead533aa50f71212b5393e43611b42384e40b0f
-		if ( $object == 'licenses' && $method == 'show' ) {
+		if ( 'licenses' === $object && 'show' === $method ) {
 			$type = INPUT_POST;
-	
+
 			$key = filter_input( $type, 'key', FILTER_SANITIZE_STRING );
 			$url = filter_input( $type, 'url', FILTER_SANITIZE_STRING );
-	
+
 			$domain = parse_url( $url, PHP_URL_HOST );
-			if ( substr( $domain, 0, 4 ) == 'www.' ) {
+			if ( 'www.' === substr( $domain, 0, 4 ) ) {
 				$domain = substr( $domain, 4 );
 			}
-	
+
 			$query = "
 				SELECT
 					subscription.id ,
@@ -49,28 +49,28 @@ function orbis_subscriptions_api_call() {
 				WHERE
 					subscription.license_key_md5 = %s
 			";
-	
+
 			global $wpdb;
-	
+
 			$query = $wpdb->prepare( $query, $key );
-	
+
 			$subscription = $wpdb->get_row( $query );
-	
-			if ( $subscription != null ) {
-				if ( $subscription->subscriptionName != '*' ) {
-					$isValidDomain = $subscription->subscriptionName == $domain;
-	
+
+			if ( null !== $subscription ) {
+				if ( '*' !== $subscription->subscriptionName ) {
+					$isValidDomain = $subscription->subscriptionName === $domain;
+
 					$subscription->isValid &= $isValidDomain;
 				}
 
 				$subscription->isValid = filter_var( $subscription->isValid, FILTER_VALIDATE_BOOLEAN );
 			}
-	
+
 			header( 'Content-Type: application/json' );
-	
-			echo json_encode( $subscription );
+
+			echo wp_json_encode( $subscription );
 		}
-	
+
 		die();
 	}
 }

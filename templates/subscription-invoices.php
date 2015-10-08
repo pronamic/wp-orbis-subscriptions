@@ -30,17 +30,17 @@ if ( $invoices ) : ?>
 
 	<div class="panel">
 		<header>
-			<h3><?php _e( 'Invoices', 'orbis_subscriptions' ); ?></h3>
+			<h3><?php esc_html_e( 'Invoices', 'orbis_subscriptions' ); ?></h3>
 		</header>
 
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th scope="col"><?php _e( 'Create Date', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'User', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Start Date', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'End Date', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Create Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'User', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Start Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'End Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
 				</tr>
 			</thead>
 
@@ -50,36 +50,36 @@ if ( $invoices ) : ?>
 				
 					<tr>
 						<td>
-							<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $invoice->create_date ) ); ?>
+							<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $invoice->create_date ) ) ); ?>
 						</td>
 						<td>
-							<?php echo $invoice->user_display_name; ?>
+							<?php echo esc_html( $invoice->user_display_name ); ?>
 						</td>
 						<td>
-							<?php echo date_i18n( 'D j M Y', strtotime( $invoice->start_date ) ); ?>
+							<?php echo esc_html( date_i18n( 'D j M Y', strtotime( $invoice->start_date ) ) ); ?>
 						</td>
 						<td>
-							<?php echo date_i18n( 'D j M Y', strtotime( $invoice->end_date ) ); ?>
+							<?php echo esc_html( date_i18n( 'D j M Y', strtotime( $invoice->end_date ) ) ); ?>
 						</td>
 						<td>
-							<?php 
-							
+							<?php
+
 							$invoice_link = orbis_get_invoice_link( $invoice->invoice_number );
-							
+
 							if ( ! empty( $invoice_link ) ) {
 								printf(
 									'<a href="%s" target="_blank">%s</a>',
 									esc_attr( $invoice_link ),
-									$invoice->invoice_number
+									esc_html( $invoice->invoice_number )
 								);
 							} else {
-								echo $invoice->invoice_number;
+								echo esc_html( $invoice->invoice_number );
 							}
-							
+
 							?>
 						</td>
 					</tr>
-				
+
 				<?php endforeach; ?>
 
 			</tbody>

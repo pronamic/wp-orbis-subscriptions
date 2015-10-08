@@ -36,17 +36,17 @@ if ( $subscriptions ) : ?>
 
 	<div class="panel">
 		<header>
-			<h3><?php _e( 'Subscriptions', 'orbis_subscriptions' ); ?></h3>
+			<h3><?php esc_html_e( 'Subscriptions', 'orbis_subscriptions' ); ?></h3>
 		</header>
 
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th scope="col"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Company', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Company', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
 				</tr>
 			</thead>
 
@@ -54,38 +54,38 @@ if ( $subscriptions ) : ?>
 				
 				<?php foreach ( $subscriptions as $subscription ) : ?>
 
-					<?php 
-					
+					<?php
+
 					$classes = array( 'subscription' );
 					if ( $subscription->canceled ) {
 						$classes[] = 'canceled';
 					}
-					
+
 					?>
-					<tr class="<?php echo implode( ' ', $classes ); ?>">
+					<tr class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 						<td>
-							<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ); ?>
+							<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ) ); ?>
 						</td>
 						<td>
-							<a href="<?php echo get_permalink( $subscription->company_post_id ); ?>" target="_blank">
-								<?php echo $subscription->company_name; ?>
+							<a href="<?php echo esc_attr( get_permalink( $subscription->company_post_id ) ); ?>" target="_blank">
+								<?php echo esc_html( $subscription->company_name ); ?>
 							</a>
 						</td>
 						<td>
-							<a href="<?php echo get_permalink( $subscription->post_id ); ?>" target="_blank">
-								<?php echo $subscription->subscription_name; ?>
+							<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+								<?php echo esc_html( $subscription->subscription_name ); ?>
 							</a>
 						</td>
 						<td>
-							<a href="<?php echo get_permalink( $subscription->post_id ); ?>" target="_blank">
-								<?php echo $subscription->name; ?>
+							<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+								<?php echo esc_html( $subscription->name ); ?>
 							</a>
 						</td>
 						<td>
-							<?php echo orbis_price( $subscription->price ); ?>
+							<?php echo esc_html( orbis_price( $subscription->price ) ); ?>
 						</td>
 					</tr>
-				
+
 				<?php endforeach; ?>
 
 			</tbody>
