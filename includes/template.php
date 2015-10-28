@@ -58,6 +58,25 @@ function orbis_company_sections_subscriptions( $sections ) {
 add_filter( 'orbis_company_sections', 'orbis_company_sections_subscriptions' );
 
 /**
+ * Orbis subscriptions body class
+ *
+ * @param array $classes
+ */
+function orbis_subscriptions_body_class( $classes ) {
+	if ( is_singular( 'orbis_subscription' ) ) {
+		$post = get_post();
+
+		if ( isset( $post->subscription_cancel_date ) && ! empty( $post->subscription_cancel_date ) ) {
+			$classes[] = 'orbis-status-cancelled';
+		}
+	}
+
+	return $classes;
+}
+
+add_filter( 'body_class', 'orbis_subscriptions_body_class' );
+
+/**
  * Orbis subscriptions post class
  *
  * @param array $classes
