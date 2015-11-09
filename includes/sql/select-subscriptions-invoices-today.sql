@@ -3,6 +3,7 @@ SELECT
 	company.name AS company_name,
 	CONCAT( 'http://in.pronamic.nl/?p=', company.post_id ) AS company_link,
 	product.name AS product_name,
+	product.price AS product_price,
 	subscription.name AS subscription_name,
 	CONCAT( 'http://in.pronamic.nl/?p=', subscription.post_id ) AS subscription_link,
 	si.start_date AS start_date,
