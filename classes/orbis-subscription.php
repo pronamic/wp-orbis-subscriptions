@@ -634,6 +634,7 @@ class Orbis_Subscription {
 	public function register_invoice( $invoice_number, DateTime $start_date, DateTime $end_date ) {
 		global $wpdb;
 
+		// Insert subscription invoice
 		$result = $wpdb->insert(
 			$wpdb->orbis_subscriptions_invoices,
 			array(
@@ -651,6 +652,27 @@ class Orbis_Subscription {
 				'%s',
 				'%d',
 				'%s',
+			)
+		);
+
+		// Update subscription
+		$wpdb->update(
+			$wpdb->orbis_subscriptions,
+			// Data
+			array(
+				'expiration_date' => $end_date->format( 'Y-m-d H:i:s' ),
+			),
+			// Where
+			array(
+				'id' => $this->get_id(),
+			),
+			// Format
+			array(
+				'%s',
+			),
+			// Where format
+			array(
+				'%d',
 			)
 		);
 
