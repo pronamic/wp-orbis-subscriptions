@@ -73,9 +73,25 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
             <td>
                 <label for="orbis_subscription_product_interval">
                     <select id="orbis_subscription_product_interval" name="_orbis_subscription_product_interval">
-                        <option value=""></option>
-                        <option value="Y" <?php selected( $interval, 'Y' ); ?>><?php esc_html_e( 'Yearly', 'orbis_subscriptions' ); ?></option>
-                        <option value="M" <?php selected( $interval, 'M' ); ?>><?php esc_html_e( 'Monthly', 'orbis_subscriptions' ); ?></option>
+                    	<?php
+
+                    	$intervals = array(
+                    		''  => '',
+                    		'Y' => __( 'Yearly', 'orbis_subscriptions' ),
+                    		'M' => __( 'Monthly', 'orbis_subscriptions' ),
+                    		'Q' => __( 'Quarterly', 'orbis_subscriptions' ),
+                    	);
+
+                    	foreach ( $intervals as $value => $label ) {
+                    		printf(
+                    			'<option value="%s" %s>%s</option>',
+                    			esc_attr( $value ),
+                    			selected( $interval, $value, false ),
+                    			esc_html( $label )
+                    		);
+                    	}
+
+                    	?>
                     </select>
                 </label>
             </td>
