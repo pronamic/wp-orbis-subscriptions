@@ -5,7 +5,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		parent::__construct( $file );
 
 		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.1.6' );
+		$this->set_db_version( '1.1.7' );
 
 		// Includes
 		$this->plugin_include( 'includes/post.php' );
@@ -71,7 +71,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			twinfield_article VARCHAR(8) NOT NULL,
 			auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
 			deprecated BOOLEAN NOT NULL DEFAULT FALSE,
-			`interval` VARCHAR(1) NOT NULL DEFAULT "Y",
+			`interval` VARCHAR(2) NOT NULL DEFAULT "Y",
 			PRIMARY KEY  (id)
 		' );
 

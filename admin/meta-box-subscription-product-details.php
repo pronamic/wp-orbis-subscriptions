@@ -64,39 +64,39 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
 				</label>
 			</td>
 		</tr>
-        <tr valign="top">
-            <th scope="row">
-                <label for="orbis_subscription_product_interval">
-                    <?php esc_html_e( 'Interval', 'orbis_subscriptions' ); ?>
-                </label>
-            </th>
-            <td>
-                <label for="orbis_subscription_product_interval">
-                    <select id="orbis_subscription_product_interval" name="_orbis_subscription_product_interval">
-                    	<?php
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_subscription_product_interval">
+					<?php esc_html_e( 'Interval', 'orbis_subscriptions' ); ?>
+				</label>
+			</th>
+			<td>
+				<label for="orbis_subscription_product_interval">
+					<select id="orbis_subscription_product_interval" name="_orbis_subscription_product_interval">
+						<?php
 
-                    	$intervals = array(
-                    		''   => '',
-                    		'Y'  => __( 'Yearly', 'orbis_subscriptions' ),
-                    		'2Y' => __( 'Two Yearly', 'orbis_subscriptions' ),
-                    		'3Y' => __( 'Three Yearly', 'orbis_subscriptions' ),
-                    		'M'  => __( 'Monthly', 'orbis_subscriptions' ),
-                    		'Q'  => __( 'Quarterly', 'orbis_subscriptions' ),
-                    	);
+						$intervals = array(
+							''   => '',
+							'Y'  => __( 'Yearly', 'orbis_subscriptions' ),
+							'2Y' => __( 'Two Yearly', 'orbis_subscriptions' ),
+							'3Y' => __( 'Three Yearly', 'orbis_subscriptions' ),
+							'M'  => __( 'Monthly', 'orbis_subscriptions' ),
+							'Q'  => __( 'Quarterly', 'orbis_subscriptions' ),
+						);
 
-                    	foreach ( $intervals as $value => $label ) {
-                    		printf(
-                    			'<option value="%s" %s>%s</option>',
-                    			esc_attr( $value ),
-                    			selected( $interval, $value, false ),
-                    			esc_html( $label )
-                    		);
-                    	}
+						foreach ( $intervals as $value => $label ) {
+							printf(
+								'<option value="%s" %s>%s</option>',
+								esc_attr( $value ),
+								selected( $interval, $value, false ),
+								esc_html( $label )
+							);
+						}
 
-                    	?>
-                    </select>
-                </label>
-            </td>
-        </tr>
+						?>
+					</select>
+				</label>
+			</td>
+		</tr>
 	</tbody>
 </table>
