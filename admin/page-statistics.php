@@ -21,8 +21,6 @@
 		;
 	";
 
-	// echo '<pre>', $query, '</pre>';
-
 	$expired_stats = $wpdb->get_results( $query );
 
 	?>
