@@ -149,49 +149,6 @@ class Orbis_Subscription {
 	 */
 	private $update_date;
 
-	/**
-	 * Holds the license key
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $license_key;
-
-	/**
-	 * Holds the md5'ed license key
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $license_key_md5;
-
-	/**
-	 * Holds the total sent number of
-	 * notifications to this subscription
-	 *
-	 * @access private
-	 * @var int
-	 */
-	private $sent_notifications;
-
-	/**
-	 * Holds the subject sent
-	 * out with the email notification
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $email_subject;
-
-	/**
-	 * Holds the body sent
-	 * out with the email notification
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $email_body;
-
 	public function __construct( $subscription = null ) {
 		if ( null !== $subscription ) {
 			$this->load( $subscription );
@@ -249,8 +206,6 @@ class Orbis_Subscription {
 					$this->set_cancel_date( new DateTime( $subscription_data->cancel_date ) );
 				}
 				$this->set_update_date( new DateTime( $subscription_data->update_date ) );
-				$this->set_license_key( $subscription_data->license_key );
-				$this->set_sent_notifications( $subscription_data->sent_notifications );
 			}
 		} else {
 			return false;
@@ -259,124 +214,6 @@ class Orbis_Subscription {
 
 	public function expire() {
 
-	}
-
-	/**
-	 * Extends the subscription for a passed DateInterval.
-	 *
-	 * If no DateInterval is passed, then it defaults to 1 year extension.
-	 *
-	 * @access public
-	 * @param string $modify
-	 * @return boolean
-	 */
-	public function extend( $modify = '+1 year' ) {
-		global $wpdb;
-
-		// Modify the expiration date
-		$expiration = $this->get_expiration_date()->modify( $modify );
-
-		$data = array(
-			'expiration_date' => $expiration->format( 'Y-m-d H:i:s' ),
-			'update_date'     => date( 'Y-m-d H:i:s' ),
-		);
-
-		$where = array( 'id' => $this->get_id() );
-
-		$format = array(
-			'expiration_date' => '%s',
-			'update_date'     => '%s',
-		);
-
-		$response = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
-
-		// Because 0 can be returned, a boolean type response will return a false negative
-		if ( false === $response ) {
-			return false;
-		} else {
-			$this->set_expiration_date( $expiration );
-			return true;
-		}
-	}
-
-	/**
-	 * Conditional method to determine if this subscription has passed
-	 * expiration or not.
-	 *
-	 * @access public
-	 * @param DateTime $now | A custom comparison datetime
-	 * @return boolean
-	 */
-	public function passed_expiration( DateTime $now = null ) {
-		if ( ! $now ) {
-			$now = new DateTime();
-		}
-
-		return ( $now > $this->get_expiration_date() );
-	}
-
-	/**
-	 * Determine how long till this account expires.  Will return
-	 * a DateInterval of the difference from now till expiration
-	 *
-	 * @access public
-	 * @return DateInterval
-	 */
-	public function until_expiration() {
-		// Current DateTime
-		$date_now = new DateTime();
-		return $date_now->diff( $this->get_expiration_date() );
-	}
-
-	/**
-	 * Returns a human readable difference between the expiration date
-	 * and now.
-	 *
-	 * Perhaps requires parameters to be changed to sprintf formats so you
-	 * can have the order how you want.
-	 *
-	 * @param string $passed | default: 'ago'
-	 * @param string $till | default: 'In'
-	 * @return string
-	 */
-	public function until_expiration_human( $passed = 'ago', $till = 'In' ) {
-		$expires = $this->get_expiration_date()->format( 'U' );
-
-		// If now is greater, then its already expired
-		if ( $this->passed_expiration() ) {
-			return human_time_diff( $expires ) . ' ' . $passed;
-		} else {
-			return $till . ' ' . human_time_diff( $expires );
-		}
-	}
-
-	/**
-	 * Returns the url to update this subscription
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function renew_url( $url ) {
-		return add_query_arg( array(
-			'domain_name' => $this->get_name(),
-			'license'     => $this->get_license_key(),
-			'product'     => $this->get_product_id(),
-		), $url );
-	}
-
-	/**
-	 * Generates and sets a license key for this subscription
-	 *
-	 * Uses an md5 string of the company id, type id and name.
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function generate_license_key() {
-		$license_key = md5( uniqid() );
-		$this->set_license_key( $license_key );
-
-		return $license_key;
 	}
 
 	public function activate() {
@@ -396,8 +233,6 @@ class Orbis_Subscription {
 				'email'           => $this->get_email(),
 				'activation_date' => orbis_date2mysql( $this->get_activation_date() ),
 				'expiration_date' => orbis_date2mysql( $this->get_expiration_date() ),
-				'license_key'     => $this->get_license_key(),
-				'license_key_md5' => $this->license_key_md5,
 			);
 
 			$format = array(
@@ -408,8 +243,6 @@ class Orbis_Subscription {
 				'email'           => '%s',
 				'activation_date' => '%s',
 				'expiration_date' => '%s',
-				'license_key'     => '%s',
-				'license_key_md5' => '%s',
 			);
 
 			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
@@ -420,7 +253,6 @@ class Orbis_Subscription {
 				'name'               => $this->get_name(),
 				'email'              => $this->get_email(),
 				'update_date'        => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
-				'sent_notifications' => $this->get_sent_notifications(),
 			);
 
 			$where = array( 'id' => $this->get_id() );
@@ -431,7 +263,6 @@ class Orbis_Subscription {
 				'name'               => '%s',
 				'email'              => '%s',
 				'update_date'        => '%s',
-				'sent_notifications' => '%d',
 			);
 
 			// Update!
@@ -443,26 +274,6 @@ class Orbis_Subscription {
 
 	public function remove() {
 
-	}
-
-	/**
-	 * Stores a note of a sent expiration reminder
-	 *
-	 * @access private
-	 * @return int
-	 */
-	private function store_note() {
-		$comment = array(
-			'comment_post_ID' => $this->get_post_id(),
-			'comment_author'  => 'System',
-			'comment_content' => sprintf(
-				__( 'A license expiration reminder has been sent to %s (%s).', 'orbis_subscriptions' ),
-				$this->get_company_name(),
-				$this->get_email()
-			) . '<blockquote>' . $this->email_body . '</blockquote>',
-		);
-
-		return wp_insert_comment( $comment );
 	}
 
 	/**
@@ -605,28 +416,6 @@ class Orbis_Subscription {
 	public function set_update_date( DateTime $update_date ) {
 		$this->update_date = $update_date;
 		return $this;
-	}
-
-	public function get_license_key() {
-		return $this->license_key;
-	}
-
-	public function set_license_key( $license_key ) {
-		$this->license_key     = $license_key;
-		$this->license_key_md5 = md5( $license_key );
-		return $this;
-	}
-
-	public function get_license_key_md5() {
-		return $this->license_key_md5;
-	}
-
-	public function get_sent_notifications() {
-		return $this->sent_notifications;
-	}
-
-	public function set_sent_notifications( $sent_notifications ) {
-		$this->sent_notifications = $sent_notifications;
 	}
 
 	//////////////////////////////////////////////////

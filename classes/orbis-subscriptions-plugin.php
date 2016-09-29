@@ -10,7 +10,6 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		// Includes
 		$this->plugin_include( 'includes/post.php' );
 		$this->plugin_include( 'includes/subscription.php' );
-		$this->plugin_include( 'includes/api.php' );
 		$this->plugin_include( 'includes/template.php' );
 		$this->plugin_include( 'includes/subscription-template.php' );
 
@@ -52,13 +51,8 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			expiration_date DATETIME NOT NULL,
 			cancel_date DATETIME DEFAULT NULL,
 			update_date DATETIME DEFAULT NULL,
-			license_key VARCHAR(32) DEFAULT NULL,
-			license_key_md5 VARCHAR(32) DEFAULT NULL,
 			email VARCHAR(64) DEFAULT NULL,
-			sent_notifications TINYINT(2) DEFAULT 0,
 			PRIMARY KEY  (id),
-			UNIQUE KEY license_key (license_key),
-			UNIQUE KEY license_key_md5 (license_key_md5),
 			UNIQUE KEY post_id (post_id),
 			KEY company_id (company_id),
 			KEY type_id (type_id),

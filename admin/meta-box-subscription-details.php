@@ -85,14 +85,6 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</td>
 	</tr>
 	<tr valign="top">
-		<th scope="row">
-			<label for="orbis_subscription_license_key"><?php esc_html_e( 'License Key', 'orbis_subscriptions' ); ?></label>
-		</th>
-		<td>
-			<input id="orbis_subscription_license_key" name="_orbis_subscription_license_key" value="<?php echo esc_attr( $subscription->get_license_key() ); ?>" type="text" readonly="readonly" class="regular-text" />
-		</td>
-	</tr>
-	<tr valign="top">
 		<?php
 
 		$date = $subscription->get_activation_date();

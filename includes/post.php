@@ -263,10 +263,7 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		->set_email( $email )
 		->set_name( $name );
 
-	// Must be new, make a new license key for this subscription
 	if ( ! $subscription->get_id() ) {
-		$subscription->generate_license_key();
-
 		// Current DateTime
 		$current = new DateTime();
 

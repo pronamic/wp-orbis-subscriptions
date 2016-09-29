@@ -6,7 +6,6 @@ $orbis_id        = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id      = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
 $type_id         = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
 $name            = get_post_meta( $post->ID, '_orbis_subscription_name', true );
-$license_key     = get_post_meta( $post->ID, '_orbis_subscription_license_key', true );
 $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_date', true );
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
@@ -18,7 +17,6 @@ $orbis_id        = $subscription->id;
 $company_id      = $subscription->company_id;
 $type_id         = $subscription->type_id;
 $name            = $subscription->name;
-$license_key     = $subscription->license_key;
 $activation_date = $subscription->activation_date;
 $expiration_date = $subscription->expiration_date;
 $cancel_date     = $subscription->cancel_date;
@@ -51,28 +49,8 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 			<?php endif; ?>
 
-			<?php if ( ! empty( $license_key ) ) : ?>
-	
-				<dt><?php esc_html_e( 'License Key', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php echo esc_html( $license_key ); ?></dd>
-
-			<?php endif; ?>
-
 			<dt><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></dt>
 			<dd><?php orbis_subscription_the_price(); ?></dd>
 		</dl>
-
-		<form method="post" action="">
-			<?php wp_nonce_field( 'orbis_subscription_mail_license_key', 'orbis_subscriptions_nonce' ); ?>
-
-			<div class="input-group">
-				<input name="orbis_subscription_subject" type="hidden" value="<?php echo esc_attr__( 'Pronamic iDEAL License Key', 'orbis_subscriptions' ); ?>" />
-				<input name="orbis_subscription_email" type="email" value="<?php echo esc_attr( $email ); ?>" placeholder="<?php echo esc_attr__( 'Email', 'orbis_subscriptions' ); ?>" class="form-control" />
-
-				<span class="input-group-btn">
-					<button name="orbis_subscription_mail" type="submit" class="btn btn-default"><?php esc_html_e( 'Send License', 'orbis_subscriptions' ); ?></button>
-				</span>
-			</div>
-		</form>
 	</div>
 </div>
