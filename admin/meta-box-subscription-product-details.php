@@ -78,6 +78,8 @@ $interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval',
                     	$intervals = array(
                     		''  => '',
                     		'Y' => __( 'Yearly', 'orbis_subscriptions' ),
+                    		'2Y' => __( 'Two Yearly', 'orbis_subscriptions' ),
+                    		'3Y' => __( 'Three Yearly', 'orbis_subscriptions' ),
                     		'M' => __( 'Monthly', 'orbis_subscriptions' ),
                     		'Q' => __( 'Quarterly', 'orbis_subscriptions' ),
                     	);
