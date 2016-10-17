@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Query vars.
+ *
+ * @see https://developer.wordpress.org/reference/hooks/query_vars/
+ */
+function orbis_subscriptions_query_vars( $query_vars ) {
+	$query_vars[] = 'subscriptions_like';
+
+	return $query_vars;
+}
+
+add_filter( 'query_vars', 'orbis_subscriptions_query_vars' );
+
+/**
  * Posts clauses
  *
  * @see http://codex.wordpress.org/WordPress_Query_Vars
@@ -42,6 +55,32 @@ function orbis_subscriptions_posts_clauses( $pieces, $query ) {
 		$pieces['join']   .= $join;
 		$pieces['fields'] .= $fields;
 		$pieces['where']  .= $where;
+	}
+
+	// Subscriptions like
+	if ( 'orbis_company' === $post_type ) {
+		$like = $query->get( 'subscriptions_like', null );
+
+		if ( null !== $like ) {
+			// Join
+			$join = "
+				LEFT JOIN
+					$wpdb->orbis_companies AS company
+						ON $wpdb->posts.ID = company.post_id
+				LEFT JOIN
+					$wpdb->orbis_subscriptions AS subscription
+						ON subscription.company_id = company.id
+				LEFT JOIN
+					$wpdb->orbis_subscription_products AS subscription_product
+						ON subscription.type_id = subscription_product.id
+			";
+
+			// Where
+			$where = $wpdb->prepare( "AND subscription.cancel_date IS NULL AND subscription_product.name LIKE %s", $like );
+
+			$pieces['join']   .= $join;
+			$pieces['where']  .= $where;
+		}
 	}
 
 	return $pieces;
