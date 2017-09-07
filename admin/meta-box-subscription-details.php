@@ -138,4 +138,26 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_payment_method"><?php _e( 'Payment Method', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<?php
+
+			$terms = wp_get_post_terms( $post->ID, 'orbis_payment_method' );
+
+			$term = array_shift( $terms );
+
+			wp_dropdown_categories( array(
+				'name'             => 'tax_input[orbis_payment_method]',
+				'show_option_none' => __( '— Select Payment Method —', 'orbis_subscriptions' ),
+				'hide_empty'       => false,
+				'selected'         => is_object( $term ) ? $term->term_id : false,
+				'taxonomy'         => 'orbis_payment_method',
+			) );
+
+			?>
+		</td>
+	</tr>
 </table>

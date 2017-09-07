@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/orbis-"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2015-10-06 14:08:51+00:00\n"
-"PO-Revision-Date: 2015-10-06 16:18+0100\n"
+"POT-Creation-Date: 2017-09-07 11:36:57+00:00\n"
+"PO-Revision-Date: 2017-09-07 13:39+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -16,433 +16,243 @@ msgstr ""
 "X-Generator: Poedit 1.7.4\n"
 
 #: admin/meta-box-subscription-actions.php:4
-#: deploy/latest/admin/meta-box-subscription-actions.php:4
 msgid "Cancel"
 msgstr "Annuleren"
 
 #: admin/meta-box-subscription-actions.php:20
-#: deploy/latest/admin/meta-box-subscription-actions.php:20
 msgid "Cancel Subscription"
 msgstr "Abonnement opzeggen"
 
 #: admin/meta-box-subscription-details.php:19
-#: admin/meta-box-subscription-product-details.php:19
-#: deploy/latest/admin/meta-box-subscription-details.php:19
-#: deploy/latest/admin/meta-box-subscription-product-details.php:19
-#: deploy/latest/includes/post.php:455 includes/post.php:502
+#: admin/meta-box-subscription-product-details.php:19 includes/post.php:500
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
 #: admin/meta-box-subscription-details.php:27
-#: deploy/latest/admin/meta-box-subscription-details.php:27
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
 #: admin/meta-box-subscription-details.php:30
-#: deploy/latest/admin/meta-box-subscription-details.php:30
 msgid "Select Company"
 msgstr "Selecteer bedrijf"
 
 #: admin/meta-box-subscription-details.php:35
-#: deploy/latest/admin/meta-box-subscription-details.php:35
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:65
-#: deploy/latest/admin/meta-box-subscription-details.php:65
-#: deploy/latest/templates/company-subscriptions.php:39
-#: deploy/latest/templates/domain-name-subscriptions.php:48
-#: deploy/latest/templates/subscriptions-invoices.php:17
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:100
-#: deploy/latest/templates/subscriptions-to-invoice.php:71
+#: admin/meta-box-subscription-details.php:64
 #: templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscription-purchase-details.php:41
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:73
-#: deploy/latest/admin/meta-box-subscription-details.php:73
-#: deploy/latest/includes/post.php:245 includes/post.php:295
+#: admin/meta-box-subscription-details.php:72 includes/post.php:294
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:77
-#: deploy/latest/admin/meta-box-subscription-details.php:77
+#: admin/meta-box-subscription-details.php:76
 msgid "Select Person"
 msgstr "Selecteer persoon"
 
-#: admin/meta-box-subscription-details.php:82
-#: deploy/latest/admin/meta-box-subscription-details.php:82
-#: deploy/latest/templates/subscription-details.php:74
-#: templates/subscription-details.php:74
+#: admin/meta-box-subscription-details.php:81
 msgid "Email"
 msgstr "E-mailadres"
 
-#: admin/meta-box-subscription-details.php:90
-#: deploy/latest/admin/meta-box-subscription-details.php:90
-#: deploy/latest/templates/subscription-details.php:60
-#: templates/subscription-details.php:60
-msgid "License Key"
-msgstr "Licentiesleutel"
-
-#: admin/meta-box-subscription-details.php:108
-#: deploy/latest/admin/meta-box-subscription-details.php:108
-#: deploy/latest/templates/company-subscriptions.php:37
-#: deploy/latest/templates/domain-name-subscriptions.php:45
-#: deploy/latest/templates/subscription-details.php:45
+#: admin/meta-box-subscription-details.php:99
 #: templates/company-subscriptions.php:37
 #: templates/domain-name-subscriptions.php:45
-#: templates/subscription-details.php:45
+#: templates/subscription-details.php:39
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:126
-#: deploy/latest/admin/meta-box-subscription-details.php:126
-#: deploy/latest/templates/subscription-details.php:48
-#: templates/subscription-details.php:48
+#: admin/meta-box-subscription-details.php:117
+#: templates/subscription-details.php:42
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:144
-#: deploy/latest/admin/meta-box-subscription-details.php:144
-#: deploy/latest/templates/subscription-details.php:53
-#: templates/subscription-details.php:53
+#: admin/meta-box-subscription-details.php:135
+#: templates/subscription-details.php:47
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
+#: admin/meta-box-subscription-details.php:143
+msgid "Payment Method"
+msgstr "Betaalmethode"
+
+#: admin/meta-box-subscription-details.php:154
+msgid "— Select Payment Method —"
+msgstr "— Selecteer betaalmethode —"
+
 #: admin/meta-box-subscription-product-details.php:27
-#: admin/meta-box-subscription-purchase-details.php:14
-#: deploy/latest/admin/meta-box-subscription-product-details.php:27
-#: deploy/latest/includes/post.php:452
-#: deploy/latest/templates/company-subscriptions.php:40
-#: deploy/latest/templates/domain-name-subscriptions.php:49
-#: deploy/latest/templates/subscription-details.php:65
-#: deploy/latest/templates/subscriptions-invoices.php:16
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:99
-#: deploy/latest/templates/subscriptions-to-invoice.php:70
-#: includes/post.php:499 templates/company-subscriptions.php:40
+#: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:497
+#: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:49
-#: templates/subscription-details.php:65
+#: templates/subscription-details.php:52
 #: templates/subscription-purchase-details.php:42
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-subscription-product-details.php:35
-#: deploy/latest/admin/meta-box-subscription-product-details.php:35
-#: deploy/latest/includes/post.php:453 includes/post.php:500
+#: admin/meta-box-subscription-product-details.php:35 includes/post.php:498
 msgid "Cost Price"
 msgstr "Kostprijs"
 
 #: admin/meta-box-subscription-product-details.php:44
-#: deploy/latest/admin/meta-box-subscription-product-details.php:44
 msgid "Auto Renew"
 msgstr "Automatisch verlengen"
 
 #: admin/meta-box-subscription-product-details.php:50
-#: deploy/latest/admin/meta-box-subscription-product-details.php:50
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:57
-#: deploy/latest/admin/meta-box-subscription-product-details.php:57
-#: deploy/latest/includes/post.php:454 includes/post.php:501
+#: admin/meta-box-subscription-product-details.php:57 includes/post.php:499
 msgid "Deprecated"
 msgstr "Vervallen"
 
 #: admin/meta-box-subscription-product-details.php:63
-#: deploy/latest/admin/meta-box-subscription-product-details.php:63
 msgid "Deprecated subscription product"
 msgstr "Vervallen abonnement product"
 
 #: admin/meta-box-subscription-product-details.php:70
-#: deploy/latest/admin/meta-box-subscription-product-details.php:70
 msgid "Interval"
 msgstr "Interval"
 
-#: admin/meta-box-subscription-product-details.php:77
-#: deploy/latest/admin/meta-box-subscription-product-details.php:77
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:30
-#: deploy/latest/templates/subscriptions-to-invoice.php:27
+#: admin/meta-box-subscription-product-details.php:80
 msgid "Yearly"
 msgstr "Jaarlijks"
 
-#: admin/meta-box-subscription-product-details.php:78
-#: deploy/latest/admin/meta-box-subscription-product-details.php:78
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:31
-#: deploy/latest/templates/subscriptions-to-invoice.php:28
+#: admin/meta-box-subscription-product-details.php:81
+msgid "Two Yearly"
+msgstr "Tweejaarlijks"
+
+#: admin/meta-box-subscription-product-details.php:82
+msgid "Three Yearly"
+msgstr "Driejaarlijks"
+
+#: admin/meta-box-subscription-product-details.php:83
 msgid "Monthly"
 msgstr "Maandelijks"
 
-#: admin/page-statistics.php:31 deploy/latest/admin/page-statistics.php:31
+#: admin/meta-box-subscription-product-details.php:84
+msgid "Quarterly"
+msgstr "Driemaandelijks"
+
+#: admin/page-statistics.php:29
 msgid "All"
 msgstr "Alles"
 
-#: admin/page-statistics.php:37 deploy/latest/admin/page-statistics.php:37
+#: admin/page-statistics.php:35
 msgid "Product"
 msgstr "Product"
 
-#: admin/page-statistics.php:38 deploy/latest/admin/page-statistics.php:38
+#: admin/page-statistics.php:36
 msgid "Active"
 msgstr "Actief"
 
-#: admin/page-statistics.php:39 deploy/latest/admin/page-statistics.php:39
+#: admin/page-statistics.php:37
 msgid "Expired"
 msgstr "Verlopen"
 
-#: admin/page-statistics.php:40 deploy/latest/admin/page-statistics.php:40
+#: admin/page-statistics.php:38
 msgid "Total"
 msgstr "Totaal"
 
-#: admin/page-statistics.php:41 deploy/latest/admin/page-statistics.php:41
+#: admin/page-statistics.php:39
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
-#: classes/orbis-subscription.php:457
-#: deploy/latest/classes/orbis-subscription.php:457
-msgid "A license expiration reminder has been sent to %s (%s)."
-msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
-
-#: classes/orbis-subscriptions-admin.php:39
-#: deploy/latest/classes/orbis-subscriptions-admin.php:39
+#: classes/orbis-subscriptions-admin.php:40
 msgid "Orbis Subscriptions Statistics"
 msgstr "Orbis abonnementen statistieken"
 
-#: classes/orbis-subscriptions-admin.php:40
-#: deploy/latest/classes/orbis-subscriptions-admin.php:40
+#: classes/orbis-subscriptions-admin.php:41
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: classes/orbis-subscriptions-admin.php:80
-#: deploy/latest/classes/orbis-subscriptions-admin.php:80
+#: classes/orbis-subscriptions-admin.php:81
 msgid "This subscription is just '%s' by %s."
 msgstr "Dit abonnement is zojuist '%s' door %s."
 
-#: classes/orbis-subscriptions-admin.php:81
-#: deploy/latest/classes/orbis-subscriptions-admin.php:81
+#: classes/orbis-subscriptions-admin.php:82
 msgid "canceled"
 msgstr "geannuleerd"
 
-#: deploy/latest/includes/post.php:9 deploy/latest/includes/post.php:22
-#: deploy/latest/includes/template.php:51
-#: deploy/latest/templates/domain-name-subscriptions.php:39
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:90
-#: deploy/latest/templates/subscriptions-to-invoice.php:60 includes/post.php:9
-#: includes/post.php:22 includes/template.php:51
+#: includes/post.php:9 includes/post.php:22 includes/template.php:49
 #: templates/domain-name-subscriptions.php:39
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: deploy/latest/includes/post.php:14 includes/post.php:14
+#: includes/post.php:14
 msgid "Add New Subscription"
 msgstr "Nieuwe abonnement toevoegen"
 
-#: deploy/latest/includes/post.php:15 includes/post.php:15
+#: includes/post.php:15
 msgid "Edit Subscription"
 msgstr "Bewerk abonnement"
 
-#: deploy/latest/includes/post.php:16 includes/post.php:16
+#: includes/post.php:16
 msgid "New Subscription"
 msgstr "Nieuwe abonnement"
 
-#: deploy/latest/includes/post.php:17 includes/post.php:17
+#: includes/post.php:17
 msgid "View Subscription"
 msgstr "Bekijk abonnement"
 
-#: deploy/latest/includes/post.php:18 includes/post.php:18
+#: includes/post.php:18
 msgid "Search Subscriptions"
 msgstr "Abonnementen zoeken"
 
-#: deploy/latest/includes/post.php:19 includes/post.php:19
+#: includes/post.php:19
 msgid "No subscriptions found"
 msgstr "Geen abonnementen gevonden"
 
-#: deploy/latest/includes/post.php:20 includes/post.php:20
+#: includes/post.php:20
 msgid "No subscriptions found in Trash"
 msgstr "Geen abonnementen gevonden in prullenbak"
 
-#: deploy/latest/includes/post.php:21 includes/post.php:21
+#: includes/post.php:21
 msgid "Parent Subscription:"
 msgstr "Bovenliggend abonnement"
 
-#: deploy/latest/includes/post.php:38 includes/post.php:38
+#: includes/post.php:38
 msgid "Subscription Products"
 msgstr "Abonnement producten"
 
-#: deploy/latest/includes/post.php:43 includes/post.php:43
+#: includes/post.php:43
 msgid "Add New Subscription Product"
 msgstr "Nieuwe abonnement product toevoegen"
 
-#: deploy/latest/includes/post.php:44 includes/post.php:44
+#: includes/post.php:44
 msgid "Edit Subscription Product"
 msgstr "Bewerk abonnement product"
 
-#: deploy/latest/includes/post.php:45 includes/post.php:45
+#: includes/post.php:45
 msgid "New Subscription Product"
 msgstr "Nieuwe abonnement product"
 
-#: deploy/latest/includes/post.php:46 includes/post.php:46
+#: includes/post.php:46
 msgid "View Subscription Product"
 msgstr "Bekijk abonnement product"
 
-#: deploy/latest/includes/post.php:47 includes/post.php:47
+#: includes/post.php:47
 msgid "Search Subscription Products"
 msgstr "Zoeken abonnement producten"
 
-#: deploy/latest/includes/post.php:48 includes/post.php:48
+#: includes/post.php:48
 msgid "No subscription products found"
 msgstr "Geen abonnement producten gevonden"
 
-#: deploy/latest/includes/post.php:49 includes/post.php:49
+#: includes/post.php:49
 msgid "No subscription products found in Trash"
 msgstr "Geen abonnement producten gevonden in prullenbak"
 
-#: deploy/latest/includes/post.php:50 includes/post.php:50
+#: includes/post.php:50
 msgid "Parent Subscription Product:"
 msgstr "Bovenliggend abonnement product:"
 
-#: deploy/latest/includes/post.php:51 includes/post.php:51
+#: includes/post.php:51
 msgid "Products"
 msgstr "Producten"
-
-#: deploy/latest/includes/post.php:73
-#: deploy/latest/templates/subscription-details.php:35 includes/post.php:103
-#: templates/subscription-details.php:35
-msgid "Subscription Details"
-msgstr "Abonnement details"
-
-#: deploy/latest/includes/post.php:82 includes/post.php:112
-msgid "Subscription Actions"
-msgstr "Abonnement acties"
-
-#: deploy/latest/includes/post.php:91 includes/post.php:121
-msgid "Subscription Product Details"
-msgstr "Abonnement product details"
-
-#: deploy/latest/includes/post.php:244 deploy/latest/includes/post.php:451
-#: includes/post.php:294
-msgid "Title"
-msgstr "Titel"
-
-#: deploy/latest/includes/post.php:246 deploy/latest/includes/post.php:456
-#: includes/post.php:296
-msgid "Author"
-msgstr "Auteur"
-
-#: deploy/latest/includes/post.php:247 deploy/latest/includes/post.php:457
-#: includes/post.php:297
-msgid "Comments"
-msgstr "Reacties"
-
-#: deploy/latest/includes/post.php:248 deploy/latest/includes/post.php:458
-#: includes/post.php:298
-msgid "Date"
-msgstr "Datum"
-
-#: deploy/latest/includes/post.php:510 includes/post.php:570
-msgid "Yes"
-msgstr "Ja"
-
-#: deploy/latest/includes/post.php:510 includes/post.php:570
-msgid "No"
-msgstr "Nee"
-
-#: deploy/latest/includes/shortcodes.php:229
-msgid "Login required"
-msgstr "Inloggen vereist"
-
-#: deploy/latest/templates/company-subscriptions.php:38
-#: deploy/latest/templates/domain-name-subscriptions.php:47
-#: deploy/latest/templates/subscriptions-invoices.php:15
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:98
-#: deploy/latest/templates/subscriptions-to-invoice.php:69
-#: templates/company-subscriptions.php:38
-#: templates/domain-name-subscriptions.php:47
-msgid "Subscription"
-msgstr "Abonnement"
-
-#: deploy/latest/templates/domain-name-subscriptions.php:46
-#: deploy/latest/templates/subscription-details.php:40
-#: deploy/latest/templates/subscriptions-invoices.php:14
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:97
-#: deploy/latest/templates/subscriptions-to-invoice.php:68
-#: templates/domain-name-subscriptions.php:46
-#: templates/subscription-details.php:40
-msgid "Company"
-msgstr "Bedrijf"
-
-#: deploy/latest/templates/subscription-details.php:73
-#: templates/subscription-details.php:73
-msgid "Pronamic iDEAL License Key"
-msgstr "Pronamic iDEAL licentiesleutel"
-
-#: deploy/latest/templates/subscription-details.php:77
-#: templates/subscription-details.php:77
-msgid "Send License"
-msgstr "Verstuur licentie"
-
-#: deploy/latest/templates/subscription-invoices.php:33
-#: templates/subscription-invoices.php:33
-msgid "Invoices"
-msgstr "Facturen"
-
-#: deploy/latest/templates/subscription-invoices.php:39
-#: deploy/latest/templates/subscriptions-invoices.php:12
-#: templates/subscription-invoices.php:39
-msgid "Create Date"
-msgstr "Aanmaakdatum"
-
-#: deploy/latest/templates/subscription-invoices.php:40
-#: deploy/latest/templates/subscriptions-invoices.php:13
-#: templates/subscription-invoices.php:40
-msgid "User"
-msgstr "Gebruiker"
-
-#: deploy/latest/templates/subscription-invoices.php:41
-#: deploy/latest/templates/subscriptions-invoices.php:18
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:101
-#: deploy/latest/templates/subscriptions-to-invoice.php:72
-#: templates/subscription-invoices.php:41
-msgid "Start Date"
-msgstr "Startdatum"
-
-#: deploy/latest/templates/subscription-invoices.php:42
-#: deploy/latest/templates/subscriptions-invoices.php:19
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:102
-#: deploy/latest/templates/subscriptions-to-invoice.php:73
-#: templates/subscription-invoices.php:42
-msgid "End Date"
-msgstr "Einddatum"
-
-#: deploy/latest/templates/subscription-invoices.php:43
-#: deploy/latest/templates/subscriptions-invoices.php:20
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:103
-#: deploy/latest/templates/subscriptions-to-invoice.php:74
-#: templates/subscription-invoices.php:43
-msgid "Invoice Number"
-msgstr "Factuurnummer"
-
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:24
-#: deploy/latest/templates/subscriptions-to-invoice.php:21
-msgid "This month"
-msgstr "Deze maand"
-
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:48
-msgid "Inserted"
-msgstr "Toegevoegd"
-
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:49
-msgid "Failed"
-msgstr "Mislukt"
-
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:86
-msgid "Update"
-msgstr "Update"
-
-#: deploy/latest/templates/subscriptions-to-invoice-updater.php:96
-#: deploy/latest/templates/subscriptions-to-invoice.php:67
-msgid "ID"
-msgstr "ID"
 
 #: includes/post.php:67
 msgid "Subscription Purchases"
@@ -484,9 +294,79 @@ msgstr "Bovenliggend inkoop abonnement:"
 msgid "Purchases"
 msgstr "Inkopen"
 
-#: includes/post.php:130
+#: includes/post.php:105 templates/subscription-details.php:29
+msgid "Subscription Details"
+msgstr "Abonnement details"
+
+#: includes/post.php:114
+msgid "Subscription Actions"
+msgstr "Abonnement acties"
+
+#: includes/post.php:123
+msgid "Subscription Product Details"
+msgstr "Abonnement product details"
+
+#: includes/post.php:132
 msgid "Subscription Purchase Details"
 msgstr "Inkoop abonnement details"
+
+#: includes/post.php:293
+msgid "Title"
+msgstr "Titel"
+
+#: includes/post.php:295
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/post.php:296
+msgid "Comments"
+msgstr "Reacties"
+
+#: includes/post.php:297
+msgid "Date"
+msgstr "Datum"
+
+#: includes/post.php:568
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/post.php:568
+msgid "No"
+msgstr "Nee"
+
+#: templates/company-subscriptions.php:38
+#: templates/domain-name-subscriptions.php:47
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: templates/domain-name-subscriptions.php:46
+#: templates/subscription-details.php:34
+msgid "Company"
+msgstr "Bedrijf"
+
+#: templates/subscription-invoices.php:33
+msgid "Invoices"
+msgstr "Facturen"
+
+#: templates/subscription-invoices.php:39
+msgid "Create Date"
+msgstr "Aanmaakdatum"
+
+#: templates/subscription-invoices.php:40
+msgid "User"
+msgstr "Gebruiker"
+
+#: templates/subscription-invoices.php:41
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: templates/subscription-invoices.php:42
+msgid "End Date"
+msgstr "Einddatum"
+
+#: templates/subscription-invoices.php:43
+msgid "Invoice Number"
+msgstr "Factuurnummer"
 
 #: templates/subscription-purchase-details.php:48
 msgid "Revenue"
@@ -524,12 +404,12 @@ msgstr "Pronamic"
 msgid "http://www.pronamic.eu/"
 msgstr "http://www.pronamic.eu/"
 
-#: deploy/latest/includes/post.php:11 includes/post.php:11
+#: includes/post.php:11
 msgctxt "post type general name"
 msgid "Subscriptions"
 msgstr "Abonnementen"
 
-#: deploy/latest/includes/post.php:40 includes/post.php:40
+#: includes/post.php:40
 msgctxt "post type general name"
 msgid "Subscription Products"
 msgstr "Abonnement producten"
@@ -539,12 +419,12 @@ msgctxt "post type general name"
 msgid "Subscription Purchases"
 msgstr "Inkoop abonnementen"
 
-#: deploy/latest/includes/post.php:12 includes/post.php:12
+#: includes/post.php:12
 msgctxt "post type singular name"
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: deploy/latest/includes/post.php:41 includes/post.php:41
+#: includes/post.php:41
 msgctxt "post type singular name"
 msgid "Subscription Product"
 msgstr "Abonnement product"
@@ -554,17 +434,17 @@ msgctxt "post type singular name"
 msgid "Subscription Purchase"
 msgstr "Inkoop abonnement"
 
-#: deploy/latest/includes/post.php:13 includes/post.php:13
+#: includes/post.php:13
 msgctxt "orbis_subscription"
 msgid "Add New"
 msgstr "Nieuwe abonnement"
 
-#: deploy/latest/includes/post.php:30 includes/post.php:30
+#: includes/post.php:30
 msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: deploy/latest/includes/post.php:59 includes/post.php:59
+#: includes/post.php:59
 msgctxt "slug"
 msgid "subscription-products"
 msgstr "abonnement-producten"
@@ -574,7 +454,7 @@ msgctxt "slug"
 msgid "subscription-purchases"
 msgstr "inkoop-abonnementen"
 
-#: deploy/latest/includes/post.php:42 includes/post.php:42
+#: includes/post.php:42
 msgctxt "orbis_subs_type"
 msgid "Add New"
 msgstr "Nieuw abonnement product"
@@ -583,6 +463,36 @@ msgstr "Nieuw abonnement product"
 msgctxt "orbis_subs_purchase"
 msgid "Add New"
 msgstr "Nieuw inkoop abonnement"
+
+#~ msgid "License Key"
+#~ msgstr "Licentiesleutel"
+
+#~ msgid "A license expiration reminder has been sent to %s (%s)."
+#~ msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
+
+#~ msgid "Login required"
+#~ msgstr "Inloggen vereist"
+
+#~ msgid "Pronamic iDEAL License Key"
+#~ msgstr "Pronamic iDEAL licentiesleutel"
+
+#~ msgid "Send License"
+#~ msgstr "Verstuur licentie"
+
+#~ msgid "This month"
+#~ msgstr "Deze maand"
+
+#~ msgid "Inserted"
+#~ msgstr "Toegevoegd"
+
+#~ msgid "Failed"
+#~ msgstr "Mislukt"
+
+#~ msgid "Update"
+#~ msgstr "Update"
+
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgid "http://www.orbiswp.com/"
 #~ msgstr "http://www.orbiswp.com/"
