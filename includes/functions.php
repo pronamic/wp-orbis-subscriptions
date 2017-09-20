@@ -65,7 +65,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 
 	$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
 
-	$query = $wpdb->prepare( "
+	$query = "
 		SELECT
 			subscription.id AS id,
 			CONCAT( subscription.id, '. ', product.name, ' - ', subscription.name ) AS text
@@ -78,16 +78,21 @@ function orbis_subscriptions_suggest_subscription_id() {
 			subscription.cancel_date IS NULL
 				AND
 			(
-				subscription.name LIKE '%%%1\$s%%'
+				subscription.name LIKE %s
 					OR
-				product.name LIKE '%%%1\$s%%'
+				product.name LIKE %s
 			)
 		GROUP BY
 			subscription.id
 		ORDER BY
 			subscription.id
-		", $term
-	);
+	";
+
+	$like = '%' . $wpdb->esc_like( $term ) . '%';
+
+	$query = $wpdb->prepare( $query, $like, $like ); // unprepared SQL
+
+	$projects = $wpdb->get_results( $query ); // unprepared SQL
 
 	$data = $wpdb->get_results( $query );
 
