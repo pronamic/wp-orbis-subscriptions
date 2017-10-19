@@ -15,7 +15,7 @@ WHERE
 		AND
 	product.name LIKE '%Webhosting%'
 		AND
-	DATE_FORMAT( activation_date, CONCAT( YEAR( CURDATE() ), '-%m-%d' ) ) > CURDATE()
+	DATE_FORMAT( activation_date, CONCAT( YEAR( CURDATE() ), '-%m-%d' ) ) > DATE_SUB( CURDATE(), INTERVAL 2 WEEK )
 ORDER BY
 	date_diff
 ;
