@@ -54,7 +54,7 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 			<?php if ( has_term( null, 'orbis_payment_method' ) ) : ?>
 
-				<dt><?php esc_html_e( 'Payment Method', 'orbis' ); ?></dt>
+				<dt><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></dt>
 				<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
 
 			<?php endif; ?>
