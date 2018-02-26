@@ -24,40 +24,41 @@ $cancel_date     = $subscription->cancel_date;
 $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
 
 ?>
-<div class="panel">
-	<header>
-		<h3><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></h3>
-	</header>
+<div class="card mb-3">
+	<div class="card-body">
+		<h3 class="card-title"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></h3>
 
-	<div class="content">
-		<dl>
-			<dt><?php esc_html_e( 'Company', 'orbis_subscriptions' ); ?></dt>
-			<dd>
-				<a href="<?php echo esc_attr( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
-			</dd>
+		<div class="content">
+			<dl>
+				<dt><?php esc_html_e( 'Company', 'orbis_subscriptions' ); ?></dt>
+				<dd>
+					<a href="<?php echo esc_attr( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
+				</dd>
 
-			<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ) ); ?></dd>
+				<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
+				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ) ); ?></dd>
 
-			<dt><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $expiration_date ) ) ); ?></dd>
+				<dt><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></dt>
+				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $expiration_date ) ) ); ?></dd>
 
-			<?php if ( ! empty( $cancel_date ) ) : ?>
-	
-				<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $cancel_date ) ) ); ?></dd>
+				<?php if ( ! empty( $cancel_date ) ) : ?>
+		
+					<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
+					<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $cancel_date ) ) ); ?></dd>
 
-			<?php endif; ?>
+				<?php endif; ?>
 
-			<dt><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></dt>
-			<dd><?php orbis_subscription_the_price(); ?></dd>
+				<dt><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></dt>
+				<dd><?php orbis_subscription_the_price(); ?></dd>
 
-			<?php if ( has_term( null, 'orbis_payment_method' ) ) : ?>
+				<?php if ( has_term( null, 'orbis_payment_method' ) ) : ?>
 
-				<dt><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
+					<dt><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></dt>
+					<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
 
-			<?php endif; ?>
-		</dl>
+				<?php endif; ?>
+			</dl>
+		</div>
 	</div>
+	
 </div>
