@@ -27,7 +27,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $subscription->get_company_id() ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $subscription->get_company_name() ); ?>" placeholder="<?php esc_attr_e( 'Select Company', 'orbis_subscriptions' ); ?>" />
+			<select type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $subscription->get_company_id() ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $subscription->get_company_name() ); ?>" placeholder="<?php esc_attr_e( 'Select Company', 'orbis_subscriptions' ); ?>"></select>
 		</td>
 	</tr>
 	<tr valign="top">
@@ -73,7 +73,7 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</th>
 		<td>
 			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
-			<input id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php esc_attr_e( 'Select Person', 'orbis_subscriptions' ); ?>" />
+			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php esc_attr_e( 'Select Person', 'orbis_subscriptions' ); ?>"></select>
 		</td>
 	</tr>
 	<tr valign="top">
