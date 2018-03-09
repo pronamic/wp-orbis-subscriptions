@@ -27,7 +27,7 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		add_action( 'init', array( $this, 'init' ), 20 );
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
 	}
-	
+
 	public function init() {
 		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_subscription' );
 	}

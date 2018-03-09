@@ -68,7 +68,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 	$query = "
 		SELECT
 			subscription.id AS id,
-			CONCAT( subscription.id, '. ', product.name, ' - ', subscription.name ) AS text
+			CONCAT( subscription.id, '. ', IFNULL( CONCAT( product.name, ' - ' ), '' ), subscription.name ) AS text
 		FROM
 			$wpdb->orbis_subscriptions AS subscription
 				LEFT JOIN
