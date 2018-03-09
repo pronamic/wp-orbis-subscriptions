@@ -12,6 +12,22 @@ $query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE
 
 $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
+$person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
+
+$query = "
+	SELECT
+		post.post_title
+	FROM
+		$wpdb->posts AS post
+	WHERE
+		post.post_type = 'orbis_person'
+			AND
+		post.ID = $person_id
+	;
+";
+
+$person_name = $wpdb->get_var( $query );
+
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -27,7 +43,11 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<select type="text" id="orbis_subscription_company" name="_orbis_subscription_company_id" value="<?php echo esc_attr( $subscription->get_company_id() ); ?>" class="orbis-id-control orbis_company_id_field regular-text" data-text="<?php echo esc_attr( $subscription->get_company_name() ); ?>" placeholder="<?php esc_attr_e( 'Select Company', 'orbis_subscriptions' ); ?>"></select>
+			<select id="orbis_subscription_company" name="_orbis_subscription_company_id" class="orbis-id-control orbis_company_id_field regular-text">
+				<option value="<?php echo esc_attr( $subscription->get_company_id() ); ?>">
+					<?php echo esc_html( $subscription->get_company_name() ); ?>
+				</option>
+			</select>
 		</td>
 	</tr>
 	<tr valign="top">
@@ -73,7 +93,11 @@ $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 		</th>
 		<td>
 			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
-			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" value="<?php echo esc_attr( $person_id ); ?>" type="text" class="orbis-id-control orbis-person-id-control regular-text" data-text="<?php echo esc_attr( $person_id ); ?>" placeholder="<?php esc_attr_e( 'Select Person', 'orbis_subscriptions' ); ?>"></select>
+			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" class="orbis-id-control orbis-person-id-control regular-text">
+				<option value="<?php echo esc_attr( $person_id ); ?>">
+					<?php echo esc_html( $person_name ); ?>
+				</option>
+			</select>
 		</td>
 	</tr>
 	<tr valign="top">
