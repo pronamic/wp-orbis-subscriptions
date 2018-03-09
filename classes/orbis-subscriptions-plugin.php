@@ -38,6 +38,12 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			'from' => 'orbis_subscription',
 			'to'   => 'orbis_subs_purchase',
 		) );
+
+		p2p_register_connection_type( array(
+			'name' => 'orbis_subscriptions_to_persons',
+			'from' => 'orbis_subscription',
+			'to'   => 'orbis_person',
+		) );
 	}
 
 	public function loaded() {
