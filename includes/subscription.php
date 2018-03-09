@@ -78,8 +78,9 @@ function orbis_subscriptions_posts_clauses( $pieces, $query ) {
 			// Where
 			$where = $wpdb->prepare( "AND subscription.cancel_date IS NULL AND subscription_product.name LIKE %s", $like );
 
-			$pieces['join']   .= $join;
-			$pieces['where']  .= $where;
+			$pieces['join']    .= $join;
+			$pieces['where']   .= $where;
+			$pieces['groupby'] .= "$wpdb->posts.ID";
 		}
 	}
 
