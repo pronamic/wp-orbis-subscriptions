@@ -6,7 +6,7 @@ $query = new WP_Query( array(
 	'post_type'       => 'orbis_subscription',
 	'connected_type'  => 'orbis_subscriptions_to_purchases',
 	'connected_items' => get_queried_object(),
-	'nopaging'        => true,
+	'nopaging'        => true, //phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_nopaging
 ) );
 
 // Costs
@@ -60,7 +60,10 @@ $profit = $revenue - $costs;
 
 		<tbody>
 
-			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<?php
+			while ( $query->have_posts() ) :
+				$query->the_post();
+			?>
 
 				<tr <?php post_class(); ?>>
 					<td>
@@ -72,7 +75,7 @@ $profit = $revenue - $costs;
 						<?php echo esc_html( orbis_subscription_the_price() ); ?>
 					</td>
 				</tr>
-			
+
 			<?php endwhile; ?>
 
 		</tbody>

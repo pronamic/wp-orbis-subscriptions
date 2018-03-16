@@ -39,7 +39,7 @@
 				<th scope="col"><?php esc_html_e( 'Expire Rate', 'orbis_subscriptions' ); ?></th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 
 			<?php foreach ( $expired_stats as $stat ) : ?>
@@ -72,7 +72,7 @@
 				</tr>
 
 			<?php endforeach; ?>
-					
+
 		</tbody>
 	</table>
 </div>

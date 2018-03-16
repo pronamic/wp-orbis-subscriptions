@@ -165,8 +165,9 @@ $person_name = $wpdb->get_var( $query );
 	<?php
 	$terms = get_the_terms( $post->ID, 'orbis_payment_method' );
 
-	if ( ! is_wp_error( $terms ) ) : 
-		$term = ($terms !== false) ? array_shift( $terms ) : $terms;?>
+	if ( ! is_wp_error( $terms ) ) :
+		$term = ( false !== $terms ) ? array_shift( $terms ) : $terms;
+	?>
 		<tr valign="top">
 			<th scope="row">
 				<label for="orbis_subscription_payment_method"><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></label>

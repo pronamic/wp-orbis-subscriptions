@@ -51,7 +51,7 @@ if ( $subscriptions ) : ?>
 			</thead>
 
 			<tbody>
-				
+
 				<?php foreach ( $subscriptions as $subscription ) : ?>
 
 					<?php

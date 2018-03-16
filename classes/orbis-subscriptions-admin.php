@@ -78,7 +78,7 @@ class Orbis_Subscriptions_Admin {
 				$user = wp_get_current_user();
 
 				$comment_content = sprintf(
-					__( "This subscription is just '%s' by %s.", 'orbis_subscriptions' ),
+					__( "This subscription is just '%1\$s' by %2\$s.", 'orbis_subscriptions' ), //phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
 					__( 'canceled', 'orbis_subscriptions' ),
 					$user->display_name
 				);

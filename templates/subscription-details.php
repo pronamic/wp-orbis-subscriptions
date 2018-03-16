@@ -42,7 +42,7 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $expiration_date ) ) ); ?></dd>
 
 				<?php if ( ! empty( $cancel_date ) ) : ?>
-		
+
 					<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
 					<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $cancel_date ) ) ); ?></dd>
 
@@ -60,5 +60,5 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 			</dl>
 		</div>
 	</div>
-	
+
 </div>

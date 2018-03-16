@@ -248,24 +248,24 @@ class Orbis_Subscription {
 			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
 		} else {
 			$data = array(
-				'company_id'         => $this->get_company_id(),
-				'type_id'            => $this->get_product_id(),
-				'name'               => $this->get_name(),
-				'email'              => $this->get_email(),
-				'update_date'        => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
+				'company_id'  => $this->get_company_id(),
+				'type_id'     => $this->get_product_id(),
+				'name'        => $this->get_name(),
+				'email'       => $this->get_email(),
+				'update_date' => $this->get_update_date()->format( 'Y-m-d H:i:s' ),
 			);
 
 			$where = array( 'id' => $this->get_id() );
 
 			$format = array(
-				'company_id'         => '%d',
-				'type_id'            => '%d',
-				'name'               => '%s',
-				'email'              => '%s',
-				'update_date'        => '%s',
+				'company_id'  => '%d',
+				'type_id'     => '%d',
+				'name'        => '%s',
+				'email'       => '%s',
+				'update_date' => '%s',
 			);
 
-			// Update!
+			// Update it!
 			$result = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
 		}
 

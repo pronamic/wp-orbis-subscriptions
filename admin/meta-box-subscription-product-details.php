@@ -4,12 +4,12 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_product_details', 'orbis_subscription_product_details_meta_box_nonce' );
 
-$orbis_id    = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
-$price       = get_post_meta( $post->ID, '_orbis_subscription_product_price', true );
-$cost_price  = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
-$auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
-$deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
-$interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
+$orbis_id   = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
+$price      = get_post_meta( $post->ID, '_orbis_subscription_product_price', true );
+$cost_price = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
+$auto_renew = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
+$deprecated = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
+$interval   = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
 
 ?>
 <table class="form-table">

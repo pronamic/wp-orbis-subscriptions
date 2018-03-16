@@ -207,7 +207,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 		'_orbis_subscription_type_id'    => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_name'       => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_person_id'  => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_email'		 => FILTER_VALIDATE_EMAIL,
+		'_orbis_subscription_email'      => FILTER_VALIDATE_EMAIL,
 	);
 
 	$data = filter_input_array( INPUT_POST, $definition );
@@ -296,7 +296,7 @@ function orbis_subscription_edit_columns( $columns ) {
 	);
 }
 
-add_filter( 'manage_edit-orbis_subscription_columns' , 'orbis_subscription_edit_columns' );
+add_filter( 'manage_edit-orbis_subscription_columns', 'orbis_subscription_edit_columns' );
 
 /**
  * Keychain column
@@ -307,7 +307,7 @@ function orbis_subscription_column( $column ) {
 	$id = get_the_ID();
 
 	switch ( $column ) {
-		case 'orbis_subscription_person' :
+		case 'orbis_subscription_person':
 			$person_id = get_post_meta( $id, '_orbis_subscription_person_id', true );
 
 			if ( ! empty( $person_id ) ) {
@@ -322,7 +322,7 @@ function orbis_subscription_column( $column ) {
 	}
 }
 
-add_action( 'manage_posts_custom_column' , 'orbis_subscription_column' );
+add_action( 'manage_posts_custom_column', 'orbis_subscription_column' );
 
 /**
  * Insert post data
@@ -341,7 +341,7 @@ function orbis_subscriptions_insert_post_data( $data, $postarr ) {
 		if ( ! empty( $type_name ) && ! empty( $name ) ) {
 			$post_title = $type_name . ' - ' . $name;
 
-			$post_name  = sanitize_title_with_dashes( $post_title );
+			$post_name = sanitize_title_with_dashes( $post_title );
 
 			$data['post_title'] = $post_title;
 			$data['post_name']  = $post_name;
@@ -431,13 +431,13 @@ function orbis_save_subscription_product_sync( $post_id ) {
 	global $wpdb;
 
 	// Orbis subscription product ID
-	$orbis_id       = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_subscription_products WHERE post_id = %d;", $post_id ) );
+	$orbis_id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_subscription_products WHERE post_id = %d;", $post_id ) );
 
-	$price       = get_post_meta( $post_id, '_orbis_subscription_product_price', true );
-	$cost_price  = get_post_meta( $post_id, '_orbis_subscription_product_cost_price', true );
-	$auto_renew  = get_post_meta( $post_id, '_orbis_subscription_product_auto_renew', true );
-	$deprecated  = get_post_meta( $post_id, '_orbis_subscription_product_deprecated', true );
-	$interval    = get_post_meta( $post_id, '_orbis_subscription_product_interval', true );
+	$price      = get_post_meta( $post_id, '_orbis_subscription_product_price', true );
+	$cost_price = get_post_meta( $post_id, '_orbis_subscription_product_cost_price', true );
+	$auto_renew = get_post_meta( $post_id, '_orbis_subscription_product_auto_renew', true );
+	$deprecated = get_post_meta( $post_id, '_orbis_subscription_product_deprecated', true );
+	$interval   = get_post_meta( $post_id, '_orbis_subscription_product_interval', true );
 
 	$data = array();
 	$form = array();
@@ -515,7 +515,7 @@ function orbis_subscription_product_edit_columns( $columns ) {
 	return $columns;
 }
 
-add_filter( 'manage_edit-orbis_subs_product_columns' , 'orbis_subscription_product_edit_columns' );
+add_filter( 'manage_edit-orbis_subs_product_columns', 'orbis_subscription_product_edit_columns' );
 
 /**
  * Project column

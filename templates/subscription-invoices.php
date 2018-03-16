@@ -45,9 +45,9 @@ if ( $invoices ) : ?>
 			</thead>
 
 			<tbody>
-				
+
 				<?php foreach ( $invoices as $invoice ) : ?>
-				
+
 					<tr>
 						<td>
 							<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $invoice->create_date ) ) ); ?>
