@@ -43,7 +43,7 @@ if ( $query->have_posts() ) : ?>
 						<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->subscription_activation_date ) ) ); ?>
 					</td>
 					<td>
-						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+						<a href="<?php echo esc_attr( get_permalink( $subscription->ID ) ); ?>" target="_blank">
 							<?php echo esc_html( $subscription->post_title ); ?>
 						</a>
 					</td>
