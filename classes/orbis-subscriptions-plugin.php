@@ -26,6 +26,9 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		// Actions
 		add_action( 'init', array( $this, 'init' ), 20 );
 		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+
+		// Shortcodes
+		add_shortcode( 'orbis_subscriptions_without_agreement', array( $this, 'shortcode_subscriptions_without_agreement' ) );
 	}
 
 	public function init() {
@@ -98,5 +101,19 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		' );
 
 		parent::install();
+	}
+
+	public function shortcode_subscriptions_without_agreement() {
+		$return = '';
+
+		ob_start();
+
+		$this->plugin_include( 'templates/subscriptions-without-agreement.php' );
+
+		$return = ob_get_contents();
+
+		ob_end_clean();
+
+		return $return;
 	}
 }
