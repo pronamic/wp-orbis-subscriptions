@@ -12,7 +12,8 @@ $query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE
 
 $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
-$person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
+$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
+$agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', true );
 
 $query = "
 	SELECT
@@ -109,6 +110,27 @@ $person_name = $wpdb->get_var( $query );
 		</td>
 	</tr>
 	<tr valign="top">
+		<th scope="row">
+			<label for="_orbis_subscription_agreement_id">
+				<?php esc_html_e( 'Agreement ID', 'orbis-projects' ); ?>
+			</label>
+		</th>
+		<td>
+			<input size="5" type="text" id="_orbis_subscription_agreement_id" name="_orbis_subscription_agreement_id" value="<?php echo esc_attr( $agreement_id ); ?>" />
+
+			<a id="choose-from-library-link" class="button"
+				data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis-projects' ); ?>"
+				data-type="<?php echo esc_attr( 'application/pdf, plain/text' ); ?>"
+				data-element="<?php echo esc_attr( '_orbis_subscription_agreement_id' ); ?>"
+				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis-projects' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis-projects' ); ?></a>
+
+			<p class="description">
+				<?php esc_html_e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis-projects' ); ?><br />
+				<?php esc_html_e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis-projects' ); ?>
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
 		<?php
 
 		$date = $subscription->get_activation_date();
@@ -186,3 +208,58 @@ $person_name = $wpdb->get_var( $query );
 	</tr>
 	<?php endif; ?>
 </table>
+
+<script type="text/javascript">
+	( function( $ ) {
+		$( document ).ready( function() {
+			var frame;
+
+			$('#choose-from-library-link').click( function( event ) {
+				var $el = $( this );
+
+				event.preventDefault();
+
+				// If the media frame already exists, reopen it.
+				if ( frame ) {
+					frame.open();
+					return;
+				}
+
+				// Create the media frame.
+				frame = wp.media.frames.projectAgreement = wp.media( {
+					// Set the title of the modal.
+					title: $el.data( 'choose' ),
+
+					// Tell the modal to show only images.
+					library: {
+						type: $el.data( 'type' ),
+					},
+
+					// Customize the submit button.
+					button: {
+						// Set the text of the button.
+						text: $el.data( 'update' ),
+						// Tell the button not to close the modal, since we're
+						// going to refresh the page when the image is selected.
+						close: false
+					}
+				} );
+
+				// When an image is selected, run a callback.
+				frame.on( 'select', function() {
+					// Grab the selected attachment.
+					var attachment = frame.state().get( 'selection' ).first();
+
+					var element_id = $el.data( 'element' );
+
+					$( "#" + element_id ).val( attachment.id );
+
+					frame.close();
+				} );
+
+				// Finally, open the modal.
+				frame.open();
+			} );
+		} );
+	} )( jQuery );
+</script>

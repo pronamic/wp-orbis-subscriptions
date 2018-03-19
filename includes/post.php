@@ -203,11 +203,12 @@ function orbis_save_subscription_details( $post_id, $post ) {
 
 	// OK
 	$definition = array(
-		'_orbis_subscription_company_id' => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_type_id'    => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_name'       => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_person_id'  => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_email'      => FILTER_VALIDATE_EMAIL,
+		'_orbis_subscription_company_id'   => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_type_id'      => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_name'         => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_person_id'    => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_email'        => FILTER_VALIDATE_EMAIL,
+		'_orbis_subscription_agreement_id' => FILTER_SANITIZE_STRING,
 	);
 
 	$data = filter_input_array( INPUT_POST, $definition );
@@ -251,6 +252,7 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	$type_id    = get_post_meta( $post_id, '_orbis_subscription_type_id', true );
 	$name       = get_post_meta( $post_id, '_orbis_subscription_name', true );
 	$email      = get_post_meta( $post_id, '_orbis_subscription_email', true );
+	$agreement  = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
 
 	// Get the subscription object
 	$subscription = new Orbis_Subscription( $post );
@@ -261,7 +263,8 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		->set_product_id( $type_id )
 		->set_post_id( $post_id )
 		->set_email( $email )
-		->set_name( $name );
+		->set_name( $name )
+		->set_agreement_id( $agreement );
 
 	if ( ! $subscription->get_id() ) {
 		// Current DateTime

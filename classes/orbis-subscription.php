@@ -382,6 +382,15 @@ class Orbis_Subscription {
 		return $this;
 	}
 
+	public function get_agreement_id() {
+		return $this->agreement_id;
+	}
+
+	public function set_agreement_id( $agreement_id ) {
+		$this->agreement_id = $agreement_id;
+		return $this;
+	}
+
 	public function get_activation_date() {
 		return $this->activation_date;
 	}
