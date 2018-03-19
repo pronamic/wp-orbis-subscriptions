@@ -5,7 +5,7 @@ $query = new WP_Query( array(
 	'posts_per_page' => 50,
 	'meta_query'     => array( // WPCS: slow query ok.
 		array(
-			'key'     => '_orbis_project_agreement_id',
+			'key'     => '_orbis_subscription_agreement_id',
 			'compare' => 'NOT EXISTS',
 		),
 	),
