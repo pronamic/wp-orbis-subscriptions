@@ -77,4 +77,12 @@ if ( $subscriptions ) : ?>
 		</tbody>
 	</table>
 
+<?php else : ?>
+
+	<div class="content">
+		<p class="alt">
+			<?php esc_html_e( 'No subscriptions found.', 'orbis_subscriptions' ); ?>
+		</p>
+	</div>
+
 <?php endif; ?>
