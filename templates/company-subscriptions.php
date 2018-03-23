@@ -34,10 +34,10 @@ if ( $subscriptions ) : ?>
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
