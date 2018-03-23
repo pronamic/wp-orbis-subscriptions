@@ -31,7 +31,7 @@ $subscriptions = $wpdb->get_results( $query );
 
 if ( $subscriptions ) : ?>
 
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped mb-0">
 		<thead>
 			<tr>
 				<th class="border-top-0" scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
