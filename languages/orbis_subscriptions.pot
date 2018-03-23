@@ -55,12 +55,15 @@ msgid "Agreement ID"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:122
-#: admin/meta-box-subscription-details.php:125
-msgid "Choose a Agreement"
+msgid "Choose an Agreement"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:125
 msgid "Set as Agreement"
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:125
+msgid "Choose a Agreement"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:128
