@@ -52,7 +52,7 @@ if ( $query->have_posts() ) : ?>
 					</td>
 					<td>
 						<a href="<?php echo esc_attr( get_edit_post_link( $subscription->ID ) ); ?>">
-							<?php esc_html_e( 'Edit', 'orbis-projects' ); ?>
+							<?php esc_html_e( 'Edit', 'orbis_subscriptions' ); ?>
 						</a>
 					</td>
 				</tr>

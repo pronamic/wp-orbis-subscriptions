@@ -112,21 +112,21 @@ $person_name = $wpdb->get_var( $query );
 	<tr valign="top">
 		<th scope="row">
 			<label for="_orbis_subscription_agreement_id">
-				<?php esc_html_e( 'Agreement ID', 'orbis-projects' ); ?>
+				<?php esc_html_e( 'Agreement ID', 'orbis_subscriptions' ); ?>
 			</label>
 		</th>
 		<td>
 			<input size="5" type="text" id="_orbis_subscription_agreement_id" name="_orbis_subscription_agreement_id" value="<?php echo esc_attr( $agreement_id ); ?>" />
 
 			<a id="choose-from-library-link" class="button"
-				data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis-projects' ); ?>"
+				data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis_subscriptions' ); ?>"
 				data-type="<?php echo esc_attr( 'application/pdf, plain/text' ); ?>"
 				data-element="<?php echo esc_attr( '_orbis_subscription_agreement_id' ); ?>"
-				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis-projects' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis-projects' ); ?></a>
+				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis_subscriptions' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis_subscriptions' ); ?></a>
 
 			<p class="description">
-				<?php esc_html_e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis-projects' ); ?><br />
-				<?php esc_html_e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis-projects' ); ?>
+				<?php esc_html_e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis_subscriptions' ); ?><br />
+				<?php esc_html_e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis_subscriptions' ); ?>
 			</p>
 		</td>
 	</tr>
