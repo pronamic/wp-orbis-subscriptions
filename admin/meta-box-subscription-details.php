@@ -119,7 +119,7 @@ $person_name = $wpdb->get_var( $query );
 			<input size="5" type="text" id="_orbis_subscription_agreement_id" name="_orbis_subscription_agreement_id" value="<?php echo esc_attr( $agreement_id ); ?>" />
 
 			<a id="choose-from-library-link" class="button"
-				data-choose="<?php esc_attr_e( 'Choose a Agreement', 'orbis_subscriptions' ); ?>"
+				data-choose="<?php esc_attr_e( 'Choose an Agreement', 'orbis_subscriptions' ); ?>"
 				data-type="<?php echo esc_attr( 'application/pdf, plain/text' ); ?>"
 				data-element="<?php echo esc_attr( '_orbis_subscription_agreement_id' ); ?>"
 				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis_subscriptions' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis_subscriptions' ); ?></a>
