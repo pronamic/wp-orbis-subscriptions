@@ -25,8 +25,8 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 ?>
 <div class="card mb-3">
+	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
 	<div class="card-body">
-		<h3 class="card-title"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></h3>
 
 		<div class="content">
 			<dl>
