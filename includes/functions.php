@@ -75,7 +75,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 			$wpdb->orbis_subscription_products AS product
 					ON subscription.type_id = product.id
 		WHERE
-			subscription.cancel_date IS NULL
+			subscription.expiration_date > NOW()
 				AND
 			(
 				subscription.name LIKE %s
