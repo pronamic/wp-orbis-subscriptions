@@ -97,7 +97,7 @@ add_action( 'init', 'orbis_subscriptions_create_initial_post_types', 0 ); // hig
 /**
  * Add domain keychain meta boxes
  */
-function orbis_sbuscriptions_add_meta_boxes() {
+function orbis_subscriptions_add_meta_boxes() {
 	add_meta_box(
 		'orbis_subscription_details',
 		__( 'Subscription Details', 'orbis_subscriptions' ),
@@ -135,7 +135,7 @@ function orbis_sbuscriptions_add_meta_boxes() {
 	);
 }
 
-add_action( 'add_meta_boxes', 'orbis_sbuscriptions_add_meta_boxes' );
+add_action( 'add_meta_boxes', 'orbis_subscriptions_add_meta_boxes' );
 
 /**
  * Subscription details meta box
