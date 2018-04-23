@@ -10,6 +10,19 @@ $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_dat
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
+$keychain_id     = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
+
+$keychain = $wpdb->get_row( $wpdb->prepare( "
+	SELECT
+		keychain.post_title AS name,
+		keychain.guid AS url
+	FROM
+		$wpdb->posts AS keychain
+	WHERE
+		keychain.id = %d",
+	$keychain_id
+	)
+);
 
 $subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
@@ -22,6 +35,13 @@ $expiration_date = $subscription->expiration_date;
 $cancel_date     = $subscription->cancel_date;
 
 $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
+
+$args = array(
+	'post_parent' => $post->ID,
+	'post_type'   => 'orbis_subscription',
+);
+
+$children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_children
 
 ?>
 <div class="card mb-3">
@@ -58,13 +78,12 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 				<?php endif; ?>
 
-				<?php
-				$args     = array(
-					'post_parent' => $post->ID,
-					'post_type'   => 'orbis_subscription',
-				);
-				$children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_children
-				?>
+				<?php if ( ! empty( $keychain ) ) : ?>
+
+					<dt><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></dt>
+					<dd><a href="<?php echo esc_html( $keychain->url ); ?>"></a><?php echo esc_html( $keychain->name ); ?></dd>
+
+				<?php endif; ?>
 
 				<?php if ( $children ) : ?>
 					<dt><?php esc_html_e( 'Child Subscriptions', 'orbis_subscriptions' ); ?></dt>
