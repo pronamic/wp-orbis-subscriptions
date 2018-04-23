@@ -102,3 +102,37 @@ function orbis_subscriptions_suggest_subscription_id() {
 }
 
 add_action( 'wp_ajax_subscription_id_suggest', 'orbis_subscriptions_suggest_subscription_id' );
+
+function orbis_subscriptions_suggest_keychain_id() {
+	global $wpdb;
+
+	$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+
+	$query = "
+		SELECT
+			keychain.ID AS id,
+			keychain.post_title AS text
+		FROM
+			$wpdb->posts AS keychain
+		WHERE
+			keychain.post_title LIKE %s
+		GROUP BY
+			keychain.id
+		ORDER BY
+			keychain.id
+	";
+
+	$like = '%' . $wpdb->esc_like( $term ) . '%';
+
+	$query = $wpdb->prepare( $query, $like ); // unprepared SQL
+
+	$keychains = $wpdb->get_results( $query ); // unprepared SQL
+
+	$data = $wpdb->get_results( $query );
+
+	echo wp_json_encode( $data );
+
+	die();
+}
+
+add_action( 'wp_ajax_keychain_id_suggest', 'orbis_subscriptions_suggest_keychain_id' );
