@@ -208,6 +208,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 		'_orbis_subscription_type_id'      => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_name'         => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_person_id'    => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_keychain_id'  => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_email'        => FILTER_VALIDATE_EMAIL,
 		'_orbis_subscription_agreement_id' => FILTER_SANITIZE_STRING,
 	);

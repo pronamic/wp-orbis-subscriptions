@@ -12,7 +12,7 @@ $query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE
 
 $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
-$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
+$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ) ? get_post_meta( $post->ID, '_orbis_subscription_person_id', true ) : 0;
 $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', true );
 
 $query = "
@@ -28,6 +28,18 @@ $query = "
 ";
 
 $person_name = $wpdb->get_var( $query );
+$keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
+
+$keychain_name = $wpdb->get_var( $wpdb->prepare( "
+	SELECT
+		keychain.post_title AS name
+	FROM
+		$wpdb->posts AS keychain
+	WHERE
+		keychain.id = %d",
+	$keychain_id
+	)
+);
 
 ?>
 <table class="form-table">
@@ -97,6 +109,19 @@ $person_name = $wpdb->get_var( $query );
 			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" class="orbis-id-control orbis-person-id-control regular-text">
 				<option value="<?php echo esc_attr( $person_id ); ?>">
 					<?php echo esc_html( $person_name ); ?>
+				</option>
+			</select>
+		</td>
+	</tr>
+	<tr valign="top">
+		<th scope="row">
+			<label for="orbis_subscription_keychain_id"><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<?php $keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true ); ?>
+			<select id="orbis_subscription_keychain_id" name="_orbis_subscription_keychain_id" class="orbis-id-control orbis-keychain-id-control regular-text">
+				<option value="<?php echo esc_attr( $keychain_id ); ?>">
+					<?php echo esc_html( $keychain_name ); ?>
 				</option>
 			</select>
 		</td>
