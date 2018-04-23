@@ -81,7 +81,7 @@ $children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFuncti
 				<?php if ( ! empty( $keychain ) ) : ?>
 
 					<dt><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></dt>
-					<dd><a href="<?php echo esc_html( $keychain->url ); ?>"></a><?php echo esc_html( $keychain->name ); ?></dd>
+					<dd><a href="<?php echo esc_html( $keychain->url ); ?>"><?php echo esc_html( $keychain->name ); ?></a></dd>
 
 				<?php endif; ?>
 
