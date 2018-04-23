@@ -57,6 +57,30 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 					<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
 
 				<?php endif; ?>
+
+				<?php 
+				$args = array(
+					'post_parent' => $post->ID,
+					'post_type'   => 'orbis_subscription',
+				);
+				?>
+
+				<?php if ( get_children( $args ) ) : ?>
+					<dt><?php esc_html_e( 'Child Subscriptions', 'orbis_subscriptions' ); ?></dt>
+					<dd>
+						<?php
+						$children = get_children( $args );
+
+						foreach ( $children as $child ) {
+							printf(
+								'<li><a href="%s">%s</a></li>',
+								$child->guid,
+								$child->post_title
+							);			
+						}
+						?>
+					</dd>
+				<?php endif; ?>
 			</dl>
 		</div>
 	</div>
