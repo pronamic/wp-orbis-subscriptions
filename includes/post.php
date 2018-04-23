@@ -134,6 +134,14 @@ function orbis_subscriptions_add_meta_boxes() {
 		'normal',
 		'high'
 	);
+	add_meta_box(
+		'orbis_subscription_children',
+		__( 'Subscription Children', 'orbis_subscriptions' ),
+		'orbis_subscription_children_meta_box',
+		'orbis_subscription',
+		'side',
+		'high'
+	);
 }
 
 add_action( 'add_meta_boxes', 'orbis_subscriptions_add_meta_boxes' );
@@ -180,6 +188,17 @@ function orbis_subscription_purchase_details_meta_box( $post ) {
 	global $orbis_subscriptions_plugin;
 
 	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-purchase-details.php' );
+}
+
+/**
+ * Subscription details meta box
+ *
+ * @param array $post
+*/
+function orbis_subscription_children_meta_box( $post ) {
+	global $orbis_subscriptions_plugin;
+
+	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-children.php' );
 }
 
 /**
