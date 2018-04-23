@@ -58,27 +58,20 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 				<?php endif; ?>
 
-				<?php 
-				$args = array(
+				<?php
+				$args     = array(
 					'post_parent' => $post->ID,
 					'post_type'   => 'orbis_subscription',
 				);
+				$children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_children
 				?>
 
-				<?php if ( get_children( $args ) ) : ?>
+				<?php if ( $children ) : ?>
 					<dt><?php esc_html_e( 'Child Subscriptions', 'orbis_subscriptions' ); ?></dt>
 					<dd>
-						<?php
-						$children = get_children( $args );
-
-						foreach ( $children as $child ) {
-							printf(
-								'<li><a href="%s">%s</a></li>',
-								$child->guid,
-								$child->post_title
-							);			
-						}
-						?>
+						<?php foreach ( $children as $child ) : ?>
+							<li><a href="<?php echo esc_url( $child->guid ); ?>"><?php echo esc_html( $child->post_title ); ?></a></li>
+						<?php endforeach ?>
 					</dd>
 				<?php endif; ?>
 			</dl>
