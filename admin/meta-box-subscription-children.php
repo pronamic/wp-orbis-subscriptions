@@ -44,8 +44,8 @@ $child_subscriptions = $wpdb->get_results( $wpdb->prepare("
 	</p>
 
 	<ul>
-		<?php foreach ( $child_subscriptions as $child ): ?>
-			<li><a href="<?php echo $child->guid ?>"><?php echo $child->post_title ?></a></li>
+		<?php foreach ( $child_subscriptions as $child ) : ?>
+			<li><a href="<?php echo esc_url( $child->guid ); ?>"><?php echo esc_html( $child->post_title ); ?></a></li>
 		<?php endforeach ?>
 	</ul>
 <?php endif ?>

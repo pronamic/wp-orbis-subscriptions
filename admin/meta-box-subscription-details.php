@@ -38,8 +38,7 @@ $keychain_name = $wpdb->get_var( $wpdb->prepare( "
 	WHERE
 		keychain.id = %d",
 	$keychain_id
-	)
-);
+) );
 
 ?>
 <table class="form-table">

@@ -21,8 +21,7 @@ $keychain = $wpdb->get_row( $wpdb->prepare( "
 	WHERE
 		keychain.id = %d",
 	$keychain_id
-	)
-);
+) );
 
 $subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
