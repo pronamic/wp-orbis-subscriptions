@@ -1,6 +1,8 @@
 <?php
 global $wpdb, $post;
 
+wp_nonce_field( 'orbis_save_subscription_children', 'orbis_subscription_children_meta_box_nonce' );
+
 $child_subscriptions = $wpdb->get_results( $wpdb->prepare("
 	SELECT
 		post_title,
