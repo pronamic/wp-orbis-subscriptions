@@ -12,16 +12,8 @@ $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', 
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 $keychain_id     = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
 
-$keychain = $wpdb->get_row( $wpdb->prepare( "
-	SELECT
-		keychain.post_title AS name,
-		keychain.guid AS url
-	FROM
-		$wpdb->posts AS keychain
-	WHERE
-		keychain.id = %d",
-	$keychain_id
-) );
+$keychain_title = get_the_title( $keychain_id );
+$keychain_url   = get_the_permalink( $keychain_id );
 
 $subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
@@ -77,10 +69,10 @@ $children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFuncti
 
 				<?php endif; ?>
 
-				<?php if ( ! empty( $keychain ) ) : ?>
+				<?php if ( ! empty( $keychain_id ) ) : ?>
 
 					<dt><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></dt>
-					<dd><a href="<?php echo esc_html( $keychain->url ); ?>"><?php echo esc_html( $keychain->name ); ?></a></dd>
+					<dd><a href="<?php echo esc_html( $keychain_url ); ?>"><?php echo esc_html( $keychain_title ); ?></a></dd>
 
 				<?php endif; ?>
 
