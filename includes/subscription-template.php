@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 function orbis_subscription_get_the_price() {
 	global $post;
@@ -13,5 +14,6 @@ function orbis_subscription_get_the_price() {
 }
 
 function orbis_subscription_the_price() {
-	echo esc_html( orbis_price( orbis_subscription_get_the_price() ) );
+	$price = new Money( orbis_subscription_get_the_price(), 'EUR' );
+	echo esc_html( $price->format_i18n() );
 }

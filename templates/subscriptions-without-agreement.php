@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 $query = new WP_Query( array(
 	'post_type'      => 'orbis_subscription',
@@ -48,7 +49,10 @@ if ( $query->have_posts() ) : ?>
 						</a>
 					</td>
 					<td>
-						<?php echo esc_html( orbis_price( $subscription->subscription_type_price ) ); ?>
+						<?php
+						$price = new Money( $subscription->subscription_type_price, 'EUR' );
+						echo esc_html( $price->format_i18n() );
+						?>
 					</td>
 					<td>
 						<a href="<?php echo esc_attr( get_edit_post_link( $subscription->ID ) ); ?>">

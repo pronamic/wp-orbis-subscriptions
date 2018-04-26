@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 global $post;
 
@@ -46,15 +47,30 @@ $profit = $revenue - $costs;
 		<tfoot>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Revenue', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo esc_html( orbis_price( $revenue ) ); ?></td>
+				<td>
+					<?php
+					$revenue = new Money( $revenue, 'EUR' );
+					echo esc_html( $revenue->format_i18n() );
+					?>
+				</td>
 			</tr>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Costs', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo esc_html( orbis_price( $costs ) ); ?></td>
+				<td>
+					<?php
+					$costs = new Money( $costs, 'EUR' );
+					echo esc_html( $costs->format_i18n() );
+					?>
+				</td>
 			</tr>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Profit', 'orbis_subscriptions' ); ?></td>
-				<td><?php echo esc_html( orbis_price( $profit ) ); ?></td>
+				<td>
+					<?php
+					$profit = new Money( $profit, 'EUR' );
+					echo esc_html( $profit->format_i18n() );
+					?>
+				</td>
 			</tr>
 		</tfoot>
 

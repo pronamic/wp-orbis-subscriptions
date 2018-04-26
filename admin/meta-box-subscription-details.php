@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 global $wpdb, $post;
 
@@ -72,11 +73,13 @@ $keychain_name = $wpdb->get_var( $wpdb->prepare( "
 
 				<?php
 
+				$price = new Money( $subscription_product->price, 'EUR' );
+
 				foreach ( $subscription_products as $subscription_product ) {
 					$text = sprintf(
 						'%s (%s)',
 						$subscription_product->name,
-						orbis_price( $subscription_product->price )
+						$price->format_i18n()
 					);
 
 					printf(

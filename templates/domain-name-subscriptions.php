@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 global $wpdb;
 
@@ -82,7 +83,10 @@ if ( $subscriptions ) : ?>
 							</a>
 						</td>
 						<td>
-							<?php echo esc_html( orbis_price( $subscription->price ) ); ?>
+							<?php
+							$price = new Money( $subscription->price, 'EUR' );
+							echo esc_html( $price->format_i18n() );
+							?>
 						</td>
 					</tr>
 

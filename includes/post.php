@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Money\Money;
 
 function orbis_subscriptions_create_initial_post_types() {
 	global $orbis_subscriptions_plugin;
@@ -612,7 +613,8 @@ function orbis_subscription_product_column( $column, $post_id ) {
 			if ( empty( $price ) ) {
 				echo '&mdash;';
 			} else {
-				echo esc_html( orbis_price( $price ) );
+				$price = new Money( $price, 'EUR' );
+				echo esc_html( $price->format_i18n() );
 			}
 
 			break;
@@ -622,7 +624,8 @@ function orbis_subscription_product_column( $column, $post_id ) {
 			if ( empty( $price ) ) {
 				echo '&mdash;';
 			} else {
-				echo esc_html( orbis_price( $price ) );
+				$price = new Money( $price, 'EUR' );
+				echo esc_html( $price->format_i18n() );
 			}
 
 			break;
