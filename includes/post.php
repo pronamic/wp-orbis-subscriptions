@@ -136,9 +136,9 @@ function orbis_subscriptions_add_meta_boxes() {
 		'high'
 	);
 	add_meta_box(
-		'orbis_subscription_children',
-		__( 'Subscription Children', 'orbis_subscriptions' ),
-		'orbis_subscription_children_meta_box',
+		'orbis_subscription_parent',
+		__( 'Subscription Parent', 'orbis_subscriptions' ),
+		'orbis_subscription_parent_meta_box',
 		'orbis_subscription',
 		'side',
 		'high'
@@ -192,14 +192,14 @@ function orbis_subscription_purchase_details_meta_box( $post ) {
 }
 
 /**
- * Subscription details meta box
+ * Subscription parent meta box
  *
  * @param array $post
 */
-function orbis_subscription_children_meta_box( $post ) {
+function orbis_subscription_parent_meta_box( $post ) {
 	global $orbis_subscriptions_plugin;
 
-	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-children.php' );
+	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-parent.php' );
 }
 
 /**
@@ -249,7 +249,7 @@ add_action( 'save_post', 'orbis_save_subscription_details', 10, 2 );
 /**
  * Save subscription details
  */
-function orbis_save_subscription_children( $post_id, $post ) {
+function orbis_save_subscription_parent( $post_id, $post ) {
 	global $wpdb;
 	// Doing autosave
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -257,8 +257,8 @@ function orbis_save_subscription_children( $post_id, $post ) {
 	}
 
 	// Verify nonce
-	$nonce = filter_input( INPUT_POST, 'orbis_subscription_children_meta_box_nonce', FILTER_SANITIZE_STRING );
-	if ( ! wp_verify_nonce( $nonce, 'orbis_save_subscription_children' ) ) {
+	$nonce = filter_input( INPUT_POST, 'orbis_subscription_parent_meta_box_nonce', FILTER_SANITIZE_STRING );
+	if ( ! wp_verify_nonce( $nonce, 'orbis_save_subscription_parent' ) ) {
 		return;
 	}
 
@@ -267,9 +267,9 @@ function orbis_save_subscription_children( $post_id, $post ) {
 		return;
 	}
 
-	$child_subscription_id = filter_input( INPUT_POST, '_orbis_subscription_child_id', FILTER_SANITIZE_STRING );
+	$parent_id = filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
 
-	$child_post_id = $wpdb->get_var(
+	$parent_post_id = $wpdb->get_var(
 		$wpdb->prepare( "
 			SELECT
 				post_id
@@ -278,18 +278,18 @@ function orbis_save_subscription_children( $post_id, $post ) {
 			WHERE
 				id = %d
 			",
-			$child_subscription_id
+			$parent_id
 		)
 	);
 
 	$wpdb->update(
 		$wpdb->posts,
-		array( 'post_parent' => $post_id ),
-		array( 'ID' => $child_post_id )
+		array( 'post_parent' => $parent_post_id ),
+		array( 'ID' => $post_id )
 	);
 }
 
-add_action( 'save_post', 'orbis_save_subscription_children', 10, 2 );
+add_action( 'save_post', 'orbis_save_subscription_parent', 10, 2 );
 
 /**
  * Sync subscription with Orbis tables
