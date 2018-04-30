@@ -17,7 +17,6 @@ $parent = $wpdb->get_row( $wpdb->prepare("
 	;",
 	$post->post_parent
 ) );
-
 ?>
 
 <div>
@@ -29,7 +28,7 @@ $parent = $wpdb->get_row( $wpdb->prepare("
 
 	<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_parent_id', true ); ?>
 
-	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="orbis-id-control orbis-subscription-id-control regular-text">
+	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="orbis-subscription-rest orbis-subscription-id-control regular-text">
 		<option value="<?php echo esc_attr( $subscription_id ); ?>">
 			<?php echo esc_html( 'Choose a subscription', 'orbis_subscriptions' ); ?>
 		</option>
