@@ -119,7 +119,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 		$text = $subscription->text;
 
 		if ( isset( $subscription->registered_time ) ) {
-			$text = sprintf( 
+			$text = sprintf(
 				'%s ( %s )',
 				$text,
 				orbis_time( $subscription->registered_time )
