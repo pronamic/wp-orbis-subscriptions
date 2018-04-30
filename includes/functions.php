@@ -65,15 +65,30 @@ function orbis_subscriptions_suggest_subscription_id() {
 
 	$term = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
 
+	$fields = '';
+	$join   = '';
+	$where  = '';
+
+	if ( isset( $wpdb->orbis_timesheets ) ) {
+		$fields .= ', SUM( timesheet.number_seconds ) AS registered_time';
+		$join   .= "
+			LEFT JOIN
+				$wpdb->orbis_timesheets AS timesheet
+					ON timesheet.subscription_id = subscription.id AND timesheet.date > DATE_SUB( CURDATE(), INTERVAL 1 YEAR )
+		";
+	}
+
 	$query = "
 		SELECT
 			subscription.id AS id,
 			CONCAT( subscription.id, '. ', IFNULL( CONCAT( product.name, ' - ' ), '' ), subscription.name ) AS text
+			$fields
 		FROM
 			$wpdb->orbis_subscriptions AS subscription
 				LEFT JOIN
 			$wpdb->orbis_subscription_products AS product
 					ON subscription.type_id = product.id
+			$join
 		WHERE
 			subscription.expiration_date > NOW()
 				AND
@@ -82,6 +97,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 					OR
 				product.name LIKE %s
 			)
+			$where
 		GROUP BY
 			subscription.id
 		ORDER BY
@@ -92,13 +108,30 @@ function orbis_subscriptions_suggest_subscription_id() {
 
 	$query = $wpdb->prepare( $query, $like, $like ); // unprepared SQL
 
-	$projects = $wpdb->get_results( $query ); // unprepared SQL
+	$subscriptions = $wpdb->get_results( $query ); // unprepared SQL
 
-	$data = $wpdb->get_results( $query );
+	$data = array();
 
-	echo wp_json_encode( $data );
+	foreach ( $subscriptions as $subscription ) {
+		$result     = new stdClass();
+		$result->id = $subscription->id;
 
-	die();
+		$text = $subscription->text;
+
+		if ( isset( $subscription->registered_time ) ) {
+			$text = sprintf( 
+				'%s ( %s )',
+				$text,
+				orbis_time( $subscription->registered_time )
+			);
+		}
+
+		$result->text = $text;
+
+		$data[] = $result;
+	}
+
+	wp_send_json( $data );
 }
 
 add_action( 'wp_ajax_subscription_id_suggest', 'orbis_subscriptions_suggest_subscription_id' );
