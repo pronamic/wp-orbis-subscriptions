@@ -17,6 +17,12 @@ $parent = $wpdb->get_row( $wpdb->prepare("
 	;",
 	$post->post_parent
 ) );
+
+if ( $post->post_parent ) {
+	$parent = get_the_title( $post->post_parent );
+} else {
+	$parent = __( 'Choose a subscription', 'orbis_subscriptions' );
+}
 ?>
 
 <div>
@@ -30,19 +36,7 @@ $parent = $wpdb->get_row( $wpdb->prepare("
 
 	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="regular-text" data-post-suggest="orbis/subscriptions">
 		<option value="<?php echo esc_attr( $subscription_id ); ?>">
-			<?php echo esc_html( 'Choose a subscription', 'orbis_subscriptions' ); ?>
+			<?php echo esc_html( $parent ); ?>
 		</option>
 	</select>
 </div>
-
-<?php if ( $parent ) : ?>
-	<p class="post-attributes-label-wrapper">
-		<label for="orbis_subscription_id">
-			<b><?php esc_html_e( 'Parent Subscription', 'orbis_subscriptions' ); ?></b>
-		</label>
-	</p>
-
-	<ul>
-		<li><a href="<?php echo esc_url( $parent->guid ); ?>"><?php echo esc_html( $parent->post_title ); ?></a></li>
-	</ul>
-<?php endif ?>
