@@ -25,9 +25,11 @@ function orbis_subscriptions_create_initial_post_types() {
 			'public'        => true,
 			'menu_position' => 30,
 			'menu_icon'     => 'dashicons-share-alt',
-			'supports'      => array( 'editor', 'author', 'comments', 'revisions', 'page-attributes' ),
+			'supports'      => array( 'title', 'editor', 'author', 'comments', 'revisions', 'page-attributes' ),
 			'has_archive'   => true,
 			'hierarchical'  => true,
+			'show_in_rest'  => true,
+			'rest_base'     => 'orbis/subscriptions',
 			'rewrite'       => array(
 				'slug' => _x( 'subscriptions', 'slug', 'orbis_subscriptions' ),
 			),
