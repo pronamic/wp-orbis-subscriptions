@@ -271,22 +271,9 @@ function orbis_save_subscription_parent( $post_id, $post ) {
 
 	$parent_id = filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
 
-	$parent_post_id = $wpdb->get_var(
-		$wpdb->prepare( "
-			SELECT
-				post_id
-			FROM
-				$wpdb->orbis_subscriptions
-			WHERE
-				id = %d
-			",
-			$parent_id
-		)
-	);
-
 	$wpdb->update(
 		$wpdb->posts,
-		array( 'post_parent' => $parent_post_id ),
+		array( 'post_parent' => $parent_id ),
 		array( 'ID' => $post_id )
 	);
 }
