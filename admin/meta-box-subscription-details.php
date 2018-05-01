@@ -121,7 +121,7 @@ $keychain_name = $wpdb->get_var( $wpdb->prepare( "
 		</th>
 		<td>
 			<?php $keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true ); ?>
-			<select id="orbis_subscription_keychain_id" name="_orbis_subscription_keychain_id" class="orbis-keychain-rest regular-text">
+			<select id="orbis_subscription_keychain_id" name="_orbis_subscription_keychain_id" class="regular-text" data-post-suggest="orbis/keychains">
 				<option value="<?php echo esc_attr( $keychain_id ); ?>">
 					<?php echo esc_html( $keychain_name ); ?>
 				</option>
