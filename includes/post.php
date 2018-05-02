@@ -269,13 +269,15 @@ function orbis_save_subscription_parent( $post_id, $post ) {
 		return;
 	}
 
-	$parent_id = filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
+	$parent_id = ( int ) filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
 
-	$wpdb->update(
-		$wpdb->posts,
-		array( 'post_parent' => $parent_id ),
-		array( 'ID' => $post_id )
-	);
+	if ( $parent_id !== $post_id ) {
+		$wpdb->update(
+			$wpdb->posts,
+			array( 'post_parent' => $parent_id ),
+			array( 'ID' => $post_id )
+		);
+	}
 }
 
 add_action( 'save_post', 'orbis_save_subscription_parent', 10, 2 );
