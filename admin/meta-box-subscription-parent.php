@@ -17,8 +17,6 @@ if ( $post->post_parent ) {
 		</label>
 	</p>
 
-	<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_parent_id', true ); ?>
-
 	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="regular-text" data-post-suggest="orbis/subscriptions">
 		<option value="<?php echo esc_attr( $subscription_id ); ?>">
 			<?php echo esc_html( $parent ); ?>
