@@ -269,7 +269,7 @@ function orbis_save_subscription_parent( $post_id, $post ) {
 		return;
 	}
 
-	$parent_id = ( int ) filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
+	$parent_id = (int) filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
 
 	if ( $parent_id !== $post_id ) {
 		$wpdb->update(
