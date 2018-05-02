@@ -3,21 +3,6 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_parent', 'orbis_subscription_parent_meta_box_nonce' );
 
-$parent = $wpdb->get_row( $wpdb->prepare("
-	SELECT
-		post_title,
-		ID,
-		guid
-	FROM
-		$wpdb->posts
-	WHERE
-		ID = %d
-			AND
-		post_status = 'publish'
-	;",
-	$post->post_parent
-) );
-
 if ( $post->post_parent ) {
 	$parent = get_the_title( $post->post_parent );
 } else {
