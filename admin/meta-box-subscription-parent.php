@@ -17,7 +17,7 @@ foreach ( $children as $child ) {
 }
 
 $child_ids[] = (int) $post->ID;
-$exclude_ids = implode( ", ", $child_ids );
+$exclude_ids = implode( ', ', $child_ids );
 ?>
 
 <div>

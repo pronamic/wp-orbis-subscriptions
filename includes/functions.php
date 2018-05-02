@@ -173,21 +173,23 @@ add_action( 'wp_ajax_keychain_id_suggest', 'orbis_subscriptions_suggest_keychain
 function orbis_get_all_children( $parent_id ) {
 	$children = array();
 
-	$posts = get_posts( array(
-		'numberposts'      => -1,
-		'post_status'      => 'publish',
-		'post_type'        => 'any',
-		'post_parent'      => $parent_id,
-		'suppress_filters' => false
-	) );
+	$posts = get_posts( //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_posts
+		array(
+			'numberposts'      => 20,
+			'post_status'      => 'publish',
+			'post_type'        => 'any',
+			'post_parent'      => $parent_id,
+			'suppress_filters' => false,
+		)
+	);
 
-	foreach( $posts as $child ){
+	foreach ( $posts as $child ) {
 		$gchildren = orbis_get_all_children( $child->ID );
-		if( ! empty( $gchildren ) ) {
+		if ( ! empty( $gchildren ) ) {
 			$children = array_merge( $children, $gchildren );
 		}
 	}
 
-	$children = array_merge($children,$posts);
+	$children = array_merge( $children, $posts );
 	return $children;
 }
