@@ -149,6 +149,22 @@ function orbis_subscriptions_add_meta_boxes() {
 
 add_action( 'add_meta_boxes', 'orbis_subscriptions_add_meta_boxes' );
 
+function orbis_register_rest_fields() {
+	register_rest_field(
+		'orbis_subscription',
+		'active',
+		array(
+			'get_callback' => 'orbis_get_active_subscriptions'
+		)
+	);
+}
+
+add_action( 'init', 'orbis_register_rest_fields' );
+
+function orbis_get_active_subscriptions( $object, $field_name, $request ) {
+	return 'test';
+}
+
 /**
  * Subscription details meta box
  *
