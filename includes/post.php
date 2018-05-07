@@ -149,21 +149,79 @@ function orbis_subscriptions_add_meta_boxes() {
 
 add_action( 'add_meta_boxes', 'orbis_subscriptions_add_meta_boxes' );
 
+/**
+ * Register 'active' REST field
+ */
 function orbis_register_rest_fields() {
 	register_rest_field(
 		'orbis_subscription',
 		'active',
 		array(
-			'get_callback' => 'orbis_get_active_subscriptions'
+			'get_callback' => 'orbis_get_active_subscriptions_rest',
 		)
 	);
 }
 
 add_action( 'init', 'orbis_register_rest_fields' );
 
-function orbis_get_active_subscriptions( $object, $field_name, $request ) {
-	return 'test';
+/**
+ * Get data for 'active' field
+ *
+ * @param array $object
+ * @return boolean
+ */
+function orbis_get_active_subscriptions_rest( $object ) {
+	global $wpdb;
+
+	$query = $wpdb->prepare(
+		"SELECT
+			expiration_date,
+			cancel_date
+		FROM
+			$wpdb->orbis_subscriptions
+		WHERE
+			post_id = %d",
+		$object['id']
+	);
+
+	$subscription = $wpdb->get_row( $query );
+	$now          = new DateTime();
+	$is_active    = ( isset( $subscription->cancel_date ) && $subscription->expiration_date < $now ) ? false : true;
+
+	return $is_active;
 }
+
+/**
+ * Post clauses
+ *
+ * @param array $pieces
+ * @param WP_Query $query
+ * @return array
+ */
+function orbis_subscription_post_clauses( $pieces, $query ) {
+	global $wpdb;
+	$only_active = filter_input( INPUT_GET, 'only_active', FILTER_VALIDATE_BOOLEAN );
+
+	$join = "
+		LEFT JOIN
+			$wpdb->orbis_subscriptions AS sub
+				ON $wpdb->posts.ID = sub.post_id
+	";
+
+	$where = '';
+
+	if ( $only_active ) {
+		$where .= 'AND sub.cancel_date IS NULL ';
+		$where .= 'OR sub.expiration_date >= CURRENT_DATE() ';
+	}
+
+	$pieces['join']  .= $join;
+	$pieces['where'] .= $where;
+
+	return $pieces;
+}
+
+add_filter( 'posts_clauses', 'orbis_subscription_post_clauses', 10, 2 );
 
 /**
  * Subscription details meta box
