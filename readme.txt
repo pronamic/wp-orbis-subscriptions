@@ -1,5 +1,5 @@
 === Orbis Subscriptions ===
-Contributors: pronamic, remcotolsma
+Contributors: pronamic, remcotolsma, rubendroogh
 Donate link: http://www.pronamic.eu/donate/
 Tags: orbis, subscription, licence
 Requires at least: 3.5

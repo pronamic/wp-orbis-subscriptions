@@ -211,8 +211,14 @@ function orbis_subscription_post_clauses( $pieces, $query ) {
 	$where = '';
 
 	if ( $only_active ) {
-		$where .= 'AND sub.cancel_date IS NULL ';
-		$where .= 'OR sub.expiration_date >= CURRENT_DATE() ';
+		$where .= '
+			AND
+			(
+				sub.cancel_date IS NULL
+			OR
+				sub.expiration_date >= CURRENT_DATE()
+			)
+		';
 	}
 
 	$pieces['join']  .= $join;
