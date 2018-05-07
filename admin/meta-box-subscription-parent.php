@@ -27,7 +27,7 @@ $exclude_ids = implode( ', ', $child_ids );
 		</label>
 	</p>
 
-	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="regular-text" data-post-suggest-exclude="<?php echo esc_html( $exclude_ids ); ?>" data-post-suggest="orbis/subscriptions">
+	<select id="orbis_subscription_id" name="_orbis_subscription_parent_id" class="regular-text" data-post-suggest-exclude="<?php echo esc_html( $exclude_ids ); ?>" data-post-suggest="orbis/subscriptions" data-post-suggest-only-active="true">
 		<option value="<?php echo esc_attr( $post->post_parent ); ?>">
 			<?php echo esc_html( $parent ); ?>
 		</option>
