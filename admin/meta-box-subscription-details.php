@@ -13,22 +13,11 @@ $query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE
 
 $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
-$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ) ? get_post_meta( $post->ID, '_orbis_subscription_person_id', true ) : 0;
+$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
 $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', true );
 
-$query = "
-	SELECT
-		post.post_title
-	FROM
-		$wpdb->posts AS post
-	WHERE
-		post.post_type = 'orbis_person'
-			AND
-		post.ID = $person_id
-	;
-";
+$person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 
-$person_name = $wpdb->get_var( $query );
 $keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
 
 $keychain_name = $wpdb->get_var( $wpdb->prepare( "
