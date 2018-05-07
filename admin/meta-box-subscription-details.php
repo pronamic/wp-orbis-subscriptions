@@ -1,4 +1,5 @@
 <?php
+
 use Pronamic\WordPress\Money\Money;
 
 global $wpdb, $post;

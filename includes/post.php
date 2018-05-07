@@ -1,4 +1,5 @@
 <?php
+
 use Pronamic\WordPress\Money\Money;
 
 function orbis_subscriptions_create_initial_post_types() {

@@ -1,4 +1,5 @@
 <?php
+
 use Pronamic\WordPress\Money\Money;
 
 $query = new WP_Query( array(
