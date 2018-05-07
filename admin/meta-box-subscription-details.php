@@ -18,18 +18,6 @@ $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', tr
 
 $person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 
-$keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
-
-$keychain_name = $wpdb->get_var( $wpdb->prepare( "
-	SELECT
-		keychain.post_title AS name
-	FROM
-		$wpdb->posts AS keychain
-	WHERE
-		keychain.id = %d",
-	$keychain_id
-) );
-
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -100,19 +88,6 @@ $keychain_name = $wpdb->get_var( $wpdb->prepare( "
 			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" class="orbis-id-control orbis-person-id-control regular-text">
 				<option value="<?php echo esc_attr( $person_id ); ?>">
 					<?php echo esc_html( $person_name ); ?>
-				</option>
-			</select>
-		</td>
-	</tr>
-	<tr valign="top">
-		<th scope="row">
-			<label for="orbis_subscription_keychain_id"><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></label>
-		</th>
-		<td>
-			<?php $keychain_id = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true ); ?>
-			<select id="orbis_subscription_keychain_id" name="_orbis_subscription_keychain_id" class="regular-text" data-post-suggest="orbis/keychains">
-				<option value="<?php echo esc_attr( $keychain_id ); ?>">
-					<?php echo esc_html( $keychain_name ); ?>
 				</option>
 			</select>
 		</td>
