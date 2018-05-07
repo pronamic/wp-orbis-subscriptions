@@ -27,13 +27,6 @@ $cancel_date     = $subscription->cancel_date;
 
 $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
 
-$args = array(
-	'post_parent' => $post->ID,
-	'post_type'   => 'orbis_subscription',
-);
-
-$children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_children
-
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
@@ -74,15 +67,6 @@ $children = get_children( $args ); //phpcs:ignore WordPress.VIP.RestrictedFuncti
 					<dt><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></dt>
 					<dd><a href="<?php echo esc_html( $keychain_url ); ?>"><?php echo esc_html( $keychain_title ); ?></a></dd>
 
-				<?php endif; ?>
-
-				<?php if ( $children ) : ?>
-					<dt><?php esc_html_e( 'Child Subscriptions', 'orbis_subscriptions' ); ?></dt>
-					<dd>
-						<?php foreach ( $children as $child ) : ?>
-							<li><a href="<?php echo esc_url( $child->guid ); ?>"><?php echo esc_html( $child->post_title ); ?></a></li>
-						<?php endforeach ?>
-					</dd>
 				<?php endif; ?>
 			</dl>
 		</div>

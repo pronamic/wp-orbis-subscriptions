@@ -27,7 +27,6 @@ function orbis_subscriptions_create_initial_post_types() {
 			'menu_icon'     => 'dashicons-share-alt',
 			'supports'      => array( 'title', 'editor', 'author', 'comments', 'revisions' ),
 			'has_archive'   => true,
-			'hierarchical'  => true,
 			'show_in_rest'  => true,
 			'rest_base'     => 'orbis/subscriptions',
 			'rewrite'       => array(
