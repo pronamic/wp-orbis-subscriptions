@@ -136,14 +136,6 @@ function orbis_subscriptions_add_meta_boxes() {
 		'normal',
 		'high'
 	);
-	add_meta_box(
-		'orbis_subscription_parent',
-		__( 'Subscription Parent', 'orbis_subscriptions' ),
-		'orbis_subscription_parent_meta_box',
-		'orbis_subscription',
-		'side',
-		'high'
-	);
 }
 
 add_action( 'add_meta_boxes', 'orbis_subscriptions_add_meta_boxes' );
@@ -273,17 +265,6 @@ function orbis_subscription_purchase_details_meta_box( $post ) {
 }
 
 /**
- * Subscription parent meta box
- *
- * @param array $post
-*/
-function orbis_subscription_parent_meta_box( $post ) {
-	global $orbis_subscriptions_plugin;
-
-	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-parent.php' );
-}
-
-/**
  * Save subscription details
  */
 function orbis_save_subscription_details( $post_id, $post ) {
@@ -325,40 +306,6 @@ function orbis_save_subscription_details( $post_id, $post ) {
 }
 
 add_action( 'save_post', 'orbis_save_subscription_details', 10, 2 );
-
-/**
- * Save subscription details
- */
-function orbis_save_subscription_parent( $post_id, $post ) {
-	global $wpdb;
-	// Doing autosave
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
-
-	// Verify nonce
-	$nonce = filter_input( INPUT_POST, 'orbis_subscription_parent_meta_box_nonce', FILTER_SANITIZE_STRING );
-	if ( ! wp_verify_nonce( $nonce, 'orbis_save_subscription_parent' ) ) {
-		return;
-	}
-
-	// Check permissions
-	if ( ! ( 'orbis_subscription' === get_post_type( $post_id ) && current_user_can( 'edit_post', $post_id ) ) ) {
-		return;
-	}
-
-	$parent_id = (int) filter_input( INPUT_POST, '_orbis_subscription_parent_id', FILTER_SANITIZE_STRING );
-
-	if ( $parent_id !== $post_id ) {
-		$wpdb->update(
-			$wpdb->posts,
-			array( 'post_parent' => $parent_id ),
-			array( 'ID' => $post_id )
-		);
-	}
-}
-
-add_action( 'save_post', 'orbis_save_subscription_parent', 10, 2 );
 
 /**
  * Sync subscription with Orbis tables

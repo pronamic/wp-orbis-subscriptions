@@ -135,27 +135,3 @@ function orbis_subscriptions_suggest_subscription_id() {
 }
 
 add_action( 'wp_ajax_subscription_id_suggest', 'orbis_subscriptions_suggest_subscription_id' );
-
-function orbis_get_all_children( $parent_id ) {
-	$children = array();
-
-	$posts = get_posts( //phpcs:ignore WordPress.VIP.RestrictedFunctions.get_posts_get_posts
-		array(
-			'numberposts'      => 20,
-			'post_status'      => 'publish',
-			'post_type'        => 'any',
-			'post_parent'      => $parent_id,
-			'suppress_filters' => false,
-		)
-	);
-
-	foreach ( $posts as $child ) {
-		$gchildren = orbis_get_all_children( $child->ID );
-		if ( ! empty( $gchildren ) ) {
-			$children = array_merge( $children, $gchildren );
-		}
-	}
-
-	$children = array_merge( $children, $posts );
-	return $children;
-}
