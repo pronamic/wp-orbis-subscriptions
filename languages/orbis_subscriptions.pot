@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions 1.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/orbis-subscriptions\n"
-"POT-Creation-Date: 2017-09-07 11:36:57+00:00\n"
+"POT-Creation-Date: 2018-05-07 11:50:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
 
 #: admin/meta-box-subscription-actions.php:4
 msgid "Cancel"
@@ -22,98 +22,98 @@ msgstr ""
 msgid "Cancel Subscription"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:36
-#: admin/meta-box-subscription-product-details.php:19 includes/post.php:501
+#: admin/meta-box-subscription-details.php:26
+#: admin/meta-box-subscription-product-details.php:19 includes/post.php:564
 msgid "Orbis ID"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:44
+#: admin/meta-box-subscription-details.php:34
 msgid "Company ID"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:56
+#: admin/meta-box-subscription-details.php:46
 msgid "Type"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:85
-#: templates/company-subscriptions.php:39
-#: templates/domain-name-subscriptions.php:48
-#: templates/subscription-purchase-details.php:41
+#: admin/meta-box-subscription-details.php:77
+#: templates/company-subscriptions.php:41
+#: templates/domain-name-subscriptions.php:50
+#: templates/subscription-purchase-details.php:43
 msgid "Name"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:93 includes/post.php:295
+#: admin/meta-box-subscription-details.php:85 includes/post.php:358
 msgid "Person"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:106
+#: admin/meta-box-subscription-details.php:98
 msgid "Email"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:115
+#: admin/meta-box-subscription-details.php:107
 msgid "Agreement ID"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:122
+#: admin/meta-box-subscription-details.php:114
 msgid "Choose an Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:125
+#: admin/meta-box-subscription-details.php:117
 msgid "Set as Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:125
+#: admin/meta-box-subscription-details.php:117
 msgid "Choose a Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:128
+#: admin/meta-box-subscription-details.php:120
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:129
+#: admin/meta-box-subscription-details.php:121
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:145
-#: templates/company-subscriptions.php:37
-#: templates/domain-name-subscriptions.php:45
+#: admin/meta-box-subscription-details.php:137
+#: templates/company-subscriptions.php:39
+#: templates/domain-name-subscriptions.php:47
 #: templates/subscription-details.php:38
-#: templates/subscriptions-without-agreement.php:22
+#: templates/subscriptions-without-agreement.php:24
 msgid "Activation Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:163
+#: admin/meta-box-subscription-details.php:155
 #: templates/subscription-details.php:41
 msgid "Expiration Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:181
+#: admin/meta-box-subscription-details.php:173
 #: templates/subscription-details.php:46
 msgid "Cancel Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:195
+#: admin/meta-box-subscription-details.php:187
 #: templates/subscription-details.php:56
 msgid "Payment Method"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:201
+#: admin/meta-box-subscription-details.php:193
 msgid "— Select Payment Method —"
 msgstr ""
 
 #: admin/meta-box-subscription-product-details.php:27
-#: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:498
-#: templates/company-subscriptions.php:40
-#: templates/domain-name-subscriptions.php:49
+#: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:561
+#: templates/company-subscriptions.php:42
+#: templates/domain-name-subscriptions.php:51
 #: templates/subscription-details.php:51
-#: templates/subscription-purchase-details.php:42
-#: templates/subscriptions-without-agreement.php:24
+#: templates/subscription-purchase-details.php:44
+#: templates/subscriptions-without-agreement.php:26
 msgid "Price"
 msgstr ""
 
-#: admin/meta-box-subscription-product-details.php:35 includes/post.php:499
+#: admin/meta-box-subscription-product-details.php:35 includes/post.php:562
 msgid "Cost Price"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Auto renew subscription product"
 msgstr ""
 
-#: admin/meta-box-subscription-product-details.php:57 includes/post.php:500
+#: admin/meta-box-subscription-product-details.php:57 includes/post.php:563
 msgid "Deprecated"
 msgstr ""
 
@@ -197,174 +197,174 @@ msgstr ""
 msgid "canceled"
 msgstr ""
 
-#: includes/post.php:9 includes/post.php:22 includes/template.php:49
-#: templates/domain-name-subscriptions.php:39
+#: includes/post.php:11 includes/post.php:24 includes/template.php:49
+#: templates/domain-name-subscriptions.php:41
 msgid "Subscriptions"
 msgstr ""
 
-#: includes/post.php:14
+#: includes/post.php:16
 msgid "Add New Subscription"
 msgstr ""
 
-#: includes/post.php:15
+#: includes/post.php:17
 msgid "Edit Subscription"
 msgstr ""
 
-#: includes/post.php:16
+#: includes/post.php:18
 msgid "New Subscription"
 msgstr ""
 
-#: includes/post.php:17
+#: includes/post.php:19
 msgid "View Subscription"
 msgstr ""
 
-#: includes/post.php:18
+#: includes/post.php:20
 msgid "Search Subscriptions"
 msgstr ""
 
-#: includes/post.php:19
+#: includes/post.php:21
 msgid "No subscriptions found"
 msgstr ""
 
-#: includes/post.php:20
+#: includes/post.php:22
 msgid "No subscriptions found in Trash"
 msgstr ""
 
-#: includes/post.php:21
+#: includes/post.php:23
 msgid "Parent Subscription:"
 msgstr ""
 
-#: includes/post.php:38
+#: includes/post.php:48
 msgid "Subscription Products"
 msgstr ""
 
-#: includes/post.php:43
+#: includes/post.php:53
 msgid "Add New Subscription Product"
 msgstr ""
 
-#: includes/post.php:44
+#: includes/post.php:54
 msgid "Edit Subscription Product"
 msgstr ""
 
-#: includes/post.php:45
+#: includes/post.php:55
 msgid "New Subscription Product"
 msgstr ""
 
-#: includes/post.php:46
+#: includes/post.php:56
 msgid "View Subscription Product"
 msgstr ""
 
-#: includes/post.php:47
+#: includes/post.php:57
 msgid "Search Subscription Products"
 msgstr ""
 
-#: includes/post.php:48
+#: includes/post.php:58
 msgid "No subscription products found"
 msgstr ""
 
-#: includes/post.php:49
+#: includes/post.php:59
 msgid "No subscription products found in Trash"
 msgstr ""
 
-#: includes/post.php:50
+#: includes/post.php:60
 msgid "Parent Subscription Product:"
 msgstr ""
 
-#: includes/post.php:51
+#: includes/post.php:61
 msgid "Products"
 msgstr ""
 
-#: includes/post.php:67
+#: includes/post.php:84
 msgid "Subscription Purchases"
 msgstr ""
 
-#: includes/post.php:72
+#: includes/post.php:89
 msgid "Add New Subscription Purchase"
 msgstr ""
 
-#: includes/post.php:73
+#: includes/post.php:90
 msgid "Edit Subscription Purchase"
 msgstr ""
 
-#: includes/post.php:74
+#: includes/post.php:91
 msgid "New Subscription Purchase"
 msgstr ""
 
-#: includes/post.php:75
+#: includes/post.php:92
 msgid "View Subscription Purchase"
 msgstr ""
 
-#: includes/post.php:76
+#: includes/post.php:93
 msgid "Search Subscription Purchases"
 msgstr ""
 
-#: includes/post.php:77
+#: includes/post.php:94
 msgid "No subscription purchases found"
 msgstr ""
 
-#: includes/post.php:78
+#: includes/post.php:95
 msgid "No subscription purchases found in Trash"
 msgstr ""
 
-#: includes/post.php:79
+#: includes/post.php:96
 msgid "Parent Subscription Purchase:"
 msgstr ""
 
-#: includes/post.php:80
+#: includes/post.php:97
 msgid "Purchases"
 msgstr ""
 
-#: includes/post.php:103 templates/subscription-details.php:29
+#: includes/post.php:128 templates/subscription-details.php:28
 msgid "Subscription Details"
 msgstr ""
 
-#: includes/post.php:112
+#: includes/post.php:137
 msgid "Subscription Actions"
 msgstr ""
 
-#: includes/post.php:121
+#: includes/post.php:146
 msgid "Subscription Product Details"
 msgstr ""
 
-#: includes/post.php:130
+#: includes/post.php:155
 msgid "Subscription Purchase Details"
 msgstr ""
 
-#: includes/post.php:294
+#: includes/post.php:357
 msgid "Title"
 msgstr ""
 
-#: includes/post.php:296
+#: includes/post.php:359
 msgid "Author"
 msgstr ""
 
-#: includes/post.php:297
+#: includes/post.php:360
 msgid "Comments"
 msgstr ""
 
-#: includes/post.php:298
+#: includes/post.php:361
 msgid "Date"
 msgstr ""
 
-#: includes/post.php:569
+#: includes/post.php:634
 msgid "Yes"
 msgstr ""
 
-#: includes/post.php:569
+#: includes/post.php:634
 msgid "No"
 msgstr ""
 
-#: templates/company-subscriptions.php:38
-#: templates/domain-name-subscriptions.php:47
-#: templates/subscriptions-without-agreement.php:23
+#: templates/company-subscriptions.php:40
+#: templates/domain-name-subscriptions.php:49
+#: templates/subscriptions-without-agreement.php:25
 msgid "Subscription"
 msgstr ""
 
-#: templates/company-subscriptions.php:84
+#: templates/company-subscriptions.php:89
 msgid "No subscriptions found."
 msgstr ""
 
-#: templates/domain-name-subscriptions.php:46
+#: templates/domain-name-subscriptions.php:48
 #: templates/subscription-details.php:33
 msgid "Company"
 msgstr ""
@@ -393,23 +393,23 @@ msgstr ""
 msgid "Invoice Number"
 msgstr ""
 
-#: templates/subscription-purchase-details.php:48
+#: templates/subscription-purchase-details.php:50
 msgid "Revenue"
 msgstr ""
 
-#: templates/subscription-purchase-details.php:52
+#: templates/subscription-purchase-details.php:59
 msgid "Costs"
 msgstr ""
 
-#: templates/subscription-purchase-details.php:56
+#: templates/subscription-purchase-details.php:68
 msgid "Profit"
 msgstr ""
 
-#: templates/subscriptions-without-agreement.php:25
+#: templates/subscriptions-without-agreement.php:27
 msgid "Actions"
 msgstr ""
 
-#: templates/subscriptions-without-agreement.php:55
+#: templates/subscriptions-without-agreement.php:60
 msgid "Edit"
 msgstr ""
 
@@ -435,62 +435,62 @@ msgstr ""
 msgid "http://www.pronamic.eu/"
 msgstr ""
 
-#: includes/post.php:11
+#: includes/post.php:13
 msgctxt "post type general name"
 msgid "Subscriptions"
 msgstr ""
 
-#: includes/post.php:40
+#: includes/post.php:50
 msgctxt "post type general name"
 msgid "Subscription Products"
 msgstr ""
 
-#: includes/post.php:69
+#: includes/post.php:86
 msgctxt "post type general name"
 msgid "Subscription Purchases"
 msgstr ""
 
-#: includes/post.php:12
+#: includes/post.php:14
 msgctxt "post type singular name"
 msgid "Subscription"
 msgstr ""
 
-#: includes/post.php:41
+#: includes/post.php:51
 msgctxt "post type singular name"
 msgid "Subscription Product"
 msgstr ""
 
-#: includes/post.php:70
+#: includes/post.php:87
 msgctxt "post type singular name"
 msgid "Subscription Purchase"
 msgstr ""
 
-#: includes/post.php:13
+#: includes/post.php:15
 msgctxt "orbis_subscription"
 msgid "Add New"
 msgstr ""
 
-#: includes/post.php:30
+#: includes/post.php:40
 msgctxt "slug"
 msgid "subscriptions"
 msgstr ""
 
-#: includes/post.php:59
+#: includes/post.php:76
 msgctxt "slug"
 msgid "subscription-products"
 msgstr ""
 
-#: includes/post.php:89
+#: includes/post.php:114
 msgctxt "slug"
 msgid "subscription-purchases"
 msgstr ""
 
-#: includes/post.php:42
+#: includes/post.php:52
 msgctxt "orbis_subs_type"
 msgid "Add New"
 msgstr ""
 
-#: includes/post.php:71
+#: includes/post.php:88
 msgctxt "orbis_subs_purchase"
 msgid "Add New"
 msgstr ""

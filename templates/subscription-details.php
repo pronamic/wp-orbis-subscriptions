@@ -10,10 +10,6 @@ $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_dat
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
-$keychain_id     = get_post_meta( $post->ID, '_orbis_subscription_keychain_id', true );
-
-$keychain_title = get_the_title( $keychain_id );
-$keychain_url   = get_the_permalink( $keychain_id );
 
 $subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
 
@@ -59,13 +55,6 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 					<dt><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></dt>
 					<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
-
-				<?php endif; ?>
-
-				<?php if ( ! empty( $keychain_id ) ) : ?>
-
-					<dt><?php esc_html_e( 'Connected Keychain', 'orbis_subscriptions' ); ?></dt>
-					<dd><a href="<?php echo esc_html( $keychain_url ); ?>"><?php echo esc_html( $keychain_title ); ?></a></dd>
 
 				<?php endif; ?>
 			</dl>
