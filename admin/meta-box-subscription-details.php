@@ -51,9 +51,9 @@ $person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 
 				<?php
 
-				$price = new Money( $subscription_product->price, 'EUR' );
-
 				foreach ( $subscription_products as $subscription_product ) {
+					$price = new Money( $subscription_product->price, 'EUR' );
+
 					$text = sprintf(
 						'%s (%s)',
 						$subscription_product->name,
