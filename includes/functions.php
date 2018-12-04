@@ -90,7 +90,11 @@ function orbis_subscriptions_suggest_subscription_id() {
 					ON subscription.type_id = product.id
 			$join
 		WHERE
-			subscription.expiration_date > NOW()
+			(
+				subscription.cancel_date IS NULL
+					OR
+				subscription.expiration_date > NOW()
+			)
 				AND
 			(
 				subscription.name LIKE %s
