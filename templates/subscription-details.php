@@ -23,6 +23,10 @@ $cancel_date     = $subscription->cancel_date;
 
 $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
 
+$invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
+$invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
+
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
@@ -55,6 +59,33 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 
 					<dt><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></dt>
 					<dd><?php the_terms( null, 'orbis_payment_method' ); ?></dd>
+
+				<?php endif; ?>
+
+				<?php if ( ! empty( $invoice_header_text ) ) : ?>
+
+					<dt><?php esc_html_e( 'Invoice Header Text', 'orbis' ); ?></dt>
+					<dd>
+						<?php echo nl2br( esc_html( $invoice_header_text ) ); ?></a>
+					</dd>
+
+				<?php endif; ?>
+
+				<?php if ( ! empty( $invoice_footer_text ) ) : ?>
+
+					<dt><?php esc_html_e( 'Invoice Footer Text', 'orbis' ); ?></dt>
+					<dd>
+						<?php echo nl2br( esc_html( $invoice_footer_text ) ); ?></a>
+					</dd>
+
+				<?php endif; ?>
+
+				<?php if ( ! empty( $invoice_line_description ) ) : ?>
+
+					<dt><?php esc_html_e( 'Invoice Line Description', 'orbis' ); ?></dt>
+					<dd>
+						<?php echo nl2br( esc_html( $invoice_line_description ) ); ?></a>
+					</dd>
 
 				<?php endif; ?>
 			</dl>

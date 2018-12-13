@@ -19,6 +19,10 @@ $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', tr
 
 $person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 
+$invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
+$invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
+
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -182,23 +186,50 @@ $person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 	if ( ! is_wp_error( $terms ) ) :
 		$term = ( false !== $terms ) ? array_shift( $terms ) : $terms;
 	?>
+
 		<tr valign="top">
 			<th scope="row">
 				<label for="orbis_subscription_payment_method"><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></label>
 			</th>
+			<td>
+				<?php
+					wp_dropdown_categories( array(
+						'name'             => 'tax_input[orbis_payment_method]',
+						'show_option_none' => __( '— Select Payment Method —', 'orbis_subscriptions' ),
+						'hide_empty'       => false,
+						'selected'         => is_object( $term ) ? $term->term_id : false,
+						'taxonomy'         => 'orbis_payment_method',
+					) );
+				?>
+			</td>
+		</tr>
+
+	<?php endif; ?>
+
+	<tr>
+		<th scope="row">
+			<label for="_orbis_invoice_header_text"><?php esc_html_e( 'Invoice Header Text', 'orbis_subscriptions' ); ?></label>
+		</th>
 		<td>
-			<?php
-				wp_dropdown_categories( array(
-					'name'             => 'tax_input[orbis_payment_method]',
-					'show_option_none' => __( '— Select Payment Method —', 'orbis_subscriptions' ),
-					'hide_empty'       => false,
-					'selected'         => is_object( $term ) ? $term->term_id : false,
-					'taxonomy'         => 'orbis_payment_method',
-				) );
-			?>
+			<textarea id="_orbis_invoice_header_text" name="_orbis_invoice_header_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_header_text ); ?></textarea>
 		</td>
 	</tr>
-	<?php endif; ?>
+	<tr>
+		<th scope="row">
+			<label for="_orbis_invoice_footer_text"><?php esc_html_e( 'Invoice Footer Text', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<textarea id="_orbis_invoice_footer_text" name="_orbis_invoice_footer_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_footer_text ); ?></textarea>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<label for="_orbis_invoice_line_description"><?php esc_html_e( 'Invoice Line Description', 'orbis_subscriptions' ); ?></label>
+		</th>
+		<td>
+			<input type="text" id="_orbis_invoice_line_description" name="_orbis_invoice_line_description" value="<?php echo esc_attr( $invoice_line_description ); ?>" class="regular-text" />
+		</td>
+	</tr>
 </table>
 
 <script type="text/javascript">
