@@ -88,6 +88,21 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 					</dd>
 
 				<?php endif; ?>
+
+				<?php
+
+				$agreement_id = get_post_meta( get_the_ID(), '_orbis_subscription_agreement_id', true );
+
+				if ( ! empty( $agreement_id ) ) :
+					$agreement = get_post( $agreement_id );
+				?>
+
+					<dt><?php esc_html_e( 'Agreement', 'orbis' ); ?></dt>
+					<dd>
+						<a href="<?php echo esc_attr( get_permalink( $agreement ) ); ?>"><?php echo get_the_title( $agreement ); ?></a>
+					</dd>
+
+				<?php endif; ?>
 			</dl>
 		</div>
 	</div>
