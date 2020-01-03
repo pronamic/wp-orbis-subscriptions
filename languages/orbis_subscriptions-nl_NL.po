@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
 "POT-Creation-Date: 2018-12-13 09:16:28+00:00\n"
-"PO-Revision-Date: 2018-12-13 10:17+0100\n"
+"PO-Revision-Date: 2020-01-03 12:40+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: admin/meta-box-subscription-actions.php:4
 msgid "Cancel"
@@ -249,7 +249,7 @@ msgstr "Geen abonnementen gevonden in prullenbak"
 
 #: includes/post.php:23
 msgid "Parent Subscription:"
-msgstr "Bovenliggend abonnement"
+msgstr "Bovenliggend abonnement:"
 
 #: includes/post.php:48
 msgid "Subscription Products"
@@ -379,7 +379,7 @@ msgstr "Abonnement"
 
 #: templates/company-subscriptions.php:89
 msgid "No subscriptions found."
-msgstr "Geen abonnementen gevonden"
+msgstr "Geen abonnementen gevonden."
 
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscription-details.php:33
