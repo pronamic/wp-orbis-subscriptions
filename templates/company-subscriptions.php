@@ -84,8 +84,8 @@ if ( $subscriptions ) : ?>
 
 <?php else : ?>
 
-	<div class="content">
-		<p class="alt">
+	<div class="card-body">
+		<p class="text-muted m-0">
 			<?php esc_html_e( 'No subscriptions found.', 'orbis_subscriptions' ); ?>
 		</p>
 	</div>
