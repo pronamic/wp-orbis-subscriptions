@@ -70,17 +70,26 @@ function orbis_subscriptions_suggest_subscription_id() {
 	$where  = '';
 
 	if ( isset( $wpdb->orbis_timesheets ) ) {
+		$start = new \Pronamic\WordPress\DateTime\DateTime( 'first day of January this year' );
+
 		$fields .= ', SUM( timesheet.number_seconds ) AS registered_time';
-		$join   .= "
+		$fields .= ', product.time_per_year';
+
+		$join .= "
 			LEFT JOIN
 				$wpdb->orbis_timesheets AS timesheet
-					ON timesheet.subscription_id = subscription.id AND timesheet.date > DATE_SUB( CURDATE(), INTERVAL 1 YEAR )
+					ON (
+						timesheet.subscription_id = subscription.id
+							AND
+						timesheet.date > DATE_ADD( subscription.activation_date, INTERVAL TIMESTAMPDIFF( YEAR, subscription.activation_date, NOW() ) YEAR )
+					)
 		";
 	}
 
 	$query = "
 		SELECT
 			subscription.id AS id,
+			subscription.status,
 			CONCAT( subscription.id, '. ', IFNULL( CONCAT( product.name, ' - ' ), '' ), subscription.name ) AS text
 			$fields
 		FROM
@@ -106,6 +115,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 			subscription.id
 		ORDER BY
 			subscription.id
+		;
 	";
 
 	$like = '%' . $wpdb->esc_like( $term ) . '%';
@@ -122,12 +132,28 @@ function orbis_subscriptions_suggest_subscription_id() {
 
 		$text = $subscription->text;
 
-		if ( isset( $subscription->registered_time ) ) {
+		if ( isset( $subscription->time_per_year ) ) {
 			$text = sprintf(
-				'%s ( %s )',
+				'%s ( %s / %s )',
 				$text,
-				orbis_time( $subscription->registered_time )
+				orbis_time( \intval( $subscription->registered_time ) ),
+				orbis_time( $subscription->time_per_year )
 			);
+		}
+
+		if ( 'strippenkaart' === $subscription->status ) {
+			$text = sprintf(
+				'%s » %s',
+				$text,
+				'Tijdregistraties op strippenkaart'
+			);
+
+			/**
+			 * Mark option as disabled.
+			 *
+			 * @link https://select2.org/data-sources/formats
+			 */
+			$result->disabled = true;
 		}
 
 		$result->text = $text;

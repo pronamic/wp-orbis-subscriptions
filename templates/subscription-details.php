@@ -11,7 +11,24 @@ $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_dat
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 
-$subscription = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", $post->ID ) );
+$query = $wpdb->prepare( "
+	SELECT
+		subscription.*,
+		product.time_per_year
+	FROM
+		$wpdb->orbis_subscriptions AS subscription
+			INNER JOIN
+		$wpdb->orbis_subscription_products AS product
+				ON subscription.type_id = product.id
+	WHERE
+		subscription.post_id = %d
+	LIMIT
+		1
+	;",
+	$post->ID
+);
+
+$subscription = $wpdb->get_row( $query );
 
 $orbis_id        = $subscription->id;
 $company_id      = $subscription->company_id;
@@ -64,7 +81,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 				<?php if ( ! empty( $invoice_header_text ) ) : ?>
 
-					<dt><?php esc_html_e( 'Invoice Header Text', 'orbis' ); ?></dt>
+					<dt><?php esc_html_e( 'Invoice Header Text', 'orbis_subscriptions' ); ?></dt>
 					<dd>
 						<?php echo nl2br( esc_html( $invoice_header_text ) ); ?></a>
 					</dd>
@@ -73,7 +90,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 				<?php if ( ! empty( $invoice_footer_text ) ) : ?>
 
-					<dt><?php esc_html_e( 'Invoice Footer Text', 'orbis' ); ?></dt>
+					<dt><?php esc_html_e( 'Invoice Footer Text', 'orbis_subscriptions' ); ?></dt>
 					<dd>
 						<?php echo nl2br( esc_html( $invoice_footer_text ) ); ?></a>
 					</dd>
@@ -82,7 +99,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 				<?php if ( ! empty( $invoice_line_description ) ) : ?>
 
-					<dt><?php esc_html_e( 'Invoice Line Description', 'orbis' ); ?></dt>
+					<dt><?php esc_html_e( 'Invoice Line Description', 'orbis_subscriptions' ); ?></dt>
 					<dd>
 						<?php echo nl2br( esc_html( $invoice_line_description ) ); ?></a>
 					</dd>
@@ -97,9 +114,18 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 					$agreement = get_post( $agreement_id );
 				?>
 
-					<dt><?php esc_html_e( 'Agreement', 'orbis' ); ?></dt>
+					<dt><?php esc_html_e( 'Agreement', 'orbis_subscriptions' ); ?></dt>
 					<dd>
 						<a href="<?php echo esc_attr( get_permalink( $agreement ) ); ?>"><?php echo get_the_title( $agreement ); ?></a>
+					</dd>
+
+				<?php endif; ?>
+
+				<?php if ( null !== $subscription->time_per_year ) : ?>
+
+					<dt><?php esc_html_e( 'Available time per year', 'orbis_subscriptions' ); ?></dt>
+					<dd>
+						<?php echo esc_html( orbis_time( $subscription->time_per_year ) ); ?>
 					</dd>
 
 				<?php endif; ?>
