@@ -56,6 +56,11 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 					<a href="<?php echo esc_attr( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
 				</dd>
 
+				<dt><?php esc_html_e( 'Status', 'orbis_subscriptions' ); ?></dt>
+				<dd>
+					<?php get_template_part( 'templates/subscription-badges' ); ?>
+				</dd>
+
 				<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
 				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ) ); ?></dd>
 
