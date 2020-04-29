@@ -507,8 +507,6 @@ class Orbis_Subscription {
 					ON subscription.id = subscription_invoice.subscription_id
 			SET
 				subscription.billed_to = subscription_invoice.end_date
-			WHERE
-				subscription.billed_to IS NULL
 			;
 		';
 
