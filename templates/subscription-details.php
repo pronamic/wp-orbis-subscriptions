@@ -64,9 +64,6 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 				<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
 				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ) ); ?></dd>
 
-				<dt><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $expiration_date ) ) ); ?></dd>
-
 				<?php if ( ! empty( $cancel_date ) ) : ?>
 
 					<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
