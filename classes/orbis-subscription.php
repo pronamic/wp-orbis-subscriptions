@@ -514,4 +514,34 @@ class Orbis_Subscription {
 
 		return $result;
 	}
+
+	public static function get_current_period_end_date( $date, $interval ) {
+		// Current Period End Date.
+		$start = new \DateTimeImmutable( $date );
+
+		$current_date = new \DateTimeImmutable();
+
+		$interval = new \DateInterval( 'P1' . $interval );
+
+		$end = $current_date->add( $interval );
+
+		$anchor_date = $current_date->modify( '+30 days' );
+
+		$period = new \DatePeriod( $start, $interval, $end );
+
+		$current_period_end_date = $end;
+
+		foreach ( $period as $d ) {
+			$start_date = $d;
+			$end_date   = $d->add( $interval );
+
+			$is_current = $anchor_date >= $start_date && $anchor_date < $end_date;
+
+			if ( $is_current ) {
+				$current_period_end_date = $end_date;
+			}
+		}
+
+		return $current_period_end_date;
+	}
 }

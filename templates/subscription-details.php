@@ -14,7 +14,8 @@ $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true )
 $query = $wpdb->prepare( "
 	SELECT
 		subscription.*,
-		product.time_per_year
+		product.time_per_year,
+		product.interval
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
 			INNER JOIN
@@ -44,6 +45,9 @@ $invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_tex
 $invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
+// Current Period End Date.
+$current_period_end_date = Orbis_Subscription::get_current_period_end_date( $subscription->activation_date, $subscription->interval );
+
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
@@ -62,7 +66,19 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 				</dd>
 
 				<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $activation_date ) ) ); ?></dd>
+				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ) ); ?></dd>
+
+				<dt><?php esc_html_e( 'Current Period', 'orbis_subscriptions' ); ?></dt>
+				<dd>
+					<?php 
+
+					printf(
+						__( 'to %s', 'orbis_subscriptions' ),
+						date_i18n( 'D j M Y', $current_period_end_date->getTimestamp() )
+					);
+
+					?>
+				</dd>
 
 				<?php if ( ! empty( $cancel_date ) ) : ?>
 

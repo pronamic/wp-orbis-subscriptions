@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions 1.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/orbis-subscriptions\n"
-"POT-Creation-Date: 2020-01-07 11:19:05+00:00\n"
+"POT-Creation-Date: 2020-08-24 07:47:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,23 +79,22 @@ msgstr ""
 #: admin/meta-box-subscription-details.php:141
 #: templates/company-subscriptions.php:39
 #: templates/domain-name-subscriptions.php:47
-#: templates/subscription-details.php:59
+#: templates/subscription-details.php:90
 #: templates/subscriptions-without-agreement.php:24
 msgid "Activation Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:159
-#: templates/subscription-details.php:62
 msgid "Expiration Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:177
-#: templates/subscription-details.php:67
+#: templates/subscription-details.php:107
 msgid "Cancel Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:192
-#: templates/subscription-details.php:77
+#: templates/subscription-details.php:117
 msgid "Payment Method"
 msgstr ""
 
@@ -104,17 +103,17 @@ msgid "— Select Payment Method —"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:211
-#: templates/subscription-details.php:84
+#: templates/subscription-details.php:124
 msgid "Invoice Header Text"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:219
-#: templates/subscription-details.php:93
+#: templates/subscription-details.php:133
 msgid "Invoice Footer Text"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:227
-#: templates/subscription-details.php:102
+#: templates/subscription-details.php:142
 msgid "Invoice Line Description"
 msgstr ""
 
@@ -122,7 +121,7 @@ msgstr ""
 #: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:564
 #: templates/company-subscriptions.php:42
 #: templates/domain-name-subscriptions.php:51
-#: templates/subscription-details.php:72
+#: templates/subscription-details.php:112
 #: templates/subscription-purchase-details.php:44
 #: templates/subscriptions-without-agreement.php:26
 msgid "Price"
@@ -329,7 +328,7 @@ msgstr ""
 msgid "Purchases"
 msgstr ""
 
-#: includes/post.php:128 templates/subscription-details.php:49
+#: includes/post.php:128 templates/subscription-details.php:75
 msgid "Subscription Details"
 msgstr ""
 
@@ -380,15 +379,27 @@ msgid "No subscriptions found."
 msgstr ""
 
 #: templates/domain-name-subscriptions.php:48
-#: templates/subscription-details.php:54
+#: templates/subscription-details.php:80
 msgid "Company"
 msgstr ""
 
-#: templates/subscription-details.php:117
+#: templates/subscription-details.php:85
+msgid "Status"
+msgstr ""
+
+#: templates/subscription-details.php:93
+msgid "Current Period"
+msgstr ""
+
+#: templates/subscription-details.php:98
+msgid "to %s"
+msgstr ""
+
+#: templates/subscription-details.php:157
 msgid "Agreement"
 msgstr ""
 
-#: templates/subscription-details.php:126
+#: templates/subscription-details.php:166
 msgid "Available time per year"
 msgstr ""
 
