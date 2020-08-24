@@ -4,12 +4,15 @@ global $wpdb, $post;
 
 wp_nonce_field( 'orbis_save_subscription_product_details', 'orbis_subscription_product_details_meta_box_nonce' );
 
-$orbis_id   = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
-$price      = get_post_meta( $post->ID, '_orbis_subscription_product_price', true );
-$cost_price = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
-$auto_renew = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
-$deprecated = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
-$interval   = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
+$orbis_id    = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
+$price       = get_post_meta( $post->ID, '_orbis_subscription_product_price', true );
+$cost_price  = get_post_meta( $post->ID, '_orbis_subscription_product_cost_price', true );
+$auto_renew  = get_post_meta( $post->ID, '_orbis_subscription_product_auto_renew', true );
+$deprecated  = get_post_meta( $post->ID, '_orbis_subscription_product_deprecated', true );
+$interval    = get_post_meta( $post->ID, '_orbis_subscription_product_interval', true );
+$description = get_post_meta( $post->ID, '_orbis_subscription_product_description', true );
+$link        = get_post_meta( $post->ID, '_orbis_subscription_product_link', true );
+$cancel_note = get_post_meta( $post->ID, '_orbis_subscription_product_cancel_note', true );
 
 ?>
 <table class="form-table">
@@ -96,6 +99,36 @@ $interval   = get_post_meta( $post->ID, '_orbis_subscription_product_interval', 
 						?>
 					</select>
 				</label>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_subscription_product_description">
+					<?php esc_html_e( 'Description', 'orbis_subscriptions' ); ?>
+				</label>
+			</th>
+			<td>
+				<textarea id="orbis_subscription_product_description" name="_orbis_subscription_product_description" rows="3" cols="60"><?php echo \esc_textarea( $description ); ?></textarea>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_subscription_product_link">
+					<?php esc_html_e( 'Link', 'orbis_subscriptions' ); ?>
+				</label>
+			</th>
+			<td>
+				<input id="orbis_subscription_product_link" name="_orbis_subscription_product_link" value="<?php echo \esc_attr( $link ); ?>" type="url" class="regular-text" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row">
+				<label for="orbis_subscription_product_cancel_note">
+					<?php esc_html_e( 'Cancel Note', 'orbis_subscriptions' ); ?>
+				</label>
+			</th>
+			<td>
+				<textarea id="orbis_subscription_product_cancel_note" name="_orbis_subscription_product_cancel_note" rows="3" cols="60"><?php echo \esc_textarea( $cancel_note ); ?></textarea>
 			</td>
 		</tr>
 	</tbody>

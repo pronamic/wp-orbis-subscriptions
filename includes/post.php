@@ -448,19 +448,22 @@ function orbis_save_subscription_product_details( $post_id, $post ) {
 	global $wp_locale;
 
 	$definition = array(
-		'_orbis_subscription_product_price'      => array(
+		'_orbis_subscription_product_price'       => array(
 			'filter'  => FILTER_VALIDATE_FLOAT,
 			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
 			'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
 		),
-		'_orbis_subscription_product_cost_price' => array(
+		'_orbis_subscription_product_cost_price'  => array(
 			'filter'  => FILTER_VALIDATE_FLOAT,
 			'flags'   => FILTER_FLAG_ALLOW_THOUSAND,
 			'options' => array( 'decimal' => $wp_locale->number_format['decimal_point'] ),
 		),
-		'_orbis_subscription_product_auto_renew' => FILTER_VALIDATE_BOOLEAN,
-		'_orbis_subscription_product_deprecated' => FILTER_VALIDATE_BOOLEAN,
-		'_orbis_subscription_product_interval'   => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_product_auto_renew'  => FILTER_VALIDATE_BOOLEAN,
+		'_orbis_subscription_product_deprecated'  => FILTER_VALIDATE_BOOLEAN,
+		'_orbis_subscription_product_interval'    => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_product_description' => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_product_link'        => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_product_cancel_note' => FILTER_SANITIZE_STRING,
 	);
 
 	$data = filter_input_array( INPUT_POST, $definition );
