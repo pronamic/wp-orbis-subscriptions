@@ -74,7 +74,7 @@ $current_period_end_date = Orbis_Subscription::get_current_period_end_date( $sub
 
 					printf(
 						__( 'to %s', 'orbis_subscriptions' ),
-						date_i18n( 'D j M Y', $current_period_end_date->getTimestamp() )
+						$current_period_end_date->format( 'd-m-Y' )
 					);
 
 					?>
