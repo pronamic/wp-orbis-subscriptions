@@ -46,7 +46,7 @@ $invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_tex
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
 // Current Period End Date.
-$current_period_end_date = Orbis_Subscription::get_current_period_end_date( $subscription->activation_date, $subscription->interval );
+$current_period_end_date = Orbis_Subscription::get_current_period_end_date( $subscription->activation_date, $subscription->interval, $subscription->cancel_date );
 
 ?>
 <div class="card mb-3">

@@ -515,7 +515,7 @@ class Orbis_Subscription {
 		return $result;
 	}
 
-	public static function get_current_period_end_date( $date, $interval ) {
+	public static function get_current_period_end_date( $date, $interval, $cancel_date_string = null ) {
 		// Current Period End Date.
 		$start = new \DateTimeImmutable( $date );
 
@@ -539,6 +539,14 @@ class Orbis_Subscription {
 
 			if ( $is_current ) {
 				$current_period_end_date = $end_date;
+			}
+
+			if ( null !== $cancel_date_string ) {
+				$cancel_date = new \DateTimeImmutable( $cancel_date_string );
+
+				if ( $cancel_date <= $end_date->modify( '-30 days' ) ) {
+					return $end_date;
+				}
 			}
 		}
 
