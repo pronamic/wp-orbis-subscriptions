@@ -23,6 +23,8 @@ $invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_tex
 $invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
+$utc = new \DateTimeZone( 'UTC' );
+
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -133,7 +135,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 		$value = '';
 		if ( $date ) {
-			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
+			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
 		}
 
 		?>
@@ -151,7 +153,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 		$value = '';
 		if ( $date ) {
-			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
+			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
 		}
 
 		?>
@@ -169,7 +171,7 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 
 		$value = '';
 		if ( $date ) {
-			$value = date_i18n( 'D j M Y H:i:s', $date->format( 'U' ) );
+			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
 		}
 
 		?>
