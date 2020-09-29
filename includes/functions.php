@@ -45,21 +45,6 @@ function orbis_subscription_get_data( $post_id ) {
 	return $wpdb->get_row( $query );
 }
 
-
-if ( ! function_exists( 'orbis_date2mysql' ) ) :
-
-	function orbis_date2mysql( DateTime $date = null ) {
-		$result = null;
-
-		if ( null !== $date ) {
-			$result = $date->format( 'Y-m-d H:i:s' );
-		}
-
-		return $result;
-	}
-
-endif;
-
 function orbis_subscriptions_suggest_subscription_id() {
 	global $wpdb;
 

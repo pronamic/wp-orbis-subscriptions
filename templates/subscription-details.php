@@ -48,6 +48,27 @@ $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_descr
 // Current Period End Date.
 $current_period_end_date = Orbis_Subscription::get_current_period_end_date( $subscription->activation_date, $subscription->interval, $subscription->cancel_date );
 
+// Dates.
+$utc = new \DateTimeZone( 'UTC' );
+
+$activation_date = null;
+
+if ( ! empty( $subscription->activation_date ) ) {
+	$activation_date = new \DateTimeImmutable( $subscription->activation_date, $utc );
+}
+
+$expiration_date = null;
+
+if ( ! empty( $subscription->expiration_date ) ) {
+	$expiration_date = new \DateTimeImmutable( $subscription->expiration_date, $utc );
+}
+
+$cancel_date = null;
+
+if ( ! empty( $subscription->cancel_date ) ) {
+	$cancel_date = new \DateTimeImmutable( $subscription->cancel_date, $utc );
+}
+
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
@@ -65,8 +86,12 @@ $current_period_end_date = Orbis_Subscription::get_current_period_end_date( $sub
 					<?php get_template_part( 'templates/subscription-badges' ); ?>
 				</dd>
 
-				<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
-				<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ) ); ?></dd>
+				<?php if ( null !== $activation_date ) : ?>
+
+					<dt><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></dt>
+					<dd><?php echo \esc_html( \wp_date( 'D j M Y H:i:s', $activation_date->getTimestamp() ) ); ?></dd>
+
+				<?php endif; ?>
 
 				<dt><?php esc_html_e( 'Current Period', 'orbis_subscriptions' ); ?></dt>
 				<dd>
@@ -83,7 +108,7 @@ $current_period_end_date = Orbis_Subscription::get_current_period_end_date( $sub
 				<?php if ( ! empty( $cancel_date ) ) : ?>
 
 					<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
-					<dd><?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $cancel_date ) ) ); ?></dd>
+					<dd><?php echo \esc_html( \wp_date( 'D j M Y H:i:s', $cancel_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>
 

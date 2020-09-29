@@ -68,7 +68,7 @@ class Orbis_Subscriptions_Admin {
 
 				$result = $wpdb->update(
 					$wpdb->orbis_subscriptions,
-					array( 'cancel_date' => current_time( 'mysql' ) ),
+					array( 'cancel_date' => current_time( 'mysql', true ) ),
 					array( 'post_id' => $post_id ),
 					array( '%s' ),
 					array( '%d' )
