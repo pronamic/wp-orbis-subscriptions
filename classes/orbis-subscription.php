@@ -535,7 +535,13 @@ class Orbis_Subscription {
 		return $result;
 	}
 
-	public static function get_current_period_end_date( $date, $interval, $cancel_date_string = null ) {
+	public static function get_current_period_end_date( $date, $interval, $cancel_date_string = null, $end_date_string = null ) {
+		if ( null !== $end_date_string ) {
+			$end_date = new \DateTimeImmutable( $end_date_string );
+
+			return $end_date;
+		}
+
 		// Current Period End Date.
 		$start = new \DateTimeImmutable( $date );
 
