@@ -266,15 +266,16 @@ function orbis_save_subscription_details( $post_id, $post ) {
 
 	// OK
 	$definition = array(
-		'_orbis_subscription_company_id'   => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_type_id'      => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_name'         => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_person_id'    => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_email'        => FILTER_VALIDATE_EMAIL,
-		'_orbis_subscription_agreement_id' => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_header_text'       => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_footer_text'       => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_line_description'  => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_company_id'      => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_type_id'         => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_name'            => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_person_id'       => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_email'           => FILTER_VALIDATE_EMAIL,
+		'_orbis_subscription_agreement_id'    => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_activation_date' => FILTER_SANITIZE_STRING,
+		'_orbis_invoice_header_text'          => FILTER_SANITIZE_STRING,
+		'_orbis_invoice_footer_text'          => FILTER_SANITIZE_STRING,
+		'_orbis_invoice_line_description'     => FILTER_SANITIZE_STRING,
 	);
 
 	$data = filter_input_array( INPUT_POST, $definition );
@@ -343,6 +344,20 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		$expiration->modify( '+1 year' );
 
 		$subscription->set_expiration_date( $expiration );
+	}
+
+	if ( 0 === $subscription->count_invoices() ) {
+		$activation_date_string = get_post_meta( $post_id, '_orbis_subscription_activation_date', true );
+
+		$activation_date = new \DateTime( $activation_date_string, \wp_timezone() );
+
+		$subscription->set_activation_date( $activation_date );
+
+		// Expiration DateTime
+		$expiration_date = clone $activation_date;
+		$expiration_date->modify( '+1 year' );
+
+		$subscription->set_expiration_date( $expiration_date );
 	}
 
 	// Save this subscription!

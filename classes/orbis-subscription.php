@@ -225,65 +225,46 @@ class Orbis_Subscription {
 
 		$utc = new \DateTimeZone( 'UTC' );
 
+		// Data.
+		$activation_date = $this->get_activation_date();
+
+		if ( null !== $activation_date ) {
+			$activation_date = \DateTimeImmutable::createFromMutable( $activation_date );
+		}
+
+		$expiration_date = $this->get_expiration_date();
+
+		if ( null !== $expiration_date ) {
+			$expiration_date = \DateTimeImmutable::createFromMutable( $expiration_date );
+		}
+
+		$data = array(
+			'company_id'      => $this->get_company_id(),
+			'type_id'         => $this->get_product_id(),
+			'post_id'         => $this->get_post_id(),
+			'name'            => $this->get_name(),
+			'email'           => $this->get_email(),
+			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
+			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
+			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
+		);
+
+		$format = array(
+			'company_id'      => '%d',
+			'type_id'         => '%d',
+			'post_id'         => '%d',
+			'name'            => '%s',
+			'email'           => '%s',
+			'activation_date' => '%s',
+			'expiration_date' => '%s',
+			'update_date'     => '%s',
+		);
+
 		// Must be new
 		if ( ! $this->get_id() ) {
-			$activation_date = $this->get_activation_date();
-
-			if ( null !== $activation_date ) {
-				$activation_date = \DateTimeImmutable::createFromMutable( $activation_date );
-			}
-
-			$expiration_date = $this->get_expiration_date();
-
-			if ( null !== $expiration_date ) {
-				$expiration_date = \DateTimeImmutable::createFromMutable( $expiration_date );
-			}
-
-			$data = array(
-				'company_id'      => $this->get_company_id(),
-				'type_id'         => $this->get_product_id(),
-				'post_id'         => $this->get_post_id(),
-				'name'            => $this->get_name(),
-				'email'           => $this->get_email(),
-				'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-				'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-			);
-
-			$format = array(
-				'company_id'      => '%d',
-				'type_id'         => '%d',
-				'post_id'         => '%d',
-				'name'            => '%s',
-				'email'           => '%s',
-				'activation_date' => '%s',
-				'expiration_date' => '%s',
-			);
-
 			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
 		} else {
-			$update_date = $this->get_activation_date();
-
-			if ( null !== $update_date ) {
-				$update_date = \DateTimeImmutable::createFromMutable( $update_date );
-			}
-
-			$data = array(
-				'company_id'  => $this->get_company_id(),
-				'type_id'     => $this->get_product_id(),
-				'name'        => $this->get_name(),
-				'email'       => $this->get_email(),
-				'update_date' => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-			);
-
 			$where = array( 'id' => $this->get_id() );
-
-			$format = array(
-				'company_id'  => '%d',
-				'type_id'     => '%d',
-				'name'        => '%s',
-				'email'       => '%s',
-				'update_date' => '%s',
-			);
 
 			// Update it!
 			$result = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
@@ -448,6 +429,20 @@ class Orbis_Subscription {
 	}
 
 	//////////////////////////////////////////////////
+
+	public function count_invoices() {
+		global $wpdb;
+
+		if ( null === $this->id ) {
+			return 0;
+		}
+
+		return \intval(
+			$wpdb->get_var(
+				$wpdb->prepare( "SELECT COUNT(id) FROM $wpdb->orbis_subscriptions_invoices WHERE subscription_id = %d;", $this->get_id() )
+			)
+		);
+	}
 
 	public function register_invoice( $invoice_number, DateTime $start_date, DateTime $end_date ) {
 		global $wpdb;

@@ -133,17 +133,24 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		$date = $subscription->get_activation_date();
 
-		$value = '';
+		$value = \wp_date( 'Y-m-d\TH:i:s' );
+
 		if ( $date ) {
-			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
+			$value = \wp_date( 'Y-m-d\TH:i:s', $date->getTimestamp() );
 		}
+
+		$readonly = '';
+
+		if ( $subscription->count_invoices() > 0 ) {
+			$readonly = 'readonly="readonly"';
+		} 
 
 		?>
 		<th scope="row">
 			<label for="orbis_subscription_activation_date"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
+			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" <?php echo $readonly; ?> class="regular-text" />
 		</td>
 	</tr>
 	<tr valign="top">
@@ -153,7 +160,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		$value = '';
 		if ( $date ) {
-			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
+			$value = \wp_date( 'Y-m-d\TH:i:s', $date->getTimestamp() );
 		}
 
 		?>
@@ -161,7 +168,7 @@ $utc = new \DateTimeZone( 'UTC' );
 			<label for="orbis_subscription_expiration_date"><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
+			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
 	<tr valign="top">
@@ -171,7 +178,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		$value = '';
 		if ( $date ) {
-			$value = \wp_date( 'D j M Y H:i:s', $date->getTimestamp() );
+			$value = \wp_date( 'Y-m-d\TH:i:s', $date->getTimestamp() );
 		}
 
 		?>
@@ -179,7 +186,7 @@ $utc = new \DateTimeZone( 'UTC' );
 			<label for="orbis_subscription_cancel_date"><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="text" readonly="readonly" class="regular-text" />
+			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" readonly="readonly" class="regular-text" />
 		</td>
 	</tr>
 	<?php
