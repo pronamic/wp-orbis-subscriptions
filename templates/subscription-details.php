@@ -74,6 +74,13 @@ if ( ! empty( $subscription->cancel_date ) ) {
 	$cancel_date = new \DateTimeImmutable( $subscription->cancel_date, $utc );
 }
 
+$billed_to = null;
+
+if ( ! empty( $subscription->billed_to ) ) {
+	$billed_to = new \DateTimeImmutable( $subscription->billed_to, $utc );
+}
+
+
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis_subscriptions' ); ?></div>
@@ -114,6 +121,36 @@ if ( ! empty( $subscription->cancel_date ) ) {
 
 					<dt><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></dt>
 					<dd><?php echo \esc_html( \wp_date( 'D j M Y H:i:s', $cancel_date->getTimestamp() ) ); ?></dd>
+
+				<?php endif; ?>
+
+				<?php if ( ! empty( $billed_to ) ) : ?>
+
+					<dt><?php esc_html_e( 'Billed To', 'orbis_subscriptions' ); ?></dt>
+					<dd>
+						<?php
+
+						echo \esc_html( \wp_date( 'D j M Y', $billed_to->getTimestamp() ) );
+
+						$anchor_1 = new DateTime( '+1 month' );
+						$anchor_2 = new DateTime( '+1 year' );
+
+						if ( $billed_to <= $anchor_1 ) : ?>
+
+							<div class="alert alert-primary mt-2" role="alert">
+								<?php esc_html_e( '📣 Please note: this subscription may be billed again soon.', 'orbis_subscriptions' ); ?>
+							</div>
+
+						<?php endif; ?>
+
+						<?php if ( $billed_to > $anchor_2 ) : ?>
+
+							<div class="alert alert-danger mt-2" role="alert">
+								<?php esc_html_e( '🚨 Please note: this subscription is billed further in advance than usual.', 'orbis_subscriptions' ); ?>
+							</div>
+
+						<?php endif; ?>
+					</dd>
 
 				<?php endif; ?>
 
