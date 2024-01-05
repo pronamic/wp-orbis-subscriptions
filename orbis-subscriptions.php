@@ -10,7 +10,7 @@ Requires at least: 3.5
 Author: Pronamic
 Author URI: http://www.pronamic.eu/
 
-Text Domain: orbis_subscriptions
+Text Domain: orbis-subscriptions
 Domain Path: /languages/
 
 License: Copyright (c) Pronamic
@@ -26,6 +26,13 @@ require_once __DIR__ . '/vendor/autoload_packages.php';
 /**
  * Bootstrap.
  */
+add_action(
+	'plugins_loaded',
+	function() {
+		load_plugin_textdomain( 'orbis-subscriptions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+	}
+);
+
 function orbis_subscriptions_bootstrap() {
 	// Classes
 	require_once 'classes/orbis-subscriptions-plugin.php';
