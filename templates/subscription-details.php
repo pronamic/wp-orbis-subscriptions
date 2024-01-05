@@ -91,7 +91,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 			<dl>
 				<dt><?php esc_html_e( 'Company', 'orbis_subscriptions' ); ?></dt>
 				<dd>
-					<a href="<?php echo esc_attr( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
+					<a href="<?php echo esc_url( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
 				</dd>
 
 				<dt><?php esc_html_e( 'Status', 'orbis_subscriptions' ); ?></dt>
@@ -203,7 +203,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 					<dt><?php esc_html_e( 'Agreement', 'orbis_subscriptions' ); ?></dt>
 					<dd>
-						<a href="<?php echo esc_attr( get_permalink( $agreement ) ); ?>"><?php echo get_the_title( $agreement ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( $agreement ) ); ?>"><?php echo get_the_title( $agreement ); ?></a>
 					</dd>
 
 				<?php endif; ?>
