@@ -48,7 +48,7 @@ class Orbis_Subscriptions_Admin {
 	 * Page statistics
 	 */
 	public function page_statistics() {
-		$this->plugin->plugin_include( 'admin/page-statistics.php' );
+		include __DIR__ . '/../admin/page-statistics.php';
 	}
 
 	
