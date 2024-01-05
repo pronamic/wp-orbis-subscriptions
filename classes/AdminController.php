@@ -1,5 +1,7 @@
 <?php
 
+namespace Pronamic\Orbis\Subscriptions;
+
 /**
  * Title: Orbis Subscriptions admin class
  * Description:
@@ -9,7 +11,7 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Orbis_Subscriptions_Admin {
+class AdminController {
 	/**
 	 * Plugin
 	 */

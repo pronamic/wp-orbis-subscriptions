@@ -1,7 +1,19 @@
 <?php
 
-class Orbis_Subscriptions_Plugin {
-	public function __construct() {
+namespace Pronamic\Orbis\Subscriptions;
+
+class Plugin {
+	private static $instance = null;
+
+	public static function instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+    	}
+ 
+		return self::$instance;
+	}
+
+	private function __construct() {
 		//$this->set_name( 'orbis_subscriptions' );
 		// $this->set_db_version( '1.1.7' );
 
@@ -18,7 +30,7 @@ class Orbis_Subscriptions_Plugin {
 
 		// Admin
 		if ( is_admin() ) {
-			$this->admin = new Orbis_Subscriptions_Admin( $this );
+			$this->admin = new AdminController( $this );
 		}
 
 		// Actions

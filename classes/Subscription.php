@@ -1,6 +1,8 @@
 <?php
 
-class Orbis_Subscription {
+namespace Pronamic\Orbis\Subscriptions;
+
+class Subscription {
 	/**
 	 * Holds the Post object that this
 	 * subscription represents

@@ -24,6 +24,8 @@
  * GitHub URI:        https://github.com/pronamic/wp-orbis-subscriptions
  */
 
+namespace Pronamic\Orbis\Subscriptions;
+
 /**
  * Autoload.
  */
@@ -42,14 +44,8 @@ add_action(
 add_action(
 	'plugins_loaded',
 	function () {
-		require_once 'classes/orbis-subscriptions-plugin.php';
-		require_once 'classes/orbis-subscriptions-admin.php';
-		require_once 'classes/orbis-subscription.php';
-
 		require_once 'includes/functions.php';
 
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin();
+		Plugin::instance();
 	}
 );
