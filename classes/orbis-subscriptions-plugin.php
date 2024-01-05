@@ -1,22 +1,20 @@
 <?php
 
-class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
-	public function __construct( $file ) {
-		parent::__construct( $file );
-
-		$this->set_name( 'orbis_subscriptions' );
-		$this->set_db_version( '1.1.7' );
+class Orbis_Subscriptions_Plugin {
+	public function __construct() {
+		//$this->set_name( 'orbis_subscriptions' );
+		// $this->set_db_version( '1.1.7' );
 
 		// Includes
-		$this->plugin_include( 'includes/post.php' );
-		$this->plugin_include( 'includes/subscription.php' );
-		$this->plugin_include( 'includes/template.php' );
-		$this->plugin_include( 'includes/subscription-template.php' );
+		include __DIR__ . '/../includes/post.php';
+		include __DIR__ . '/../includes/subscription.php';
+		include __DIR__ . '/../includes/template.php';
+		include __DIR__ . '/../includes/subscription-template.php';
 
 		// Tables
-		orbis_register_table( 'orbis_subscriptions' );
-		orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
-		orbis_register_table( 'orbis_subscriptions_invoices' );
+		// orbis_register_table( 'orbis_subscriptions' );
+		// orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
+		// orbis_register_table( 'orbis_subscriptions_invoices' );
 
 		// Admin
 		if ( is_admin() ) {
@@ -113,7 +111,6 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		' 
 		);
 
-		parent::install();
 	}
 
 	public function shortcode_subscriptions_without_agreement() {
