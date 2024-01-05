@@ -110,7 +110,6 @@ class Orbis_Subscriptions_Plugin {
 			PRIMARY KEY  (id)
 		' 
 		);
-
 	}
 
 	public function shortcode_subscriptions_without_agreement() {
