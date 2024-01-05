@@ -47,7 +47,7 @@ if ( $query->have_posts() ) : ?>
 						<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->subscription_activation_date ) ) ); ?>
 					</td>
 					<td>
-						<a href="<?php echo esc_attr( get_permalink( $subscription->ID ) ); ?>" target="_blank">
+						<a href="<?php echo esc_url( get_permalink( $subscription->ID ) ); ?>" target="_blank">
 							<?php echo esc_html( $subscription->post_title ); ?>
 						</a>
 					</td>
@@ -58,7 +58,7 @@ if ( $query->have_posts() ) : ?>
 						?>
 					</td>
 					<td>
-						<a href="<?php echo esc_attr( get_edit_post_link( $subscription->ID ) ); ?>">
+						<a href="<?php echo esc_url( get_edit_post_link( $subscription->ID ) ); ?>">
 							<?php esc_html_e( 'Edit', 'orbis_subscriptions' ); ?>
 						</a>
 					</td>
