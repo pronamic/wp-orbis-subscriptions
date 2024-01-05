@@ -2,16 +2,18 @@
 
 use Pronamic\WordPress\Money\Money;
 
-$query = new WP_Query( array(
-	'post_type'      => 'orbis_subscription',
-	'posts_per_page' => 50,
-	'meta_query'     => array( // WPCS: slow query ok.
-		array(
-			'key'     => '_orbis_subscription_agreement_id',
-			'compare' => 'NOT EXISTS',
-		),
-	),
-) );
+$query = new WP_Query(
+	[
+		'post_type'      => 'orbis_subscription',
+		'posts_per_page' => 50,
+		'meta_query'     => [ // WPCS: slow query ok.
+			[
+				'key'     => '_orbis_subscription_agreement_id',
+				'compare' => 'NOT EXISTS',
+			],
+		],
+	] 
+);
 
 $subscriptions = $query->posts;
 
@@ -34,7 +36,7 @@ if ( $query->have_posts() ) : ?>
 
 				<?php
 
-				$classes = array( 'subscription' );
+				$classes = [ 'subscription' ];
 				if ( $subscription->canceled ) {
 					$classes[] = 'canceled';
 				}

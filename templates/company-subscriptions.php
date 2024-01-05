@@ -6,7 +6,8 @@ global $wpdb;
 
 $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_companies WHERE post_id = %d;", get_the_ID() ) );
 
-$query = $wpdb->prepare( "
+$query = $wpdb->prepare(
+	"
 	SELECT
 		s.id, 
 		s.type_id,
@@ -49,7 +50,7 @@ if ( $subscriptions ) : ?>
 
 				<?php
 
-				$classes = array( 'subscription' );
+				$classes = [ 'subscription' ];
 				if ( $subscription->canceled ) {
 					$classes[] = 'canceled';
 				}

@@ -44,11 +44,11 @@ function orbis_subscriptions_render_company_subscriptions() {
 }
 
 function orbis_company_sections_subscriptions( $sections ) {
-	$sections[] = array(
+	$sections[] = [
 		'id'       => 'subscriptions',
 		'name'     => __( 'Subscriptions', 'orbis_subscriptions' ),
 		'callback' => 'orbis_subscriptions_render_company_subscriptions',
-	);
+	];
 
 	return $sections;
 }

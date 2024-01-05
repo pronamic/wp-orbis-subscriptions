@@ -4,7 +4,8 @@ use Pronamic\WordPress\Money\Money;
 
 global $wpdb;
 
-$query = $wpdb->prepare( "
+$query = $wpdb->prepare(
+	"
 	SELECT
 		s.id, 
 		s.type_id,
@@ -58,7 +59,7 @@ if ( $subscriptions ) : ?>
 
 					<?php
 
-					$classes = array( 'subscription' );
+					$classes = [ 'subscription' ];
 					if ( $subscription->canceled ) {
 						$classes[] = 'canceled';
 					}

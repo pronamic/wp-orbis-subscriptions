@@ -109,7 +109,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 
 	$subscriptions = $wpdb->get_results( $query ); // unprepared SQL
 
-	$data = array();
+	$data = [];
 
 	foreach ( $subscriptions as $subscription ) {
 		$result     = new stdClass();

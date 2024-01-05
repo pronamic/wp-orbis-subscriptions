@@ -11,7 +11,8 @@ $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_dat
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
 $email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 
-$query = $wpdb->prepare( "
+$query = $wpdb->prepare(
+	"
 	SELECT
 		subscription.*,
 		product.time_per_year,
@@ -135,7 +136,8 @@ if ( ! empty( $subscription->billed_to ) ) {
 						$anchor_1 = new DateTime( '+1 month' );
 						$anchor_2 = new DateTime( '+1 year' );
 
-						if ( $billed_to <= $anchor_1 ) : ?>
+						if ( $billed_to <= $anchor_1 ) : 
+							?>
 
 							<div class="alert alert-primary mt-2" role="alert">
 								<?php esc_html_e( '📣 Please note: this subscription may be billed again soon.', 'orbis_subscriptions' ); ?>
@@ -197,7 +199,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 				if ( ! empty( $agreement_id ) ) :
 					$agreement = get_post( $agreement_id );
-				?>
+					?>
 
 					<dt><?php esc_html_e( 'Agreement', 'orbis_subscriptions' ); ?></dt>
 					<dd>

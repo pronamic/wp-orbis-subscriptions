@@ -8,13 +8,17 @@
 
 			<?php
 
-			$quicktags_settings = array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,close' );
+			$quicktags_settings = [ 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,close' ];
 
-			wp_editor( '', 'orbis_subscription_cancel_content', array(
-				'media_buttons' => false,
-				'tinymce'       => false,
-				'quicktags'     => $quicktags_settings,
-			) );
+			wp_editor(
+				'',
+				'orbis_subscription_cancel_content',
+				[
+					'media_buttons' => false,
+					'tinymce'       => false,
+					'quicktags'     => $quicktags_settings,
+				] 
+			);
 
 			?>
 			<br />

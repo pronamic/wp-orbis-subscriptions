@@ -24,11 +24,11 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 		}
 
 		// Actions
-		add_action( 'init', array( $this, 'init' ), 20 );
-		add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+		add_action( 'init', [ $this, 'init' ], 20 );
+		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
 		// Shortcodes
-		add_shortcode( 'orbis_subscriptions_without_agreement', array( $this, 'shortcode_subscriptions_without_agreement' ) );
+		add_shortcode( 'orbis_subscriptions_without_agreement', [ $this, 'shortcode_subscriptions_without_agreement' ] );
 	}
 
 	public function init() {
@@ -36,17 +36,21 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 	}
 
 	public function p2p_init() {
-		p2p_register_connection_type( array(
-			'name' => 'orbis_subscriptions_to_purchases',
-			'from' => 'orbis_subscription',
-			'to'   => 'orbis_subs_purchase',
-		) );
+		p2p_register_connection_type(
+			[
+				'name' => 'orbis_subscriptions_to_purchases',
+				'from' => 'orbis_subscription',
+				'to'   => 'orbis_subs_purchase',
+			] 
+		);
 
-		p2p_register_connection_type( array(
-			'name' => 'orbis_subscriptions_to_persons',
-			'from' => 'orbis_subscription',
-			'to'   => 'orbis_person',
-		) );
+		p2p_register_connection_type(
+			[
+				'name' => 'orbis_subscriptions_to_persons',
+				'from' => 'orbis_subscription',
+				'to'   => 'orbis_person',
+			] 
+		);
 	}
 
 	public function loaded() {
@@ -54,7 +58,9 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 	}
 
 	public function install() {
-		orbis_install_table( 'orbis_subscriptions', '
+		orbis_install_table(
+			'orbis_subscriptions',
+			'
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			company_id BIGINT(16) UNSIGNED DEFAULT NULL,
 			type_id BIGINT(16) UNSIGNED DEFAULT NULL,
@@ -71,9 +77,12 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			KEY company_id (company_id),
 			KEY type_id (type_id),
 			KEY domain_name_id (domain_name_id)
-		' );
+		' 
+		);
 
-		orbis_install_table( 'orbis_subscription_products', '
+		orbis_install_table(
+			'orbis_subscription_products',
+			'
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			name VARCHAR(64) NOT NULL,
@@ -87,9 +96,12 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			deprecated BOOLEAN NOT NULL DEFAULT FALSE,
 			`interval` VARCHAR(2) NOT NULL DEFAULT "Y",
 			PRIMARY KEY  (id)
-		' );
+		' 
+		);
 
-		orbis_install_table( 'orbis_subscriptions_invoices', '
+		orbis_install_table(
+			'orbis_subscriptions_invoices',
+			'
 			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 			subscription_id BIGINT(16) UNSIGNED NOT NULL,
 			invoice_number VARCHAR(8) NOT NULL,
@@ -98,7 +110,8 @@ class Orbis_Subscriptions_Plugin extends Orbis_Plugin {
 			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
 			create_date DATETIME DEFAULT NULL,
 			PRIMARY KEY  (id)
-		' );
+		' 
+		);
 
 		parent::install();
 	}

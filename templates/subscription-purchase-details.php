@@ -4,12 +4,14 @@ use Pronamic\WordPress\Money\Money;
 
 global $post;
 
-$query = new WP_Query( array(
-	'post_type'       => 'orbis_subscription',
-	'connected_type'  => 'orbis_subscriptions_to_purchases',
-	'connected_items' => get_queried_object(),
-	'nopaging'        => true, //phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_nopaging
-) );
+$query = new WP_Query(
+	[
+		'post_type'       => 'orbis_subscription',
+		'connected_type'  => 'orbis_subscriptions_to_purchases',
+		'connected_items' => get_queried_object(),
+		'nopaging'        => true, //phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_nopaging
+	] 
+);
 
 // Costs
 $costs = get_post_meta( $post->ID, '_orbis_subscription_purchase_price', true );
@@ -80,7 +82,7 @@ $profit = $revenue - $costs;
 			<?php
 			while ( $query->have_posts() ) :
 				$query->the_post();
-			?>
+				?>
 
 				<tr <?php post_class(); ?>>
 					<td>

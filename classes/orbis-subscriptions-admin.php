@@ -15,8 +15,7 @@ class Orbis_Subscriptions_Admin {
 	 */
 	private $plugin;
 
-	//////////////////////////////////////////////////
-
+	
 	/**
 	 * Constructs and initialize an Orbis Subscriptions admin object
 	 */
@@ -24,13 +23,12 @@ class Orbis_Subscriptions_Admin {
 		$this->plugin = $plugin;
 
 		// Actions
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
-		add_action( 'save_post', array( $this, 'save_post' ) );
+		add_action( 'save_post', [ $this, 'save_post' ] );
 	}
 
-	//////////////////////////////////////////////////
-
+	
 	/**
 	 * Admin menu
 	 */
@@ -41,12 +39,11 @@ class Orbis_Subscriptions_Admin {
 			__( 'Statistics', 'orbis_subscriptions' ),
 			'manage_options',
 			'orbis_subscription_statistics',
-			array( $this, 'page_statistics' )
+			[ $this, 'page_statistics' ]
 		);
 	}
 
-	//////////////////////////////////////////////////
-
+	
 	/**
 	 * Page statistics
 	 */
@@ -54,8 +51,7 @@ class Orbis_Subscriptions_Admin {
 		$this->plugin->plugin_include( 'admin/page-statistics.php' );
 	}
 
-	//////////////////////////////////////////////////
-
+	
 	/**
 	 * Save post
 	 */
@@ -68,10 +64,10 @@ class Orbis_Subscriptions_Admin {
 
 				$result = $wpdb->update(
 					$wpdb->orbis_subscriptions,
-					array( 'cancel_date' => current_time( 'mysql', true ) ),
-					array( 'post_id' => $post_id ),
-					array( '%s' ),
-					array( '%d' )
+					[ 'cancel_date' => current_time( 'mysql', true ) ],
+					[ 'post_id' => $post_id ],
+					[ '%s' ],
+					[ '%d' ]
 				);
 
 				// Comment
@@ -90,12 +86,12 @@ class Orbis_Subscriptions_Admin {
 					$comment_content .= $content;
 				}
 
-				$data = array(
+				$data = [
 					'comment_post_ID' => $post_id,
 					'comment_content' => $comment_content,
 					'comment_author'  => 'Orbis',
 					'comment_type'    => 'orbis_comment',
-				);
+				];
 
 				wp_insert_comment( $data );
 			}

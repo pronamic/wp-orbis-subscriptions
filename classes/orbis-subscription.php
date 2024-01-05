@@ -213,11 +213,9 @@ class Orbis_Subscription {
 	}
 
 	public function expire() {
-
 	}
 
 	public function activate() {
-
 	}
 
 	public function save() {
@@ -238,7 +236,7 @@ class Orbis_Subscription {
 			$expiration_date = \DateTimeImmutable::createFromMutable( $expiration_date );
 		}
 
-		$data = array(
+		$data = [
 			'company_id'      => $this->get_company_id(),
 			'type_id'         => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
@@ -247,9 +245,9 @@ class Orbis_Subscription {
 			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
 			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
 			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-		);
+		];
 
-		$format = array(
+		$format = [
 			'company_id'      => '%d',
 			'type_id'         => '%d',
 			'post_id'         => '%d',
@@ -258,13 +256,13 @@ class Orbis_Subscription {
 			'activation_date' => '%s',
 			'expiration_date' => '%s',
 			'update_date'     => '%s',
-		);
+		];
 
 		// Must be new
 		if ( ! $this->get_id() ) {
 			$result = $wpdb->insert( $wpdb->orbis_subscriptions, $data, $format );
 		} else {
-			$where = array( 'id' => $this->get_id() );
+			$where = [ 'id' => $this->get_id() ];
 
 			// Update it!
 			$result = $wpdb->update( $wpdb->orbis_subscriptions, $data, $where, $format );
@@ -274,7 +272,6 @@ class Orbis_Subscription {
 	}
 
 	public function remove() {
-
 	}
 
 	/**
@@ -428,8 +425,7 @@ class Orbis_Subscription {
 		return $this;
 	}
 
-	//////////////////////////////////////////////////
-
+	
 	public function count_invoices() {
 		global $wpdb;
 
@@ -450,43 +446,43 @@ class Orbis_Subscription {
 		// Insert subscription invoice
 		$result = $wpdb->insert(
 			$wpdb->orbis_subscriptions_invoices,
-			array(
+			[
 				'subscription_id' => $this->get_id(),
 				'invoice_number'  => $invoice_number,
 				'start_date'      => $start_date->format( 'Y-m-d H:i:s' ),
 				'end_date'        => $end_date->format( 'Y-m-d H:i:s' ),
 				'user_id'         => get_current_user_id(),
 				'create_date'     => date( 'Y-m-d H:i:s' ),
-			),
-			array(
+			],
+			[
 				'%d',
 				'%s',
 				'%s',
 				'%s',
 				'%d',
 				'%s',
-			)
+			]
 		);
 
 		// Update subscription
 		$wpdb->update(
 			$wpdb->orbis_subscriptions,
 			// Data
-			array(
+			[
 				'expiration_date' => $end_date->format( 'Y-m-d H:i:s' ),
-			),
+			],
 			// Where
-			array(
+			[
 				'id' => $this->get_id(),
-			),
+			],
 			// Format
-			array(
+			[
 				'%s',
-			),
+			],
 			// Where format
-			array(
+			[
 				'%d',
-			)
+			]
 		);
 
 		// Update billed to.

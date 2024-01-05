@@ -4,7 +4,8 @@ global $wpdb;
 
 $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", get_the_ID() ) );
 
-$query = $wpdb->prepare( "
+$query = $wpdb->prepare(
+	"
 	SELECT
 		user.display_name AS user_display_name,
 		si.create_date,
