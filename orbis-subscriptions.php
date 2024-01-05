@@ -50,6 +50,6 @@ add_action(
 
 		global $orbis_subscriptions_plugin;
 
-		$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin( __FILE__ );
+		$orbis_subscriptions_plugin = new Orbis_Subscriptions_Plugin();
 	}
 );
