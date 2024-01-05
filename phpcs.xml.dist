@@ -9,6 +9,8 @@
 	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
 
 	<rule ref="PronamicWP">
-		
+		<exclude name="Squiz.Commenting" />
+
+		<exclude name="WordPress.DB" />
 	</rule>
 </ruleset>
