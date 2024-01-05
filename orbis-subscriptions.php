@@ -18,6 +18,14 @@ License: Copyright (c) Pronamic
 GitHub URI: https://github.com/wp-orbis/wp-orbis-subscriptions
 */
 
+/**
+ * Autoload.
+ */
+require_once __DIR__ . '/vendor/autoload_packages.php';
+
+/**
+ * Bootstrap.
+ */
 function orbis_subscriptions_bootstrap() {
 	// Classes
 	require_once 'classes/orbis-subscriptions-plugin.php';

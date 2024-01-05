@@ -1,33 +1,31 @@
 {
-  "name": "orbis-subscriptions",
-  "version": "1.2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pronamic/wp-orbis-subscriptions.git"
-  },
-  "keywords": [
-    "pronamic",
-    "orbis",
-    "crm",
-    "intranet",
-    "subscriptions",
-    "subscription"
-  ],
-  "author": {
-    "name": "Pronamic",
-    "email": "info@pronamic.nl",
-    "url": "http://www.pronamic.nl/"
-  },
-  "contributors": [
-    {
-      "name": "Remco Tolsma",
-      "email": "info@remcotolsma.nl",
-      "url": "http://www.remcotolsma.nl/"
-    }
-  ],
-  "license": "GPL-3.0",
-  "homepage": "https://github.com/pronamic/wp-orbis-subscriptions",
-  "devDependencies": {
-
-  }
+	"name": "orbis-subscriptions",
+	"version": "1.2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pronamic/wp-orbis-subscriptions.git"
+	},
+	"keywords": [
+		"pronamic",
+		"orbis",
+		"crm",
+		"intranet",
+		"subscriptions",
+		"subscription"
+	],
+	"author": {
+		"name": "Pronamic",
+		"email": "info@pronamic.nl",
+		"url": "http://www.pronamic.nl/"
+	},
+	"contributors": [
+		{
+			"name": "Remco Tolsma",
+			"email": "info@remcotolsma.nl",
+			"url": "http://www.remcotolsma.nl/"
+		}
+	],
+	"license": "GPL-3.0",
+	"homepage": "https://github.com/pronamic/wp-orbis-subscriptions",
+	"devDependencies": {}
 }
