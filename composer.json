@@ -1,14 +1,15 @@
 {
 	"name": "pronamic/wp-orbis-subscriptions",
 	"description": "The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions.",
-	"require": {
-		"automattic/jetpack-autoloader": "^3.0"
-	},
 	"config": {
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
+	},
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"automattic/jetpack-autoloader": "^3.0"
 	},
 	"require-dev": {
 		"pronamic/wp-coding-standards": "^2.1",
