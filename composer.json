@@ -1,6 +1,13 @@
 {
 	"name": "pronamic/wp-orbis-subscriptions",
 	"description": "The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions.",
+	"license": "GPL-2.0-or-later",
+	"type": "wordpress-plugin",
+	"autoload": {
+		"psr-4": {
+			"Pronamic\\Orbis\\Subscriptions\\": "classes/"
+		}
+	},
 	"config": {
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true,
@@ -8,7 +15,6 @@
 		},
 		"wp-slug": "orbis-subscriptions"
 	},
-	"license": "GPL-2.0-or-later",
 	"require": {
 		"automattic/jetpack-autoloader": "^3.0"
 	},
@@ -21,7 +27,7 @@
 		"phpcs": "vendor/bin/phpcs",
 		"translate": [
 			"@build",
-			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/"	
+			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/"
 		],
 		"qa": [
 			"@phpcs"
