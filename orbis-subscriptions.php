@@ -34,14 +34,14 @@ require_once __DIR__ . '/vendor/autoload_packages.php';
  */
 add_action(
 	'plugins_loaded',
-	function() {
+	function () {
 		load_plugin_textdomain( 'orbis-subscriptions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 	}
 );
 
 add_action(
 	'plugins_loaded',
-	function() {
+	function () {
 		require_once 'classes/orbis-subscriptions-plugin.php';
 		require_once 'classes/orbis-subscriptions-admin.php';
 		require_once 'classes/orbis-subscription.php';
