@@ -19,6 +19,10 @@
 	"scripts": {
 		"build": "vendor/bin/pronamic wp-build",
 		"phpcs": "vendor/bin/phpcs",
+		"translate": [
+			"@build",
+			"rsync --recursive --delete --verbose ./build/project/languages/ ./languages/"	
+		],
 		"qa": [
 			"@phpcs"
 		]
