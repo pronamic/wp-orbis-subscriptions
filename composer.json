@@ -13,5 +13,11 @@
 	"require-dev": {
 		"pronamic/wp-coding-standards": "^2.1",
 		"pronamic/pronamic-cli": "^1.1"
+	},
+	"scripts": {
+		"phpcs": "vendor/bin/phpcs",
+		"qa": [
+			"@phpcs"
+		]
 	}
 }
