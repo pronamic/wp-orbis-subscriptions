@@ -5,7 +5,8 @@
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
+		},
+		"wp-slug": "orbis-subscriptions"
 	},
 	"license": "GPL-2.0-or-later",
 	"require": {
