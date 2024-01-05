@@ -2,7 +2,7 @@
 /*
 Plugin Name: Orbis Subscriptions
 Plugin URI: http://www.pronamic.eu/plugins/orbis-subscriptions/
-Description: The Orbis Subscriptions extends your Orbis environment with the option to add subscription types and subscriptions.
+Description: The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions.
 
 Version: 1.2.0
 Requires at least: 3.5
