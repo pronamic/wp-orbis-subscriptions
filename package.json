@@ -1,22 +1,11 @@
 {
-	"name": "orbis-subscriptions",
+	"name": "@pronamic/wp-orbis-subscriptions",
 	"version": "1.2.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/pronamic/wp-orbis-subscriptions.git"
-	},
-	"keywords": [
-		"pronamic",
-		"orbis",
-		"crm",
-		"intranet",
-		"subscriptions",
-		"subscription"
-	],
+	"description": "The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions.",
 	"author": {
 		"name": "Pronamic",
-		"email": "info@pronamic.nl",
-		"url": "http://www.pronamic.nl/"
+		"email": "info@pronamic.eu",
+		"url": "http://www.pronamic.eu/"
 	},
 	"contributors": [
 		{
@@ -25,9 +14,29 @@
 			"url": "http://www.remcotolsma.nl/"
 		}
 	],
-	"license": "GPL-3.0",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"pronamic",
+		"orbis",
+		"crm",
+		"intranet",
+		"subscriptions",
+		"subscription"
+	],
 	"homepage": "https://github.com/pronamic/wp-orbis-subscriptions",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pronamic/wp-orbis-subscriptions.git"
+	},
+	"bugs": {
+		"url": "https://github.com/pronamic/wp-orbis-subscriptions/issues",
+		"email": "support@pronamic.eu"
+	},
 	"devDependencies": {
-		"@wordpress/env": "^9.0.0"
+		"@wordpress/env": "^9.0.0",
+		"@wordpress/scripts": "^26.19.0"
+	},
+	"scripts": {
+		"lint:pkg-json": "wp-scripts lint-pkg-json"
 	}
 }
