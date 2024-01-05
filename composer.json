@@ -17,6 +17,7 @@
 		"pronamic/pronamic-cli": "^1.1"
 	},
 	"scripts": {
+		"build": "vendor/bin/pronamic wp-build",
 		"phpcs": "vendor/bin/phpcs",
 		"qa": [
 			"@phpcs"
