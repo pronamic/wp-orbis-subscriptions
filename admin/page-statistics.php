@@ -26,17 +26,17 @@
 	?>
 	<ul class="subsubsub">
 		<li class="all">
-			<a href=""><?php esc_html_e( 'All', 'orbis_subscriptions' ); ?> <span class="count">(<?php echo esc_html( count( $expired_stats ) ); ?>)</span></a></li>
+			<a href=""><?php esc_html_e( 'All', 'orbis-subscriptions' ); ?> <span class="count">(<?php echo esc_html( count( $expired_stats ) ); ?>)</span></a></li>
 	</ul>
 
 	<table class="widefat">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Product', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Active', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Expired', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Total', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Expire Rate', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Product', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Active', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Expired', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Total', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Expire Rate', 'orbis-subscriptions' ); ?></th>
 			</tr>
 		</thead>
 

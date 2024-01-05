@@ -29,7 +29,7 @@ $utc = new \DateTimeZone( 'UTC' );
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_id"><?php esc_html_e( 'Orbis ID', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_id"><?php esc_html_e( 'Orbis ID', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_id" name="_orbis_subscription_id" value="<?php echo esc_attr( $subscription->get_id() ); ?>" type="text" class="regular-text" readonly="readonly" />
@@ -37,7 +37,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<select id="orbis_subscription_company" name="_orbis_subscription_company_id" class="orbis-id-control orbis_company_id_field regular-text">
@@ -49,7 +49,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_type"><?php esc_html_e( 'Type', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_type"><?php esc_html_e( 'Type', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<select id="orbis_subscription_type" name="_orbis_subscription_type_id">
@@ -80,7 +80,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_name"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_name"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo esc_attr( $subscription->get_name() ); ?>" type="text" class="regular-text" />
@@ -88,7 +88,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_person_id"><?php esc_html_e( 'Person', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_person_id"><?php esc_html_e( 'Person', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
@@ -101,7 +101,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_email"><?php esc_html_e( 'Email', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_email"><?php esc_html_e( 'Email', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo esc_attr( $subscription->get_email() ); ?>" type="text" class="regular-text" />
@@ -110,21 +110,21 @@ $utc = new \DateTimeZone( 'UTC' );
 	<tr valign="top">
 		<th scope="row">
 			<label for="_orbis_subscription_agreement_id">
-				<?php esc_html_e( 'Agreement ID', 'orbis_subscriptions' ); ?>
+				<?php esc_html_e( 'Agreement ID', 'orbis-subscriptions' ); ?>
 			</label>
 		</th>
 		<td>
 			<input size="5" type="text" id="_orbis_subscription_agreement_id" name="_orbis_subscription_agreement_id" value="<?php echo esc_attr( $agreement_id ); ?>" />
 
 			<a id="choose-from-library-link" class="button"
-				data-choose="<?php esc_attr_e( 'Choose an Agreement', 'orbis_subscriptions' ); ?>"
+				data-choose="<?php esc_attr_e( 'Choose an Agreement', 'orbis-subscriptions' ); ?>"
 				data-type="<?php echo esc_attr( 'application/pdf, plain/text' ); ?>"
 				data-element="<?php echo esc_attr( '_orbis_subscription_agreement_id' ); ?>"
-				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis_subscriptions' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis_subscriptions' ); ?></a>
+				data-update="<?php esc_attr_e( 'Set as Agreement', 'orbis-subscriptions' ); ?>"><?php esc_html_e( 'Choose a Agreement', 'orbis-subscriptions' ); ?></a>
 
 			<p class="description">
-				<?php esc_html_e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis_subscriptions' ); ?><br />
-				<?php esc_html_e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis_subscriptions' ); ?>
+				<?php esc_html_e( 'You can select an .PDF or .TXT file from the WordPress media library.', 'orbis-subscriptions' ); ?><br />
+				<?php esc_html_e( 'If you received the agreement by mail print the complete mail conversation with an PDF printer.', 'orbis-subscriptions' ); ?>
 			</p>
 		</td>
 	</tr>
@@ -147,7 +147,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_activation_date"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_activation_date"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" <?php echo $readonly; ?> class="regular-text" />
@@ -165,7 +165,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_expiration_date"><?php esc_html_e( 'Expiration Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_expiration_date"><?php esc_html_e( 'Expiration Date', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" readonly="readonly" class="regular-text" />
@@ -183,7 +183,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		?>
 		<th scope="row">
-			<label for="orbis_subscription_cancel_date"><?php esc_html_e( 'Cancel Date', 'orbis_subscriptions' ); ?></label>
+			<label for="orbis_subscription_cancel_date"><?php esc_html_e( 'Cancel Date', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input id="orbis_subscription_cancel_date" name="orbis_subscription_cancel_date" value="<?php echo esc_attr( $value ); ?>" type="datetime-local" readonly="readonly" class="regular-text" />
@@ -198,14 +198,14 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_subscription_payment_method"><?php esc_html_e( 'Payment Method', 'orbis_subscriptions' ); ?></label>
+				<label for="orbis_subscription_payment_method"><?php esc_html_e( 'Payment Method', 'orbis-subscriptions' ); ?></label>
 			</th>
 			<td>
 				<?php
 					wp_dropdown_categories(
 						[
 							'name'             => 'tax_input[orbis_payment_method]',
-							'show_option_none' => __( '— Select Payment Method —', 'orbis_subscriptions' ),
+							'show_option_none' => __( '— Select Payment Method —', 'orbis-subscriptions' ),
 							'hide_empty'       => false,
 							'selected'         => is_object( $term ) ? $term->term_id : false,
 							'taxonomy'         => 'orbis_payment_method',
@@ -219,7 +219,7 @@ $utc = new \DateTimeZone( 'UTC' );
 
 	<tr>
 		<th scope="row">
-			<label for="_orbis_invoice_header_text"><?php esc_html_e( 'Invoice Header Text', 'orbis_subscriptions' ); ?></label>
+			<label for="_orbis_invoice_header_text"><?php esc_html_e( 'Invoice Header Text', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<textarea id="_orbis_invoice_header_text" name="_orbis_invoice_header_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_header_text ); ?></textarea>
@@ -227,7 +227,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr>
 		<th scope="row">
-			<label for="_orbis_invoice_footer_text"><?php esc_html_e( 'Invoice Footer Text', 'orbis_subscriptions' ); ?></label>
+			<label for="_orbis_invoice_footer_text"><?php esc_html_e( 'Invoice Footer Text', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<textarea id="_orbis_invoice_footer_text" name="_orbis_invoice_footer_text" rows="2" cols="60"><?php echo esc_textarea( $invoice_footer_text ); ?></textarea>
@@ -235,7 +235,7 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr>
 		<th scope="row">
-			<label for="_orbis_invoice_line_description"><?php esc_html_e( 'Invoice Line Description', 'orbis_subscriptions' ); ?></label>
+			<label for="_orbis_invoice_line_description"><?php esc_html_e( 'Invoice Line Description', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
 			<input type="text" id="_orbis_invoice_line_description" name="_orbis_invoice_line_description" value="<?php echo esc_attr( $invoice_line_description ); ?>" class="regular-text" />

@@ -37,10 +37,10 @@ if ( $subscriptions ) : ?>
 	<table class="table table-striped mb-0">
 		<thead>
 			<tr>
-				<th class="border-top-0" scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-				<th class="border-top-0" scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-				<th class="border-top-0" scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
-				<th class="border-top-0" scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
@@ -87,7 +87,7 @@ if ( $subscriptions ) : ?>
 
 	<div class="card-body">
 		<p class="text-muted m-0">
-			<?php esc_html_e( 'No subscriptions found.', 'orbis_subscriptions' ); ?>
+			<?php esc_html_e( 'No subscriptions found.', 'orbis-subscriptions' ); ?>
 		</p>
 	</div>
 

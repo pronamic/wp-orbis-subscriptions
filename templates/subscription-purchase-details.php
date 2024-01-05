@@ -42,14 +42,14 @@ $profit = $revenue - $costs;
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
 		<tfoot>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Revenue', 'orbis_subscriptions' ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Revenue', 'orbis-subscriptions' ); ?></td>
 				<td>
 					<?php
 					$revenue = new Money( $revenue, 'EUR' );
@@ -58,7 +58,7 @@ $profit = $revenue - $costs;
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Costs', 'orbis_subscriptions' ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Costs', 'orbis-subscriptions' ); ?></td>
 				<td>
 					<?php
 					$costs = new Money( $costs, 'EUR' );
@@ -67,7 +67,7 @@ $profit = $revenue - $costs;
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Profit', 'orbis_subscriptions' ); ?></td>
+				<th scope="row"><?php esc_html_e( 'Profit', 'orbis-subscriptions' ); ?></td>
 				<td>
 					<?php
 					$profit = new Money( $profit, 'EUR' );

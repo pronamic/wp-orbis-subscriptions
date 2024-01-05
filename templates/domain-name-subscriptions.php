@@ -39,17 +39,17 @@ if ( $subscriptions ) : ?>
 
 	<div class="panel">
 		<header>
-			<h3><?php esc_html_e( 'Subscriptions', 'orbis_subscriptions' ); ?></h3>
+			<h3><?php esc_html_e( 'Subscriptions', 'orbis-subscriptions' ); ?></h3>
 		</header>
 
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Company', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Company', 'orbis-subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
 				</tr>
 			</thead>
 

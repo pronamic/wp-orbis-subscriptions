@@ -8,20 +8,20 @@ function orbis_subscriptions_create_initial_post_types() {
 	register_post_type(
 		'orbis_subscription',
 		[
-			'label'         => __( 'Subscriptions', 'orbis_subscriptions' ),
+			'label'         => __( 'Subscriptions', 'orbis-subscriptions' ),
 			'labels'        => [
-				'name'               => _x( 'Subscriptions', 'post type general name', 'orbis_subscriptions' ),
-				'singular_name'      => _x( 'Subscription', 'post type singular name', 'orbis_subscriptions' ),
-				'add_new'            => _x( 'Add New', 'orbis_subscription', 'orbis_subscriptions' ),
-				'add_new_item'       => __( 'Add New Subscription', 'orbis_subscriptions' ),
-				'edit_item'          => __( 'Edit Subscription', 'orbis_subscriptions' ),
-				'new_item'           => __( 'New Subscription', 'orbis_subscriptions' ),
-				'view_item'          => __( 'View Subscription', 'orbis_subscriptions' ),
-				'search_items'       => __( 'Search Subscriptions', 'orbis_subscriptions' ),
-				'not_found'          => __( 'No subscriptions found', 'orbis_subscriptions' ),
-				'not_found_in_trash' => __( 'No subscriptions found in Trash', 'orbis_subscriptions' ),
-				'parent_item_colon'  => __( 'Parent Subscription:', 'orbis_subscriptions' ),
-				'menu_name'          => __( 'Subscriptions', 'orbis_subscriptions' ),
+				'name'               => _x( 'Subscriptions', 'post type general name', 'orbis-subscriptions' ),
+				'singular_name'      => _x( 'Subscription', 'post type singular name', 'orbis-subscriptions' ),
+				'add_new'            => _x( 'Add New', 'orbis_subscription', 'orbis-subscriptions' ),
+				'add_new_item'       => __( 'Add New Subscription', 'orbis-subscriptions' ),
+				'edit_item'          => __( 'Edit Subscription', 'orbis-subscriptions' ),
+				'new_item'           => __( 'New Subscription', 'orbis-subscriptions' ),
+				'view_item'          => __( 'View Subscription', 'orbis-subscriptions' ),
+				'search_items'       => __( 'Search Subscriptions', 'orbis-subscriptions' ),
+				'not_found'          => __( 'No subscriptions found', 'orbis-subscriptions' ),
+				'not_found_in_trash' => __( 'No subscriptions found in Trash', 'orbis-subscriptions' ),
+				'parent_item_colon'  => __( 'Parent Subscription:', 'orbis-subscriptions' ),
+				'menu_name'          => __( 'Subscriptions', 'orbis-subscriptions' ),
 			],
 			'public'        => true,
 			'menu_position' => 30,
@@ -37,7 +37,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			'show_in_rest'  => true,
 			'rest_base'     => 'orbis/subscriptions',
 			'rewrite'       => [
-				'slug' => _x( 'subscriptions', 'slug', 'orbis_subscriptions' ),
+				'slug' => _x( 'subscriptions', 'slug', 'orbis-subscriptions' ),
 			],
 		]
 	);
@@ -45,20 +45,20 @@ function orbis_subscriptions_create_initial_post_types() {
 	register_post_type(
 		'orbis_subs_product',
 		[
-			'label'         => __( 'Subscription Products', 'orbis_subscriptions' ),
+			'label'         => __( 'Subscription Products', 'orbis-subscriptions' ),
 			'labels'        => [
-				'name'               => _x( 'Subscription Products', 'post type general name', 'orbis_subscriptions' ),
-				'singular_name'      => _x( 'Subscription Product', 'post type singular name', 'orbis_subscriptions' ),
-				'add_new'            => _x( 'Add New', 'orbis_subs_type', 'orbis_subscriptions' ),
-				'add_new_item'       => __( 'Add New Subscription Product', 'orbis_subscriptions' ),
-				'edit_item'          => __( 'Edit Subscription Product', 'orbis_subscriptions' ),
-				'new_item'           => __( 'New Subscription Product', 'orbis_subscriptions' ),
-				'view_item'          => __( 'View Subscription Product', 'orbis_subscriptions' ),
-				'search_items'       => __( 'Search Subscription Products', 'orbis_subscriptions' ),
-				'not_found'          => __( 'No subscription products found', 'orbis_subscriptions' ),
-				'not_found_in_trash' => __( 'No subscription products found in Trash', 'orbis_subscriptions' ),
-				'parent_item_colon'  => __( 'Parent Subscription Product:', 'orbis_subscriptions' ),
-				'menu_name'          => __( 'Products', 'orbis_subscriptions' ),
+				'name'               => _x( 'Subscription Products', 'post type general name', 'orbis-subscriptions' ),
+				'singular_name'      => _x( 'Subscription Product', 'post type singular name', 'orbis-subscriptions' ),
+				'add_new'            => _x( 'Add New', 'orbis_subs_type', 'orbis-subscriptions' ),
+				'add_new_item'       => __( 'Add New Subscription Product', 'orbis-subscriptions' ),
+				'edit_item'          => __( 'Edit Subscription Product', 'orbis-subscriptions' ),
+				'new_item'           => __( 'New Subscription Product', 'orbis-subscriptions' ),
+				'view_item'          => __( 'View Subscription Product', 'orbis-subscriptions' ),
+				'search_items'       => __( 'Search Subscription Products', 'orbis-subscriptions' ),
+				'not_found'          => __( 'No subscription products found', 'orbis-subscriptions' ),
+				'not_found_in_trash' => __( 'No subscription products found in Trash', 'orbis-subscriptions' ),
+				'parent_item_colon'  => __( 'Parent Subscription Product:', 'orbis-subscriptions' ),
+				'menu_name'          => __( 'Products', 'orbis-subscriptions' ),
 			],
 			'public'        => true,
 			'menu_position' => 30,
@@ -73,7 +73,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			],
 			'has_archive'   => true,
 			'rewrite'       => [
-				'slug' => _x( 'subscription-products', 'slug', 'orbis_subscriptions' ),
+				'slug' => _x( 'subscription-products', 'slug', 'orbis-subscriptions' ),
 			],
 		]
 	);
@@ -81,20 +81,20 @@ function orbis_subscriptions_create_initial_post_types() {
 	register_post_type(
 		'orbis_subs_purchase',
 		[
-			'label'         => __( 'Subscription Purchases', 'orbis_subscriptions' ),
+			'label'         => __( 'Subscription Purchases', 'orbis-subscriptions' ),
 			'labels'        => [
-				'name'               => _x( 'Subscription Purchases', 'post type general name', 'orbis_subscriptions' ),
-				'singular_name'      => _x( 'Subscription Purchase', 'post type singular name', 'orbis_subscriptions' ),
-				'add_new'            => _x( 'Add New', 'orbis_subs_purchase', 'orbis_subscriptions' ),
-				'add_new_item'       => __( 'Add New Subscription Purchase', 'orbis_subscriptions' ),
-				'edit_item'          => __( 'Edit Subscription Purchase', 'orbis_subscriptions' ),
-				'new_item'           => __( 'New Subscription Purchase', 'orbis_subscriptions' ),
-				'view_item'          => __( 'View Subscription Purchase', 'orbis_subscriptions' ),
-				'search_items'       => __( 'Search Subscription Purchases', 'orbis_subscriptions' ),
-				'not_found'          => __( 'No subscription purchases found', 'orbis_subscriptions' ),
-				'not_found_in_trash' => __( 'No subscription purchases found in Trash', 'orbis_subscriptions' ),
-				'parent_item_colon'  => __( 'Parent Subscription Purchase:', 'orbis_subscriptions' ),
-				'menu_name'          => __( 'Purchases', 'orbis_subscriptions' ),
+				'name'               => _x( 'Subscription Purchases', 'post type general name', 'orbis-subscriptions' ),
+				'singular_name'      => _x( 'Subscription Purchase', 'post type singular name', 'orbis-subscriptions' ),
+				'add_new'            => _x( 'Add New', 'orbis_subs_purchase', 'orbis-subscriptions' ),
+				'add_new_item'       => __( 'Add New Subscription Purchase', 'orbis-subscriptions' ),
+				'edit_item'          => __( 'Edit Subscription Purchase', 'orbis-subscriptions' ),
+				'new_item'           => __( 'New Subscription Purchase', 'orbis-subscriptions' ),
+				'view_item'          => __( 'View Subscription Purchase', 'orbis-subscriptions' ),
+				'search_items'       => __( 'Search Subscription Purchases', 'orbis-subscriptions' ),
+				'not_found'          => __( 'No subscription purchases found', 'orbis-subscriptions' ),
+				'not_found_in_trash' => __( 'No subscription purchases found in Trash', 'orbis-subscriptions' ),
+				'parent_item_colon'  => __( 'Parent Subscription Purchase:', 'orbis-subscriptions' ),
+				'menu_name'          => __( 'Purchases', 'orbis-subscriptions' ),
 			],
 			'public'        => true,
 			'menu_position' => 30,
@@ -111,7 +111,7 @@ function orbis_subscriptions_create_initial_post_types() {
 			],
 			'has_archive'   => true,
 			'rewrite'       => [
-				'slug' => _x( 'subscription-purchases', 'slug', 'orbis_subscriptions' ),
+				'slug' => _x( 'subscription-purchases', 'slug', 'orbis-subscriptions' ),
 			],
 		]
 	);
@@ -125,7 +125,7 @@ add_action( 'init', 'orbis_subscriptions_create_initial_post_types', 0 ); // hig
 function orbis_subscriptions_add_meta_boxes() {
 	add_meta_box(
 		'orbis_subscription_details',
-		__( 'Subscription Details', 'orbis_subscriptions' ),
+		__( 'Subscription Details', 'orbis-subscriptions' ),
 		'orbis_subscription_details_meta_box',
 		'orbis_subscription',
 		'normal',
@@ -134,7 +134,7 @@ function orbis_subscriptions_add_meta_boxes() {
 
 	add_meta_box(
 		'orbis_subscription_actions',
-		__( 'Subscription Actions', 'orbis_subscriptions' ),
+		__( 'Subscription Actions', 'orbis-subscriptions' ),
 		'orbis_subscription_actions_meta_box',
 		'orbis_subscription',
 		'normal',
@@ -143,7 +143,7 @@ function orbis_subscriptions_add_meta_boxes() {
 
 	add_meta_box(
 		'orbis_subscription_product_details',
-		__( 'Subscription Product Details', 'orbis_subscriptions' ),
+		__( 'Subscription Product Details', 'orbis-subscriptions' ),
 		'orbis_subscription_product_details_meta_box',
 		'orbis_subs_product',
 		'normal',
@@ -152,7 +152,7 @@ function orbis_subscriptions_add_meta_boxes() {
 
 	add_meta_box(
 		'orbis_subscription_purchase_details',
-		__( 'Subscription Purchase Details', 'orbis_subscriptions' ),
+		__( 'Subscription Purchase Details', 'orbis-subscriptions' ),
 		'orbis_subscription_purchase_details_meta_box',
 		'orbis_subs_purchase',
 		'normal',
@@ -372,11 +372,11 @@ add_action( 'save_post', 'orbis_save_subscription_sync', 20, 2 );
 function orbis_subscription_edit_columns( $columns ) {
 	return [
 		'cb'                        => '<input type="checkbox" />',
-		'title'                     => __( 'Title', 'orbis_subscriptions' ),
-		'orbis_subscription_person' => __( 'Person', 'orbis_subscriptions' ),
-		'author'                    => __( 'Author', 'orbis_subscriptions' ),
-		'comments'                  => __( 'Comments', 'orbis_subscriptions' ),
-		'date'                      => __( 'Date', 'orbis_subscriptions' ),
+		'title'                     => __( 'Title', 'orbis-subscriptions' ),
+		'orbis_subscription_person' => __( 'Person', 'orbis-subscriptions' ),
+		'author'                    => __( 'Author', 'orbis-subscriptions' ),
+		'comments'                  => __( 'Comments', 'orbis-subscriptions' ),
+		'date'                      => __( 'Date', 'orbis-subscriptions' ),
 	];
 }
 
@@ -579,10 +579,10 @@ function orbis_save_subscription_product_sync( $post_id ) {
  * Subscription product edit columns
  */
 function orbis_subscription_product_edit_columns( $columns ) {
-	$columns['orbis_subscription_product_price']      = __( 'Price', 'orbis_subscriptions' );
-	$columns['orbis_subscription_product_cost_price'] = __( 'Cost Price', 'orbis_subscriptions' );
-	$columns['orbis_subscription_product_deprecated'] = __( 'Deprecated', 'orbis_subscriptions' );
-	$columns['orbis_subscription_product_id']         = __( 'Orbis ID', 'orbis_subscriptions' );
+	$columns['orbis_subscription_product_price']      = __( 'Price', 'orbis-subscriptions' );
+	$columns['orbis_subscription_product_cost_price'] = __( 'Cost Price', 'orbis-subscriptions' );
+	$columns['orbis_subscription_product_deprecated'] = __( 'Deprecated', 'orbis-subscriptions' );
+	$columns['orbis_subscription_product_id']         = __( 'Orbis ID', 'orbis-subscriptions' );
 
 	$new_columns = [];
 
@@ -652,7 +652,7 @@ function orbis_subscription_product_column( $column, $post_id ) {
 			if ( '' === $deprecated ) {
 				echo '&mdash;';
 			} else {
-				echo esc_html( $deprecated ? __( 'Yes', 'orbis_subscriptions' ) : __( 'No', 'orbis_subscriptions' ) );
+				echo esc_html( $deprecated ? __( 'Yes', 'orbis-subscriptions' ) : __( 'No', 'orbis-subscriptions' ) );
 			}
 
 			break;

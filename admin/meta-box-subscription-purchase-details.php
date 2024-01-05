@@ -11,7 +11,7 @@ $price = get_post_meta( $post->ID, '_orbis_subscription_purchase_price', true );
 	<tbody>
 		<tr valign="top">
 			<th scope="row">
-				<label for="orbis_subscription_purchase_price"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></label>
+				<label for="orbis_subscription_purchase_price"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></label>
 			</th>
 			<td>
 				<input type="text" id="orbis_subscription_purchase_price" name="_orbis_subscription_purchase_price" value="<?php echo esc_attr( empty( $price ) ? '' : number_format_i18n( $price, 2 ) ); ?>" class="regular-text" />

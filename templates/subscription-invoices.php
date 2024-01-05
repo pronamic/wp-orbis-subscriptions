@@ -31,18 +31,18 @@ if ( $invoices ) : ?>
 
 	<div class="card mb-3">
 		<div class="card-header">
-			<?php esc_html_e( 'Invoices', 'orbis_subscriptions' ); ?>
+			<?php esc_html_e( 'Invoices', 'orbis-subscriptions' ); ?>
 		</div>
 
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered mb-0">
 				<thead>
 					<tr>
-						<th scope="col"><?php esc_html_e( 'Create Date', 'orbis_subscriptions' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'User', 'orbis_subscriptions' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'Start Date', 'orbis_subscriptions' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'End Date', 'orbis_subscriptions' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis_subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'Create Date', 'orbis-subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'User', 'orbis-subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'Start Date', 'orbis-subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'End Date', 'orbis-subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-subscriptions' ); ?></th>
 					</tr>
 				</thead>
 

@@ -35,8 +35,8 @@ class Orbis_Subscriptions_Admin {
 	public function admin_menu() {
 		add_submenu_page(
 			'edit.php?post_type=orbis_subscription',
-			__( 'Orbis Subscriptions Statistics', 'orbis_subscriptions' ),
-			__( 'Statistics', 'orbis_subscriptions' ),
+			__( 'Orbis Subscriptions Statistics', 'orbis-subscriptions' ),
+			__( 'Statistics', 'orbis-subscriptions' ),
 			'manage_options',
 			'orbis_subscription_statistics',
 			[ $this, 'page_statistics' ]
@@ -74,8 +74,8 @@ class Orbis_Subscriptions_Admin {
 				$user = wp_get_current_user();
 
 				$comment_content = sprintf(
-					__( "This subscription is just '%1\$s' by %2\$s.", 'orbis_subscriptions' ), //phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
-					__( 'canceled', 'orbis_subscriptions' ),
+					__( "This subscription is just '%1\$s' by %2\$s.", 'orbis-subscriptions' ), //phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
+					__( 'canceled', 'orbis-subscriptions' ),
 					$user->display_name
 				);
 

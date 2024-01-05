@@ -23,10 +23,10 @@ if ( $query->have_posts() ) : ?>
 		<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php esc_html_e( 'Actions', 'orbis_subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
+				<th scope="col"><?php esc_html_e( 'Actions', 'orbis-subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
@@ -59,7 +59,7 @@ if ( $query->have_posts() ) : ?>
 					</td>
 					<td>
 						<a href="<?php echo esc_url( get_edit_post_link( $subscription->ID ) ); ?>">
-							<?php esc_html_e( 'Edit', 'orbis_subscriptions' ); ?>
+							<?php esc_html_e( 'Edit', 'orbis-subscriptions' ); ?>
 						</a>
 					</td>
 				</tr>
