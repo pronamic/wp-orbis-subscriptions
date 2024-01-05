@@ -1,5 +1,7 @@
 <?php
 
+use Pronamic\WordPress\Money\Money;
+
 global $wpdb;
 
 $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_companies WHERE post_id = %d;", get_the_ID() ) );
@@ -31,50 +33,61 @@ $subscriptions = $wpdb->get_results( $query );
 
 if ( $subscriptions ) : ?>
 
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped mb-0">
 		<thead>
 			<tr>
-				<th scope="col"><?php _e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php _e( 'Subscription', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php _e( 'Name', 'orbis_subscriptions' ); ?></th>
-				<th scope="col"><?php _e( 'Price', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Activation Date', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Subscription', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Name', 'orbis_subscriptions' ); ?></th>
+				<th class="border-top-0" scope="col"><?php esc_html_e( 'Price', 'orbis_subscriptions' ); ?></th>
 			</tr>
 		</thead>
 
 		<tbody>
-			
+
 			<?php foreach ( $subscriptions as $subscription ) : ?>
 
-				<?php 
-				
+				<?php
+
 				$classes = array( 'subscription' );
 				if ( $subscription->canceled ) {
 					$classes[] = 'canceled';
 				}
-				
+
 				?>
-				<tr class="<?php echo implode( ' ', $classes ); ?>">
+				<tr class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 					<td>
-						<?php echo date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ); ?>
+						<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ) ); ?>
 					</td>
 					<td>
-						<a href="<?php echo get_permalink( $subscription->post_id ); ?>" target="_blank">
-							<?php echo $subscription->subscription_name; ?>
+						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+							<?php echo esc_html( $subscription->subscription_name ); ?>
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo get_permalink( $subscription->post_id ); ?>" target="_blank">
-							<?php echo $subscription->name; ?>
+						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+							<?php echo esc_html( $subscription->name ); ?>
 						</a>
 					</td>
 					<td>
-						<?php echo orbis_price( $subscription->price ); ?>
+						<?php
+						$price = new Money( $subscription->price, 'EUR' );
+						echo esc_html( $price->format_i18n() );
+						?>
 					</td>
 				</tr>
-			
+
 			<?php endforeach; ?>
 
 		</tbody>
 	</table>
+
+<?php else : ?>
+
+	<div class="card-body">
+		<p class="text-muted m-0">
+			<?php esc_html_e( 'No subscriptions found.', 'orbis_subscriptions' ); ?>
+		</p>
+	</div>
 
 <?php endif; ?>

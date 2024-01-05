@@ -5,6 +5,7 @@
  * Description:
  * Copyright: Copyright (c) 2005 - 2014
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -67,7 +68,7 @@ class Orbis_Subscriptions_Admin {
 
 				$result = $wpdb->update(
 					$wpdb->orbis_subscriptions,
-					array( 'cancel_date' => current_time( 'mysql' ) ),
+					array( 'cancel_date' => current_time( 'mysql', true ) ),
 					array( 'post_id' => $post_id ),
 					array( '%s' ),
 					array( '%d' )
@@ -77,13 +78,13 @@ class Orbis_Subscriptions_Admin {
 				$user = wp_get_current_user();
 
 				$comment_content = sprintf(
-					__( "This subscription is just '%s' by %s.", 'orbis_subscriptions' ),
+					__( "This subscription is just '%1\$s' by %2\$s.", 'orbis_subscriptions' ), //phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment
 					__( 'canceled', 'orbis_subscriptions' ),
 					$user->display_name
 				);
 
 				$content = wp_kses_post( filter_input( INPUT_POST, 'orbis_subscription_cancel_content', FILTER_UNSAFE_RAW ), wp_kses_allowed_html() );
-				if ( ! empty ( $content ) ) {
+				if ( ! empty( $content ) ) {
 					$comment_content .= "\r\n\r\n";
 
 					$comment_content .= $content;

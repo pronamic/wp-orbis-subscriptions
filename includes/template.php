@@ -43,8 +43,6 @@ function orbis_subscriptions_render_company_subscriptions() {
 	}
 }
 
-// add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_company_subscriptions' );
-
 function orbis_company_sections_subscriptions( $sections ) {
 	$sections[] = array(
 		'id'       => 'subscriptions',
@@ -58,18 +56,14 @@ function orbis_company_sections_subscriptions( $sections ) {
 add_filter( 'orbis_company_sections', 'orbis_company_sections_subscriptions' );
 
 /**
- * Orbis subscriptions post class
- *
- * @param array $classes
+ * Orbis subscription purchase
  */
-function orbis_subscriptions_post_class( $classes ) {
-	global $post;
+function orbis_subscriptions_render_purchase_details() {
+	if ( is_singular( 'orbis_subs_purchase' ) ) {
+		global $orbis_subscriptions_plugin;
 
-	if ( isset( $post->subscription_cancel_date ) && ! empty( $post->subscription_cancel_date ) ) {
-		$classes[] = 'orbis-status-cancelled';
+		$orbis_subscriptions_plugin->plugin_include( 'templates/subscription-purchase-details.php' );
 	}
-
-	return $classes;
 }
 
-add_filter( 'post_class', 'orbis_subscriptions_post_class' );
+add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_purchase_details' );

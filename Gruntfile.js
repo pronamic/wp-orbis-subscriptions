@@ -1,4 +1,13 @@
 module.exports = function( grunt ) {
+	require( 'load-grunt-tasks' )( grunt );
+
+	var phpFiles = [
+		'**/*.php',
+		'!bower_components/**',
+		'!deploy/**',
+		'!node_modules/**',
+		'!vendor/**'
+	];
 	// Project configuration.
 	grunt.initConfig( {
 		// Package
@@ -13,7 +22,19 @@ module.exports = function( grunt ) {
 			},
 			all: [ '**/*.php' ]
 		},
-		
+
+		// PHP Code Sniffer
+		phpcs: {
+			application: {
+				src: phpFiles
+			},
+			options: {
+				bin: 'vendor/bin/phpcs',
+				standard: 'phpcs.ruleset.xml',
+				showSniffCodes: true
+			}
+		},
+
 		// Check WordPress version
 		checkwpversion: {
 			options: {
@@ -69,9 +90,17 @@ module.exports = function( grunt ) {
 		makepot: {
 			target: {
 				options: {
-					cwd: '',
 					domainPath: 'languages',
-					type: 'wp-plugin'
+					type: 'wp-plugin',
+					updatePoFiles: true,
+					updateTimestamp: false,
+					exclude: [
+						'bower_components/.*',
+						'build/.*',
+						'deploy/.*',
+						'node_modules/.*',
+						'vendor/.*'
+					]
 				}
 			}
 		},
@@ -157,18 +186,8 @@ module.exports = function( grunt ) {
 		}
 	} );
 
-	grunt.loadNpmTasks( 'grunt-phplint' );
-	grunt.loadNpmTasks( 'grunt-checktextdomain' );
-	grunt.loadNpmTasks( 'grunt-checkwpversion' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-compress' );
-	grunt.loadNpmTasks( 'grunt-wp-i18n' );
-	grunt.loadNpmTasks( 'grunt-git' );
-	grunt.loadNpmTasks( 'grunt-aws-s3' );
-
 	// Default task(s).
-	grunt.registerTask( 'default', [ 'phplint', 'checkwpversion' ] );
+	grunt.registerTask( 'default', [ 'phplint', 'phpcs', 'checkwpversion' ] );
 	grunt.registerTask( 'pot', [ 'checktextdomain', 'makepot' ] );
 
 	grunt.registerTask( 'deploy', [
