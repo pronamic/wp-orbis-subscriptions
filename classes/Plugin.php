@@ -50,14 +50,6 @@ class Plugin {
 	public function p2p_init() {
 		p2p_register_connection_type(
 			[
-				'name' => 'orbis_subscriptions_to_purchases',
-				'from' => 'orbis_subscription',
-				'to'   => 'orbis_subs_purchase',
-			] 
-		);
-
-		p2p_register_connection_type(
-			[
 				'name' => 'orbis_subscriptions_to_persons',
 				'from' => 'orbis_subscription',
 				'to'   => 'orbis_person',
