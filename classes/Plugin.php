@@ -63,10 +63,6 @@ class Plugin {
 		);
 	}
 
-	public function loaded() {
-		$this->load_textdomain( 'orbis_subscriptions', '/languages/' );
-	}
-
 	public function install() {
 		orbis_install_table(
 			'orbis_subscriptions',
