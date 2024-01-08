@@ -14,35 +14,37 @@ class Plugin {
 	}
 
 	private function __construct() {
-		//$this->set_name( 'orbis_subscriptions' );
-		// $this->set_db_version( '1.1.7' );
-
-		// Includes
 		include __DIR__ . '/../includes/post.php';
 		include __DIR__ . '/../includes/subscription.php';
 		include __DIR__ . '/../includes/template.php';
 		include __DIR__ . '/../includes/subscription-template.php';
 
-		// Tables
-		// orbis_register_table( 'orbis_subscriptions' );
-		// orbis_register_table( 'orbis_subscription_products', 'orbis_subscription_types' );
-		// orbis_register_table( 'orbis_subscriptions_invoices' );
-
-		// Admin
-		if ( is_admin() ) {
+		if ( \is_admin() ) {
 			$this->admin = new AdminController( $this );
 		}
 
-		// Actions
-		add_action( 'init', [ $this, 'init' ], 20 );
+		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
-		// Shortcodes
 		add_shortcode( 'orbis_subscriptions_without_agreement', [ $this, 'shortcode_subscriptions_without_agreement' ] );
 	}
 
 	public function init() {
-		register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_subscription' );
+		global $wpdb;
+
+		$wpdb->orbis_subscriptions          = $wpdb->prefix . 'orbis_subscriptions';
+		$wpdb->orbis_subscription_products  = $wpdb->prefix . 'orbis_subscription_products';
+		$wpdb->orbis_subscriptions_invoices = $wpdb->prefix . 'orbis_subscriptions_invoices';
+
+		$version = '1.1.7';
+
+		if ( \get_option( 'orbis_subscriptions_db_version' ) !== $version ) {
+			$this->install();
+
+			\update_option( 'orbis_subscriptions_db_version', $version );
+		}
+
+		\register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_subscription' );
 	}
 
 	public function p2p_init() {
@@ -63,61 +65,68 @@ class Plugin {
 		);
 	}
 
+	/**
+	 * Install.
+	 * 
+	 * @link https://codex.wordpress.org/Creating_Tables_with_Plugins
+	 * @return void
+	 */
 	public function install() {
-		orbis_install_table(
-			'orbis_subscriptions',
-			'
-			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-			company_id BIGINT(16) UNSIGNED DEFAULT NULL,
-			type_id BIGINT(16) UNSIGNED DEFAULT NULL,
-			domain_name_id BIGINT(32) UNSIGNED DEFAULT NULL,
-			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
-			name VARCHAR(128) NOT NULL,
-			activation_date DATETIME NOT NULL,
-			expiration_date DATETIME NOT NULL,
-			cancel_date DATETIME DEFAULT NULL,
-			update_date DATETIME DEFAULT NULL,
-			email VARCHAR(64) DEFAULT NULL,
-			PRIMARY KEY  (id),
-			UNIQUE KEY post_id (post_id),
-			KEY company_id (company_id),
-			KEY type_id (type_id),
-			KEY domain_name_id (domain_name_id)
-		' 
-		);
+		global $wpdb;
 
-		orbis_install_table(
-			'orbis_subscription_products',
-			'
-			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-			post_id BIGINT(20) UNSIGNED DEFAULT NULL,
-			name VARCHAR(64) NOT NULL,
-			price FLOAT NOT NULL,
-			cost_price FLOAT NULL,
-			notes TEXT NULL,
-			legacy_id BIGINT(16) UNSIGNED NULL,
-			`type_default` BOOLEAN NOT NULL DEFAULT FALSE,
-			twinfield_article VARCHAR(8) NOT NULL,
-			auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
-			deprecated BOOLEAN NOT NULL DEFAULT FALSE,
-			`interval` VARCHAR(2) NOT NULL DEFAULT "Y",
-			PRIMARY KEY  (id)
-		' 
-		);
+		$charset_collate = $wpdb->get_charset_collate();
 
-		orbis_install_table(
-			'orbis_subscriptions_invoices',
-			'
-			id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-			subscription_id BIGINT(16) UNSIGNED NOT NULL,
-			invoice_number VARCHAR(8) NOT NULL,
-			start_date DATETIME DEFAULT NULL,
-			end_date DATETIME DEFAULT NULL,
-			user_id BIGINT(20) UNSIGNED DEFAULT NULL,
-			create_date DATETIME DEFAULT NULL,
-			PRIMARY KEY  (id)
-		' 
-		);
+		$sql = "
+			CREATE TABLE $wpdb->orbis_subscriptions (
+				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				company_id BIGINT(16) UNSIGNED DEFAULT NULL,
+				type_id BIGINT(16) UNSIGNED DEFAULT NULL,
+				domain_name_id BIGINT(32) UNSIGNED DEFAULT NULL,
+				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
+				name VARCHAR(128) NOT NULL,
+				activation_date DATETIME NOT NULL,
+				expiration_date DATETIME NOT NULL,
+				cancel_date DATETIME DEFAULT NULL,
+				update_date DATETIME DEFAULT NULL,
+				email VARCHAR(64) DEFAULT NULL,
+				PRIMARY KEY  (id),
+				UNIQUE KEY post_id (post_id),
+				KEY company_id (company_id),
+				KEY type_id (type_id),
+				KEY domain_name_id (domain_name_id)
+			) $charset_collate;
+
+			CREATE TABLE $wpdb->orbis_subscription_products (
+				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
+				name VARCHAR(64) NOT NULL,
+				price FLOAT NOT NULL,
+				cost_price FLOAT NULL,
+				notes TEXT NULL,
+				legacy_id BIGINT(16) UNSIGNED NULL,
+				`type_default` BOOLEAN NOT NULL DEFAULT FALSE,
+				twinfield_article VARCHAR(8) NOT NULL,
+				auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
+				deprecated BOOLEAN NOT NULL DEFAULT FALSE,
+				`interval` VARCHAR(2) NOT NULL DEFAULT 'Y',
+				PRIMARY KEY  (id)
+			) $charset_collate;
+
+			CREATE TABLE $wpdb->orbis_subscriptions_invoices (
+				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				subscription_id BIGINT(16) UNSIGNED NOT NULL,
+				invoice_number VARCHAR(8) NOT NULL,
+				start_date DATETIME DEFAULT NULL,
+				end_date DATETIME DEFAULT NULL,
+				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
+				create_date DATETIME DEFAULT NULL,
+				PRIMARY KEY  (id)
+			) $charset_collate;
+		";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+		dbDelta( $sql );
 	}
 
 	public function shortcode_subscriptions_without_agreement() {
