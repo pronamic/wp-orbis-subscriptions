@@ -70,6 +70,12 @@ function orbis_subscriptions_create_initial_post_types() {
 				'comments',
 				'thumbnail',
 				'revisions',
+				/**
+				 * Pronamic Moneybird.
+				 * 
+				 * @link https://github.com/pronamic/wp-pronamic-moneybird
+				 */
+				'pronamic_moneybird_product',
 			],
 			'has_archive'   => true,
 			'rewrite'       => [
