@@ -159,9 +159,7 @@ add_filter( 'posts_clauses', 'orbis_subscription_post_clauses', 10, 2 );
  * @param array $post
  */
 function orbis_subscription_details_meta_box( $post ) {
-	global $orbis_subscriptions_plugin;
-
-	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-details.php' );
+	include __DIR__ . '/../admin/meta-box-subscription-details.php';
 }
 
 /**
@@ -170,9 +168,7 @@ function orbis_subscription_details_meta_box( $post ) {
  * @param array $post
  */
 function orbis_subscription_actions_meta_box( $post ) {
-	global $orbis_subscriptions_plugin;
-
-	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-actions.php' );
+	include __DIR__ . '/../admin/meta-box-subscription-actions.php';
 }
 
 /**
@@ -181,9 +177,7 @@ function orbis_subscription_actions_meta_box( $post ) {
  * @param array $post
  */
 function orbis_subscription_product_details_meta_box( $post ) {
-	global $orbis_subscriptions_plugin;
-
-	$orbis_subscriptions_plugin->plugin_include( 'admin/meta-box-subscription-product-details.php' );
+	include __DIR__ . '/../admin/meta-box-subscription-product-details.php';
 }
 
 /**
