@@ -37,13 +37,8 @@ require_once __DIR__ . '/vendor/autoload_packages.php';
 add_action(
 	'plugins_loaded',
 	function () {
-		load_plugin_textdomain( 'orbis-subscriptions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
-	}
-);
+		load_plugin_textdomain( 'orbis-subscriptions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-add_action(
-	'plugins_loaded',
-	function () {
 		require_once 'includes/functions.php';
 
 		Plugin::instance();
