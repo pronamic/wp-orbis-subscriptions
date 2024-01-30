@@ -276,49 +276,6 @@ foreach ( $subscriptions as $subscription ) {
 			get_post_meta( $company->post_id, '_orbis_invoice_footer_text', true ),
 		);
 
-		$vies_countries = array(
-			'AT' => 'Oostenrijk',
-			'BE' => 'België',
-			'BG' => 'Bulgarije',
-			'CY' => 'Cyprus',
-			'CZ' => 'Tsjechië',
-			'DE' => 'Duitsland',
-			'DK' => 'Denemarken',
-			'EE' => 'Estland',
-			'EL' => 'Griekenland',
-			'ES' => 'Spanje',
-			'FI' => 'Finland',
-			'FR' => 'Frankrijk',
-			'GB' => 'Verenigd Koninkrijk',
-			'HR' => 'Kroatië',
-			'HU' => 'Hongarije',
-			'IE' => 'Ierland',
-			'IT' => 'Italy',
-			'LT' => 'Litouwen',
-			'LU' => 'Luxemburg',
-			'LV' => 'Letland',
-			'MT' => 'Malta',
-			'NL' => 'Nederland',
-			'PL' => 'Polen',
-			'PT' => 'Portugal',
-			'RO' => 'Roemenië',
-			'SE' => 'Zweden',
-			'SI' => 'Slovenië',
-			'SK' => 'Slowakije',
-		);
-
-		unset( $vies_countries['NL'] );
-
-		$vat_code = 'VH';
-
-		if ( isset( $vies_countries[ $country ] ) ) {
-			$vat_code = 'VHEE'; // or perhaps 'VHV'
-
-			$header_texts[] = 'Btw verlegd.';
-		} elseif ( 'NL' !== $country ) {
-			$vat_code = 'VHEW';
-		}
-
 		$terms = wp_get_post_terms( $company->post_id, 'orbis_payment_method' );
 
 		$payment_method_term = array_shift( $terms );
@@ -397,47 +354,19 @@ foreach ( $subscriptions as $subscription ) {
 					<thead>
 						<tr>
 							<th scope="col"><?php esc_html_e( 'ID', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Exclude', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Price', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Name', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Free Text 1', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Start Date', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'End Date', 'orbis_twinfield' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Cancel Date', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Vat Code', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Twinfield', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Manual Invoice', 'orbis_twinfield' ); ?></th>
 						</tr>
 					</thead>
 
 					<tfoot>
 						<tr>
-							<td>
-								<?php
-
-								printf(
-									'<input name="company" value="%s" type="hidden" />',
-									esc_attr( $company->id )
-								);
-
-								?>
-							</td>
-							<td>
-								<?php
-
-								submit_button(
-									__( 'Update', 'orbis_twinfield' ),
-									'secondary',
-									'orbis_twinfield_update',
-									false
-								);
-
-								?>
-							</td>
-							<td>
-
-							</td>
+							<td></td>
+							<td></td>
 							<td>
 								<?php
 
@@ -452,32 +381,8 @@ foreach ( $subscriptions as $subscription ) {
 
 								?>
 							</td>
-							<td colspan="5">
+							<td colspan="4">
 
-							</td>
-							<td>
-								<?php
-
-								submit_button(
-									__( 'Create Invoice', 'orbis_twinfield' ),
-									'secondary',
-									'orbis_twinfield_create_invoice',
-									false
-								);
-
-								?>
-							</td>
-							<td>
-								<?php
-
-								submit_button(
-									__( 'Register Invoices', 'orbis_twinfield' ),
-									'secondary',
-									'orbis_twinfield_register_invoices',
-									false
-								);
-
-								?>
 							</td>
 						</tr>
 					</tfoot>
@@ -489,17 +394,6 @@ foreach ( $subscriptions as $subscription ) {
 							<?php
 
 							$name = 'subscriptions[%s][%s]';
-
-							$exclude = false;
-
-							// phpcs:disable
-							$post_subscriptions = $_POST['subscriptions'];
-							// phpcs:enable
-							// CSRF, sanitization, input var, input validation ok.
-
-							if ( isset( $post_subscriptions, $post_subscriptions[ $result->post_id ], $post_subscriptions[ $result->post_id ]['exclude'] ) ) {
-								$exclude = true;
-							}
 
 							$date_start = new DateTime( empty( $result->billed_to ) ? $result->activation_date : $result->billed_to );
 							$date_end   = clone $date_start;
@@ -539,56 +433,10 @@ foreach ( $subscriptions as $subscription ) {
 									break;
 							}
 
-							$twinfield_article_code    = get_post_meta( $result->product_post_id, '_twinfield_article_code', true );
-							$twinfield_subarticle_code = get_post_meta( $result->product_post_id, '_twinfield_subarticle_code', true );
-
-							$line = null;
-
-							if ( ! $exclude ) {
-								$line = $sales_invoice->new_line();
-								$line->set_article( $twinfield_article_code );
-								$line->set_subarticle( $twinfield_subarticle_code );
-								$line->set_vat_code( $vat_code );
-								$line->set_units_price_excl( (float) $result->price );
-
-								$free_text_1 = get_post_meta( $result->post_id, '_orbis_invoice_line_description', true );
-
-								if ( empty( $free_text_1 ) ) {
-									$free_text_1 = $result->name;
-								}
-
-								if ( strlen( $free_text_1 ) > 36 ) {
-									// opmerkingen mag maximaal 36 tekens bevatten wanneer het een vrije tekst betreft.
-									$free_text_1 = substr( $free_text_1, 0, 35 ) . '…';
-								}
-								$line->set_free_text_1( $free_text_1 );
-
-								$line->set_free_text_2( sprintf(
-									'%s - %s',
-									date_i18n( 'D j M Y', $date_start->getTimestamp() ),
-									date_i18n( 'D j M Y', $date_end->getTimestamp() )
-								) );
-								$line->set_free_text_3( $result->id );
-
-								if ( 'VHEE' === $vat_code ) {
-									$line->set_performance_type( Pronamic\WordPress\Twinfield\PerformanceTypes::SERVICES );
-									$line->set_performance_date( $date_start );
-								}
-
-								$register_invoices[] = (object) array(
-									'post_id'    => $result->post_id,
-									'start_date' => $date_start,
-									'end_date'   => $date_end,
-								);
-							}
-
 							?>
 							<tr>
 								<td>
 									<?php echo esc_html( $result->id ); ?>
-								</td>
-								<td>
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'exclude' ) ); ?>" value="1" type="checkbox" <?php checked( $exclude ); ?> />
 								</td>
 								<td>
 									<a href="<?php echo esc_attr( get_permalink( $result->post_id ) ); ?>">
@@ -605,15 +453,6 @@ foreach ( $subscriptions as $subscription ) {
 									<?php echo esc_html( $result->name ); ?>
 								</td>
 								<td>
-									<?php 
-
-									if ( null !== $line ) {
-										echo esc_html( $line->get_free_text_1() );
-									}
-
-									?>
-								</td>
-								<td>
 									<?php echo esc_html( date_i18n( 'D j M Y', $date_start->getTimestamp() ) ); ?>
 								</td>
 								<td>
@@ -621,44 +460,6 @@ foreach ( $subscriptions as $subscription ) {
 								</td>
 								<td>
 									<?php echo esc_html( $result->cancel_date ); ?>
-								</td>
-								<td>
-									<code><?php echo esc_html( $vat_code ); ?></code>
-								</td>
-								<td>
-									<?php
-
-									if ( ! empty( $twinfield_article_code ) ) {
-										printf(
-											'<strong>%s</strong>: %s',
-											esc_html__( 'Article', 'orbis_twinfield' ),
-											esc_html( $twinfield_article_code )
-										);
-									}
-
-									echo '<br />';
-
-									if ( ! empty( $twinfield_subarticle_code ) ) {
-										printf(
-											'<strong>%s</strong>: %s',
-											esc_html__( 'Subarticle', 'orbis_twinfield' ),
-											esc_html( $twinfield_subarticle_code )
-										);
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-
-									$name = 'subscriptions[%d][%s]';
-
-									?>
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'id' ) ); ?>" value="<?php echo esc_attr( $result->id ); ?>" type="hidden" />
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'post_id' ) ); ?>" value="<?php echo esc_attr( $result->post_id ); ?>" type="hidden" />
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'invoice_number' ) ); ?>" value="" type="text" />
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'date_start' ) ); ?>" value="<?php echo esc_attr( $date_start->format( DATE_W3C ) ); ?>" type="hidden" />
-									<input name="<?php echo esc_attr( sprintf( $name, $result->post_id, 'date_end' ) ); ?>" value="<?php echo esc_attr( $date_end->format( DATE_W3C ) ); ?>" type="hidden" />
 								</td>
 							</tr>
 
@@ -668,51 +469,7 @@ foreach ( $subscriptions as $subscription ) {
 				</table>
 
 				<div class="panel-footer">
-					<?php
 
-					if ( filter_has_var( INPUT_POST, 'orbis_twinfield_create_invoice' ) ) {
-						$posted_company = filter_input( INPUT_POST, 'company', FILTER_SANITIZE_STRING );
-
-						if ( $company->id === $posted_company ) {
-							$twinfield_client = \apply_filters( 'pronamic_twinfield_client', null );
-
-							$organisation = $twinfield_client->get_organisation();
-
-							$office = $organisation->office( '66470' );
-
-							$xml_processor = $twinfield_client->get_xml_processor();
-
-							$xml_processor->set_office( $office );
-
-							$service = new Pronamic\WordPress\Twinfield\SalesInvoices\SalesInvoiceService( $xml_processor );
-
-							try {
-								$sales_invoice = $service->insert_sales_invoice( $sales_invoice );
-
-								$number = $sales_invoice->get_header()->get_number();
-
-								foreach ( $register_invoices as $object ) {
-									$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $object->post_id );
-
-									$result = $subscription->register_invoice( $number, $object->start_date, $object->end_date );
-								}
-
-								esc_html_e( 'Twinfield invoice created.', 'orbis_twinfield' );
-							} catch ( \Pronamic\WordPress\Twinfield\XML\XmlPostErrors $errors ) {
-								$xml = $errors->get_simplexml();
-								$xsl = simplexml_load_file( __DIR__ . '/../admin/twinfield-salesinvoices.xsl' );
-
-								$proc = new XSLTProcessor();
-								$proc->importStyleSheet( $xsl );
-
-								echo $proc->transformToXML( $xml ); // WPCS: xss ok
-							} catch ( \Exception $exception ) {
-								\wp_die( $exception->getMessage() );
-							}
-						}
-					}
-
-					?>
 				</div>
 			</div>
 		</form>
