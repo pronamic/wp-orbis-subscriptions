@@ -35,24 +35,42 @@ class AdminController {
 	 * Admin menu
 	 */
 	public function admin_menu() {
-		add_submenu_page(
+		\add_submenu_page(
 			'edit.php?post_type=orbis_subscription',
 			__( 'Orbis Subscriptions Statistics', 'orbis-subscriptions' ),
 			__( 'Statistics', 'orbis-subscriptions' ),
 			'manage_options',
-			'orbis_subscription_statistics',
+			'orbis_subscriptions_statistics',
 			[ $this, 'page_statistics' ]
+		);
+
+		\add_submenu_page(
+			'edit.php?post_type=orbis_subscription',
+			\__( 'Orbis Subscriptions Billing', 'orbis-subscriptions' ),
+			\__( 'Billing', 'orbis-subscriptions' ),
+			'manage_options',
+			'orbis_subscriptions_billing',
+			[ $this, 'page_billing' ]
 		);
 	}
 
-	
 	/**
-	 * Page statistics
+	 * Page statistics.
+	 * 
+	 * @return void
 	 */
 	public function page_statistics() {
 		include __DIR__ . '/../admin/page-statistics.php';
 	}
 
+	/**
+	 * Page billing.
+	 * 
+	 * @return void
+	 */
+	public function page_billing() {
+		include __DIR__ . '/../admin/page-billing.php';
+	}
 	
 	/**
 	 * Save post
