@@ -2,9 +2,7 @@
 
 function orbis_subscriptions_render_invoices() {
 	if ( is_singular( 'orbis_subscription' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/subscription-invoices.php' );
+		include __DIR__ . '/../templates/subscription-invoices.php';
 	}
 }
 
@@ -13,9 +11,7 @@ add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_invoices' );
 
 function orbis_subscriptions_render_details() {
 	if ( is_singular( 'orbis_subscription' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/subscription-details.php' );
+		include __DIR__ . '/../templates/subscription-details.php';
 	}
 }
 
@@ -24,9 +20,7 @@ add_action( 'orbis_before_side_content', 'orbis_subscriptions_render_details' );
 
 function orbis_subscriptions_render_domain_name_subscriptions() {
 	if ( is_singular( 'orbis_domain_name' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/domain-name-subscriptions.php' );
+		include __DIR__ . '/../templates/domain-name-subscriptions.php';
 	}
 }
 
@@ -37,9 +31,7 @@ add_action( 'orbis_after_main_content', 'orbis_subscriptions_render_domain_name_
  */
 function orbis_subscriptions_render_company_subscriptions() {
 	if ( is_singular( 'orbis_company' ) ) {
-		global $orbis_subscriptions_plugin;
-
-		$orbis_subscriptions_plugin->plugin_include( 'templates/company-subscriptions.php' );
+		include __DIR__ . '/../templates/company-subscriptions.php';
 	}
 }
 

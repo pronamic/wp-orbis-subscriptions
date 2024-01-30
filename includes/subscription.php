@@ -101,7 +101,7 @@ function get_orbis_subscription( $post = null ) {
 	$post = get_post( $post );
 
 	if ( isset( $post ) && 'orbis_subscription' === get_post_type( $post ) ) {
-		$subscription = new Orbis_Subscription( $post );
+		$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
 	}
 
 	return $subscription;

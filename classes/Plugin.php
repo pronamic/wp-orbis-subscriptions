@@ -1,4 +1,12 @@
 <?php
+/**
+ * Plugin
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
 
 namespace Pronamic\Orbis\Subscriptions;
 
@@ -36,7 +44,7 @@ class Plugin {
 		$wpdb->orbis_subscription_products  = $wpdb->prefix . 'orbis_subscription_products';
 		$wpdb->orbis_subscriptions_invoices = $wpdb->prefix . 'orbis_subscriptions_invoices';
 
-		$version = '1.1.7';
+		$version = '1.1.8';
 
 		if ( \get_option( 'orbis_subscriptions_db_version' ) !== $version ) {
 			$this->install();
@@ -101,6 +109,7 @@ class Plugin {
 				auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
 				deprecated BOOLEAN NOT NULL DEFAULT FALSE,
 				`interval` VARCHAR(2) NOT NULL DEFAULT 'Y',
+				time_per_year INT(16) UNSIGNED DEFAULT NULL,
 				PRIMARY KEY  (id)
 			) $charset_collate;
 

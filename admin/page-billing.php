@@ -692,7 +692,7 @@ foreach ( $subscriptions as $subscription ) {
 								$number = $sales_invoice->get_header()->get_number();
 
 								foreach ( $register_invoices as $object ) {
-									$subscription = new Orbis_Subscription( $object->post_id );
+									$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $object->post_id );
 
 									$result = $subscription->register_invoice( $number, $object->start_date, $object->end_date );
 								}

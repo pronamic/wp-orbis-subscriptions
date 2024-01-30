@@ -1,6 +1,20 @@
 <?php
+/**
+ * Subscription
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
 
 namespace Pronamic\Orbis\Subscriptions;
+
+use DateInterval;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeZone;
+use WP_Post;
 
 class Subscription {
 	/**
@@ -488,9 +502,9 @@ class Subscription {
 		);
 
 		// Update billed to.
-		$query = '
+		$query = "
 			UPDATE
-				orbis_subscriptions AS subscription
+				$wpdb->orbis_subscriptions AS subscription
 					INNER JOIN
 				(
 					SELECT
@@ -498,14 +512,14 @@ class Subscription {
 						subscription_invoice.invoice_number,
 						subscription_invoice.end_date
 					FROM
-						orbis_subscriptions_invoices AS subscription_invoice
+						$wpdb->orbis_subscriptions_invoices AS subscription_invoice
 							INNER JOIN
 						(
 							SELECT
 								subscription_id,
 								MAX( invoice_number ) AS invoice_number
 							FROM
-								orbis_subscriptions_invoices
+								$wpdb->orbis_subscriptions_invoices
 							GROUP BY
 								subscription_id
 						) AS last_subscription_invoice
@@ -521,7 +535,7 @@ class Subscription {
 			SET
 				subscription.billed_to = subscription_invoice.end_date
 			;
-		';
+		";
 
 		$wpdb->query( $query );
 

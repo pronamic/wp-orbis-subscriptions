@@ -258,7 +258,7 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	$agreement  = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
 
 	// Get the subscription object
-	$subscription = new Orbis_Subscription( $post );
+	$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
 
 	// Set this subscriptions details
 	$subscription
