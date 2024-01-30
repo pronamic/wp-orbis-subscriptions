@@ -300,11 +300,6 @@ foreach ( $subscriptions as $subscription ) {
 		$header_texts[] = get_option( 'orbis_invoice_header_text' );
 		$footer_texts[] = get_option( 'orbis_invoice_footer_text' );
 
-		$footer_texts[] = sprintf(
-			__( 'Invoice created by Orbis on %s.', 'orbis_twinfield' ),
-			date_i18n( 'D j M Y @ H:i' )
-		);
-
 		$sales_invoice = new Pronamic\WordPress\Twinfield\SalesInvoices\SalesInvoice();
 
 		$header = $sales_invoice->get_header();
