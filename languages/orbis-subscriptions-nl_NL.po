@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2023-09-05 12:12:15+00:00\n"
-"PO-Revision-Date: 2023-09-05 15:29+0200\n"
+"POT-Creation-Date: 2024-01-31T07:49:22+00:00\n"
+"PO-Revision-Date: 2024-01-31 08:51+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -13,18 +13,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. Plugin Name of the plugin
+msgid "Orbis Subscriptions"
+msgstr "Orbis abonnementen"
+
+#. Plugin URI of the plugin
+msgid "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
+msgstr "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
+
+#. Description of the plugin
+msgid ""
+"The Orbis Subscriptions plugin extends your Orbis environment with the "
+"option to add subscription products and subscriptions."
+msgstr ""
+
+#. Author of the plugin
+msgid "Pronamic"
+msgstr "Pronamic"
+
+#. Author URI of the plugin
+msgid "https://www.pronamic.eu/"
+msgstr "https://www.pronamic.nl/"
 
 #: admin/meta-box-subscription-actions.php:4
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: admin/meta-box-subscription-actions.php:24
+#: admin/meta-box-subscription-actions.php:28
 msgid "Cancel Subscription"
 msgstr "Abonnement beëindigen"
 
 #: admin/meta-box-subscription-details.php:32
-#: admin/meta-box-subscription-product-details.php:22 includes/post.php:585
+#: admin/meta-box-subscription-product-details.php:22 includes/post.php:521
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
@@ -37,13 +59,12 @@ msgid "Type"
 msgstr "Type"
 
 #: admin/meta-box-subscription-details.php:83
-#: templates/company-subscriptions.php:41
-#: templates/domain-name-subscriptions.php:50
-#: templates/subscription-purchase-details.php:43
+#: templates/company-subscriptions.php:42
+#: templates/domain-name-subscriptions.php:51
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:91 includes/post.php:376
+#: admin/meta-box-subscription-details.php:91 includes/post.php:312
 msgid "Person"
 msgstr "Persoon"
 
@@ -82,10 +103,10 @@ msgstr ""
 "conversatie uit met een PDF-printer."
 
 #: admin/meta-box-subscription-details.php:150
-#: templates/company-subscriptions.php:39
-#: templates/domain-name-subscriptions.php:47
-#: templates/subscription-details.php:103
-#: templates/subscriptions-without-agreement.php:24
+#: templates/company-subscriptions.php:40
+#: templates/domain-name-subscriptions.php:48
+#: templates/subscription-details.php:118
+#: templates/subscriptions-without-agreement.php:26
 msgid "Activation Date"
 msgstr "Activatie datum"
 
@@ -94,45 +115,43 @@ msgid "Expiration Date"
 msgstr "Vervaldatum"
 
 #: admin/meta-box-subscription-details.php:186
-#: templates/subscription-details.php:122
+#: templates/subscription-details.php:137
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
 #: admin/meta-box-subscription-details.php:201
-#: templates/subscription-details.php:162
+#: templates/subscription-details.php:178
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-subscription-details.php:207
+#: admin/meta-box-subscription-details.php:208
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-subscription-details.php:220
-#: templates/subscription-details.php:169
+#: admin/meta-box-subscription-details.php:222
+#: templates/subscription-details.php:185
 msgid "Invoice Header Text"
 msgstr "Factuur koptekst"
 
-#: admin/meta-box-subscription-details.php:228
-#: templates/subscription-details.php:178
+#: admin/meta-box-subscription-details.php:230
+#: templates/subscription-details.php:194
 msgid "Invoice Footer Text"
 msgstr "Factuur voettekst"
 
-#: admin/meta-box-subscription-details.php:236
-#: templates/subscription-details.php:187
+#: admin/meta-box-subscription-details.php:238
+#: templates/subscription-details.php:203
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/meta-box-subscription-product-details.php:30
-#: admin/meta-box-subscription-purchase-details.php:14 includes/post.php:582
-#: templates/company-subscriptions.php:42
-#: templates/domain-name-subscriptions.php:51
-#: templates/subscription-details.php:157
-#: templates/subscription-purchase-details.php:44
-#: templates/subscriptions-without-agreement.php:26
+#: admin/meta-box-subscription-product-details.php:30 includes/post.php:518
+#: templates/company-subscriptions.php:43
+#: templates/domain-name-subscriptions.php:52
+#: templates/subscription-details.php:173
+#: templates/subscriptions-without-agreement.php:28
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-subscription-product-details.php:38 includes/post.php:583
+#: admin/meta-box-subscription-product-details.php:38 includes/post.php:519
 msgid "Cost Price"
 msgstr "Kostprijs"
 
@@ -144,7 +163,7 @@ msgstr "Automatisch verlengen"
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:60 includes/post.php:584
+#: admin/meta-box-subscription-product-details.php:60 includes/post.php:520
 msgid "Deprecated"
 msgstr "Vervallen"
 
@@ -212,26 +231,49 @@ msgstr "Totaal"
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
-#: classes/orbis-subscriptions-admin.php:40
+#: classes/AdminController.php:48
 msgid "Orbis Subscriptions Statistics"
 msgstr "Orbis abonnementen statistieken"
 
-#: classes/orbis-subscriptions-admin.php:41
+#: classes/AdminController.php:49
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: classes/orbis-subscriptions-admin.php:81
+#: classes/AdminController.php:57
+msgid "Orbis Subscriptions Billing"
+msgstr "Orbis abonnementen facturering"
+
+#: classes/AdminController.php:58
+msgid "Billing"
+msgstr "Facturering"
+
+#: classes/AdminController.php:105
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr "Dit abonnement is zojuist '%s' door %s."
 
-#: classes/orbis-subscriptions-admin.php:82
+#: classes/AdminController.php:106
 msgid "canceled"
 msgstr "geannuleerd"
 
-#: includes/post.php:11 includes/post.php:24 includes/template.php:49
-#: templates/domain-name-subscriptions.php:41
+#: includes/post.php:11 includes/post.php:24 includes/template.php:41
+#: templates/domain-name-subscriptions.php:42
 msgid "Subscriptions"
 msgstr "Abonnementen"
+
+#: includes/post.php:13
+msgctxt "post type general name"
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/post.php:14
+msgctxt "post type singular name"
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: includes/post.php:15
+msgctxt "orbis_subscription"
+msgid "Add New"
+msgstr "Nieuwe abonnement"
 
 #: includes/post.php:16
 msgid "Add New Subscription"
@@ -265,9 +307,29 @@ msgstr "Geen abonnementen gevonden in prullenbak"
 msgid "Parent Subscription:"
 msgstr "Bovenliggend abonnement:"
 
+#: includes/post.php:40
+msgctxt "slug"
+msgid "subscriptions"
+msgstr "abonnementen"
+
 #: includes/post.php:48
 msgid "Subscription Products"
 msgstr "Abonnement producten"
+
+#: includes/post.php:50
+msgctxt "post type general name"
+msgid "Subscription Products"
+msgstr "Abonnement producten"
+
+#: includes/post.php:51
+msgctxt "post type singular name"
+msgid "Subscription Product"
+msgstr "Abonnement product"
+
+#: includes/post.php:52
+msgctxt "orbis_subs_type"
+msgid "Add New"
+msgstr "Nieuw abonnement product"
 
 #: includes/post.php:53
 msgid "Add New Subscription Product"
@@ -305,264 +367,200 @@ msgstr "Bovenliggend abonnement product:"
 msgid "Products"
 msgstr "Producten"
 
-#: includes/post.php:84
-msgid "Subscription Purchases"
-msgstr "Inkoop abonnementen"
-
-#: includes/post.php:89
-msgid "Add New Subscription Purchase"
-msgstr "Nieuwe inkoop abonnement toevoegen"
-
-#: includes/post.php:90
-msgid "Edit Subscription Purchase"
-msgstr "Bewerk inkoop abonnement"
-
-#: includes/post.php:91
-msgid "New Subscription Purchase"
-msgstr "Nieuw inkoop abonnement"
-
-#: includes/post.php:92
-msgid "View Subscription Purchase"
-msgstr "Bekijk inkoop abonnement"
-
-#: includes/post.php:93
-msgid "Search Subscription Purchases"
-msgstr "Zoek inkoop abonnementen"
-
-#: includes/post.php:94
-msgid "No subscription purchases found"
-msgstr "Geen inkoop abonnementen gevonden"
-
-#: includes/post.php:95
-msgid "No subscription purchases found in Trash"
-msgstr "Geen inkoop abonnementen gevonden in prullenbak"
-
-#: includes/post.php:96
-msgid "Parent Subscription Purchase:"
-msgstr "Bovenliggend inkoop abonnement:"
-
-#: includes/post.php:97
-msgid "Purchases"
-msgstr "Inkopen"
-
-#: includes/post.php:128 templates/subscription-details.php:86
-msgid "Subscription Details"
-msgstr "Abonnement details"
-
-#: includes/post.php:137
-msgid "Subscription Actions"
-msgstr "Abonnement acties"
-
-#: includes/post.php:146
-msgid "Subscription Product Details"
-msgstr "Abonnement product details"
-
-#: includes/post.php:155
-msgid "Subscription Purchase Details"
-msgstr "Inkoop abonnement details"
-
-#: includes/post.php:375
-msgid "Title"
-msgstr "Titel"
-
-#: includes/post.php:377
-msgid "Author"
-msgstr "Auteur"
-
-#: includes/post.php:378
-msgid "Comments"
-msgstr "Reacties"
-
-#: includes/post.php:379
-msgid "Date"
-msgstr "Datum"
-
-#: includes/post.php:655
-msgid "Yes"
-msgstr "Ja"
-
-#: includes/post.php:655
-msgid "No"
-msgstr "Nee"
-
-#: templates/company-subscriptions.php:40
-#: templates/domain-name-subscriptions.php:49
-#: templates/subscriptions-without-agreement.php:25
-msgid "Subscription"
-msgstr "Abonnement"
-
-#: templates/company-subscriptions.php:89
-msgid "No subscriptions found."
-msgstr "Geen abonnementen gevonden."
-
-#: templates/domain-name-subscriptions.php:48
-#: templates/subscription-details.php:91
-msgid "Company"
-msgstr "Bedrijf"
-
-#: templates/subscription-details.php:96
-msgid "Status"
-msgstr "Status"
-
-#: templates/subscription-details.php:108
-msgid "Current Period"
-msgstr "Huidige periode"
-
-#: templates/subscription-details.php:113
-msgid "to %s"
-msgstr "tot %s"
-
-#: templates/subscription-details.php:129
-msgid "Billed To"
-msgstr "Gefactureerd tot"
-
-#: templates/subscription-details.php:141
-msgid "📣 Please note: this subscription may be billed again soon."
-msgstr ""
-"📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd "
-"wordt."
-
-#: templates/subscription-details.php:149
-msgid ""
-"🚨 Please note: this subscription is billed further in advance than usual."
-msgstr ""
-"🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
-
-#: templates/subscription-details.php:202
-msgid "Agreement"
-msgstr "Akkoord"
-
-#: templates/subscription-details.php:211
-msgid "Available time per year"
-msgstr "Beschikbare tijd per jaar"
-
-#: templates/subscription-invoices.php:33
-msgid "Invoices"
-msgstr "Facturen"
-
-#: templates/subscription-invoices.php:40
-msgid "Create Date"
-msgstr "Aanmaakdatum"
-
-#: templates/subscription-invoices.php:41
-msgid "User"
-msgstr "Gebruiker"
-
-#: templates/subscription-invoices.php:42
-msgid "Start Date"
-msgstr "Startdatum"
-
-#: templates/subscription-invoices.php:43
-msgid "End Date"
-msgstr "Einddatum"
-
-#: templates/subscription-invoices.php:44
-msgid "Invoice Number"
-msgstr "Factuurnummer"
-
-#: templates/subscription-purchase-details.php:50
-msgid "Revenue"
-msgstr "Inkomsten"
-
-#: templates/subscription-purchase-details.php:59
-msgid "Costs"
-msgstr "Kosten"
-
-#: templates/subscription-purchase-details.php:68
-msgid "Profit"
-msgstr "Winst"
-
-#: templates/subscriptions-without-agreement.php:27
-msgid "Actions"
-msgstr "Acties"
-
-#: templates/subscriptions-without-agreement.php:60
-msgid "Edit"
-msgstr "Bewerken"
-
-#. Plugin Name of the plugin/theme
-msgid "Orbis Subscriptions"
-msgstr "Orbis abonnementen"
-
-#. Plugin URI of the plugin/theme
-msgid "http://www.pronamic.eu/plugins/orbis-subscriptions/"
-msgstr "http://www.pronamic.eu/plugins/orbis-subscriptions/"
-
-#. Description of the plugin/theme
-msgid ""
-"The Orbis Subscriptions extends your Orbis environment with the option to "
-"add subscription types and subscriptions."
-msgstr ""
-"De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
-"abonnement types en abonnement toe te voegen."
-
-#. Author of the plugin/theme
-msgid "Pronamic"
-msgstr "Pronamic"
-
-#. Author URI of the plugin/theme
-msgid "http://www.pronamic.eu/"
-msgstr "http://www.pronamic.eu/"
-
-#: includes/post.php:13
-msgctxt "post type general name"
-msgid "Subscriptions"
-msgstr "Abonnementen"
-
-#: includes/post.php:50
-msgctxt "post type general name"
-msgid "Subscription Products"
-msgstr "Abonnement producten"
-
-#: includes/post.php:86
-msgctxt "post type general name"
-msgid "Subscription Purchases"
-msgstr "Inkoop abonnementen"
-
-#: includes/post.php:14
-msgctxt "post type singular name"
-msgid "Subscription"
-msgstr "Abonnement"
-
-#: includes/post.php:51
-msgctxt "post type singular name"
-msgid "Subscription Product"
-msgstr "Abonnement product"
-
-#: includes/post.php:87
-msgctxt "post type singular name"
-msgid "Subscription Purchase"
-msgstr "Inkoop abonnement"
-
-#: includes/post.php:15
-msgctxt "orbis_subscription"
-msgid "Add New"
-msgstr "Nieuwe abonnement"
-
-#: includes/post.php:40
-msgctxt "slug"
-msgid "subscriptions"
-msgstr "abonnementen"
-
 #: includes/post.php:76
 msgctxt "slug"
 msgid "subscription-products"
 msgstr "abonnement-producten"
 
-#: includes/post.php:114
-msgctxt "slug"
-msgid "subscription-purchases"
-msgstr "inkoop-abonnementen"
+#: includes/post.php:90 templates/subscription-details.php:101
+msgid "Subscription Details"
+msgstr "Abonnement details"
 
-#: includes/post.php:52
-msgctxt "orbis_subs_type"
-msgid "Add New"
-msgstr "Nieuw abonnement product"
+#: includes/post.php:99
+msgid "Subscription Actions"
+msgstr "Abonnement acties"
 
-#: includes/post.php:88
-msgctxt "orbis_subs_purchase"
-msgid "Add New"
-msgstr "Nieuw inkoop abonnement"
+#: includes/post.php:108
+msgid "Subscription Product Details"
+msgstr "Abonnement product details"
+
+#: includes/post.php:311
+msgid "Title"
+msgstr "Titel"
+
+#: includes/post.php:313
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/post.php:314
+msgid "Comments"
+msgstr "Reacties"
+
+#: includes/post.php:315
+msgid "Date"
+msgstr "Datum"
+
+#: includes/post.php:591
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/post.php:591
+msgid "No"
+msgstr "Nee"
+
+#: templates/company-subscriptions.php:41
+#: templates/domain-name-subscriptions.php:50
+#: templates/subscriptions-without-agreement.php:27
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: templates/company-subscriptions.php:90
+msgid "No subscriptions found."
+msgstr "Geen abonnementen gevonden."
+
+#: templates/domain-name-subscriptions.php:49
+#: templates/subscription-details.php:106
+msgid "Company"
+msgstr "Bedrijf"
+
+#: templates/subscription-details.php:111
+msgid "Status"
+msgstr "Status"
+
+#: templates/subscription-details.php:123
+msgid "Current Period"
+msgstr "Huidige periode"
+
+#: templates/subscription-details.php:128
+msgid "to %s"
+msgstr "tot %s"
+
+#: templates/subscription-details.php:144
+msgid "Billed To"
+msgstr "Gefactureerd tot"
+
+#: templates/subscription-details.php:157
+msgid "📣 Please note: this subscription may be billed again soon."
+msgstr ""
+"📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd "
+"wordt."
+
+#: templates/subscription-details.php:165
+msgid ""
+"🚨 Please note: this subscription is billed further in advance than usual."
+msgstr ""
+"🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
+
+#: templates/subscription-details.php:218
+msgid "Agreement"
+msgstr "Akkoord"
+
+#: templates/subscription-details.php:227
+msgid "Available time per year"
+msgstr "Beschikbare tijd per jaar"
+
+#: templates/subscription-invoices.php:34
+msgid "Invoices"
+msgstr "Facturen"
+
+#: templates/subscription-invoices.php:41
+msgid "Create Date"
+msgstr "Aanmaakdatum"
+
+#: templates/subscription-invoices.php:42
+msgid "User"
+msgstr "Gebruiker"
+
+#: templates/subscription-invoices.php:43
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: templates/subscription-invoices.php:44
+msgid "End Date"
+msgstr "Einddatum"
+
+#: templates/subscription-invoices.php:45
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#: templates/subscriptions-without-agreement.php:29
+msgid "Actions"
+msgstr "Acties"
+
+#: templates/subscriptions-without-agreement.php:62
+msgid "Edit"
+msgstr "Bewerken"
+
+#~ msgid "Subscription Purchases"
+#~ msgstr "Inkoop abonnementen"
+
+#~ msgid "Add New Subscription Purchase"
+#~ msgstr "Nieuwe inkoop abonnement toevoegen"
+
+#~ msgid "Edit Subscription Purchase"
+#~ msgstr "Bewerk inkoop abonnement"
+
+#~ msgid "New Subscription Purchase"
+#~ msgstr "Nieuw inkoop abonnement"
+
+#~ msgid "View Subscription Purchase"
+#~ msgstr "Bekijk inkoop abonnement"
+
+#~ msgid "Search Subscription Purchases"
+#~ msgstr "Zoek inkoop abonnementen"
+
+#~ msgid "No subscription purchases found"
+#~ msgstr "Geen inkoop abonnementen gevonden"
+
+#~ msgid "No subscription purchases found in Trash"
+#~ msgstr "Geen inkoop abonnementen gevonden in prullenbak"
+
+#~ msgid "Parent Subscription Purchase:"
+#~ msgstr "Bovenliggend inkoop abonnement:"
+
+#~ msgid "Purchases"
+#~ msgstr "Inkopen"
+
+#~ msgid "Subscription Purchase Details"
+#~ msgstr "Inkoop abonnement details"
+
+#~ msgid "Revenue"
+#~ msgstr "Inkomsten"
+
+#~ msgid "Costs"
+#~ msgstr "Kosten"
+
+#~ msgid "Profit"
+#~ msgstr "Winst"
+
+#~ msgid "http://www.pronamic.eu/plugins/orbis-subscriptions/"
+#~ msgstr "http://www.pronamic.eu/plugins/orbis-subscriptions/"
+
+#~ msgid ""
+#~ "The Orbis Subscriptions extends your Orbis environment with the option to "
+#~ "add subscription types and subscriptions."
+#~ msgstr ""
+#~ "De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
+#~ "abonnement types en abonnement toe te voegen."
+
+#~ msgid "http://www.pronamic.eu/"
+#~ msgstr "http://www.pronamic.eu/"
+
+#~ msgctxt "post type general name"
+#~ msgid "Subscription Purchases"
+#~ msgstr "Inkoop abonnementen"
+
+#~ msgctxt "post type singular name"
+#~ msgid "Subscription Purchase"
+#~ msgstr "Inkoop abonnement"
+
+#~ msgctxt "slug"
+#~ msgid "subscription-purchases"
+#~ msgstr "inkoop-abonnementen"
+
+#~ msgctxt "orbis_subs_purchase"
+#~ msgid "Add New"
+#~ msgstr "Nieuw inkoop abonnement"
 
 #, fuzzy
 #~ msgid "Connected Keychain"
