@@ -305,26 +305,11 @@ foreach ( $subscriptions as $subscription ) {
 		$header_texts[] = get_option( 'orbis_invoice_header_text' );
 		$footer_texts[] = get_option( 'orbis_invoice_footer_text' );
 
-		$sales_invoice = new Pronamic\WordPress\Twinfield\SalesInvoices\SalesInvoice();
-
-		$header = $sales_invoice->get_header();
-
-		$header->set_office( get_option( 'twinfield_default_office_code' ) );
-		$header->set_type( get_option( 'twinfield_default_invoice_type' ) );
-		$header->set_customer( $twinfield_customer );
-		$header->set_status( Pronamic\WordPress\Twinfield\SalesInvoices\SalesInvoiceStatus::STATUS_CONCEPT );
-		$header->set_payment_method( Pronamic\WordPress\Twinfield\PaymentMethods::BANK );
-
 		$header_texts = array_filter( $header_texts );
 		$header_texts = array_unique( $header_texts );
 
 		$footer_texts = array_filter( $footer_texts );
 		$footer_texts = array_unique( $footer_texts );
-
-		$header->set_header_text( implode( "\r\n\r\n", $header_texts ) );
-		$header->set_footer_text( implode( "\r\n\r\n", $footer_texts ) );
-
-		$register_invoices = [];
 
 		?>
 
@@ -337,39 +322,27 @@ foreach ( $subscriptions as $subscription ) {
 				</div>
 
 				<div class="panel-body">
-					<dl class="dl-horizontal">
-						<dt><?php esc_html_e( 'Customer', 'orbis_twinfield' ); ?></dt>
-						<dd><?php echo esc_html( $twinfield_customer ); ?></dd>
+					<p>
+						<?php
 
-						<dt><?php esc_html_e( 'Header', 'orbis_twinfield' ); ?></dt>
-						<dd><?php echo nl2br( esc_html( $header->get_header_text() ) ); ?></dd>
+						$ids = wp_list_pluck( $company->subscriptions, 'id' );
 
-						<dt><?php esc_html_e( 'Footer', 'orbis_twinfield' ); ?></dt>
-						<dd><?php echo nl2br( esc_html( $header->get_footer_text() ) ); ?></dd>
+						$url = add_query_arg(
+							[
+								'orbis_company_id'       => $company->id,
+								'orbis_subscription_ids' => implode( ',', $ids ),
+							],
+							home_url( 'moneybird/sales-invoices/new' )
+						);
 
-						<dt><?php esc_html_e( 'Moneybird', 'orbis_twinfield' ); ?></dt>
-						<dd>
-							<?php
+						printf(
+							'<a href="%s">%s</a>',
+							esc_url( $url ),
+							esc_html( $url )
+						);
 
-							$ids = wp_list_pluck( $company->subscriptions, 'id' );
-
-							$url = add_query_arg(
-								[
-									'orbis_company_id'       => $company->id,
-									'orbis_subscription_ids' => implode( ',', $ids ),
-								],
-								home_url( 'moneybird/sales-invoices/new' )
-							);
-
-							printf(
-								'<a href="%s">%s</a>',
-								esc_url( $url ),
-								esc_html( $url )
-							);
-
-							?>
-						</dd>
-					</dl>
+						?>
+					</p>
 				</div>
 
 				<!-- Table -->
