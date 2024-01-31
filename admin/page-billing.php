@@ -346,6 +346,29 @@ foreach ( $subscriptions as $subscription ) {
 
 						<dt><?php esc_html_e( 'Footer', 'orbis_twinfield' ); ?></dt>
 						<dd><?php echo nl2br( esc_html( $header->get_footer_text() ) ); ?></dd>
+
+						<dt><?php esc_html_e( 'Moneybird', 'orbis_twinfield' ); ?></dt>
+						<dd>
+							<?php
+
+							$ids = wp_list_pluck( $company->subscriptions, 'id' );
+
+							$url = add_query_arg(
+								[
+									'orbis_company_id'       => $company->id,
+									'orbis_subscription_ids' => implode( ',', $ids ),
+								],
+								home_url( 'moneybird/sales-invoices/new' )
+							);
+
+							printf(
+								'<a href="%s">%s</a>',
+								esc_url( $url ),
+								esc_html( $url )
+							);
+
+							?>
+						</dd>
 					</dl>
 				</div>
 
