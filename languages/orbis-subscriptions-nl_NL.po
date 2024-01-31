@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
 "POT-Creation-Date: 2024-01-31T07:49:22+00:00\n"
-"PO-Revision-Date: 2024-01-31 08:51+0100\n"
+"PO-Revision-Date: 2024-01-31 13:28+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 msgid "Orbis Subscriptions"
-msgstr "Orbis abonnementen"
+msgstr "Orbis Subscriptions"
 
 #. Plugin URI of the plugin
 msgid "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
