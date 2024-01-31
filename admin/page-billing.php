@@ -46,14 +46,14 @@ function get_subscriptions( $date, $interval ) {
 
 			// Check if the end date of invoice is in next year.
 			//$join_condition  .= $wpdb->prepare( ' AND YEAR( invoice.end_date ) = %d', $date->format( 'Y' ) + 1 );
-/*
+			/*
 			$where_condition .= ' AND ( ';
 			$where_condition .= $wpdb->prepare( ' DATE( subscription.activation_date ) <= %s', $last_day_month->format( 'Y-m-d' ) );
 			$where_condition .= $wpdb->prepare( ' AND DATE_FORMAT( subscription.activation_date, %s ) <= %s', $date->format( 'Y' ) . '-%m-%d', $ahead_limit->format( '
 				Y-m-d' ) );
 			$where_condition .= ' AND invoice_number IS NULL';
 			$where_condition .= ' ) OR ( ';
-*/
+			*/
 			$where_condition .= ' AND ( ';
 			$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
 			$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
@@ -127,17 +127,20 @@ $date = new DateTimeImmutable( 'first day of this month' );
 $interval = 'Y';
 
 // Action URL
-$action_url = add_query_arg( array(
-	'post_type' => 'orbis_subscription',
-	'page'      => 'orbis_twinfield',
-	'date'      => $date->format( 'd-m-Y' ),
-	'interval'  => $interval,
-), admin_url( 'edit.php' ) );
+$action_url = add_query_arg(
+	[
+		'post_type' => 'orbis_subscription',
+		'page'      => 'orbis_twinfield',
+		'date'      => $date->format( 'd-m-Y' ),
+		'interval'  => $interval,
+	],
+	admin_url( 'edit.php' ) 
+);
 
 // Subscriptions
 $subscriptions = get_subscriptions( $date, $interval );
 
-$companies = array();
+$companies = [];
 
 foreach ( $subscriptions as $subscription ) {
 	$company_id = $subscription->company_id;
@@ -148,7 +151,7 @@ foreach ( $subscriptions as $subscription ) {
 		$company->id            = $subscription->company_id;
 		$company->name          = $subscription->company_name;
 		$company->post_id       = $subscription->company_post_id;
-		$company->subscriptions = array();
+		$company->subscriptions = [];
 
 		$companies[ $company_id ] = $company;
 	}
@@ -162,10 +165,10 @@ foreach ( $subscriptions as $subscription ) {
 
 	<?php
 
-	$statuses = array(
+	$statuses = [
 		'inserted' => __( 'Inserted', 'orbis_twinfield' ),
 		'failed'   => __( 'Failed', 'orbis_twinfield' ),
-	);
+	];
 
 	foreach ( $statuses as $status => $label ) {
 		if ( filter_has_var( INPUT_GET, $status ) ) {
@@ -175,11 +178,13 @@ foreach ( $subscriptions as $subscription ) {
 			if ( ! empty( $ids ) ) {
 				echo '<h3>', esc_html( $label ), '</h3>';
 
-				$subscriptions = new WP_Query( array(
-					'post_type'      => 'any',
-					'post__in'       => $ids,
-					'posts_per_page' => 50,
-				) );
+				$subscriptions = new WP_Query(
+					[
+						'post_type'      => 'any',
+						'post__in'       => $ids,
+						'posts_per_page' => 50,
+					] 
+				);
 
 				$subscriptions = $subscriptions->posts;
 
@@ -268,13 +273,13 @@ foreach ( $subscriptions as $subscription ) {
 		$twinfield_customer = get_post_meta( $company->post_id, '_twinfield_customer_id', true );
 		$country            = get_post_meta( $company->post_id, '_orbis_country', true );
 
-		$header_texts = array(
+		$header_texts = [
 			get_post_meta( $company->post_id, '_orbis_invoice_header_text', true ),
-		);
+		];
 
-		$footer_texts = array(
+		$footer_texts = [
 			get_post_meta( $company->post_id, '_orbis_invoice_footer_text', true ),
-		);
+		];
 
 		$terms = wp_get_post_terms( $company->post_id, 'orbis_payment_method' );
 
@@ -319,7 +324,7 @@ foreach ( $subscriptions as $subscription ) {
 		$header->set_header_text( implode( "\r\n\r\n", $header_texts ) );
 		$header->set_footer_text( implode( "\r\n\r\n", $footer_texts ) );
 
-		$register_invoices = array();
+		$register_invoices = [];
 
 		?>
 
