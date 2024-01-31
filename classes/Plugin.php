@@ -44,7 +44,7 @@ class Plugin {
 		$wpdb->orbis_subscription_products  = $wpdb->prefix . 'orbis_subscription_products';
 		$wpdb->orbis_subscriptions_invoices = $wpdb->prefix . 'orbis_subscriptions_invoices';
 
-		$version = '1.1.8';
+		$version = '1.1.9';
 
 		if ( \get_option( 'orbis_subscriptions_db_version' ) !== $version ) {
 			$this->install();
@@ -88,6 +88,7 @@ class Plugin {
 				expiration_date DATETIME NOT NULL,
 				cancel_date DATETIME DEFAULT NULL,
 				update_date DATETIME DEFAULT NULL,
+				billed_to DATETIME DEFAULT NULL,
 				email VARCHAR(64) DEFAULT NULL,
 				PRIMARY KEY  (id),
 				UNIQUE KEY post_id (post_id),
