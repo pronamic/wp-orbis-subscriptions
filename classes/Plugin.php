@@ -119,6 +119,7 @@ class Plugin {
 				created_at DATETIME NOT NULL,
 				subscription_id BIGINT(16) UNSIGNED NOT NULL,
 				invoice_number VARCHAR(128) NOT NULL,
+				invoice_data TEXT,
 				start_date DATE NOT NULL,
 				end_date DATE NOT NULL,
 				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
