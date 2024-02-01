@@ -117,7 +117,7 @@ class Plugin {
 			CREATE TABLE $wpdb->orbis_subscriptions_invoices (
 				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 				subscription_id BIGINT(16) UNSIGNED NOT NULL,
-				invoice_number VARCHAR(8) NOT NULL,
+				invoice_number VARCHAR(128) NOT NULL,
 				start_date DATETIME DEFAULT NULL,
 				end_date DATETIME DEFAULT NULL,
 				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
