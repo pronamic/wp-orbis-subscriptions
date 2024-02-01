@@ -44,7 +44,7 @@ class Plugin {
 		$wpdb->orbis_subscription_products  = $wpdb->prefix . 'orbis_subscription_products';
 		$wpdb->orbis_subscriptions_invoices = $wpdb->prefix . 'orbis_subscriptions_invoices';
 
-		$version = '1.1.10';
+		$version = '1.1.11';
 
 		if ( \get_option( 'orbis_subscriptions_db_version' ) !== $version ) {
 			$this->install();
