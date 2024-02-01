@@ -8,15 +8,15 @@ $query = $wpdb->prepare(
 	"
 	SELECT
 		user.display_name AS user_display_name,
-		si.create_date,
-		si.start_date,
-		si.end_date,
-		si.invoice_number
+		subscription_invoice.created_at,
+		subscription_invoice.start_date,
+		subscription_invoice.end_date,
+		subscription_invoice.invoice_number
 	FROM
-		$wpdb->orbis_subscriptions_invoices AS si
+		$wpdb->orbis_subscriptions_invoices AS subscription_invoice
 			LEFT JOIN
 		$wpdb->users AS user
-				ON user.ID = si.user_id
+				ON user.ID = subscription_invoice.user_id
 	WHERE
 		subscription_id = %d
 	ORDER BY
@@ -52,7 +52,7 @@ if ( $invoices ) : ?>
 
 						<tr>
 							<td>
-								<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $invoice->create_date ) ) ); ?>
+								<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $invoice->created_at ) ) ); ?>
 							</td>
 							<td>
 								<?php echo esc_html( $invoice->user_display_name ); ?>
