@@ -122,7 +122,8 @@ class Plugin {
 				end_date DATETIME DEFAULT NULL,
 				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
 				create_date DATETIME DEFAULT NULL,
-				PRIMARY KEY  (id)
+				PRIMARY KEY  (id),
+				KEY invoice_number (invoice_number)
 			) $charset_collate;
 		";
 
