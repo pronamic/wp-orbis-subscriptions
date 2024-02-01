@@ -209,8 +209,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 		'_orbis_subscription_email'           => FILTER_VALIDATE_EMAIL,
 		'_orbis_subscription_agreement_id'    => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_activation_date' => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_header_text'          => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_footer_text'          => FILTER_SANITIZE_STRING,
+		'_orbis_invoice_reference'            => FILTER_SANITIZE_STRING,
 		'_orbis_invoice_line_description'     => FILTER_SANITIZE_STRING,
 	];
 

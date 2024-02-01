@@ -56,8 +56,7 @@ $cancel_date     = $subscription->cancel_date;
 
 $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
 
-$invoice_header_text      = get_post_meta( $post->ID, '_orbis_invoice_header_text', true );
-$invoice_footer_text      = get_post_meta( $post->ID, '_orbis_invoice_footer_text', true );
+$invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
 // Current Period End Date.
@@ -180,20 +179,11 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 				<?php endif; ?>
 
-				<?php if ( ! empty( $invoice_header_text ) ) : ?>
+				<?php if ( ! empty( $invoice_reference ) ) : ?>
 
-					<dt><?php esc_html_e( 'Invoice Header Text', 'orbis-subscriptions' ); ?></dt>
+					<dt><?php esc_html_e( 'Invoice reference', 'orbis-subscriptions' ); ?></dt>
 					<dd>
-						<?php echo nl2br( esc_html( $invoice_header_text ) ); ?></a>
-					</dd>
-
-				<?php endif; ?>
-
-				<?php if ( ! empty( $invoice_footer_text ) ) : ?>
-
-					<dt><?php esc_html_e( 'Invoice Footer Text', 'orbis-subscriptions' ); ?></dt>
-					<dd>
-						<?php echo nl2br( esc_html( $invoice_footer_text ) ); ?></a>
+						<?php echo nl2br( esc_html( $invoice_reference ) ); ?></a>
 					</dd>
 
 				<?php endif; ?>

@@ -273,12 +273,8 @@ foreach ( $subscriptions as $subscription ) {
 		$twinfield_customer = get_post_meta( $company->post_id, '_twinfield_customer_id', true );
 		$country            = get_post_meta( $company->post_id, '_orbis_country', true );
 
-		$header_texts = [
-			get_post_meta( $company->post_id, '_orbis_invoice_header_text', true ),
-		];
-
-		$footer_texts = [
-			get_post_meta( $company->post_id, '_orbis_invoice_footer_text', true ),
+		$references = [
+			get_post_meta( $company->post_id, '_orbis_invoice_reference', true ),
 		];
 
 		$terms = wp_get_post_terms( $company->post_id, 'orbis_payment_method' );
@@ -294,22 +290,15 @@ foreach ( $subscriptions as $subscription ) {
 				$payment_method_term = $term;
 			}
 
-			$header_texts[] = get_post_meta( $subscription->post_id, '_orbis_invoice_header_text', true );
-			$footer_texts[] = get_post_meta( $subscription->post_id, '_orbis_invoice_footer_text', true );
+			$references[] = get_post_meta( $subscription->post_id, '_orbis_invoice_reference', true );
 		}
 
 		if ( is_object( $payment_method_term ) ) {
-			$header_texts[] = $payment_method_term->description;
+			$references[] = $payment_method_term->description;
 		}
 
-		$header_texts[] = get_option( 'orbis_invoice_header_text' );
-		$footer_texts[] = get_option( 'orbis_invoice_footer_text' );
-
-		$header_texts = array_filter( $header_texts );
-		$header_texts = array_unique( $header_texts );
-
-		$footer_texts = array_filter( $footer_texts );
-		$footer_texts = array_unique( $footer_texts );
+		$references = array_filter( $references );
+		$references = array_unique( $references );
 
 		?>
 
