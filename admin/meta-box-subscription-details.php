@@ -14,10 +14,7 @@ $query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE
 
 $subscription_products = $wpdb->get_results( $query, OBJECT_K );
 
-$person_id    = get_post_meta( $post->ID, '_orbis_subscription_person_id', true );
 $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', true );
-
-$person_name = empty( $person_id ) ? '' : get_the_title( $person_id );
 
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
@@ -83,19 +80,6 @@ $utc = new \DateTimeZone( 'UTC' );
 		</th>
 		<td>
 			<input id="orbis_subscription_name" name="_orbis_subscription_name" value="<?php echo esc_attr( $subscription->get_name() ); ?>" type="text" class="regular-text" />
-		</td>
-	</tr>
-	<tr valign="top">
-		<th scope="row">
-			<label for="orbis_subscription_person_id"><?php esc_html_e( 'Person', 'orbis-subscriptions' ); ?></label>
-		</th>
-		<td>
-			<?php $person_id = get_post_meta( $post->ID, '_orbis_subscription_person_id', true ); ?>
-			<select id="orbis_subscription_person_id" name="_orbis_subscription_person_id" class="orbis-id-control orbis-person-id-control regular-text">
-				<option value="<?php echo esc_attr( $person_id ); ?>">
-					<?php echo esc_html( $person_name ); ?>
-				</option>
-			</select>
 		</td>
 	</tr>
 	<tr valign="top">

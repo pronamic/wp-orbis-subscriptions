@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-02-01T08:28:48+00:00\n"
-"PO-Revision-Date: 2024-02-01 09:29+0100\n"
+"POT-Creation-Date: 2024-02-01T08:42:31+00:00\n"
+"PO-Revision-Date: 2024-02-01 09:42+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -45,52 +45,48 @@ msgstr "Annuleren"
 msgid "Cancel Subscription"
 msgstr "Abonnement beëindigen"
 
-#: admin/meta-box-subscription-details.php:31
-#: admin/meta-box-subscription-product-details.php:22 includes/post.php:517
+#: admin/meta-box-subscription-details.php:28
+#: admin/meta-box-subscription-product-details.php:22 includes/post.php:474
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-subscription-details.php:39
+#: admin/meta-box-subscription-details.php:36
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:51
+#: admin/meta-box-subscription-details.php:48
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:82
+#: admin/meta-box-subscription-details.php:79
 #: templates/company-subscriptions.php:42
 #: templates/domain-name-subscriptions.php:51
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:90 includes/post.php:308
-msgid "Person"
-msgstr "Persoon"
-
-#: admin/meta-box-subscription-details.php:104
+#: admin/meta-box-subscription-details.php:88
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-subscription-details.php:111
+#: admin/meta-box-subscription-details.php:95
 msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-subscription-details.php:114
+#: admin/meta-box-subscription-details.php:98
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-subscription-details.php:114
+#: admin/meta-box-subscription-details.php:98
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-subscription-details.php:117
+#: admin/meta-box-subscription-details.php:101
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
 "bibliotheek."
 
-#: admin/meta-box-subscription-details.php:118
+#: admin/meta-box-subscription-details.php:102
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
@@ -98,7 +94,7 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-subscription-details.php:141
+#: admin/meta-box-subscription-details.php:125
 #: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:48
 #: templates/subscription-details.php:116
@@ -106,35 +102,35 @@ msgstr ""
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:159
+#: admin/meta-box-subscription-details.php:143
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:177
+#: admin/meta-box-subscription-details.php:161
 #: templates/subscription-details.php:135
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
-#: admin/meta-box-subscription-details.php:192
+#: admin/meta-box-subscription-details.php:176
 #: templates/subscription-details.php:176
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-subscription-details.php:199
+#: admin/meta-box-subscription-details.php:183
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-subscription-details.php:213
+#: admin/meta-box-subscription-details.php:197
 #: templates/subscription-details.php:183
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
-#: admin/meta-box-subscription-details.php:221
+#: admin/meta-box-subscription-details.php:205
 #: templates/subscription-details.php:192
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/meta-box-subscription-product-details.php:30 includes/post.php:514
+#: admin/meta-box-subscription-product-details.php:30 includes/post.php:471
 #: templates/company-subscriptions.php:43
 #: templates/domain-name-subscriptions.php:52
 #: templates/subscription-details.php:171
@@ -142,7 +138,7 @@ msgstr "Factuurregelbeschrijving"
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-subscription-product-details.php:38 includes/post.php:515
+#: admin/meta-box-subscription-product-details.php:38 includes/post.php:472
 msgid "Cost Price"
 msgstr "Kostprijs"
 
@@ -154,7 +150,7 @@ msgstr "Automatisch verlengen"
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:60 includes/post.php:516
+#: admin/meta-box-subscription-product-details.php:60 includes/post.php:473
 msgid "Deprecated"
 msgstr "Vervallen"
 
@@ -375,27 +371,11 @@ msgstr "Abonnement acties"
 msgid "Subscription Product Details"
 msgstr "Abonnement product details"
 
-#: includes/post.php:307
-msgid "Title"
-msgstr "Titel"
-
-#: includes/post.php:309
-msgid "Author"
-msgstr "Auteur"
-
-#: includes/post.php:310
-msgid "Comments"
-msgstr "Reacties"
-
-#: includes/post.php:311
-msgid "Date"
-msgstr "Datum"
-
-#: includes/post.php:587
+#: includes/post.php:544
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/post.php:587
+#: includes/post.php:544
 msgid "No"
 msgstr "Nee"
 
@@ -481,6 +461,21 @@ msgstr "Acties"
 #: templates/subscriptions-without-agreement.php:62
 msgid "Edit"
 msgstr "Bewerken"
+
+#~ msgid "Person"
+#~ msgstr "Persoon"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Author"
+#~ msgstr "Auteur"
+
+#~ msgid "Comments"
+#~ msgstr "Reacties"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
 
 #~ msgid "Email"
 #~ msgstr "E-mailadres"

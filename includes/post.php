@@ -205,7 +205,6 @@ function orbis_save_subscription_details( $post_id, $post ) {
 		'_orbis_subscription_company_id'      => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_type_id'         => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_name'            => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_person_id'       => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_agreement_id'    => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_activation_date' => FILTER_SANITIZE_STRING,
 		'_orbis_invoice_reference'            => FILTER_SANITIZE_STRING,
@@ -297,48 +296,6 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 }
 
 add_action( 'save_post', 'orbis_save_subscription_sync', 20, 2 );
-
-/**
- * Keychain edit columns
- */
-function orbis_subscription_edit_columns( $columns ) {
-	return [
-		'cb'                        => '<input type="checkbox" />',
-		'title'                     => __( 'Title', 'orbis-subscriptions' ),
-		'orbis_subscription_person' => __( 'Person', 'orbis-subscriptions' ),
-		'author'                    => __( 'Author', 'orbis-subscriptions' ),
-		'comments'                  => __( 'Comments', 'orbis-subscriptions' ),
-		'date'                      => __( 'Date', 'orbis-subscriptions' ),
-	];
-}
-
-add_filter( 'manage_edit-orbis_subscription_columns', 'orbis_subscription_edit_columns' );
-
-/**
- * Keychain column
- *
- * @param string $column
- */
-function orbis_subscription_column( $column ) {
-	$id = get_the_ID();
-
-	switch ( $column ) {
-		case 'orbis_subscription_person':
-			$person_id = get_post_meta( $id, '_orbis_subscription_person_id', true );
-
-			if ( ! empty( $person_id ) ) {
-				printf(
-					'<a href="%s" target="_blank">%s</a>',
-					esc_attr( get_permalink( $person_id ) ),
-					esc_html( get_the_title( $person_id ) )
-				);
-			}
-
-			break;
-	}
-}
-
-add_action( 'manage_posts_custom_column', 'orbis_subscription_column' );
 
 /**
  * Insert post data
