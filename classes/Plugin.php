@@ -116,12 +116,12 @@ class Plugin {
 
 			CREATE TABLE $wpdb->orbis_subscriptions_invoices (
 				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
+				created_at DATETIME NOT NULL,
 				subscription_id BIGINT(16) UNSIGNED NOT NULL,
 				invoice_number VARCHAR(128) NOT NULL,
 				start_date DATE NOT NULL,
 				end_date DATE NOT NULL,
 				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
-				create_date DATETIME DEFAULT NULL,
 				PRIMARY KEY  (id),
 				KEY invoice_number (invoice_number)
 			) $charset_collate;
