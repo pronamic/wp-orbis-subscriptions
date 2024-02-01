@@ -100,14 +100,6 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_email"><?php esc_html_e( 'Email', 'orbis-subscriptions' ); ?></label>
-		</th>
-		<td>
-			<input id="orbis_subscription_email" name="_orbis_subscription_email" value="<?php echo esc_attr( $subscription->get_email() ); ?>" type="text" class="regular-text" />
-		</td>
-	</tr>
-	<tr valign="top">
-		<th scope="row">
 			<label for="_orbis_subscription_agreement_id">
 				<?php esc_html_e( 'Agreement ID', 'orbis-subscriptions' ); ?>
 			</label>

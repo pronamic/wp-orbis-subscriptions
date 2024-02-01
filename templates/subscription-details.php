@@ -23,7 +23,6 @@ $name            = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_date', true );
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
-$email           = get_post_meta( $post->ID, '_orbis_subscription_email', true );
 
 $query = $wpdb->prepare(
 	"

@@ -16,7 +16,6 @@ function orbis_subscription_get_data( $post_id ) {
 			subscription.id,
 			subscription.post_id,
 			subscription.name,
-			subscription.email,
 			subscription.activation_date,
 			subscription.expiration_date,
 			subscription.cancel_date,

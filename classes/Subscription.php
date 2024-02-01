@@ -121,15 +121,6 @@ class Subscription {
 	private $name;
 
 	/**
-	 * Holds the email from the
-	 * orbis_subscription table
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $email;
-
-	/**
 	 * Holds the activation date
 	 * of the subscription.  In DateTime
 	 *
@@ -215,7 +206,6 @@ class Subscription {
 				$this->set_type_name( $subscription_data->product_name );
 				$this->set_type_price( $subscription_data->product_price );
 				$this->set_name( $subscription_data->name );
-				$this->set_email( $subscription_data->email );
 				$this->set_activation_date( new DateTime( $subscription_data->activation_date ) );
 				$this->set_expiration_date( new DateTime( $subscription_data->expiration_date ) );
 				if ( $subscription_data->cancel_date ) {
@@ -257,7 +247,6 @@ class Subscription {
 			'type_id'         => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
-			'email'           => $this->get_email(),
 			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
 			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
 			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
@@ -268,7 +257,6 @@ class Subscription {
 			'type_id'         => '%d',
 			'post_id'         => '%d',
 			'name'            => '%s',
-			'email'           => '%s',
 			'activation_date' => '%s',
 			'expiration_date' => '%s',
 			'update_date'     => '%s',
@@ -384,15 +372,6 @@ class Subscription {
 
 	public function set_name( $name ) {
 		$this->name = $name;
-		return $this;
-	}
-
-	public function get_email() {
-		return $this->email;
-	}
-
-	public function set_email( $email ) {
-		$this->email = $email;
 		return $this;
 	}
 

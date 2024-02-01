@@ -90,7 +90,6 @@ class Plugin {
 				update_date DATETIME DEFAULT NULL,
 				end_date DATETIME DEFAULT NULL,
 				billed_to DATETIME DEFAULT NULL,
-				email VARCHAR(64) DEFAULT NULL,
 				PRIMARY KEY  (id),
 				UNIQUE KEY post_id (post_id),
 				KEY company_id (company_id),
