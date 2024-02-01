@@ -132,6 +132,10 @@ class Plugin {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 		dbDelta( $sql );
+
+		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscriptions );
+		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscription_products );
+		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscriptions_invoices );
 	}
 
 	public function shortcode_subscriptions_without_agreement() {
