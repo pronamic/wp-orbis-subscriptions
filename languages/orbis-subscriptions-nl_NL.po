@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-01-31T07:49:22+00:00\n"
-"PO-Revision-Date: 2024-01-31 13:28+0100\n"
+"POT-Creation-Date: 2024-02-01T08:17:08+00:00\n"
+"PO-Revision-Date: 2024-02-01 09:17+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -45,56 +45,56 @@ msgstr "Annuleren"
 msgid "Cancel Subscription"
 msgstr "Abonnement beëindigen"
 
-#: admin/meta-box-subscription-details.php:32
-#: admin/meta-box-subscription-product-details.php:22 includes/post.php:521
+#: admin/meta-box-subscription-details.php:31
+#: admin/meta-box-subscription-product-details.php:22 includes/post.php:520
 msgid "Orbis ID"
 msgstr "Orbis ID"
 
-#: admin/meta-box-subscription-details.php:40
+#: admin/meta-box-subscription-details.php:39
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:52
+#: admin/meta-box-subscription-details.php:51
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:83
+#: admin/meta-box-subscription-details.php:82
 #: templates/company-subscriptions.php:42
 #: templates/domain-name-subscriptions.php:51
 msgid "Name"
 msgstr "Naam"
 
-#: admin/meta-box-subscription-details.php:91 includes/post.php:312
+#: admin/meta-box-subscription-details.php:90 includes/post.php:311
 msgid "Person"
 msgstr "Persoon"
 
-#: admin/meta-box-subscription-details.php:104
+#: admin/meta-box-subscription-details.php:103
 msgid "Email"
 msgstr "E-mailadres"
 
-#: admin/meta-box-subscription-details.php:113
+#: admin/meta-box-subscription-details.php:112
 msgid "Agreement ID"
 msgstr "Akkoord ID"
 
-#: admin/meta-box-subscription-details.php:120
+#: admin/meta-box-subscription-details.php:119
 msgid "Choose an Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-subscription-details.php:123
+#: admin/meta-box-subscription-details.php:122
 msgid "Set as Agreement"
 msgstr "Stel in als akkoord"
 
-#: admin/meta-box-subscription-details.php:123
+#: admin/meta-box-subscription-details.php:122
 msgid "Choose a Agreement"
 msgstr "Kies een akkoord"
 
-#: admin/meta-box-subscription-details.php:126
+#: admin/meta-box-subscription-details.php:125
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
 "bibliotheek."
 
-#: admin/meta-box-subscription-details.php:127
+#: admin/meta-box-subscription-details.php:126
 msgid ""
 "If you received the agreement by mail print the complete mail conversation "
 "with an PDF printer."
@@ -102,56 +102,51 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-subscription-details.php:150
+#: admin/meta-box-subscription-details.php:149
 #: templates/company-subscriptions.php:40
 #: templates/domain-name-subscriptions.php:48
-#: templates/subscription-details.php:118
+#: templates/subscription-details.php:117
 #: templates/subscriptions-without-agreement.php:26
 msgid "Activation Date"
 msgstr "Activatie datum"
 
-#: admin/meta-box-subscription-details.php:168
+#: admin/meta-box-subscription-details.php:167
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:186
-#: templates/subscription-details.php:137
+#: admin/meta-box-subscription-details.php:185
+#: templates/subscription-details.php:136
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
-#: admin/meta-box-subscription-details.php:201
-#: templates/subscription-details.php:178
+#: admin/meta-box-subscription-details.php:200
+#: templates/subscription-details.php:177
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
-#: admin/meta-box-subscription-details.php:208
+#: admin/meta-box-subscription-details.php:207
 msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
-#: admin/meta-box-subscription-details.php:222
-#: templates/subscription-details.php:185
-msgid "Invoice Header Text"
-msgstr "Factuur koptekst"
+#: admin/meta-box-subscription-details.php:221
+#: templates/subscription-details.php:184
+msgid "Invoice reference"
+msgstr "Factuurreferentie"
 
-#: admin/meta-box-subscription-details.php:230
-#: templates/subscription-details.php:194
-msgid "Invoice Footer Text"
-msgstr "Factuur voettekst"
-
-#: admin/meta-box-subscription-details.php:238
-#: templates/subscription-details.php:203
+#: admin/meta-box-subscription-details.php:229
+#: templates/subscription-details.php:193
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/meta-box-subscription-product-details.php:30 includes/post.php:518
+#: admin/meta-box-subscription-product-details.php:30 includes/post.php:517
 #: templates/company-subscriptions.php:43
 #: templates/domain-name-subscriptions.php:52
-#: templates/subscription-details.php:173
+#: templates/subscription-details.php:172
 #: templates/subscriptions-without-agreement.php:28
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/meta-box-subscription-product-details.php:38 includes/post.php:519
+#: admin/meta-box-subscription-product-details.php:38 includes/post.php:518
 msgid "Cost Price"
 msgstr "Kostprijs"
 
@@ -163,7 +158,7 @@ msgstr "Automatisch verlengen"
 msgid "Auto renew subscription product"
 msgstr "Abonnement product automatisch verlengen"
 
-#: admin/meta-box-subscription-product-details.php:60 includes/post.php:520
+#: admin/meta-box-subscription-product-details.php:60 includes/post.php:519
 msgid "Deprecated"
 msgstr "Vervallen"
 
@@ -372,7 +367,7 @@ msgctxt "slug"
 msgid "subscription-products"
 msgstr "abonnement-producten"
 
-#: includes/post.php:90 templates/subscription-details.php:101
+#: includes/post.php:90 templates/subscription-details.php:100
 msgid "Subscription Details"
 msgstr "Abonnement details"
 
@@ -384,27 +379,27 @@ msgstr "Abonnement acties"
 msgid "Subscription Product Details"
 msgstr "Abonnement product details"
 
-#: includes/post.php:311
+#: includes/post.php:310
 msgid "Title"
 msgstr "Titel"
 
-#: includes/post.php:313
+#: includes/post.php:312
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/post.php:314
+#: includes/post.php:313
 msgid "Comments"
 msgstr "Reacties"
 
-#: includes/post.php:315
+#: includes/post.php:314
 msgid "Date"
 msgstr "Datum"
 
-#: includes/post.php:591
+#: includes/post.php:590
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/post.php:591
+#: includes/post.php:590
 msgid "No"
 msgstr "Nee"
 
@@ -419,43 +414,43 @@ msgid "No subscriptions found."
 msgstr "Geen abonnementen gevonden."
 
 #: templates/domain-name-subscriptions.php:49
-#: templates/subscription-details.php:106
+#: templates/subscription-details.php:105
 msgid "Company"
 msgstr "Bedrijf"
 
-#: templates/subscription-details.php:111
+#: templates/subscription-details.php:110
 msgid "Status"
 msgstr "Status"
 
-#: templates/subscription-details.php:123
+#: templates/subscription-details.php:122
 msgid "Current Period"
 msgstr "Huidige periode"
 
-#: templates/subscription-details.php:128
+#: templates/subscription-details.php:127
 msgid "to %s"
 msgstr "tot %s"
 
-#: templates/subscription-details.php:144
+#: templates/subscription-details.php:143
 msgid "Billed To"
 msgstr "Gefactureerd tot"
 
-#: templates/subscription-details.php:157
+#: templates/subscription-details.php:156
 msgid "📣 Please note: this subscription may be billed again soon."
 msgstr ""
 "📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd "
 "wordt."
 
-#: templates/subscription-details.php:165
+#: templates/subscription-details.php:164
 msgid ""
 "🚨 Please note: this subscription is billed further in advance than usual."
 msgstr ""
 "🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
 
-#: templates/subscription-details.php:218
+#: templates/subscription-details.php:208
 msgid "Agreement"
 msgstr "Akkoord"
 
-#: templates/subscription-details.php:227
+#: templates/subscription-details.php:217
 msgid "Available time per year"
 msgstr "Beschikbare tijd per jaar"
 
@@ -490,6 +485,12 @@ msgstr "Acties"
 #: templates/subscriptions-without-agreement.php:62
 msgid "Edit"
 msgstr "Bewerken"
+
+#~ msgid "Invoice Header Text"
+#~ msgstr "Factuur koptekst"
+
+#~ msgid "Invoice Footer Text"
+#~ msgstr "Factuur voettekst"
 
 #~ msgid "Subscription Purchases"
 #~ msgstr "Inkoop abonnementen"
