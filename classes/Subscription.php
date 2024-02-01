@@ -442,20 +442,20 @@ class Subscription {
 		$result = $wpdb->insert(
 			$wpdb->orbis_subscriptions_invoices,
 			[
+				'created_at'      => \gmdate( 'Y-m-d H:i:s' ),
 				'subscription_id' => $this->get_id(),
 				'invoice_number'  => $invoice_number,
 				'start_date'      => $start_date->format( 'Y-m-d H:i:s' ),
 				'end_date'        => $end_date->format( 'Y-m-d H:i:s' ),
 				'user_id'         => get_current_user_id(),
-				'create_date'     => date( 'Y-m-d H:i:s' ),
 			],
 			[
-				'%d',
-				'%s',
-				'%s',
 				'%s',
 				'%d',
 				'%s',
+				'%s',
+				'%s',
+				'%d',
 			]
 		);
 
