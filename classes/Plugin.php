@@ -123,6 +123,7 @@ class Plugin {
 				end_date DATE NOT NULL,
 				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
 				PRIMARY KEY  (id),
+				UNIQUE KEY subscription_invoice_start (subscription_id, invoice_number, start_date),
 				KEY invoice_number (invoice_number)
 			) $charset_collate;
 		";
