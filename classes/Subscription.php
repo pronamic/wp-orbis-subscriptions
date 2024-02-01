@@ -247,9 +247,9 @@ class Subscription {
 			'type_id'         => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
-			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
-			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d H:i:s' ),
+			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d' ),
+			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d' ),
+			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d' ),
 		];
 
 		$format = [
@@ -445,8 +445,8 @@ class Subscription {
 				'created_at'      => \gmdate( 'Y-m-d H:i:s' ),
 				'subscription_id' => $this->get_id(),
 				'invoice_number'  => $invoice_number,
-				'start_date'      => $start_date->format( 'Y-m-d H:i:s' ),
-				'end_date'        => $end_date->format( 'Y-m-d H:i:s' ),
+				'start_date'      => $start_date->format( 'Y-m-d' ),
+				'end_date'        => $end_date->format( 'Y-m-d' ),
 				'user_id'         => get_current_user_id(),
 			],
 			[
@@ -464,7 +464,7 @@ class Subscription {
 			$wpdb->orbis_subscriptions,
 			// Data
 			[
-				'expiration_date' => $end_date->format( 'Y-m-d H:i:s' ),
+				'expiration_date' => $end_date->format( 'Y-m-d' ),
 			],
 			// Where
 			[

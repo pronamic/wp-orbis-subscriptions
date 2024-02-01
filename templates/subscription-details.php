@@ -114,7 +114,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 				<?php if ( null !== $activation_date ) : ?>
 
 					<dt><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></dt>
-					<dd><?php echo \esc_html( \wp_date( 'D j M Y H:i:s', $activation_date->getTimestamp() ) ); ?></dd>
+					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $activation_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>
 
@@ -133,7 +133,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 				<?php if ( ! empty( $cancel_date ) ) : ?>
 
 					<dt><?php esc_html_e( 'Cancel Date', 'orbis-subscriptions' ); ?></dt>
-					<dd><?php echo \esc_html( \wp_date( 'D j M Y H:i:s', $cancel_date->getTimestamp() ) ); ?></dd>
+					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $cancel_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>
 

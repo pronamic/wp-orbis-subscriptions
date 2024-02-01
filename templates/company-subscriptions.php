@@ -58,7 +58,7 @@ if ( $subscriptions ) : ?>
 				?>
 				<tr class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 					<td>
-						<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $subscription->activation_date ) ) ); ?>
+						<?php echo esc_html( date_i18n( 'D j M Y', strtotime( $subscription->activation_date ) ) ); ?>
 					</td>
 					<td>
 						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
