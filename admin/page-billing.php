@@ -44,16 +44,6 @@ function get_subscriptions( $date, $interval ) {
 
 			$day_function = 'DAYOFYEAR';
 
-			// Check if the end date of invoice is in next year.
-			//$join_condition  .= $wpdb->prepare( ' AND YEAR( invoice.end_date ) = %d', $date->format( 'Y' ) + 1 );
-			/*
-			$where_condition .= ' AND ( ';
-			$where_condition .= $wpdb->prepare( ' DATE( subscription.activation_date ) <= %s', $last_day_month->format( 'Y-m-d' ) );
-			$where_condition .= $wpdb->prepare( ' AND DATE_FORMAT( subscription.activation_date, %s ) <= %s', $date->format( 'Y' ) . '-%m-%d', $ahead_limit->format( '
-				Y-m-d' ) );
-			$where_condition .= ' AND invoice_number IS NULL';
-			$where_condition .= ' ) OR ( ';
-			*/
 			$where_condition .= ' AND ( ';
 			$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
 			$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
