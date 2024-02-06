@@ -14,6 +14,10 @@ use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $wpdb, $post;
 
 $orbis_id        = get_post_meta( $post->ID, '_orbis_subscription_id', true );

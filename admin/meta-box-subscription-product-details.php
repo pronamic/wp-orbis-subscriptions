@@ -1,4 +1,16 @@
 <?php
+/**
+ * Meta box subscription product details
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 global $wpdb, $post;
 

@@ -1,6 +1,18 @@
 <?php
+/**
+ * Subscriptions without agreement
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
 
 use Pronamic\WordPress\Money\Money;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $query = new WP_Query(
 	[

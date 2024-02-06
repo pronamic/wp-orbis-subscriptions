@@ -1,3 +1,18 @@
+<?php
+/**
+ * Meta box subscription actions
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
