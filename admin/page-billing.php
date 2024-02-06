@@ -168,8 +168,8 @@ foreach ( $subscriptions as $subscription ) {
 	<?php
 
 	$statuses = [
-		'inserted' => __( 'Inserted', 'orbis_twinfield' ),
-		'failed'   => __( 'Failed', 'orbis_twinfield' ),
+		'inserted' => __( 'Inserted', 'orbis-subscriptions' ),
+		'failed'   => __( 'Failed', 'orbis-subscriptions' ),
 	];
 
 	foreach ( $statuses as $status => $label ) {
@@ -217,7 +217,7 @@ foreach ( $subscriptions as $subscription ) {
 		</li>
 		<li>
 			<a href="<?php echo esc_attr( remove_query_arg( 'date' ) ); ?>" class="btn btn-default">
-				<?php esc_html_e( 'This month', 'orbis_twinfield' ); ?>
+				<?php esc_html_e( 'This month', 'orbis-subscriptions' ); ?>
 			</a>
 		</li>
 	</ul>
@@ -226,18 +226,18 @@ foreach ( $subscriptions as $subscription ) {
 		<div class="tablenav top">
 			<div class="alignleft actions bulkactions">
 				<select name="interval">
-					<option value="-1" selected="selected"><?php esc_html_e( 'Interval', 'orbis_twinfield' ); ?></option>
-					<option value="Y" <?php selected( $interval, 'Y' ); ?>><?php esc_html_e( 'Yearly', 'orbis_twinfield' ); ?></option>
-					<option value="2Y" <?php selected( $interval, '2Y' ); ?>><?php esc_html_e( 'Two Yearly', 'orbis_twinfield' ); ?></option>
-					<option value="3Y" <?php selected( $interval, '3Y' ); ?>><?php esc_html_e( 'Three Yearly', 'orbis_twinfield' ); ?></option>
-					<option value="Q" <?php selected( $interval, 'Q' ); ?>><?php esc_html_e( 'Quarterly', 'orbis_twinfield' ); ?></option>
-					<option value="M" <?php selected( $interval, 'M' ); ?>><?php esc_html_e( 'Monthly', 'orbis_twinfield' ); ?></option>
+					<option value="-1" selected="selected"><?php esc_html_e( 'Interval', 'orbis-subscriptions' ); ?></option>
+					<option value="Y" <?php selected( $interval, 'Y' ); ?>><?php esc_html_e( 'Yearly', 'orbis-subscriptions' ); ?></option>
+					<option value="2Y" <?php selected( $interval, '2Y' ); ?>><?php esc_html_e( 'Two Yearly', 'orbis-subscriptions' ); ?></option>
+					<option value="3Y" <?php selected( $interval, '3Y' ); ?>><?php esc_html_e( 'Three Yearly', 'orbis-subscriptions' ); ?></option>
+					<option value="Q" <?php selected( $interval, 'Q' ); ?>><?php esc_html_e( 'Quarterly', 'orbis-subscriptions' ); ?></option>
+					<option value="M" <?php selected( $interval, 'M' ); ?>><?php esc_html_e( 'Monthly', 'orbis-subscriptions' ); ?></option>
 				</select>
 
 				<input type="hidden" name="post_type" value="orbis_subscription" />
 				<input type="hidden" name="page" value="orbis_twinfield" />
 
-				<input type="submit" class="button action" name="action" value="<?php esc_attr_e( 'Execute', 'orbis_twinfield' ); ?>" />
+				<input type="submit" class="button action" name="action" value="<?php esc_attr_e( 'Execute', 'orbis-subscriptions' ); ?>" />
 			</div>
 
 			<div class="tablenav-pages">
@@ -340,13 +340,13 @@ foreach ( $subscriptions as $subscription ) {
 				<table class="wp-list-table widefat fixed striped">
 					<thead>
 						<tr>
-							<th scope="col"><?php esc_html_e( 'ID', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Subscription', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Price', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Name', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Start Date', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'End Date', 'orbis_twinfield' ); ?></th>
-							<th scope="col"><?php esc_html_e( 'Cancel Date', 'orbis_twinfield' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'ID', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Start Date', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'End Date', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Cancel Date', 'orbis-subscriptions' ); ?></th>
 						</tr>
 					</thead>
 
