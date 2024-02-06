@@ -13,6 +13,7 @@ namespace Pronamic\Orbis\Subscriptions;
 use DateInterval;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use WP_Post;
 
@@ -121,38 +122,30 @@ class Subscription {
 	private $name;
 
 	/**
-	 * Holds the activation date
-	 * of the subscription.  In DateTime
+	 * Holds the activation date of the subscription.
 	 *
-	 * @access private
-	 * @var DateTime
+	 * @var DateTimeInterface
 	 */
 	private $activation_date;
 
 	/**
-	 * Holds the expiration date
-	 * of the subscription. In DateTime
+	 * Holds the expiration date of the subscription.
 	 *
-	 * @access private
-	 * @var DateTime
+	 * @var DateTimeInterface
 	 */
 	private $expiration_date;
 
 	/**
-	 * Holds the cancel date
-	 * of the subscription. In DateTime
+	 * Holds the cancel date of the subscription.
 	 *
-	 * @access private
-	 * @var DateTime
+	 * @var DateTimeInterface
 	 */
 	private $cancel_date;
 
 	/**
-	 * Holds the update date
-	 * of the subscription. In DateTime
+	 * Holds the update date of the subscription.
 	 *
-	 * @access private
-	 * @var DateTime
+	 * @var DateTimeInterface
 	 */
 	private $update_date;
 
@@ -231,13 +224,13 @@ class Subscription {
 		$activation_date = $this->get_activation_date();
 
 		if ( null !== $activation_date ) {
-			$activation_date = \DateTimeImmutable::createFromMutable( $activation_date );
+			$activation_date = \DateTimeImmutable::createFromInterface( $activation_date );
 		}
 
 		$expiration_date = $this->get_expiration_date();
 
 		if ( null !== $expiration_date ) {
-			$expiration_date = \DateTimeImmutable::createFromMutable( $expiration_date );
+			$expiration_date = \DateTimeImmutable::createFromInterface( $expiration_date );
 		}
 
 		$data = [
@@ -386,7 +379,7 @@ class Subscription {
 		return $this->activation_date;
 	}
 
-	public function set_activation_date( DateTime $activation_date ) {
+	public function set_activation_date( DateTimeInterface $activation_date ) {
 		$this->activation_date = $activation_date;
 		return $this;
 	}
@@ -395,7 +388,7 @@ class Subscription {
 		return $this->expiration_date;
 	}
 
-	public function set_expiration_date( DateTime $expiration_date ) {
+	public function set_expiration_date( DateTimeInterface $expiration_date ) {
 		$this->expiration_date = $expiration_date;
 		return $this;
 	}
@@ -404,7 +397,7 @@ class Subscription {
 		return $this->cancel_date;
 	}
 
-	public function set_cancel_date( DateTime $cancel_date ) {
+	public function set_cancel_date( DateTimeInterface $cancel_date ) {
 		$this->cancel_date = $cancel_date;
 		return $this;
 	}
@@ -413,7 +406,7 @@ class Subscription {
 		return $this->update_date;
 	}
 
-	public function set_update_date( DateTime $update_date ) {
+	public function set_update_date( DateTimeInterface $update_date ) {
 		$this->update_date = $update_date;
 		return $this;
 	}
