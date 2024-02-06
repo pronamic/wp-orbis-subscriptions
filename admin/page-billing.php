@@ -216,7 +216,7 @@ foreach ( $subscriptions as $subscription ) {
 			<?php echo esc_html( date_i18n( 'M Y', $date->getTimestamp() ) ); ?> |
 		</li>
 		<li>
-			<a href="<?php echo esc_attr( remove_query_arg( 'date' ) ); ?>" class="btn btn-default">
+			<a href="<?php echo esc_url( remove_query_arg( 'date' ) ); ?>" class="btn btn-default">
 				<?php esc_html_e( 'This month', 'orbis-subscriptions' ); ?>
 			</a>
 		</li>
@@ -255,11 +255,11 @@ foreach ( $subscriptions as $subscription ) {
 					$link_next = add_query_arg( 'date', $date_next->format( 'd-m-Y' ) );
 
 					?>
-					<a class="prev-page" href="<?php echo esc_attr( $link_prev ); ?>">
+					<a class="prev-page" href="<?php echo esc_url( $link_prev ); ?>">
 						<span class="screen-reader-text">Vorige pagina</span><span aria-hidden="true">‹</span>
 					</a>
 
-					<a class="next-page" href="<?php echo esc_attr( $link_next ); ?>">
+					<a class="next-page" href="<?php echo esc_url( $link_next ); ?>">
 						<span class="screen-reader-text">Volgende pagina</span><span aria-hidden="true">›</span>
 					</a>
 				</span>
@@ -304,11 +304,11 @@ foreach ( $subscriptions as $subscription ) {
 
 		?>
 
-		<form method="post" action="<?php echo esc_attr( $action_url ); ?>">
+		<form method="post" action="<?php echo esc_url( $action_url ); ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<a href="<?php echo esc_attr( get_permalink( $company->post_id ) ); ?>"><?php echo esc_html( $company->name ); ?></a>
+						<a href="<?php echo esc_url( get_permalink( $company->post_id ) ); ?>"><?php echo esc_html( $company->name ); ?></a>
 					</h3>
 				</div>
 
@@ -426,7 +426,7 @@ foreach ( $subscriptions as $subscription ) {
 									<?php echo esc_html( $result->id ); ?>
 								</td>
 								<td>
-									<a href="<?php echo esc_attr( get_permalink( $result->post_id ) ); ?>">
+									<a href="<?php echo esc_url( get_permalink( $result->post_id ) ); ?>">
 										<?php echo esc_html( $result->subscription_name ); ?>
 									</a>
 								</td>

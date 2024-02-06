@@ -73,12 +73,12 @@ if ( $subscriptions ) : ?>
 						<?php echo esc_html( date_i18n( 'D j M Y', strtotime( $subscription->activation_date ) ) ); ?>
 					</td>
 					<td>
-						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+						<a href="<?php echo esc_url( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
 							<?php echo esc_html( $subscription->subscription_name ); ?>
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo esc_attr( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
+						<a href="<?php echo esc_url( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
 							<?php echo esc_html( $subscription->name ); ?>
 						</a>
 					</td>
