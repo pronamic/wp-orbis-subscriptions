@@ -26,6 +26,7 @@
 		<properties>
 			<property name="old_text_domain" type="array">
 				<element value="orbis_subscriptions" />
+				<element value="orbis_twinfield" />
 			</property>
 
 			<property name="new_text_domain" value="orbis-subscriptions" />
