@@ -227,8 +227,6 @@ class Subscription {
 	public function save() {
 		global $wpdb;
 
-		$utc = new \DateTimeZone( 'UTC' );
-
 		// Data.
 		$activation_date = $this->get_activation_date();
 
@@ -247,9 +245,9 @@ class Subscription {
 			'type_id'         => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
-			'activation_date' => ( null === $activation_date ) ? null : $activation_date->setTimezone( $utc )->format( 'Y-m-d' ),
-			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->setTimezone( $utc )->format( 'Y-m-d' ),
-			'update_date'     => ( null === $update_date ) ? null : $update_date->setTimezone( $utc )->format( 'Y-m-d' ),
+			'activation_date' => ( null === $activation_date ) ? null : $activation_date->format( 'Y-m-d' ),
+			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->format( 'Y-m-d' ),
+			'update_date'     => ( null === $update_date ) ? null : $update_date->format( 'Y-m-d' ),
 		];
 
 		$format = [

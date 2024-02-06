@@ -280,13 +280,12 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	if ( 0 === $subscription->count_invoices() ) {
 		$activation_date_string = get_post_meta( $post_id, '_orbis_subscription_activation_date', true );
 
-		$activation_date = new \DateTime( $activation_date_string, \wp_timezone() );
+		$activation_date = DateTimeImmutable::createFromFormat( 'Y-m-d', $activation_date_string )->setTime( 0, 0 );
 
 		$subscription->set_activation_date( $activation_date );
 
 		// Expiration DateTime
-		$expiration_date = clone $activation_date;
-		$expiration_date->modify( '+1 year' );
+		$expiration_date = $activation_date->modify( '+1 year' );
 
 		$subscription->set_expiration_date( $expiration_date );
 	}
