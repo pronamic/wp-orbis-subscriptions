@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use Pronamic\WordPress\Money\Money;
 
-function get_subscriptions( $date, $interval ) {
+function get_subscriptions( $date ) {
 	global $wpdb;
 	global $orbis_subscriptions_plugin;
 
@@ -23,50 +23,19 @@ function get_subscriptions( $date, $interval ) {
 	$join_condition  = 'subscription.id = invoice.subscription_id';
 	$where_condition = '1 = 1';
 
-	switch ( $interval ) {
-		case 'M_OLD':
-			$last_day_month = clone $date;
-			$last_day_month->modify( 'last day of this month' );
+	$last_day_month = clone $date;
+	$last_day_month->modify( 'last day of this month' );
 
-			$day_function = 'DAYOFMONTH';
+	$ahead_limit = new DateTime( '+1 month' );
 
-			$join_condition  .= $wpdb->prepare( ' AND ( YEAR( invoice.start_date ) = %d AND MONTH( invoice.start_date ) = %d )', $date->format( 'Y' ), $date->format( 'n' ) );
-			$where_condition .= $wpdb->prepare( ' AND subscription.activation_date <= %s', $last_day_month->format( 'Y-m-d' ) );
+	$day_function = 'DAYOFYEAR';
 
-			break;
-		case 'Q':
-			$last_day_month = clone $date;
-			$last_day_month->modify( 'last day of this quarter' );
-
-			$day_function = 'DAYOFYEAR';
-
-			$join_condition  .= $wpdb->prepare( ' AND ( YEAR( invoice.start_date ) = %d AND MONTH( invoice.start_date ) = %d )', $date->format( 'Y' ), $date->format( 'n' ) );
-			$where_condition .= $wpdb->prepare( ' AND subscription.activation_date <= %s', $last_day_month->format( 'Y-m-d' ) );
-
-			break;
-		case 'M':
-		case 'Y':
-		case '2Y':
-		case '3Y':
-		default:
-			$last_day_month = clone $date;
-			$last_day_month->modify( 'last day of this month' );
-
-			$ahead_limit = new DateTime( '+1 month' );
-
-			$day_function = 'DAYOFYEAR';
-
-			$where_condition .= ' AND ( ';
-			$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
-			$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
-			$where_condition .= $wpdb->prepare( ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > %s )', '2014-01-01' );
-			$where_condition .= ' AND ( subscription.end_date IS NULL OR subscription.end_date > subscription.expiration_date )';
-			$where_condition .= ' ) ';
-
-			break;
-	}
-
-	$interval_condition = $wpdb->prepare( 'product.interval = %s', $interval );
+	$where_condition .= ' AND ( ';
+	$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
+	$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
+	$where_condition .= $wpdb->prepare( ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > %s )', '2014-01-01' );
+	$where_condition .= ' AND ( subscription.end_date IS NULL OR subscription.end_date > subscription.expiration_date )';
+	$where_condition .= ' ) ';
 
 	$query = "
 		SELECT
@@ -108,8 +77,6 @@ function get_subscriptions( $date, $interval ) {
 		WHERE
 			product.auto_renew
 				AND
-			$interval_condition
-				AND
 			$where_condition
 		GROUP BY
 			subscription.id
@@ -125,22 +92,18 @@ function get_subscriptions( $date, $interval ) {
 // Date
 $date = new DateTimeImmutable( 'first day of this month' );
 
-// Interval
-$interval = 'Y';
-
 // Action URL
 $action_url = add_query_arg(
 	[
 		'post_type' => 'orbis_subscription',
 		'page'      => 'orbis_twinfield',
 		'date'      => $date->format( 'd-m-Y' ),
-		'interval'  => $interval,
 	],
 	admin_url( 'edit.php' ) 
 );
 
 // Subscriptions
-$subscriptions = get_subscriptions( $date, $interval );
+$subscriptions = get_subscriptions( $date );
 
 $companies = [];
 
@@ -225,15 +188,6 @@ foreach ( $subscriptions as $subscription ) {
 	<form method="get">
 		<div class="tablenav top">
 			<div class="alignleft actions bulkactions">
-				<select name="interval">
-					<option value="-1" selected="selected"><?php esc_html_e( 'Interval', 'orbis-subscriptions' ); ?></option>
-					<option value="Y" <?php selected( $interval, 'Y' ); ?>><?php esc_html_e( 'Yearly', 'orbis-subscriptions' ); ?></option>
-					<option value="2Y" <?php selected( $interval, '2Y' ); ?>><?php esc_html_e( 'Two Yearly', 'orbis-subscriptions' ); ?></option>
-					<option value="3Y" <?php selected( $interval, '3Y' ); ?>><?php esc_html_e( 'Three Yearly', 'orbis-subscriptions' ); ?></option>
-					<option value="Q" <?php selected( $interval, 'Q' ); ?>><?php esc_html_e( 'Quarterly', 'orbis-subscriptions' ); ?></option>
-					<option value="M" <?php selected( $interval, 'M' ); ?>><?php esc_html_e( 'Monthly', 'orbis-subscriptions' ); ?></option>
-				</select>
-
 				<input type="hidden" name="post_type" value="orbis_subscription" />
 				<input type="hidden" name="page" value="orbis_twinfield" />
 
@@ -342,6 +296,7 @@ foreach ( $subscriptions as $subscription ) {
 						<tr>
 							<th scope="col"><?php esc_html_e( 'ID', 'orbis-subscriptions' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Interval', 'orbis-subscriptions' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Start Date', 'orbis-subscriptions' ); ?></th>
@@ -352,6 +307,7 @@ foreach ( $subscriptions as $subscription ) {
 
 					<tfoot>
 						<tr>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td>
@@ -389,19 +345,16 @@ foreach ( $subscriptions as $subscription ) {
 							$month = $date_start->format( 'n' );
 
 							switch ( $result->interval ) {
-								// Month
 								case 'M':
 									$date_end = clone $date_start;
 									$date_end->modify( '+1 month' );
 
 									break;
-								// Quarter
 								case 'Q':
 									$date_end = new DateTime( $result->expiration_date );
 									$date_end->modify( '+3 month' );
 
 									break;
-								// Year
 								case '2Y':
 									$date_end = clone $date_start;
 									$date_end->modify( '+2 year' );
@@ -429,6 +382,9 @@ foreach ( $subscriptions as $subscription ) {
 									<a href="<?php echo esc_url( get_permalink( $result->post_id ) ); ?>">
 										<?php echo esc_html( $result->subscription_name ); ?>
 									</a>
+								</td>
+								<td>
+									<?php echo esc_html( $result->interval ); ?>
 								</td>
 								<td>
 									<?php
