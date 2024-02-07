@@ -94,39 +94,6 @@ foreach ( $subscriptions as $subscription ) {
 
 	<?php foreach ( $companies as $company ) : ?>
 
-		<?php
-
-		$twinfield_customer = get_post_meta( $company->post_id, '_twinfield_customer_id', true );
-		$country            = get_post_meta( $company->post_id, '_orbis_country', true );
-
-		$references = [
-			get_post_meta( $company->post_id, '_orbis_invoice_reference', true ),
-		];
-
-		$terms = wp_get_post_terms( $company->post_id, 'orbis_payment_method' );
-
-		$payment_method_term = array_shift( $terms );
-
-		foreach ( $company->subscriptions as $i => $subscription ) {
-			$terms = wp_get_post_terms( $subscription->post_id, 'orbis_payment_method' );
-
-			$term = array_shift( $terms );
-
-			if ( is_object( $term ) ) {
-				$payment_method_term = $term;
-			}
-
-			$references[] = get_post_meta( $subscription->post_id, '_orbis_invoice_reference', true );
-		}
-
-		if ( is_object( $payment_method_term ) ) {
-			$references[] = $payment_method_term->description;
-		}
-
-		$references = array_filter( $references );
-		$references = array_unique( $references );
-
-		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -206,37 +173,29 @@ foreach ( $subscriptions as $subscription ) {
 
 						$name = 'subscriptions[%s][%s]';
 
-						$date_start = new DateTime( empty( $result->billed_to ) ? $result->activation_date : $result->billed_to );
+						$date_start = new DateTimeImmutable( empty( $result->billed_to ) ? $result->activation_date : $result->billed_to );
 						$date_end   = clone $date_start;
-
-						$day   = $date_start->format( 'd' );
-						$month = $date_start->format( 'n' );
 
 						switch ( $result->interval ) {
 							case 'M':
-								$date_end = clone $date_start;
-								$date_end->modify( '+1 month' );
+								$date_end = $date_start->modify( '+1 month' );
 
 								break;
 							case 'Q':
-								$date_end = new DateTime( $result->expiration_date );
-								$date_end->modify( '+3 month' );
+								$date_end = $date_start->modify( '+3 month' );
 
 								break;
 							case '2Y':
-								$date_end = clone $date_start;
-								$date_end->modify( '+2 year' );
+								$date_end = $date_start->modify( '+2 year' );
 
 								break;
 							case '3Y':
-								$date_end = clone $date_start;
-								$date_end->modify( '+3 year' );
+								$date_end = $date_start->modify( '+3 year' );
 
 								break;
 							case 'Y':
 							default:
-								$date_end = clone $date_start;
-								$date_end->modify( '+1 year' );
+								$date_end = $date_start->modify( '+1 year' );
 
 								break;
 						}
