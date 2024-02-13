@@ -280,14 +280,23 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 	if ( 0 === $subscription->count_invoices() ) {
 		$activation_date_string = get_post_meta( $post_id, '_orbis_subscription_activation_date', true );
 
-		$activation_date = DateTimeImmutable::createFromFormat( 'Y-m-d', $activation_date_string )->setTime( 0, 0 );
+		try {
+			$activation_date = DateTimeImmutable::createFromFormat( 'Y-m-d', $activation_date_string );
 
-		$subscription->set_activation_date( $activation_date );
+			if ( false === $activation_date ) {
+				throw new \Exception( 'The subscription activation date text is not in the correct format.' );
+			}
 
-		// Expiration DateTime
-		$expiration_date = $activation_date->modify( '+1 year' );
+			$activation_date = $activation_date->setTime( 0, 0 );
 
-		$subscription->set_expiration_date( $expiration_date );
+			$subscription->set_activation_date( $activation_date );
+
+			$expiration_date = $activation_date->modify( '+1 year' );
+
+			$subscription->set_expiration_date( $expiration_date );
+		} catch ( \Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch -- No problem.
+			
+		}
 	}
 
 	// Save this subscription!
