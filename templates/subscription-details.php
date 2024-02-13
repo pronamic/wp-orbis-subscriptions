@@ -128,7 +128,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 					printf(
 						__( 'to %s', 'orbis-subscriptions' ),
-						$current_period_end_date->format( 'd-m-Y' )
+						esc_html( $current_period_end_date->format( 'd-m-Y' ) )
 					);
 
 					?>
