@@ -23,7 +23,8 @@ $query = $wpdb->prepare(
 		subscription_invoice.created_at,
 		subscription_invoice.start_date,
 		subscription_invoice.end_date,
-		subscription_invoice.invoice_number
+		subscription_invoice.invoice_number,
+		subscription_invoice.invoice_data
 	FROM
 		$wpdb->orbis_subscriptions_invoices AS subscription_invoice
 			LEFT JOIN
@@ -54,7 +55,7 @@ if ( $invoices ) : ?>
 						<th scope="col"><?php esc_html_e( 'User', 'orbis-subscriptions' ); ?></th>
 						<th scope="col"><?php esc_html_e( 'Start Date', 'orbis-subscriptions' ); ?></th>
 						<th scope="col"><?php esc_html_e( 'End Date', 'orbis-subscriptions' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'Invoice Number', 'orbis-subscriptions' ); ?></th>
+						<th scope="col"><?php esc_html_e( 'Invoice', 'orbis-subscriptions' ); ?></th>
 					</tr>
 				</thead>
 
@@ -78,13 +79,14 @@ if ( $invoices ) : ?>
 							<td>
 								<?php
 
-								$invoice_link = orbis_get_invoice_link( $invoice->invoice_number );
+								$invoice_url  = \apply_filters( 'orbis_invoice_url', '', $invoice->invoice_data );
+								$invoice_text = \apply_filters( 'orbis_invoice_text', $invoice->invoice_number, $invoice->invoice_data );
 
-								if ( ! empty( $invoice_link ) ) {
+								if ( '' !== $invoice_url ) {
 									printf(
 										'<a href="%s" target="_blank">%s</a>',
-										esc_attr( $invoice_link ),
-										esc_html( $invoice->invoice_number )
+										esc_url( $invoice_url ),
+										esc_html( $invoice_text )
 									);
 								} else {
 									echo esc_html( $invoice->invoice_number );
