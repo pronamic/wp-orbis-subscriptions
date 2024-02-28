@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-28T10:50:32+00:00\n"
+"POT-Creation-Date: 2024-02-28T11:05:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: orbis-subscriptions\n"
@@ -62,7 +62,7 @@ msgid "Type"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:91
-#: admin/page-billing.php:136
+#: admin/page-billing.php:135
 #: templates/company-subscriptions.php:54
 #: templates/domain-name-subscriptions.php:63
 msgid "Name"
@@ -95,7 +95,6 @@ msgstr ""
 #: admin/meta-box-subscription-details.php:137
 #: templates/company-subscriptions.php:52
 #: templates/domain-name-subscriptions.php:60
-#: templates/subscription-details.php:120
 #: templates/subscriptions-without-agreement.php:38
 msgid "Activation Date"
 msgstr ""
@@ -105,13 +104,12 @@ msgid "Expiration Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:173
-#: admin/page-billing.php:139
-#: templates/subscription-details.php:139
+#: admin/page-billing.php:138
 msgid "Cancel Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:188
-#: templates/subscription-details.php:180
+#: templates/subscription-details.php:166
 msgid "Payment Method"
 msgstr ""
 
@@ -120,21 +118,21 @@ msgid "— Select Payment Method —"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:209
-#: templates/subscription-details.php:187
+#: templates/subscription-details.php:173
 msgid "Invoice reference"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:217
-#: templates/subscription-details.php:196
+#: templates/subscription-details.php:182
 msgid "Invoice Line Description"
 msgstr ""
 
 #: admin/meta-box-subscription-product-details.php:42
-#: admin/page-billing.php:135
+#: admin/page-billing.php:134
 #: includes/post.php:479
 #: templates/company-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:64
-#: templates/subscription-details.php:175
+#: templates/subscription-details.php:161
 #: templates/subscriptions-without-agreement.php:40
 msgid "Price"
 msgstr ""
@@ -162,7 +160,7 @@ msgid "Deprecated subscription product"
 msgstr ""
 
 #: admin/meta-box-subscription-product-details.php:85
-#: admin/page-billing.php:134
+#: admin/page-billing.php:133
 msgid "Interval"
 msgstr ""
 
@@ -198,23 +196,23 @@ msgstr ""
 msgid "Cancel Note"
 msgstr ""
 
-#: admin/page-billing.php:132
+#: admin/page-billing.php:131
 msgid "ID"
 msgstr ""
 
-#: admin/page-billing.php:133
+#: admin/page-billing.php:132
 #: templates/company-subscriptions.php:53
 #: templates/domain-name-subscriptions.php:62
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr ""
 
-#: admin/page-billing.php:137
+#: admin/page-billing.php:136
 #: templates/subscription-invoices.php:56
 msgid "Start Date"
 msgstr ""
 
-#: admin/page-billing.php:138
+#: admin/page-billing.php:137
 #: templates/subscription-invoices.php:57
 msgid "End Date"
 msgstr ""
@@ -396,7 +394,7 @@ msgid "subscription-products"
 msgstr ""
 
 #: includes/post.php:90
-#: templates/subscription-details.php:103
+#: templates/subscription-details.php:94
 msgid "Subscription Details"
 msgstr ""
 
@@ -421,39 +419,43 @@ msgid "No subscriptions found."
 msgstr ""
 
 #: templates/domain-name-subscriptions.php:61
-#: templates/subscription-details.php:108
+#: templates/subscription-details.php:99
 msgid "Company"
 msgstr ""
 
-#: templates/subscription-details.php:113
+#: templates/subscription-details.php:104
 msgid "Status"
 msgstr ""
 
+#: templates/subscription-details.php:111
+msgid "Activation date"
+msgstr ""
+
+#: templates/subscription-details.php:118
+msgid "Expiration date"
+msgstr ""
+
 #: templates/subscription-details.php:125
-msgid "Current Period"
+msgid "Cancel date"
 msgstr ""
 
-#: templates/subscription-details.php:130
-msgid "to %s"
+#: templates/subscription-details.php:132
+msgid "Billed to"
 msgstr ""
 
-#: templates/subscription-details.php:146
-msgid "Billed To"
-msgstr ""
-
-#: templates/subscription-details.php:159
+#: templates/subscription-details.php:145
 msgid "📣 Please note: this subscription may be billed again soon."
 msgstr ""
 
-#: templates/subscription-details.php:167
+#: templates/subscription-details.php:153
 msgid "🚨 Please note: this subscription is billed further in advance than usual."
 msgstr ""
 
-#: templates/subscription-details.php:211
+#: templates/subscription-details.php:197
 msgid "Agreement"
 msgstr ""
 
-#: templates/subscription-details.php:220
+#: templates/subscription-details.php:206
 msgid "Available time per year"
 msgstr ""
 

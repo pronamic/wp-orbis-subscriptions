@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-02-28T10:50:32+00:00\n"
-"PO-Revision-Date: 2024-02-28 11:51+0100\n"
+"POT-Creation-Date: 2024-02-28T11:05:41+00:00\n"
+"PO-Revision-Date: 2024-02-28 12:07+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -65,7 +65,7 @@ msgstr "Bedrijf ID"
 msgid "Type"
 msgstr "Type"
 
-#: admin/meta-box-subscription-details.php:91 admin/page-billing.php:136
+#: admin/meta-box-subscription-details.php:91 admin/page-billing.php:135
 #: templates/company-subscriptions.php:54
 #: templates/domain-name-subscriptions.php:63
 msgid "Name"
@@ -104,7 +104,6 @@ msgstr ""
 #: admin/meta-box-subscription-details.php:137
 #: templates/company-subscriptions.php:52
 #: templates/domain-name-subscriptions.php:60
-#: templates/subscription-details.php:120
 #: templates/subscriptions-without-agreement.php:38
 msgid "Activation Date"
 msgstr "Activatiedatum"
@@ -113,13 +112,12 @@ msgstr "Activatiedatum"
 msgid "Expiration Date"
 msgstr "Vervaldatum"
 
-#: admin/meta-box-subscription-details.php:173 admin/page-billing.php:139
-#: templates/subscription-details.php:139
+#: admin/meta-box-subscription-details.php:173 admin/page-billing.php:138
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
 #: admin/meta-box-subscription-details.php:188
-#: templates/subscription-details.php:180
+#: templates/subscription-details.php:166
 msgid "Payment Method"
 msgstr "Betaalmethode"
 
@@ -128,20 +126,20 @@ msgid "— Select Payment Method —"
 msgstr "— Selecteer betaalmethode —"
 
 #: admin/meta-box-subscription-details.php:209
-#: templates/subscription-details.php:187
+#: templates/subscription-details.php:173
 msgid "Invoice reference"
 msgstr "Factuurreferentie"
 
 #: admin/meta-box-subscription-details.php:217
-#: templates/subscription-details.php:196
+#: templates/subscription-details.php:182
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
 #: admin/meta-box-subscription-product-details.php:42
-#: admin/page-billing.php:135 includes/post.php:479
+#: admin/page-billing.php:134 includes/post.php:479
 #: templates/company-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:64
-#: templates/subscription-details.php:175
+#: templates/subscription-details.php:161
 #: templates/subscriptions-without-agreement.php:40
 msgid "Price"
 msgstr "Prijs"
@@ -167,7 +165,7 @@ msgid "Deprecated subscription product"
 msgstr "Vervallen abonnement product"
 
 #: admin/meta-box-subscription-product-details.php:85
-#: admin/page-billing.php:134
+#: admin/page-billing.php:133
 msgid "Interval"
 msgstr "Interval"
 
@@ -203,21 +201,21 @@ msgstr "Link"
 msgid "Cancel Note"
 msgstr "Annuleringsnotitie"
 
-#: admin/page-billing.php:132
+#: admin/page-billing.php:131
 msgid "ID"
 msgstr "ID"
 
-#: admin/page-billing.php:133 templates/company-subscriptions.php:53
+#: admin/page-billing.php:132 templates/company-subscriptions.php:53
 #: templates/domain-name-subscriptions.php:62
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: admin/page-billing.php:137 templates/subscription-invoices.php:56
+#: admin/page-billing.php:136 templates/subscription-invoices.php:56
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: admin/page-billing.php:138 templates/subscription-invoices.php:57
+#: admin/page-billing.php:137 templates/subscription-invoices.php:57
 msgid "End Date"
 msgstr "Einddatum"
 
@@ -399,7 +397,7 @@ msgctxt "slug"
 msgid "subscription-products"
 msgstr "abonnement-producten"
 
-#: includes/post.php:90 templates/subscription-details.php:103
+#: includes/post.php:90 templates/subscription-details.php:94
 msgid "Subscription Details"
 msgstr "Abonnement details"
 
@@ -424,43 +422,47 @@ msgid "No subscriptions found."
 msgstr "Geen abonnementen gevonden."
 
 #: templates/domain-name-subscriptions.php:61
-#: templates/subscription-details.php:108
+#: templates/subscription-details.php:99
 msgid "Company"
 msgstr "Bedrijf"
 
-#: templates/subscription-details.php:113
+#: templates/subscription-details.php:104
 msgid "Status"
 msgstr "Status"
 
+#: templates/subscription-details.php:111
+msgid "Activation date"
+msgstr "Activatiedatum"
+
+#: templates/subscription-details.php:118
+msgid "Expiration date"
+msgstr "Vervaldatum"
+
 #: templates/subscription-details.php:125
-msgid "Current Period"
-msgstr "Huidige periode"
+msgid "Cancel date"
+msgstr "Opzeggingsdatum"
 
-#: templates/subscription-details.php:130
-msgid "to %s"
-msgstr "tot %s"
-
-#: templates/subscription-details.php:146
-msgid "Billed To"
+#: templates/subscription-details.php:132
+msgid "Billed to"
 msgstr "Gefactureerd tot"
 
-#: templates/subscription-details.php:159
+#: templates/subscription-details.php:145
 msgid "📣 Please note: this subscription may be billed again soon."
 msgstr ""
 "📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd "
 "wordt."
 
-#: templates/subscription-details.php:167
+#: templates/subscription-details.php:153
 msgid ""
 "🚨 Please note: this subscription is billed further in advance than usual."
 msgstr ""
 "🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
 
-#: templates/subscription-details.php:211
+#: templates/subscription-details.php:197
 msgid "Agreement"
 msgstr "Akkoord"
 
-#: templates/subscription-details.php:220
+#: templates/subscription-details.php:206
 msgid "Available time per year"
 msgstr "Beschikbare tijd per jaar"
 
@@ -487,6 +489,15 @@ msgstr "Acties"
 #: templates/subscriptions-without-agreement.php:74
 msgid "Edit"
 msgstr "Bewerken"
+
+#~ msgid "Current Period"
+#~ msgstr "Huidige periode"
+
+#~ msgid "to %s"
+#~ msgstr "tot %s"
+
+#~ msgid "Billed To"
+#~ msgstr "Gefactureerd tot"
 
 #~ msgid ""
 #~ "Orbis has automatically renewed this subscription from \"%s\" to \"%s\", "

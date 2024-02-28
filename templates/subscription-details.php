@@ -62,14 +62,6 @@ $company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->o
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
 
-// Current Period End Date.
-$current_period_end_date = Subscription::get_current_period_end_date(
-	$subscription->activation_date,
-	$subscription->interval,
-	$subscription->cancel_date,
-	$subscription->end_date
-);
-
 // Dates.
 $utc = new \DateTimeZone( 'UTC' );
 
@@ -97,7 +89,6 @@ if ( ! empty( $subscription->billed_to ) ) {
 	$billed_to = new \DateTimeImmutable( $subscription->billed_to, $utc );
 }
 
-
 ?>
 <div class="card mb-3">
 	<div class="card-header"><?php esc_html_e( 'Subscription Details', 'orbis-subscriptions' ); ?></div>
@@ -117,33 +108,28 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 				<?php if ( null !== $activation_date ) : ?>
 
-					<dt><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></dt>
+					<dt><?php esc_html_e( 'Activation date', 'orbis-subscriptions' ); ?></dt>
 					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $activation_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>
 
-				<dt><?php esc_html_e( 'Current Period', 'orbis-subscriptions' ); ?></dt>
-				<dd>
-					<?php 
+				<?php if ( null !== $expiration_date ) : ?>
 
-					printf(
-						__( 'to %s', 'orbis-subscriptions' ),
-						esc_html( $current_period_end_date->format( 'd-m-Y' ) )
-					);
+					<dt><?php esc_html_e( 'Expiration date', 'orbis-subscriptions' ); ?></dt>
+					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $expiration_date->getTimestamp() ) ); ?></dd>
 
-					?>
-				</dd>
+				<?php endif; ?>
 
 				<?php if ( ! empty( $cancel_date ) ) : ?>
 
-					<dt><?php esc_html_e( 'Cancel Date', 'orbis-subscriptions' ); ?></dt>
+					<dt><?php esc_html_e( 'Cancel date', 'orbis-subscriptions' ); ?></dt>
 					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $cancel_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>
 
 				<?php if ( ! empty( $billed_to ) ) : ?>
 
-					<dt><?php esc_html_e( 'Billed To', 'orbis-subscriptions' ); ?></dt>
+					<dt><?php esc_html_e( 'Billed to', 'orbis-subscriptions' ); ?></dt>
 					<dd>
 						<?php
 
