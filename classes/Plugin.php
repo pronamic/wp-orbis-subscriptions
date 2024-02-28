@@ -32,7 +32,6 @@ class Plugin {
 		}
 
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
 		add_shortcode( 'orbis_subscriptions_without_agreement', [ $this, 'shortcode_subscriptions_without_agreement' ] );
 	}
@@ -53,16 +52,6 @@ class Plugin {
 		}
 
 		\register_taxonomy_for_object_type( 'orbis_payment_method', 'orbis_subscription' );
-	}
-
-	public function p2p_init() {
-		p2p_register_connection_type(
-			[
-				'name' => 'orbis_subscriptions_to_persons',
-				'from' => 'orbis_subscription',
-				'to'   => 'orbis_person',
-			] 
-		);
 	}
 
 	/**
