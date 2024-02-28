@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-15T08:32:17+00:00\n"
+"POT-Creation-Date: 2024-02-28T10:50:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: orbis-subscriptions\n"
@@ -243,28 +243,37 @@ msgstr ""
 msgid "Expire Rate"
 msgstr ""
 
-#: classes/AdminController.php:48
+#: classes/AdminController.php:47
 msgid "Orbis Subscriptions Statistics"
 msgstr ""
 
-#: classes/AdminController.php:49
+#: classes/AdminController.php:48
 msgid "Statistics"
 msgstr ""
 
-#: classes/AdminController.php:57
+#: classes/AdminController.php:56
 msgid "Orbis Subscriptions Billing"
 msgstr ""
 
-#: classes/AdminController.php:58
+#: classes/AdminController.php:57
 msgid "Billing"
 msgstr ""
 
-#: classes/AdminController.php:105
+#: classes/AdminController.php:104
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr ""
 
-#: classes/AdminController.php:106
+#: classes/AdminController.php:105
 msgid "canceled"
+msgstr ""
+
+#: classes/RenewController.php:135
+msgid "Orbis subscriptions renewer"
+msgstr ""
+
+#. translators: 1: Old expiration date, 2: New expiration date, 3: Notice period.
+#: classes/RenewController.php:140
+msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
 msgstr ""
 
 #: includes/post.php:11

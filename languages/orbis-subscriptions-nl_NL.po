@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-02-15T08:32:17+00:00\n"
-"PO-Revision-Date: 2024-02-15 09:34+0100\n"
+"POT-Creation-Date: 2024-02-28T10:50:32+00:00\n"
+"PO-Revision-Date: 2024-02-28 11:51+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -245,29 +245,42 @@ msgstr "Totaal"
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
-#: classes/AdminController.php:48
+#: classes/AdminController.php:47
 msgid "Orbis Subscriptions Statistics"
 msgstr "Orbis abonnementen statistieken"
 
-#: classes/AdminController.php:49
+#: classes/AdminController.php:48
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: classes/AdminController.php:57
+#: classes/AdminController.php:56
 msgid "Orbis Subscriptions Billing"
 msgstr "Orbis abonnementen facturering"
 
-#: classes/AdminController.php:58
+#: classes/AdminController.php:57
 msgid "Billing"
 msgstr "Facturering"
 
-#: classes/AdminController.php:105
+#: classes/AdminController.php:104
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr "Dit abonnement is zojuist '%s' door %s."
 
-#: classes/AdminController.php:106
+#: classes/AdminController.php:105
 msgid "canceled"
 msgstr "geannuleerd"
+
+#: classes/RenewController.php:135
+msgid "Orbis subscriptions renewer"
+msgstr "Orbis-abonnementsverlenger"
+
+#. translators: 1: Old expiration date, 2: New expiration date, 3: Notice period.
+#: classes/RenewController.php:140
+msgid ""
+"Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", "
+"taking into account a notice period of %3$s month."
+msgstr ""
+"Orbis heeft dit abonnement automatisch verlengd van “%1$s” naar “%2$s”, met "
+"inachtneming van een opzegtermijn van %3$s maand."
 
 #: includes/post.php:11 includes/post.php:24 includes/template.php:41
 #: templates/domain-name-subscriptions.php:54
@@ -474,6 +487,13 @@ msgstr "Acties"
 #: templates/subscriptions-without-agreement.php:74
 msgid "Edit"
 msgstr "Bewerken"
+
+#~ msgid ""
+#~ "Orbis has automatically renewed this subscription from \"%s\" to \"%s\", "
+#~ "taking into account a notice period of %s month."
+#~ msgstr ""
+#~ "Orbis heeft dit abonnement automatisch verlengd van “%s” naar “%s”, met "
+#~ "inachtneming van een opzegtermijn van %s maand."
 
 #~ msgid "Invoice Number"
 #~ msgstr "Factuurnummer"

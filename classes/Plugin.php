@@ -31,6 +31,8 @@ class Plugin {
 			$this->admin = new AdminController( $this );
 		}
 
+		( new RenewController() )->setup();
+
 		add_action( 'init', [ $this, 'init' ] );
 
 		add_shortcode( 'orbis_subscriptions_without_agreement', [ $this, 'shortcode_subscriptions_without_agreement' ] );
