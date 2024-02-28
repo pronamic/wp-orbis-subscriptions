@@ -24,7 +24,6 @@ class AdminController {
 	 * Plugin
 	 */
 	private $plugin;
-
 	
 	/**
 	 * Constructs and initialize an Orbis Subscriptions admin object
