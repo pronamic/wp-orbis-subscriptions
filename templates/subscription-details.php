@@ -115,7 +115,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 				<?php if ( null !== $expiration_date ) : ?>
 
-					<dt><?php esc_html_e( 'Expiration date', 'orbis-subscriptions' ); ?></dt>
+					<dt><?php esc_html_e( 'Expiration or renewal date', 'orbis-subscriptions' ); ?></dt>
 					<dd><?php echo \esc_html( \wp_date( 'D j M Y', $expiration_date->getTimestamp() ) ); ?></dd>
 
 				<?php endif; ?>

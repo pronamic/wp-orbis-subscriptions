@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-28T11:05:41+00:00\n"
+"POT-Creation-Date: 2024-02-28T11:18:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: orbis-subscriptions\n"
@@ -432,7 +432,7 @@ msgid "Activation date"
 msgstr ""
 
 #: templates/subscription-details.php:118
-msgid "Expiration date"
+msgid "Expiration or renewal date"
 msgstr ""
 
 #: templates/subscription-details.php:125

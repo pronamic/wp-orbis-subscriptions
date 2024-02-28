@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-02-28T11:05:41+00:00\n"
-"PO-Revision-Date: 2024-02-28 12:07+0100\n"
+"POT-Creation-Date: 2024-02-28T11:18:18+00:00\n"
+"PO-Revision-Date: 2024-02-28 12:22+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -435,8 +435,8 @@ msgid "Activation date"
 msgstr "Activatiedatum"
 
 #: templates/subscription-details.php:118
-msgid "Expiration date"
-msgstr "Vervaldatum"
+msgid "Expiration or renewal date"
+msgstr "Verval- of verlengingsdatum"
 
 #: templates/subscription-details.php:125
 msgid "Cancel date"
@@ -489,6 +489,9 @@ msgstr "Acties"
 #: templates/subscriptions-without-agreement.php:74
 msgid "Edit"
 msgstr "Bewerken"
+
+#~ msgid "Expiration date"
+#~ msgstr "Vervaldatum"
 
 #~ msgid "Current Period"
 #~ msgstr "Huidige periode"
