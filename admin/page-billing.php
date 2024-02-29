@@ -41,10 +41,7 @@ $query = "
 		subscription.activation_date,
 		subscription.expiration_date,
 		subscription.cancel_date,
-		subscription.billed_to,
-		DAYOFYEAR( subscription.activation_date ) AS activation_dayofyear,
-		invoice.invoice_number,
-		invoice.start_date
+		subscription.billed_to
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
 			LEFT JOIN
@@ -53,9 +50,6 @@ $query = "
 			LEFT JOIN
 		$wpdb->orbis_subscription_products AS product
 				ON subscription.type_id = product.id
-			LEFT JOIN
-		$wpdb->orbis_subscriptions_invoices AS invoice
-				ON subscription.id = invoice.subscription_id
 	WHERE
 		product.auto_renew
 			AND
