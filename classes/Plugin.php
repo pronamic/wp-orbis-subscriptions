@@ -41,9 +41,10 @@ class Plugin {
 	public function init() {
 		global $wpdb;
 
-		$wpdb->orbis_subscriptions          = $wpdb->prefix . 'orbis_subscriptions';
-		$wpdb->orbis_subscription_products  = $wpdb->prefix . 'orbis_subscription_products';
-		$wpdb->orbis_subscriptions_invoices = $wpdb->prefix . 'orbis_subscriptions_invoices';
+		$wpdb->orbis_subscriptions         = $wpdb->prefix . 'orbis_subscriptions';
+		$wpdb->orbis_subscription_products = $wpdb->prefix . 'orbis_subscription_products';
+		$wpdb->orbis_invoices              = $wpdb->prefix . 'orbis_invoices';
+		$wpdb->orbis_invoices_lines        = $wpdb->prefix . 'orbis_invoices_lines';
 
 		$version = '1.1.11';
 
@@ -104,20 +105,6 @@ class Plugin {
 				time_per_year INT(16) UNSIGNED DEFAULT NULL,
 				PRIMARY KEY  (id)
 			) $charset_collate;
-
-			CREATE TABLE $wpdb->orbis_subscriptions_invoices (
-				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-				created_at DATETIME NOT NULL,
-				subscription_id BIGINT(16) UNSIGNED NOT NULL,
-				invoice_number VARCHAR(128) NOT NULL,
-				invoice_data TEXT,
-				start_date DATE NULL,
-				end_date DATE NULL,
-				user_id BIGINT(20) UNSIGNED DEFAULT NULL,
-				PRIMARY KEY  (id),
-				UNIQUE KEY subscription_invoice_start (subscription_id, invoice_number, start_date),
-				KEY invoice_number (invoice_number)
-			) $charset_collate;
 		";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -126,7 +113,6 @@ class Plugin {
 
 		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscriptions );
 		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscription_products );
-		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscriptions_invoices );
 	}
 
 	public function shortcode_subscriptions_without_agreement() {

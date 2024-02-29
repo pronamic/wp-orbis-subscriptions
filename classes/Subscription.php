@@ -421,7 +421,26 @@ class Subscription {
 
 		return \intval(
 			$wpdb->get_var(
-				$wpdb->prepare( "SELECT COUNT(id) FROM $wpdb->orbis_subscriptions_invoices WHERE subscription_id = %d;", $this->get_id() )
+				$wpdb->prepare(
+					"
+					SELECT
+						COUNT(id)
+					FROM
+						$wpdb->orbis_invoices AS invoice
+							LEFT JOIN
+						$wpdb->orbis_invoices_lines AS invoice_line
+								ON invoice_line.invoice_id = invoice.id
+					WHERE
+						invoice.subscription_id = %d
+							OR
+						invoice_line.subscription_id = %d
+					GROUP BY
+						invoice.id
+					;
+					",
+					$this->get_id(),
+					$this->get_id()
+				)
 			)
 		);
 	}

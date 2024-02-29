@@ -20,21 +20,30 @@ $query = $wpdb->prepare(
 	"
 	SELECT
 		user.display_name AS user_display_name,
-		subscription_invoice.created_at,
-		subscription_invoice.start_date,
-		subscription_invoice.end_date,
-		subscription_invoice.invoice_number,
-		subscription_invoice.invoice_data
+		invoice.created_at,
+		invoice_line.start_date,
+		invoice_line.end_date,
+		invoice.invoice_number,
+		invoice.invoice_data
 	FROM
-		$wpdb->orbis_subscriptions_invoices AS subscription_invoice
+		$wpdb->orbis_invoices AS invoice
+			LEFT JOIN
+		$wpdb->orbis_invoices_lines AS invoice_line
+				ON invoice_line.invoice_id = invoice.id
 			LEFT JOIN
 		$wpdb->users AS user
-				ON user.ID = subscription_invoice.user_id
+				ON user.ID = invoice.user_id
 	WHERE
-		subscription_id = %d
+		invoice.subscription_id = %d
+			OR
+		invoice_line.subscription_id = %d
+	GROUP BY
+		invoice.id
 	ORDER BY
-		start_date ASC
-	;",
+		invoice.created_at ASC
+	;
+	",
+	$id,
 	$id
 );
 
@@ -65,7 +74,13 @@ if ( $invoices ) : ?>
 
 						<tr>
 							<td>
-								<?php echo esc_html( date_i18n( 'D j M Y H:i:s', strtotime( $invoice->created_at ) ) ); ?>
+								<?php
+
+								$created_at = DateTimeImmutable::createFromFormat( 'Y-m-d H:i:s', $invoice->created_at, new DateTimeZone( 'UTC' ) );
+
+								echo \esc_html( date_i18n( 'D j M Y', $created_at->getTimestamp() ) );
+
+								?>
 							</td>
 							<td>
 								<?php echo esc_html( $invoice->user_display_name ); ?>
