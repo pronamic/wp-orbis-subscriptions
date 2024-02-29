@@ -89,15 +89,15 @@ foreach ( $subscriptions as $subscription ) {
 
 ?>
 <div class="wrap">
-	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 	<?php foreach ( $companies as $company ) : ?>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">
+				<h2 class="panel-title">
 					<a href="<?php echo esc_url( get_permalink( $company->post_id ) ); ?>"><?php echo esc_html( $company->name ); ?></a>
-				</h3>
+				</h2>
 			</div>
 
 			<div class="panel-body">
