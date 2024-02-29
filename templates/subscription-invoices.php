@@ -39,7 +39,6 @@ $query = $wpdb->prepare(
 		invoice.created_at ASC
 	;
 	",
-	$id,
 	$id
 );
 
