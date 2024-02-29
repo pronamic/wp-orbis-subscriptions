@@ -26,19 +26,15 @@ $query = $wpdb->prepare(
 		invoice.invoice_number,
 		invoice.invoice_data
 	FROM
-		$wpdb->orbis_invoices AS invoice
-			LEFT JOIN
 		$wpdb->orbis_invoices_lines AS invoice_line
-				ON invoice_line.invoice_id = invoice.id
+			INNER JOIN
+		$wpdb->orbis_invoices AS invoice
+				ON invoice.id = invoice_line.invoice_id
 			LEFT JOIN
 		$wpdb->users AS user
 				ON user.ID = invoice.user_id
 	WHERE
-		invoice.subscription_id = %d
-			OR
 		invoice_line.subscription_id = %d
-	GROUP BY
-		invoice.id
 	ORDER BY
 		invoice.created_at ASC
 	;
