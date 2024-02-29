@@ -36,7 +36,6 @@ class AdminController {
 
 		add_action( 'save_post', [ $this, 'save_post' ] );
 	}
-
 	
 	/**
 	 * Admin menu
