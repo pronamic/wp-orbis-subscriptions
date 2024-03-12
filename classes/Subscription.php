@@ -408,21 +408,16 @@ class Subscription {
 				$wpdb->prepare(
 					"
 					SELECT
-						COUNT(id)
+						COUNT( invoice.id )
 					FROM
 						$wpdb->orbis_invoices AS invoice
-							LEFT JOIN
+							INNER JOIN
 						$wpdb->orbis_invoices_lines AS invoice_line
 								ON invoice_line.invoice_id = invoice.id
 					WHERE
-						invoice.subscription_id = %d
-							OR
 						invoice_line.subscription_id = %d
-					GROUP BY
-						invoice.id
 					;
 					",
-					$this->get_id(),
 					$this->get_id()
 				)
 			)
