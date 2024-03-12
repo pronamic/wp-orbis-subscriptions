@@ -260,13 +260,6 @@ class Subscription {
 		return $result;
 	}
 
-	/**
-	 * ====================
-	 *
-	 * SETTERS AND GETTERS
-	 *
-	 * ====================
-	 */
 	public function get_id() {
 		return $this->id;
 	}
