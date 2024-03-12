@@ -23,7 +23,6 @@ class Plugin {
 
 	private function __construct() {
 		include __DIR__ . '/../includes/post.php';
-		include __DIR__ . '/../includes/subscription-template.php';
 
 		if ( \is_admin() ) {
 			$this->admin = new AdminController( $this );
