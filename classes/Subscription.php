@@ -211,9 +211,6 @@ class Subscription {
 		}
 	}
 
-	public function activate() {
-	}
-
 	public function save() {
 		global $wpdb;
 
