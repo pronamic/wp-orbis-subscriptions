@@ -211,9 +211,6 @@ class Subscription {
 		}
 	}
 
-	public function expire() {
-	}
-
 	public function activate() {
 	}
 
