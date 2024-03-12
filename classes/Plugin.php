@@ -23,8 +23,6 @@ class Plugin {
 
 	private function __construct() {
 		include __DIR__ . '/../includes/post.php';
-		include __DIR__ . '/../includes/subscription.php';
-		include __DIR__ . '/../includes/template.php';
 		include __DIR__ . '/../includes/subscription-template.php';
 
 		if ( \is_admin() ) {
@@ -32,6 +30,8 @@ class Plugin {
 		}
 
 		( new RenewController() )->setup();
+		( new TemplateController() )->setup();
+		( new QueryController() )->setup();
 
 		add_action( 'init', [ $this, 'init' ] );
 

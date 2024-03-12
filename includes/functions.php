@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * Get Orbis subscription
+ *
+ * @see https://github.com/woothemes/woocommerce/blob/v2.0.20/woocommerce-core-functions.php#L22
+ * @see https://github.com/woothemes/woocommerce/blob/v2.0.20/classes/class-wc-product-factory.php#L16
+ *
+ * @param unknown $post
+ */
+function get_orbis_subscription( $post = null ) {
+	$post = get_post( $post );
+
+	if ( isset( $post ) && 'orbis_subscription' === get_post_type( $post ) ) {
+		$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
+	}
+
+	return $subscription;
+}
+
+
+/**
  * Returns a row from the orbis_subscriptions table where the post_id matches the parameter.
  *
  * @global type $wpdb

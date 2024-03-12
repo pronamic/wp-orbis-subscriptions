@@ -1,0 +1,115 @@
+<?php
+/**
+ * Query controller
+ *
+ * @author    Pronamic <info@pronamic.eu>
+ * @copyright 2005-2024 Pronamic
+ * @license   GPL-2.0-or-later
+ * @package   Pronamic\Orbis\Subscriptions
+ */
+
+namespace Pronamic\Orbis\Subscriptions;
+
+use WP_Query;
+
+/**
+ * Query controller class
+ */
+class QueryController {
+	/**
+	 * Setup.
+	 * 
+	 * @return void
+	 */
+	public function setup() {
+		\add_filter( 'posts_clauses', [ $this, 'posts_clauses' ], 10, 2 );
+
+		\add_filter( 'query_vars', [ $this, 'query_vars' ] );
+	}
+
+	/**
+	 * Posts clauses
+	 *
+	 * @link http://codex.wordpress.org/WordPress_Query_Vars
+	 * @link http://codex.wordpress.org/Custom_Queries
+	 * @param array    $pieces
+	 * @param WP_Query $query
+	 * @return string
+	 */
+	public function posts_clauses( $pieces, $query ) {
+		global $wpdb;
+
+		$post_type = $query->get( 'post_type' );
+
+		if ( 'orbis_subscription' === $post_type ) {
+			// Fields
+			$fields = ',
+				subscription.activation_date AS subscription_activation_date,
+				subscription.expiration_date AS subscription_expiration_date,
+				subscription.cancel_date AS subscription_cancel_date,
+				subscription.update_date AS subscription_update_date,
+				subscription_type.name AS subscription_type_name,
+				subscription_type.price AS subscription_type_price
+			';
+
+			// Join
+			$join = "
+				LEFT JOIN
+					$wpdb->orbis_subscriptions AS subscription
+						ON $wpdb->posts.ID = subscription.post_id
+				LEFT JOIN
+					$wpdb->orbis_subscription_products AS subscription_type
+						ON subscription.type_id = subscription_type.id
+			";
+
+			// Where
+			$where = '';
+
+			$pieces['join']   .= $join;
+			$pieces['fields'] .= $fields;
+			$pieces['where']  .= $where;
+		}
+
+		// Subscriptions like
+		if ( 'orbis_company' === $post_type ) {
+			$like = $query->get( 'subscriptions_like', null );
+
+			if ( null !== $like ) {
+				// Join
+				$join = "
+					LEFT JOIN
+						$wpdb->orbis_companies AS company
+							ON $wpdb->posts.ID = company.post_id
+					LEFT JOIN
+						$wpdb->orbis_subscriptions AS subscription
+							ON subscription.company_id = company.id
+					LEFT JOIN
+						$wpdb->orbis_subscription_products AS subscription_product
+							ON subscription.type_id = subscription_product.id
+				";
+
+				// Where
+				$where = $wpdb->prepare( 'AND subscription.cancel_date IS NULL AND subscription_product.name LIKE %s', $like );
+
+				$pieces['join']    .= $join;
+				$pieces['where']   .= $where;
+				$pieces['groupby'] .= "$wpdb->posts.ID";
+			}
+		}
+
+		return $pieces;
+	}
+
+	/**
+	 * Query vars.
+	 *
+	 * @link https://developer.wordpress.org/reference/hooks/query_vars/
+	 * @param array $query_vars Query vars.
+	 * @return array
+	 */
+	public function query_vars( $query_vars ) {
+		$query_vars[] = 'subscriptions_like';
+
+		return $query_vars;
+	}
+}
