@@ -227,13 +227,21 @@ class Subscription {
 			$expiration_date = \DateTimeImmutable::createFromInterface( $expiration_date );
 		}
 
+		if ( null === $activation_date ) {
+			$activation_date = new \DateTimeImmutable();
+		}
+
+		if ( null === $expiration_date ) {
+			$expiration_date = new \DateTimeImmutable();
+		}
+
 		$data = [
 			'company_id'      => $this->get_company_id(),
 			'type_id'         => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
-			'activation_date' => ( null === $activation_date ) ? null : $activation_date->format( 'Y-m-d' ),
-			'expiration_date' => ( null === $expiration_date ) ? null : $expiration_date->format( 'Y-m-d' ),
+			'activation_date' => $activation_date->format( 'Y-m-d' ),
+			'expiration_date' => $expiration_date->format( 'Y-m-d' ),
 			'update_date'     => ( null === $update_date ) ? null : $update_date->format( 'Y-m-d' ),
 		];
 
