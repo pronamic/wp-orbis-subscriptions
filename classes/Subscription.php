@@ -260,9 +260,6 @@ class Subscription {
 		return $result;
 	}
 
-	public function remove() {
-	}
-
 	/**
 	 * ====================
 	 *
