@@ -7,8 +7,8 @@ function orbis_subscription_get_the_price() {
 
 	$price = null;
 
-	if ( isset( $post->subscription_type_price ) ) {
-		$price = $post->subscription_type_price;
+	if ( isset( $post->product_price ) ) {
+		$price = $post->product_price;
 	}
 
 	return $price;
