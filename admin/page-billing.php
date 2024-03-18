@@ -35,7 +35,7 @@ $query = "
 		product.interval,
 		product.post_id AS product_post_id,
 		subscription.id,
-		subscription.type_id,
+		subscription.product_id,
 		subscription.post_id,
 		subscription.name,
 		subscription.activation_date,
@@ -48,8 +48,8 @@ $query = "
 		$wpdb->orbis_companies AS company
 				ON subscription.company_id = company.id
 			LEFT JOIN
-		$wpdb->orbis_subscription_products AS product
-				ON subscription.type_id = product.id
+		$wpdb->orbis_products AS product
+				ON subscription.product_id = product.id
 	WHERE
 		product.auto_renew
 			AND

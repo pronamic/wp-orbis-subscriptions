@@ -22,9 +22,9 @@ $subscription = get_orbis_subscription( $post );
 
 $product_id = $subscription->get_product_id();
 
-$query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_subscription_products WHERE ( NOT deprecated OR id = %d ) ORDER BY name;", $product_id );
+$query = $wpdb->prepare( "SELECT * FROM $wpdb->orbis_products WHERE ( NOT deprecated OR id = %d ) ORDER BY name;", $product_id );
 
-$subscription_products = $wpdb->get_results( $query, OBJECT_K );
+$products = $wpdb->get_results( $query, OBJECT_K );
 
 $agreement_id = get_post_meta( $post->ID, '_orbis_subscription_agreement_id', true );
 
@@ -65,19 +65,19 @@ $utc = new \DateTimeZone( 'UTC' );
 
 				<?php
 
-				foreach ( $subscription_products as $subscription_product ) {
-					$price = new Money( $subscription_product->price, 'EUR' );
+				foreach ( $products as $product ) {
+					$price = new Money( $product->price, 'EUR' );
 
 					$text = sprintf(
 						'%s (%s)',
-						$subscription_product->name,
+						$product->name,
 						$price->format_i18n()
 					);
 
 					printf(
 						'<option value="%s" %s>%s</option>',
-						esc_attr( $subscription_product->id ),
-						selected( $subscription_product->id, $product_id, false ),
+						esc_attr( $product->id ),
+						selected( $product->id, $product_id, false ),
 						esc_html( $text )
 					);
 				}

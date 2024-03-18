@@ -22,7 +22,7 @@ global $wpdb, $post;
 
 $orbis_id        = get_post_meta( $post->ID, '_orbis_subscription_id', true );
 $company_id      = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
-$type_id         = get_post_meta( $post->ID, '_orbis_subscription_type_id', true );
+$product_id      = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
 $name            = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_date', true );
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
@@ -37,8 +37,8 @@ $query = $wpdb->prepare(
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
 			INNER JOIN
-		$wpdb->orbis_subscription_products AS product
-				ON subscription.type_id = product.id
+		$wpdb->orbis_products AS product
+				ON subscription.product_id = product.id
 	WHERE
 		subscription.post_id = %d
 	LIMIT
@@ -51,7 +51,7 @@ $subscription = $wpdb->get_row( $query );
 
 $orbis_id        = $subscription->id;
 $company_id      = $subscription->company_id;
-$type_id         = $subscription->type_id;
+$product_id      = $subscription->product_id;
 $name            = $subscription->name;
 $activation_date = $subscription->activation_date;
 $expiration_date = $subscription->expiration_date;

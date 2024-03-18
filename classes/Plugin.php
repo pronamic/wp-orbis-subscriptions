@@ -40,10 +40,9 @@ class Plugin {
 	public function init() {
 		global $wpdb;
 
-		$wpdb->orbis_subscriptions         = $wpdb->prefix . 'orbis_subscriptions';
-		$wpdb->orbis_subscription_products = $wpdb->prefix . 'orbis_subscription_products';
-		$wpdb->orbis_invoices              = $wpdb->prefix . 'orbis_invoices';
-		$wpdb->orbis_invoices_lines        = $wpdb->prefix . 'orbis_invoices_lines';
+		$wpdb->orbis_subscriptions  = $wpdb->prefix . 'orbis_subscriptions';
+		$wpdb->orbis_invoices       = $wpdb->prefix . 'orbis_invoices';
+		$wpdb->orbis_invoices_lines = $wpdb->prefix . 'orbis_invoices_lines';
 
 		$version = '1.1.11';
 
@@ -87,23 +86,6 @@ class Plugin {
 				KEY type_id (type_id),
 				KEY domain_name_id (domain_name_id)
 			) $charset_collate;
-
-			CREATE TABLE $wpdb->orbis_subscription_products (
-				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
-				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
-				name VARCHAR(64) NOT NULL,
-				price FLOAT NOT NULL,
-				cost_price FLOAT NULL,
-				notes TEXT NULL,
-				legacy_id BIGINT(16) UNSIGNED NULL,
-				`type_default` BOOLEAN NOT NULL DEFAULT FALSE,
-				twinfield_article VARCHAR(8) NOT NULL,
-				auto_renew BOOLEAN NOT NULL DEFAULT TRUE,
-				deprecated BOOLEAN NOT NULL DEFAULT FALSE,
-				`interval` VARCHAR(2) NOT NULL DEFAULT 'Y',
-				time_per_year INT(16) UNSIGNED DEFAULT NULL,
-				PRIMARY KEY  (id)
-			) $charset_collate;
 		";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -111,7 +93,6 @@ class Plugin {
 		dbDelta( $sql );
 
 		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscriptions );
-		\maybe_convert_table_to_utf8mb4( $wpdb->orbis_subscription_products );
 	}
 
 	public function shortcode_subscriptions_without_agreement() {

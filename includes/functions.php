@@ -69,8 +69,8 @@ function orbis_subscription_get_data( $post_id ) {
 		FROM
 			$wpdb->orbis_subscriptions AS subscription
 				LEFT JOIN
-			$wpdb->orbis_subscription_products AS product
-					ON subscription.type_id = product.id
+			$wpdb->orbis_products AS product
+					ON subscription.product_id = product.id
 				LEFT JOIN
 			$wpdb->orbis_companies AS company
 					ON subscription.company_id = company.id
@@ -118,8 +118,8 @@ function orbis_subscriptions_suggest_subscription_id() {
 		FROM
 			$wpdb->orbis_subscriptions AS subscription
 				LEFT JOIN
-			$wpdb->orbis_subscription_products AS product
-					ON subscription.type_id = product.id
+			$wpdb->orbis_products AS product
+					ON subscription.product_id = product.id
 			$join
 		WHERE
 			(

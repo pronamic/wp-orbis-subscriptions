@@ -48,8 +48,8 @@ class QueryController {
 				subscription.expiration_date AS subscription_expiration_date,
 				subscription.cancel_date AS subscription_cancel_date,
 				subscription.update_date AS subscription_update_date,
-				subscription_type.name AS subscription_type_name,
-				subscription_type.price AS subscription_type_price
+				product.name AS product_name,
+				product.price AS product_price
 			';
 
 			// Join
@@ -58,8 +58,8 @@ class QueryController {
 					$wpdb->orbis_subscriptions AS subscription
 						ON $wpdb->posts.ID = subscription.post_id
 				LEFT JOIN
-					$wpdb->orbis_subscription_products AS subscription_type
-						ON subscription.type_id = subscription_type.id
+					$wpdb->orbis_products AS product
+						ON subscription.product_id = product.id
 			";
 
 			// Where
@@ -84,8 +84,8 @@ class QueryController {
 						$wpdb->orbis_subscriptions AS subscription
 							ON subscription.company_id = company.id
 					LEFT JOIN
-						$wpdb->orbis_subscription_products AS subscription_product
-							ON subscription.type_id = subscription_product.id
+						$wpdb->orbis_products AS product
+							ON subscription.product_id = product.id
 				";
 
 				// Where

@@ -27,10 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			COUNT( IF( subscription.expiration_date < NOW(), subscription.id, NULL ) ) AS expired_count,
 			COUNT( subscription.id ) AS total_count
 		FROM
-			$wpdb->orbis_subscription_products AS product
+			$wpdb->orbis_products AS product
 				LEFT JOIN
 			$wpdb->orbis_subscriptions AS subscription
-					ON subscription.type_id = product.id
+					ON subscription.product_id = product.id
 		GROUP BY
 			product.id
 		;

@@ -19,26 +19,26 @@ global $wpdb;
 $query = $wpdb->prepare(
 	"
 	SELECT
-		s.id, 
-		s.type_id,
-		st.name AS subscription_name,
-		st.price,
-		s.name,
-		s.activation_date,
-		s.cancel_date IS NOT NULL AS canceled,
-		s.post_id,
-		c.post_id AS company_post_id,
-		c.name AS company_name
+		subscription.id, 
+		subscription.product_id,
+		product.name AS product_name,
+		product.price,
+		subscription.name,
+		subscription.activation_date,
+		subscription.cancel_date IS NOT NULL AS canceled,
+		subscription.post_id,
+		company.post_id AS company_post_id,
+		company.name AS company_name
 	FROM
-		$wpdb->orbis_subscriptions AS s
+		$wpdb->orbis_subscriptions AS subscription
 			LEFT JOIN
-		$wpdb->orbis_subscription_products AS st
-				ON s.type_id = st.id
+		$wpdb->orbis_products AS product
+				ON subscription.product_id = product.id
 			LEFT JOIN
-		$wpdb->orbis_companies AS c
-				ON s.company_id = c.id
+		$wpdb->orbis_companies AS company
+				ON subscription.company_id = company.id
 	WHERE
-		s.name LIKE %s
+		subscription.name LIKE %s
 	ORDER BY
 		activation_date ASC
 	;",
@@ -88,7 +88,7 @@ if ( $subscriptions ) : ?>
 						</td>
 						<td>
 							<a href="<?php echo esc_url( get_permalink( $subscription->post_id ) ); ?>" target="_blank">
-								<?php echo esc_html( $subscription->subscription_name ); ?>
+								<?php echo esc_html( $subscription->product_name ); ?>
 							</a>
 						</td>
 						<td>
