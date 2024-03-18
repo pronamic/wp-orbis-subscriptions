@@ -149,7 +149,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 	// OK
 	$definition = [
 		'_orbis_subscription_company_id'      => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_type_id'         => FILTER_SANITIZE_STRING,
+		'_orbis_subscription_product_id'      => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_name'            => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_agreement_id'    => FILTER_SANITIZE_STRING,
 		'_orbis_subscription_activation_date' => FILTER_SANITIZE_STRING,

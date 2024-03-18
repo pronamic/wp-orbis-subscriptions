@@ -237,7 +237,7 @@ class Subscription {
 
 		$data = [
 			'company_id'      => $this->get_company_id(),
-			'type_id'         => $this->get_product_id(),
+			'product_id'      => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
 			'activation_date' => $activation_date->format( 'Y-m-d' ),
@@ -247,7 +247,7 @@ class Subscription {
 
 		$format = [
 			'company_id'      => '%d',
-			'type_id'         => '%d',
+			'product_id'      => '%d',
 			'post_id'         => '%d',
 			'name'            => '%s',
 			'activation_date' => '%s',

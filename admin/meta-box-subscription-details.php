@@ -57,10 +57,10 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_type"><?php esc_html_e( 'Type', 'orbis-subscriptions' ); ?></label>
+			<label for="orbis_subscription_product"><?php esc_html_e( 'Product', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
-			<select id="orbis_subscription_type" name="_orbis_subscription_type_id">
+			<select id="orbis_subscription_product" name="_orbis_subscription_product_id">
 				<option value=""></option>
 
 				<?php

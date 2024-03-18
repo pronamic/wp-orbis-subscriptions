@@ -70,7 +70,7 @@ class Plugin {
 			CREATE TABLE $wpdb->orbis_subscriptions (
 				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 				company_id BIGINT(16) UNSIGNED DEFAULT NULL,
-				type_id BIGINT(16) UNSIGNED DEFAULT NULL,
+				product_id BIGINT(16) UNSIGNED DEFAULT NULL,
 				domain_name_id BIGINT(32) UNSIGNED DEFAULT NULL,
 				post_id BIGINT(20) UNSIGNED DEFAULT NULL,
 				name VARCHAR(128) NOT NULL,
@@ -83,7 +83,7 @@ class Plugin {
 				PRIMARY KEY  (id),
 				UNIQUE KEY post_id (post_id),
 				KEY company_id (company_id),
-				KEY type_id (type_id),
+				KEY product_id (product_id),
 				KEY domain_name_id (domain_name_id)
 			) $charset_collate;
 		";
