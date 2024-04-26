@@ -19,8 +19,8 @@ global $wpdb;
 $where_condition = '1 = 1';
 
 $where_condition .= ' AND ( ';
-$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 1 MONTH ) )';
-$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 1 MONTH ) )';
+$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
+$where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
 $where_condition .= ' AND ( subscription.end_date IS NULL OR subscription.end_date > subscription.expiration_date )';
 $where_condition .= ' ) ';
 
