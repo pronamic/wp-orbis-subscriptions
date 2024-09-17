@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@wordpress/env": "^9.4.0",
-		"@wordpress/scripts": "^27.3.0"
+		"@wordpress/scripts": "^29.0.0"
 	},
 	"scripts": {
 		"lint:pkg-json": "wp-scripts lint-pkg-json"
