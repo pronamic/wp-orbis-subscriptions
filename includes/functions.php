@@ -15,7 +15,14 @@ function orbis_subscription_get_the_price() {
 }
 
 function orbis_subscription_the_price() {
-	$price = new Money( orbis_subscription_get_the_price(), 'EUR' );
+	$value = orbis_subscription_get_the_price();
+
+	if ( null === $value ) {
+		return '';
+	}
+
+	$price = new Money( $value, 'EUR' );
+
 	echo esc_html( $price->format_i18n() );
 }
 
