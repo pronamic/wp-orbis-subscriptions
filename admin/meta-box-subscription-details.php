@@ -139,7 +139,8 @@ $utc = new \DateTimeZone( 'UTC' );
 
 		$date = $subscription->get_expiration_date();
 
-		$value = '';
+		$value = \wp_date( 'Y-m-d' );
+
 		if ( $date ) {
 			$value = \wp_date( 'Y-m-d', $date->getTimestamp() );
 		}
