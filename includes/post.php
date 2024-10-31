@@ -147,23 +147,30 @@ function orbis_save_subscription_details( $post_id, $post ) {
 	}
 
 	// OK
-	$definition = [
-		'_orbis_subscription_company_id'      => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_product_id'      => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_name'            => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_agreement_id'    => FILTER_SANITIZE_STRING,
-		'_orbis_subscription_activation_date' => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_reference'            => FILTER_SANITIZE_STRING,
-		'_orbis_invoice_line_description'     => FILTER_SANITIZE_STRING,
+	$fields = [
+		'_orbis_subscription_company_id',
+		'_orbis_subscription_product_id',
+		'_orbis_subscription_name',
+		'_orbis_subscription_agreement_id',
+		'_orbis_subscription_activation_date',
+		'_orbis_invoice_reference',
+		'_orbis_invoice_line_description',
 	];
 
-	$data = filter_input_array( INPUT_POST, $definition );
+	$fields = \array_filter(
+		$fields,
+		function ( $field ) {
+			return \array_key_exists( $field, $_POST );
+		}
+	);
 
-	foreach ( $data as $key => $value ) {
+	foreach ( $fields as $field ) {
+		$value = \sanitize_text_field( \wp_unslash( $_POST[ $field ] ) );
+
 		if ( empty( $value ) ) {
-			delete_post_meta( $post_id, $key );
+			delete_post_meta( $post_id, $field );
 		} else {
-			update_post_meta( $post_id, $key, $value );
+			update_post_meta( $post_id, $field, $value );
 		}
 	}
 }
