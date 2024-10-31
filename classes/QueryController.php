@@ -65,6 +65,12 @@ class QueryController {
 			// Where
 			$where = '';
 
+			$product_post_id = $query->get( 'orbis_product_post_id' );
+
+			if ( '' !== $product_post_id ) {
+				$where = $wpdb->prepare( 'AND product.post_id = %d', $product_post_id );
+			}
+
 			$pieces['join']   .= $join;
 			$pieces['fields'] .= $fields;
 			$pieces['where']  .= $where;
@@ -109,6 +115,7 @@ class QueryController {
 	 */
 	public function query_vars( $query_vars ) {
 		$query_vars[] = 'subscriptions_like';
+		$query_vars[] = 'orbis_product_post_id';
 
 		return $query_vars;
 	}
