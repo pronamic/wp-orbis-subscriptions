@@ -57,30 +57,52 @@ function get_orbis_subscription( $post = null ) {
 function orbis_subscription_get_data( $post_id ) {
 	global $wpdb;
 
-	$query = "
-		SELECT
-			subscription.id,
-			subscription.post_id,
-			subscription.name,
-			subscription.activation_date,
-			subscription.expiration_date,
-			subscription.cancel_date,
-			subscription.update_date,
+	$fields = '
+		subscription.id,
+		subscription.post_id,
+		subscription.name,
+		subscription.activation_date,
+		subscription.expiration_date,
+		subscription.cancel_date,
+		subscription.update_date
+	';
+
+	$join = "$wpdb->orbis_subscriptions AS subscription";
+
+	if ( isset( $wpdb->orbis_companies ) ) {
+		$fields .= ',
 			company.id AS company_id,
 			company.name AS company_name,
-			company.e_mail AS company_email,
+			company.e_mail AS company_email
+		';
+
+		$join .= "
+				LEFT JOIN
+			$wpdb->orbis_companies AS company
+					ON subscription.company_id = company.id
+		";
+	}
+
+	if ( isset( $wpdb->orbis_products ) ) {
+		$fields .= ',
 			product.id AS product_id,
 			product.name AS product_name,
 			product.price AS product_price,
 			product.auto_renew AS product_auto_renew
-		FROM
-			$wpdb->orbis_subscriptions AS subscription
+		';
+
+		$join .= "
 				LEFT JOIN
 			$wpdb->orbis_products AS product
 					ON subscription.product_id = product.id
-				LEFT JOIN
-			$wpdb->orbis_companies AS company
-					ON subscription.company_id = company.id
+		";
+	}
+
+	$query = "
+		SELECT
+			$fields
+		FROM
+			$join
 		WHERE
 			subscription.post_id = %d
 	";
