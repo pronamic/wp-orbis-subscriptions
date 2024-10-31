@@ -28,6 +28,8 @@ class TemplateController {
 
 		\add_action( 'orbis_after_main_content', [ $this, 'maybe_include_domain_name_subscriptions' ] );
 
+		\add_action( 'orbis_after_main_content', [ $this, 'maybe_include_product_subscriptions' ] );
+
 		\add_filter( 'orbis_company_sections', [ $this, 'orbis_company_sections_subscriptions' ] );
 	}
 
@@ -68,6 +70,19 @@ class TemplateController {
 		}
 
 		include __DIR__ . '/../templates/domain-name-subscriptions.php';
+	}
+
+	/**
+	 * Maybe include product subscriptions.
+	 * 
+	 * @return void
+	 */
+	public function maybe_include_product_subscriptions() {
+		if ( ! \is_singular( 'orbis_product' ) ) {
+			return;
+		}
+
+		include __DIR__ . '/../templates/product-subscriptions.php';
 	}
 
 	/**
