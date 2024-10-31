@@ -126,18 +126,12 @@ $utc = new \DateTimeZone( 'UTC' );
 			$value = \wp_date( 'Y-m-d', $date->getTimestamp() );
 		}
 
-		$readonly = '';
-
-		if ( $subscription->count_invoices() > 0 ) {
-			$readonly = 'readonly="readonly"';
-		} 
-
 		?>
 		<th scope="row">
 			<label for="orbis_subscription_activation_date"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="date" <?php echo $readonly; ?> class="regular-text" />
+			<input id="orbis_subscription_activation_date" name="_orbis_subscription_activation_date" value="<?php echo esc_attr( $value ); ?>" type="date" class="regular-text" />
 		</td>
 	</tr>
 	<tr valign="top">
@@ -155,7 +149,12 @@ $utc = new \DateTimeZone( 'UTC' );
 			<label for="orbis_subscription_expiration_date"><?php esc_html_e( 'Expiration Date', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
-			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="date" readonly="readonly" class="regular-text" />
+			<input id="orbis_subscription_expiration_date" name="_orbis_subscription_expiration_date" value="<?php echo esc_attr( $value ); ?>" type="date" class="regular-text" />
+
+			<p class="description">
+				<?php esc_html_e( 'For new subscriptions the expiration date can be the same as the activation date.', 'orbis-subscriptions' ); ?><br />
+				<?php esc_html_e( 'The Orbis subscriptions renewer will automatically renew the subscription to the correct expiration date.', 'orbis-subscriptions' ); ?>
+			</p>
 		</td>
 	</tr>
 	<tr valign="top">

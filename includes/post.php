@@ -153,6 +153,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 		'_orbis_subscription_name',
 		'_orbis_subscription_agreement_id',
 		'_orbis_subscription_activation_date',
+		'_orbis_subscription_expiration_date',
 		'_orbis_invoice_reference',
 		'_orbis_invoice_line_description',
 	];
@@ -231,6 +232,25 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 			$activation_date = $result->setTime( 0, 0, 0 );
 
 			$subscription->set_activation_date( $activation_date );
+		}
+	} catch ( \Exception $e ) {
+		// Nothing to-do.
+	}
+
+	/**
+	 * Expiration date.
+	 * 
+	 * @link https://github.com/pronamic/wp-orbis-subscriptions/issues/40
+	 */
+	$expiration_date_string = get_post_meta( $post_id, '_orbis_subscription_expiration_date', true );
+
+	try {
+		$result = DateTimeImmutable::createFromFormat( 'Y-m-d', $expiration_date_string, new DateTimeZone( 'GMT' ) );
+
+		if ( false !== $result ) {
+			$expiration_date = $result->setTime( 0, 0, 0 );
+
+			$subscription->set_expiration_date( $expiration_date );
 		}
 	} catch ( \Exception $e ) {
 		// Nothing to-do.
