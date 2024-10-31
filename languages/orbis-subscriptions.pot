@@ -9,33 +9,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-28T11:18:18+00:00\n"
+"POT-Creation-Date: 2024-10-31T14:02:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: orbis-subscriptions\n"
 
 #. Plugin Name of the plugin
-#: orbis-subscriptions.php
 msgid "Orbis Subscriptions"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: orbis-subscriptions.php
 msgid "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
 msgstr ""
 
 #. Description of the plugin
-#: orbis-subscriptions.php
 msgid "The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions."
 msgstr ""
 
 #. Author of the plugin
-#: orbis-subscriptions.php
 msgid "Pronamic"
 msgstr ""
 
 #. Author URI of the plugin
-#: orbis-subscriptions.php
 msgid "https://www.pronamic.eu/"
 msgstr ""
 
@@ -48,8 +43,6 @@ msgid "Cancel Subscription"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:40
-#: admin/meta-box-subscription-product-details.php:34
-#: includes/post.php:482
 msgid "Orbis ID"
 msgstr ""
 
@@ -58,13 +51,15 @@ msgid "Company ID"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:60
-msgid "Type"
+#: admin/page-statistics.php:50
+msgid "Product"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:91
-#: admin/page-billing.php:135
+#: admin/page-billing.php:129
 #: templates/company-subscriptions.php:54
 #: templates/domain-name-subscriptions.php:63
+#: templates/product-subscriptions.php:63
 msgid "Name"
 msgstr ""
 
@@ -104,7 +99,7 @@ msgid "Expiration Date"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:173
-#: admin/page-billing.php:138
+#: admin/page-billing.php:132
 msgid "Cancel Date"
 msgstr ""
 
@@ -127,9 +122,22 @@ msgstr ""
 msgid "Invoice Line Description"
 msgstr ""
 
-#: admin/meta-box-subscription-product-details.php:42
-#: admin/page-billing.php:134
-#: includes/post.php:479
+#: admin/page-billing.php:125
+msgid "ID"
+msgstr ""
+
+#: admin/page-billing.php:126
+#: templates/company-subscriptions.php:53
+#: templates/domain-name-subscriptions.php:62
+#: templates/subscriptions-without-agreement.php:39
+msgid "Subscription"
+msgstr ""
+
+#: admin/page-billing.php:127
+msgid "Interval"
+msgstr ""
+
+#: admin/page-billing.php:128
 #: templates/company-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:64
 #: templates/subscription-details.php:161
@@ -137,92 +145,18 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: admin/meta-box-subscription-product-details.php:50
-#: includes/post.php:480
-msgid "Cost Price"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:59
-msgid "Auto Renew"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:65
-msgid "Auto renew subscription product"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:72
-#: includes/post.php:481
-msgid "Deprecated"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:78
-msgid "Deprecated subscription product"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:85
-#: admin/page-billing.php:133
-msgid "Interval"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:95
-msgid "Yearly"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:96
-msgid "Two Yearly"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:97
-msgid "Three Yearly"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:98
-msgid "Monthly"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:99
-msgid "Quarterly"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:119
-msgid "Description"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:129
-msgid "Link"
-msgstr ""
-
-#: admin/meta-box-subscription-product-details.php:139
-msgid "Cancel Note"
-msgstr ""
-
-#: admin/page-billing.php:131
-msgid "ID"
-msgstr ""
-
-#: admin/page-billing.php:132
-#: templates/company-subscriptions.php:53
-#: templates/domain-name-subscriptions.php:62
-#: templates/subscriptions-without-agreement.php:39
-msgid "Subscription"
-msgstr ""
-
-#: admin/page-billing.php:136
-#: templates/subscription-invoices.php:56
+#: admin/page-billing.php:130
+#: templates/subscription-invoices.php:60
 msgid "Start Date"
 msgstr ""
 
-#: admin/page-billing.php:137
-#: templates/subscription-invoices.php:57
+#: admin/page-billing.php:131
+#: templates/subscription-invoices.php:61
 msgid "End Date"
 msgstr ""
 
 #: admin/page-statistics.php:44
 msgid "All"
-msgstr ""
-
-#: admin/page-statistics.php:50
-msgid "Product"
 msgstr ""
 
 #: admin/page-statistics.php:51
@@ -241,27 +175,27 @@ msgstr ""
 msgid "Expire Rate"
 msgstr ""
 
-#: classes/AdminController.php:47
+#: classes/AdminController.php:46
 msgid "Orbis Subscriptions Statistics"
 msgstr ""
 
-#: classes/AdminController.php:48
+#: classes/AdminController.php:47
 msgid "Statistics"
 msgstr ""
 
-#: classes/AdminController.php:56
+#: classes/AdminController.php:55
 msgid "Orbis Subscriptions Billing"
 msgstr ""
 
-#: classes/AdminController.php:57
+#: classes/AdminController.php:56
 msgid "Billing"
 msgstr ""
 
-#: classes/AdminController.php:104
+#: classes/AdminController.php:103
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr ""
 
-#: classes/AdminController.php:105
+#: classes/AdminController.php:104
 msgid "canceled"
 msgstr ""
 
@@ -274,9 +208,9 @@ msgstr ""
 msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
 msgstr ""
 
+#: classes/TemplateController.php:97
 #: includes/post.php:11
 #: includes/post.php:24
-#: includes/template.php:41
 #: templates/domain-name-subscriptions.php:54
 msgid "Subscriptions"
 msgstr ""
@@ -333,85 +267,13 @@ msgctxt "slug"
 msgid "subscriptions"
 msgstr ""
 
-#: includes/post.php:48
-msgid "Subscription Products"
-msgstr ""
-
-#: includes/post.php:50
-msgctxt "post type general name"
-msgid "Subscription Products"
-msgstr ""
-
-#: includes/post.php:51
-msgctxt "post type singular name"
-msgid "Subscription Product"
-msgstr ""
-
-#: includes/post.php:52
-msgctxt "orbis_subs_type"
-msgid "Add New"
-msgstr ""
-
-#: includes/post.php:53
-msgid "Add New Subscription Product"
-msgstr ""
-
 #: includes/post.php:54
-msgid "Edit Subscription Product"
-msgstr ""
-
-#: includes/post.php:55
-msgid "New Subscription Product"
-msgstr ""
-
-#: includes/post.php:56
-msgid "View Subscription Product"
-msgstr ""
-
-#: includes/post.php:57
-msgid "Search Subscription Products"
-msgstr ""
-
-#: includes/post.php:58
-msgid "No subscription products found"
-msgstr ""
-
-#: includes/post.php:59
-msgid "No subscription products found in Trash"
-msgstr ""
-
-#: includes/post.php:60
-msgid "Parent Subscription Product:"
-msgstr ""
-
-#: includes/post.php:61
-msgid "Products"
-msgstr ""
-
-#: includes/post.php:76
-msgctxt "slug"
-msgid "subscription-products"
-msgstr ""
-
-#: includes/post.php:90
 #: templates/subscription-details.php:94
 msgid "Subscription Details"
 msgstr ""
 
-#: includes/post.php:99
+#: includes/post.php:63
 msgid "Subscription Actions"
-msgstr ""
-
-#: includes/post.php:108
-msgid "Subscription Product Details"
-msgstr ""
-
-#: includes/post.php:552
-msgid "Yes"
-msgstr ""
-
-#: includes/post.php:552
-msgid "No"
 msgstr ""
 
 #: templates/company-subscriptions.php:102
@@ -419,16 +281,26 @@ msgid "No subscriptions found."
 msgstr ""
 
 #: templates/domain-name-subscriptions.php:61
+#: templates/product-subscriptions.php:62
 #: templates/subscription-details.php:99
 msgid "Company"
 msgstr ""
 
-#: templates/subscription-details.php:104
-msgid "Status"
+#: templates/product-subscriptions.php:55
+msgid "Most recent subscriptions"
 msgstr ""
 
+#: templates/product-subscriptions.php:61
 #: templates/subscription-details.php:111
 msgid "Activation date"
+msgstr ""
+
+#: templates/product-subscriptions.php:113
+msgid "View all subscriptions"
+msgstr ""
+
+#: templates/subscription-details.php:104
+msgid "Status"
 msgstr ""
 
 #: templates/subscription-details.php:118
@@ -459,19 +331,19 @@ msgstr ""
 msgid "Available time per year"
 msgstr ""
 
-#: templates/subscription-invoices.php:47
+#: templates/subscription-invoices.php:51
 msgid "Invoices"
 msgstr ""
 
-#: templates/subscription-invoices.php:54
+#: templates/subscription-invoices.php:58
 msgid "Create Date"
 msgstr ""
 
-#: templates/subscription-invoices.php:55
+#: templates/subscription-invoices.php:59
 msgid "User"
 msgstr ""
 
-#: templates/subscription-invoices.php:58
+#: templates/subscription-invoices.php:62
 msgid "Invoice"
 msgstr ""
 
