@@ -194,10 +194,10 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		return;
 	}
 
-	$company_id = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
-	$product_id = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
-	$name       = get_post_meta( $post_id, '_orbis_subscription_name', true );
-	$agreement  = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
+	$company_id      = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
+	$product_id      = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
+	$name            = get_post_meta( $post_id, '_orbis_subscription_name', true );
+	$agreement       = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
 
 	// Get the subscription object
 	$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
@@ -209,6 +209,25 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		->set_post_id( $post_id )
 		->set_name( $name )
 		->set_agreement_id( $agreement );
+
+	/**
+	 * Activation date.
+	 * 
+	 * @link https://github.com/pronamic/wp-orbis-subscriptions/issues/40
+	 */
+	$activation_date_string = get_post_meta( $post_id, '_orbis_subscription_activation_date', true );
+
+	try {
+		$result = DateTimeImmutable::createFromFormat( 'Y-m-d', $activation_date_string, new DateTimeZone( 'GMT' ) );
+
+		if ( false !== $result ) {
+			$activation_date = $result->setTime( 0, 0, 0 );
+
+			$subscription->set_activation_date( $activation_date );
+		}
+	} catch ( \Exception $e ) {
+		// Nothing to-do.
+	}
 
 	$subscription->save();
 }
