@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
 "subscriptions\n"
-"POT-Creation-Date: 2024-10-31T14:02:41+00:00\n"
-"PO-Revision-Date: 2024-10-31 15:03+0100\n"
+"POT-Creation-Date: 2024-10-31T18:54:50+00:00\n"
+"PO-Revision-Date: 2024-10-31 19:55+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -16,14 +16,17 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 #. Plugin Name of the plugin
+#: orbis-subscriptions.php
 msgid "Orbis Subscriptions"
 msgstr "Orbis Subscriptions"
 
 #. Plugin URI of the plugin
+#: orbis-subscriptions.php
 msgid "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
 msgstr "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
 
 #. Description of the plugin
+#: orbis-subscriptions.php
 msgid ""
 "The Orbis Subscriptions plugin extends your Orbis environment with the "
 "option to add subscription products and subscriptions."
@@ -32,10 +35,12 @@ msgstr ""
 "mogelijkheid om abonnementsproducten en abonnementen toe te voegen."
 
 #. Author of the plugin
+#: orbis-subscriptions.php
 msgid "Pronamic"
 msgstr "Pronamic"
 
 #. Author URI of the plugin
+#: orbis-subscriptions.php
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
@@ -96,16 +101,32 @@ msgstr ""
 "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
 "conversatie uit met een PDF-printer."
 
-#: admin/meta-box-subscription-details.php:137
+#: admin/meta-box-subscription-details.php:131
 #: templates/company-subscriptions.php:52
 #: templates/domain-name-subscriptions.php:60
 #: templates/subscriptions-without-agreement.php:38
 msgid "Activation Date"
 msgstr "Activatiedatum"
 
-#: admin/meta-box-subscription-details.php:155
+#: admin/meta-box-subscription-details.php:150
 msgid "Expiration Date"
 msgstr "Vervaldatum"
+
+#: admin/meta-box-subscription-details.php:156
+msgid ""
+"For new subscriptions the expiration date can be the same as the activation "
+"date."
+msgstr ""
+"Voor nieuwe abonnementen kan de vervaldatum gelijk zijn aan de "
+"activeringsdatum."
+
+#: admin/meta-box-subscription-details.php:157
+msgid ""
+"The Orbis subscriptions renewer will automatically renew the subscription to "
+"the correct expiration date."
+msgstr ""
+"De Orbis-abonnementsverlenger verlengt het abonnement automatisch tot de "
+"juiste vervaldatum."
 
 #: admin/meta-box-subscription-details.php:173 admin/page-billing.php:132
 msgid "Cancel Date"
