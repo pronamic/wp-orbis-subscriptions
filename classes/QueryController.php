@@ -24,6 +24,8 @@ class QueryController {
 	public function setup() {
 		\add_filter( 'posts_clauses', [ $this, 'posts_clauses' ], 10, 2 );
 
+		\add_filter( 'posts_orderby', [ $this, 'posts_orderby' ], 10, 2 );
+
 		\add_filter( 'query_vars', [ $this, 'query_vars' ] );
 	}
 
@@ -118,5 +120,22 @@ class QueryController {
 		$query_vars[] = 'orbis_product_post_id';
 
 		return $query_vars;
+	}
+
+	/**
+	 * Posts orderby.
+	 *
+	 * @see https://github.com/WordPress/WordPress/blob/4.6.1/wp-includes/query.php#L3355-L3363
+	 * @see https://github.com/WordPress/WordPress/blob/4.6.1/wp-includes/query.php#L2310-L2403
+	 * @param string $orderby
+	 * @param WP_Query $query
+	 * @return string
+	 */
+	public function posts_orderby( $orderby, $query ) {
+		if ( 'active_subscriptions' === $query->get( 'orderby' ) ) {
+			$orderby = 'subscription.cancel_date ' . $query->get( 'order' );
+		}
+
+		return $orderby;
 	}
 }
