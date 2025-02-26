@@ -98,23 +98,23 @@ if ( $subscriptions ) : ?>
 		</table>
 
 		<div class="card-footer">
-    		<?php
+			<?php
 
-    		$url = \add_query_arg(
-    			[
-    				'orbis_product_post_id' => \get_the_ID(),
-    			],
-    			\get_post_type_archive_link( 'orbis_subscription' )
-    		);
+			$url = \add_query_arg(
+				[
+					'orbis_product_post_id' => \get_the_ID(),
+				],
+				\get_post_type_archive_link( 'orbis_subscription' )
+			);
 
-    		\printf(
-    			'<a href="%s" class="card-link">%s</a>',
-    			\esc_url( $url ),
-    			\esc_html__( 'View all subscriptions', 'orbis-subscriptions' )
-    		);
+			\printf(
+				'<a href="%s" class="card-link">%s</a>',
+				\esc_url( $url ),
+				\esc_html__( 'View all subscriptions', 'orbis-subscriptions' )
+			);
 
-    		?>
-    	</div>
+			?>
+		</div>
 	</div>
 
 <?php endif; ?>
