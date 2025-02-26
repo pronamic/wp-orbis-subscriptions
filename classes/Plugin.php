@@ -29,6 +29,7 @@ class Plugin {
 		}
 
 		( new RenewController() )->setup();
+		( new SubscribersExportController() )->setup();
 		( new TemplateController() )->setup();
 		( new QueryController() )->setup();
 
