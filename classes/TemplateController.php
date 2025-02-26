@@ -97,7 +97,7 @@ class TemplateController {
 			'name'     => \__( 'Subscriptions', 'orbis-subscriptions' ),
 			'callback' => function () {
 				include __DIR__ . '/../templates/company-subscriptions.php';
-			}
+			},
 		];
 
 		return $sections;
