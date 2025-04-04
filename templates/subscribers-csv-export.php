@@ -83,11 +83,14 @@ header( 'Content-Type: text/plain' );
 
 $out = fopen( 'php://output', 'w' );
 
+$date = \date( 'Y-m-d' );
+
 foreach ( $data as $item ) {
 	$fields = [
 		$item->user_email,
 		$item->user_display_name,
 		$item->number_subscriptions > 0 ? 'yes' : 'no',
+		$date,
 		// implode( ', ', wp_list_pluck( $active_subscriptions, 'subscription_name' ) ),
 	];
 
