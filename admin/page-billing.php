@@ -18,8 +18,10 @@ global $wpdb;
 
 $where_condition = '1 = 1';
 
+$days = array_key_exists( 'orbis_days', $_GET ) ? \sanitize_text_field( \wp_unslash( $_GET['orbis_days'] ) ) : 14;
+
 $where_condition .= ' AND ( ';
-$where_condition .= ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL 14 DAY ) )';
+$where_condition .= $wpdb->prepare( ' ( subscription.billed_to IS NULL OR subscription.billed_to < DATE_ADD( CURDATE(), INTERVAL %d DAY ) )', $days );
 $where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.cancel_date > DATE_SUB( subscription.expiration_date, INTERVAL 14 DAY ) )';
 $where_condition .= ' AND ( subscription.end_date IS NULL OR subscription.end_date > subscription.expiration_date )';
 $where_condition .= ' ) ';
