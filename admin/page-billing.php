@@ -26,6 +26,16 @@ $where_condition .= ' AND ( subscription.cancel_date IS NULL OR subscription.can
 $where_condition .= ' AND ( subscription.end_date IS NULL OR subscription.end_date > subscription.expiration_date )';
 $where_condition .= ' ) ';
 
+if ( array_key_exists( 'billing_until', $_GET ) ) {
+	$billing_until_string = \sanitize_text_field( \wp_unslash( $_GET['billing_until'] ) );
+
+	$billing_until_date = DateTimeImmutable::createFromFormat( 'Y-m-d', $billing_until_string );
+
+	if ( $billing_until_date instanceof DateTimeImmutable ) {
+		$where_condition .= $wpdb->prepare( ' AND IFNULL( subscription.billed_to, subscription.activation_date ) <= %s ', $billing_until_date->format( 'Y-m-d' ) );
+	}
+}
+
 $query = "
 	SELECT
 		company.id AS company_id,
