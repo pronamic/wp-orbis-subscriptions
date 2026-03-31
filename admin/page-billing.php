@@ -41,6 +41,8 @@ $query = "
 		company.id AS company_id,
 		company.name AS company_name,
 		company.post_id AS company_post_id,
+		billing_group.id AS billing_group_id,
+		billing_group.name AS billing_group_name,
 		product.name AS subscription_name,
 		product.price,
 		product.twinfield_article,
@@ -62,6 +64,9 @@ $query = "
 			LEFT JOIN
 		$wpdb->orbis_products AS product
 				ON subscription.product_id = product.id
+			LEFT JOIN
+		wp_orbis_billing_groups AS billing_group
+				ON subscription.billing_group_id = billing_group.id
 	WHERE
 		product.auto_renew
 			AND
@@ -77,20 +82,25 @@ $subscriptions = $wpdb->get_results( $query );
 $companies = [];
 
 foreach ( $subscriptions as $subscription ) {
-	$company_id = $subscription->company_id;
+	$company_id       = $subscription->company_id;
+	$billing_group_id = $subscription->billing_group_id;
 
-	if ( ! isset( $companies[ $company_id ] ) ) {
+	$group_key = $company_id . '_' . ( $billing_group_id ?? '' );
+
+	if ( ! isset( $companies[ $group_key ] ) ) {
 		$company = new stdClass();
 
-		$company->id            = $subscription->company_id;
-		$company->name          = $subscription->company_name;
-		$company->post_id       = $subscription->company_post_id;
-		$company->subscriptions = [];
+		$company->id                 = $subscription->company_id;
+		$company->name               = $subscription->company_name;
+		$company->post_id            = $subscription->company_post_id;
+		$company->billing_group_id   = $subscription->billing_group_id;
+		$company->billing_group_name = $subscription->billing_group_name;
+		$company->subscriptions      = [];
 
-		$companies[ $company_id ] = $company;
+		$companies[ $group_key ] = $company;
 	}
 
-	$companies[ $company_id ]->subscriptions[] = $subscription;
+	$companies[ $group_key ]->subscriptions[] = $subscription;
 }
 
 ?>
@@ -103,6 +113,9 @@ foreach ( $subscriptions as $subscription ) {
 			<div class="panel-heading">
 				<h2 class="panel-title">
 					<a href="<?php echo esc_url( get_permalink( $company->post_id ) ); ?>"><?php echo esc_html( $company->name ); ?></a>
+					<?php if ( null !== $company->billing_group_id ) : ?>
+						— <?php echo esc_html( $company->billing_group_name ); ?>
+					<?php endif; ?>
 				</h2>
 			</div>
 
@@ -112,11 +125,17 @@ foreach ( $subscriptions as $subscription ) {
 
 					$ids = wp_list_pluck( $company->subscriptions, 'id' );
 
+					$query_args = [
+						'orbis_company_id'       => $company->id,
+						'orbis_subscription_ids' => implode( ',', $ids ),
+					];
+
+					if ( null !== $company->billing_group_id ) {
+						$query_args['orbis_billing_group_id'] = $company->billing_group_id;
+					}
+
 					$url = add_query_arg(
-						[
-							'orbis_company_id'       => $company->id,
-							'orbis_subscription_ids' => implode( ',', $ids ),
-						],
+						$query_args,
 						home_url( 'moneybird/sales-invoices/new' )
 					);
 
