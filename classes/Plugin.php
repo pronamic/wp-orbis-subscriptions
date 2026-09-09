@@ -13,6 +13,13 @@ namespace Pronamic\Orbis\Subscriptions;
 class Plugin {
 	private static $instance = null;
 
+	/**
+	 * Admin controller.
+	 *
+	 * @var AdminController|null
+	 */
+	private $admin = null;
+
 	public static function instance() {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
