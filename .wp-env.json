@@ -14,6 +14,6 @@
 	],
 	"mappings": {
 		"wp-content/plugins/orbis-subscriptions-dev": "./",
-		"wp-content/plugins/orbis-subscriptions": "./build/project/"
+		"wp-content/plugins/orbis-subscriptions": "./build/orbis-subscriptions/"
 	}
 }
