@@ -18,7 +18,7 @@ use DateTimeImmutable;
 class RenewController {
 	/**
 	 * Setup.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function setup() {
@@ -27,7 +27,7 @@ class RenewController {
 
 	/**
 	 * Initialize.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function init() {
@@ -47,7 +47,7 @@ class RenewController {
 
 	/**
 	 * Renew subscriptions.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function renew_subscriptions() {
