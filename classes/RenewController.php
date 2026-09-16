@@ -11,6 +11,7 @@
 namespace Pronamic\Orbis\Subscriptions;
 
 use DateTimeImmutable;
+use WP_CLI;
 
 /**
  * Renew controller class
@@ -23,6 +24,7 @@ class RenewController {
 	 */
 	public function setup() {
 		\add_action( 'init', [ $this, 'init' ] );
+		\add_action( 'cli_init', [ $this, 'cli_init' ] );
 	}
 
 	/**
@@ -42,6 +44,27 @@ class RenewController {
 				'orbis-subscriptions',
 				true
 			);
+		}
+	}
+
+	/**
+	 * CLI initialize.
+	 *
+	 * @return void
+	 */
+	public function cli_init() {
+		WP_CLI::add_command( 'orbis-subscriptions renew', [ $this, 'renew_subscriptions' ] );
+	}
+
+	/**
+	 * Log.
+	 *
+	 * @param string $message Message.
+	 * @return void
+	 */
+	private function log( $message ) {
+		if ( method_exists( WP_CLI::class, 'log' ) ) {
+			WP_CLI::log( $message );
 		}
 	}
 
@@ -91,6 +114,8 @@ class RenewController {
 		);
 
 		foreach ( $data as $item ) {
+			$this->log( \sprintf( 'Renewing subscription #%d.', $item->subscription_id ) );
+
 			$expiration_date_old = DateTimeImmutable::createFromFormat( 'Y-m-d', $item->subscription_expiration_date );
 
 			if ( false === $expiration_date_old ) {
@@ -154,6 +179,8 @@ class RenewController {
 					],
 				]
 			);
+
+			$this->log( \sprintf( 'Renewed subscription #%d from "%s" to "%s".', $item->subscription_id, $expiration_date_old->format( 'Y-m-d' ), $expiration_date_new->format( 'Y-m-d' ) ) );
 		}
 	}
 }
