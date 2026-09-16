@@ -98,6 +98,10 @@ class RenewController {
 			}
 
 			switch ( $item->product_interval ) {
+				case '2Y':
+					$expiration_date_new = $expiration_date_old->modify( '+2 year' );
+
+					break;
 				case 'Y':
 					$expiration_date_new = $expiration_date_old->modify( '+1 year' );
 
