@@ -39,6 +39,7 @@ class Plugin {
 		( new SubscribersExportController() )->setup();
 		( new TemplateController() )->setup();
 		( new QueryController() )->setup();
+		( new AbilitiesController() )->setup();
 
 		add_action( 'init', [ $this, 'init' ] );
 
