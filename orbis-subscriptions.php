@@ -12,8 +12,8 @@
  * Plugin URI:        https://wp.pronamic.directory/plugins/orbis-subscriptions/
  * Description:       The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions.
  * Version:           1.2.0
- * Requires at least: 5.2
- * Requires PHP:      7.2
+ * Requires at least: 7.1
+ * Requires PHP:      8.2
  * Author:            Pronamic
  * Author URI:        https://www.pronamic.eu/
  * Text Domain:       orbis-subscriptions

@@ -2,8 +2,8 @@
 Contributors: pronamic, remcotolsma, rubendroogh
 Donate link: http://www.pronamic.eu/donate/
 Tags: orbis, subscription, licence
-Requires at least: 3.5
-Tested up to: 4.1
+Requires at least: 7.1
+Tested up to: 7.1
 Stable tag: 1.2.0
 License: Copyright (c) Pronamic
 License URI: http://www.pronamic.eu/copyright/
