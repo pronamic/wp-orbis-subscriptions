@@ -26,7 +26,8 @@
 		"wp-cli/dist-archive-command": "*",
 		"wp-cli/wp-cli-bundle": "*",
 		"deployer/deployer": "^7.5",
-		"roots/wordpress-no-content": "^7.1"
+		"roots/wordpress-no-content": "^7.1",
+		"rector/rector": "^2.6"
 	},
 	"scripts": {
 		"build": [
@@ -46,6 +47,7 @@
 			"vendor/bin/wp i18n update-po ./languages/orbis-subscriptions.pot"
 		],
 		"phpcs": "vendor/bin/phpcs",
+		"rector": "vendor/bin/rector process --dry-run",
 		"qa": [
 			"@phpcs"
 		]
