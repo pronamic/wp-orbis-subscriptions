@@ -16,6 +16,7 @@
 		"wp-slug": "orbis-subscriptions"
 	},
 	"require": {
+		"php": ">=8.2",
 		"automattic/jetpack-autoloader": "^3.0",
 		"pronamic/wp-money": "^2.4",
 		"woocommerce/action-scheduler": "^3.7"
