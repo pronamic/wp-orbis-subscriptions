@@ -227,13 +227,9 @@ class Subscription {
 			$expiration_date = \DateTimeImmutable::createFromInterface( $expiration_date );
 		}
 
-		if ( null === $activation_date ) {
-			$activation_date = new \DateTimeImmutable();
-		}
+		$activation_date ??= new \DateTimeImmutable();
 
-		if ( null === $expiration_date ) {
-			$expiration_date = new \DateTimeImmutable();
-		}
+		$expiration_date ??= new \DateTimeImmutable();
 
 		$data = [
 			'company_id'      => $this->get_company_id(),

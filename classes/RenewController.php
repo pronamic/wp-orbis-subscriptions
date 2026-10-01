@@ -23,8 +23,8 @@ class RenewController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_action( 'init', [ $this, 'init' ] );
-		\add_action( 'cli_init', [ $this, 'cli_init' ] );
+		\add_action( 'init', $this->init( ... ) );
+		\add_action( 'cli_init', $this->cli_init( ... ) );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class RenewController {
 	 * @return void
 	 */
 	public function init() {
-		\add_action( 'orbis_subscriptions_renew_subscriptions', [ $this, 'renew_subscriptions' ] );
+		\add_action( 'orbis_subscriptions_renew_subscriptions', $this->renew_subscriptions( ... ) );
 
 		if ( false === \as_has_scheduled_action( 'orbis_subscriptions_renew_subscriptions' ) ) {
 			\as_schedule_recurring_action(
@@ -53,7 +53,7 @@ class RenewController {
 	 * @return void
 	 */
 	public function cli_init() {
-		WP_CLI::add_command( 'orbis-subscriptions renew', [ $this, 'renew_subscriptions' ] );
+		WP_CLI::add_command( 'orbis-subscriptions renew', $this->renew_subscriptions( ... ) );
 	}
 
 	/**
@@ -122,22 +122,12 @@ class RenewController {
 				throw new \Exception( 'Cannot process the expiration date: ' . \esc_html( $item->subscription_expiration_date ) );
 			}
 
-			switch ( $item->product_interval ) {
-				case '2Y':
-					$expiration_date_new = $expiration_date_old->modify( '+2 year' );
-
-					break;
-				case 'Y':
-					$expiration_date_new = $expiration_date_old->modify( '+1 year' );
-
-					break;
-				case 'M':
-					$expiration_date_new = $expiration_date_old->modify( '+1 month' );
-
-					break;
-				default:
-					throw new \Exception( 'Unsupported product interval: ' . \esc_html( $item->product_interval ) );
-			}
+			$expiration_date_new = match ( $item->product_interval ) {
+				'2Y' => $expiration_date_old->modify( '+2 year' ),
+				'Y' => $expiration_date_old->modify( '+1 year' ),
+				'M' => $expiration_date_old->modify( '+1 month' ),
+				default => throw new \Exception( 'Unsupported product interval: ' . \esc_html( $item->product_interval ) ),
+			};
 
 			$result = $wpdb->update(
 				$wpdb->orbis_subscriptions,

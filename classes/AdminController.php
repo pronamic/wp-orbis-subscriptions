@@ -21,22 +21,20 @@ namespace Pronamic\Orbis\Subscriptions;
  */
 class AdminController {
 	/**
-	 * Plugin
-	 */
-	private $plugin;
-	
-	/**
 	 * Constructs and initialize an Orbis Subscriptions admin object
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
-
+	public function __construct(
+		/**
+		 * Plugin
+		 */
+		private $plugin
+	) {
 		// Actions
-		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_menu', $this->admin_menu( ... ) );
 
-		add_action( 'save_post', [ $this, 'save_post' ] );
+		add_action( 'save_post', $this->save_post( ... ) );
 	}
-	
+
 	/**
 	 * Admin menu
 	 */
@@ -47,7 +45,7 @@ class AdminController {
 			__( 'Statistics', 'orbis-subscriptions' ),
 			'manage_options',
 			'orbis_subscriptions_statistics',
-			[ $this, 'page_statistics' ]
+			$this->page_statistics( ... )
 		);
 
 		\add_submenu_page(
@@ -56,13 +54,13 @@ class AdminController {
 			\__( 'Billing', 'orbis-subscriptions' ),
 			'manage_options',
 			'orbis_subscriptions_billing',
-			[ $this, 'page_billing' ]
+			$this->page_billing( ... )
 		);
 	}
 
 	/**
 	 * Page statistics.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function page_statistics() {
@@ -71,13 +69,13 @@ class AdminController {
 
 	/**
 	 * Page billing.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function page_billing() {
 		include __DIR__ . '/../admin/page-billing.php';
 	}
-	
+
 	/**
 	 * Save post
 	 */

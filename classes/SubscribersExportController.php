@@ -22,11 +22,11 @@ class SubscribersExportController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_action( 'init', [ $this, 'init' ] );
+		\add_action( 'init', $this->init( ... ) );
 
-		\add_filter( 'query_vars', [ $this, 'query_vars' ] );
-		\add_filter( 'redirect_canonical', [ $this, 'disable_redirect_canonical_for_csv_export' ] );
-		\add_filter( 'template_include', [ $this, 'template_include' ] );
+		\add_filter( 'query_vars', $this->query_vars( ... ) );
+		\add_filter( 'redirect_canonical', $this->disable_redirect_canonical_for_csv_export( ... ) );
+		\add_filter( 'template_include', $this->template_include( ... ) );
 	}
 
 	/**
@@ -86,12 +86,10 @@ class SubscribersExportController {
 			return $template;
 		}
 
-		switch ( $route ) {
-			case 'subscribers_csv_export':
-				return $this->template_include_subscribers_csv_export( $template );
-			default:
-				return $template;
-		}
+		return match ( $route ) {
+			'subscribers_csv_export' => $this->template_include_subscribers_csv_export( $template ),
+			default => $template,
+		};
 	}
 
 	/**

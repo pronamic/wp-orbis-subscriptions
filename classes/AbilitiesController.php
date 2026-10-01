@@ -22,10 +22,10 @@ class AbilitiesController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_action( 'wp_abilities_api_categories_init', [ $this, 'register_ability_categories' ] );
-		\add_action( 'wp_abilities_api_init', [ $this, 'register_abilities' ] );
+		\add_action( 'wp_abilities_api_categories_init', $this->register_ability_categories( ... ) );
+		\add_action( 'wp_abilities_api_init', $this->register_abilities( ... ) );
 
-		\add_filter( 'orbis_mcp_server_tools', [ $this, 'mcp_server_tools' ] );
+		\add_filter( 'orbis_mcp_server_tools', $this->mcp_server_tools( ... ) );
 	}
 
 	/**
@@ -160,10 +160,8 @@ class AbilitiesController {
 						],
 					],
 				],
-				'execute_callback'    => [ $this, 'search_subscriptions' ],
-				'permission_callback' => function () {
-					return \current_user_can( 'edit_posts' );
-				},
+				'execute_callback'    => $this->search_subscriptions( ... ),
+				'permission_callback' => fn() => \current_user_can( 'edit_posts' ),
 				'meta'                => [
 					'show_in_rest' => true,
 					'annotations'  => [
@@ -313,7 +311,7 @@ class AbilitiesController {
 			'total'         => $total,
 			'page'          => $page,
 			'per_page'      => $per_page,
-			'subscriptions' => \array_map( [ $this, 'format_subscription' ], $results ),
+			'subscriptions' => \array_map( $this->format_subscription( ... ), $results ),
 		];
 	}
 

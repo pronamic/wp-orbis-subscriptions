@@ -22,11 +22,11 @@ class QueryController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_filter( 'posts_clauses', [ $this, 'posts_clauses' ], 10, 2 );
+		\add_filter( 'posts_clauses', $this->posts_clauses( ... ), 10, 2 );
 
-		\add_filter( 'posts_orderby', [ $this, 'posts_orderby' ], 10, 2 );
+		\add_filter( 'posts_orderby', $this->posts_orderby( ... ), 10, 2 );
 
-		\add_filter( 'query_vars', [ $this, 'query_vars' ] );
+		\add_filter( 'query_vars', $this->query_vars( ... ) );
 	}
 
 	/**

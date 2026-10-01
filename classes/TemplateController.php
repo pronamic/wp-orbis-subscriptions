@@ -22,15 +22,15 @@ class TemplateController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_action( 'orbis_after_main_content', [ $this, 'maybe_include_subscription_invoices' ] );
+		\add_action( 'orbis_after_main_content', $this->maybe_include_subscription_invoices( ... ) );
 
-		\add_action( 'orbis_before_side_content', [ $this, 'maybe_include_subscription_details' ] );
+		\add_action( 'orbis_before_side_content', $this->maybe_include_subscription_details( ... ) );
 
-		\add_action( 'orbis_after_main_content', [ $this, 'maybe_include_domain_name_subscriptions' ] );
+		\add_action( 'orbis_after_main_content', $this->maybe_include_domain_name_subscriptions( ... ) );
 
-		\add_action( 'orbis_after_main_content', [ $this, 'maybe_include_product_subscriptions' ] );
+		\add_action( 'orbis_after_main_content', $this->maybe_include_product_subscriptions( ... ) );
 
-		\add_filter( 'orbis_company_sections', [ $this, 'orbis_company_sections_subscriptions' ] );
+		\add_filter( 'orbis_company_sections', $this->orbis_company_sections_subscriptions( ... ) );
 	}
 
 	/**
@@ -95,7 +95,7 @@ class TemplateController {
 		$sections[] = [
 			'id'       => 'subscriptions',
 			'name'     => \__( 'Subscriptions', 'orbis-subscriptions' ),
-			'callback' => function () {
+			'callback' => function (): void {
 				include __DIR__ . '/../templates/company-subscriptions.php';
 			},
 		];

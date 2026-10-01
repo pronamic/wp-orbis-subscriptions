@@ -21,9 +21,7 @@ class Plugin {
 	private $admin = null;
 
 	public static function instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
+		self::$instance ??= new self();
  
 		return self::$instance;
 	}
@@ -41,9 +39,9 @@ class Plugin {
 		( new QueryController() )->setup();
 		( new AbilitiesController() )->setup();
 
-		add_action( 'init', [ $this, 'init' ] );
+		add_action( 'init', $this->init( ... ) );
 
-		add_shortcode( 'orbis_subscriptions_without_agreement', [ $this, 'shortcode_subscriptions_without_agreement' ] );
+		add_shortcode( 'orbis_subscriptions_without_agreement', $this->shortcode_subscriptions_without_agreement( ... ) );
 	}
 
 	public function init() {

@@ -202,10 +202,10 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		return;
 	}
 
-	$company_id      = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
-	$product_id      = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
-	$name            = get_post_meta( $post_id, '_orbis_subscription_name', true );
-	$agreement       = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
+	$company_id = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
+	$product_id = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
+	$name       = get_post_meta( $post_id, '_orbis_subscription_name', true );
+	$agreement  = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
 
 	// Get the subscription object
 	$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
