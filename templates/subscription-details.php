@@ -103,7 +103,7 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 				<dt><?php esc_html_e( 'Status', 'orbis-subscriptions' ); ?></dt>
 				<dd>
-					<?php get_template_part( 'templates/subscription-badges' ); ?>
+					<?php include __DIR__ . '/subscription-badges.php'; ?>
 				</dd>
 
 				<?php if ( null !== $activation_date ) : ?>

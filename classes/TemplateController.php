@@ -22,6 +22,8 @@ class TemplateController {
 	 * @return void
 	 */
 	public function setup() {
+		\add_filter( 'template_include', $this->template_include( ... ) );
+
 		\add_action( 'orbis_after_main_content', $this->maybe_include_subscription_invoices( ... ) );
 
 		\add_action( 'orbis_before_side_content', $this->maybe_include_subscription_details( ... ) );
@@ -31,6 +33,26 @@ class TemplateController {
 		\add_action( 'orbis_after_main_content', $this->maybe_include_product_subscriptions( ... ) );
 
 		\add_filter( 'orbis_company_sections', $this->orbis_company_sections_subscriptions( ... ) );
+	}
+
+	/**
+	 * Template include.
+	 *
+	 * Uses the single and archive subscription templates of this plugin, unless the theme has one.
+	 *
+	 * @param string $template Template.
+	 * @return string
+	 */
+	public function template_include( $template ) {
+		if ( \is_singular( 'orbis_subscription' ) && '' === \locate_template( 'single-orbis_subscription.php' ) ) {
+			return __DIR__ . '/../templates/single-orbis_subscription.php';
+		}
+
+		if ( \is_post_type_archive( 'orbis_subscription' ) && '' === \locate_template( 'archive-orbis_subscription.php' ) ) {
+			return __DIR__ . '/../templates/archive-orbis_subscription.php';
+		}
+
+		return $template;
 	}
 
 	/**

@@ -1,46 +1,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Subscriptions\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-"
-"subscriptions\n"
-"POT-Creation-Date: 2024-10-31T18:54:50+00:00\n"
-"PO-Revision-Date: 2024-10-31 19:55+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/orbis-subscriptions\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
-"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-31T18:54:50+00:00\n"
+"PO-Revision-Date: 2026-10-06T18:12:07+00:00\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.5\n"
 
 #. Plugin Name of the plugin
-#: orbis-subscriptions.php
+#: orbis-subscriptions.php:11
+#: classes/AbilitiesController.php:53
 msgid "Orbis Subscriptions"
 msgstr "Orbis Subscriptions"
 
 #. Plugin URI of the plugin
-#: orbis-subscriptions.php
+#: orbis-subscriptions.php:12
 msgid "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
 msgstr "https://wp.pronamic.directory/plugins/orbis-subscriptions/"
 
 #. Description of the plugin
-#: orbis-subscriptions.php
-msgid ""
-"The Orbis Subscriptions plugin extends your Orbis environment with the "
-"option to add subscription products and subscriptions."
-msgstr ""
-"De Orbis Subscriptions plugin breidt je Orbis-omgeving uit met de "
-"mogelijkheid om abonnementsproducten en abonnementen toe te voegen."
+#: orbis-subscriptions.php:13
+msgid "The Orbis Subscriptions plugin extends your Orbis environment with the option to add subscription products and subscriptions."
+msgstr "De Orbis Subscriptions plugin breidt je Orbis-omgeving uit met de mogelijkheid om abonnementsproducten en abonnementen toe te voegen."
 
 #. Author of the plugin
-#: orbis-subscriptions.php
+#: orbis-subscriptions.php:17
 msgid "Pronamic"
 msgstr "Pronamic"
 
 #. Author URI of the plugin
-#: orbis-subscriptions.php
+#: orbis-subscriptions.php:18
 msgid "https://www.pronamic.eu/"
 msgstr "https://www.pronamic.nl/"
 
@@ -60,11 +56,13 @@ msgstr "Orbis ID"
 msgid "Company ID"
 msgstr "Bedrijf ID"
 
-#: admin/meta-box-subscription-details.php:60 admin/page-statistics.php:50
+#: admin/meta-box-subscription-details.php:60
+#: admin/page-statistics.php:50
 msgid "Product"
 msgstr "Product"
 
-#: admin/meta-box-subscription-details.php:91 admin/page-billing.php:129
+#: admin/meta-box-subscription-details.php:91
+#: admin/page-billing.php:160
 #: templates/company-subscriptions.php:54
 #: templates/domain-name-subscriptions.php:63
 #: templates/product-subscriptions.php:63
@@ -89,17 +87,11 @@ msgstr "Kies een akkoord"
 
 #: admin/meta-box-subscription-details.php:113
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
-msgstr ""
-"Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media "
-"bibliotheek."
+msgstr "Je kunt een .PDF of .TXT bestand selecteren uit de WordPress media bibliotheek."
 
 #: admin/meta-box-subscription-details.php:114
-msgid ""
-"If you received the agreement by mail print the complete mail conversation "
-"with an PDF printer."
-msgstr ""
-"Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail "
-"conversatie uit met een PDF-printer."
+msgid "If you received the agreement by mail print the complete mail conversation with an PDF printer."
+msgstr "Als je een akkoord per e-mail hebt ontvangen print dan de complete e-mail conversatie uit met een PDF-printer."
 
 #: admin/meta-box-subscription-details.php:131
 #: templates/company-subscriptions.php:52
@@ -113,22 +105,15 @@ msgid "Expiration Date"
 msgstr "Vervaldatum"
 
 #: admin/meta-box-subscription-details.php:156
-msgid ""
-"For new subscriptions the expiration date can be the same as the activation "
-"date."
-msgstr ""
-"Voor nieuwe abonnementen kan de vervaldatum gelijk zijn aan de "
-"activeringsdatum."
+msgid "For new subscriptions the expiration date can be the same as the activation date."
+msgstr "Voor nieuwe abonnementen kan de vervaldatum gelijk zijn aan de activeringsdatum."
 
 #: admin/meta-box-subscription-details.php:157
-msgid ""
-"The Orbis subscriptions renewer will automatically renew the subscription to "
-"the correct expiration date."
-msgstr ""
-"De Orbis-abonnementsverlenger verlengt het abonnement automatisch tot de "
-"juiste vervaldatum."
+msgid "The Orbis subscriptions renewer will automatically renew the subscription to the correct expiration date."
+msgstr "De Orbis-abonnementsverlenger verlengt het abonnement automatisch tot de juiste vervaldatum."
 
-#: admin/meta-box-subscription-details.php:173 admin/page-billing.php:132
+#: admin/meta-box-subscription-details.php:173
+#: admin/page-billing.php:163
 msgid "Cancel Date"
 msgstr "Opzeggingsdatum"
 
@@ -151,32 +136,37 @@ msgstr "Factuurreferentie"
 msgid "Invoice Line Description"
 msgstr "Factuurregelbeschrijving"
 
-#: admin/page-billing.php:125
+#: admin/page-billing.php:156
 msgid "ID"
 msgstr "ID"
 
-#: admin/page-billing.php:126 templates/company-subscriptions.php:53
+#: admin/page-billing.php:157
+#: templates/company-subscriptions.php:53
 #: templates/domain-name-subscriptions.php:62
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: admin/page-billing.php:127
+#: admin/page-billing.php:158
 msgid "Interval"
 msgstr "Interval"
 
-#: admin/page-billing.php:128 templates/company-subscriptions.php:55
+#: admin/page-billing.php:159
+#: templates/archive-orbis_subscription.php:32
+#: templates/company-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:64
 #: templates/subscription-details.php:161
 #: templates/subscriptions-without-agreement.php:40
 msgid "Price"
 msgstr "Prijs"
 
-#: admin/page-billing.php:130 templates/subscription-invoices.php:60
+#: admin/page-billing.php:161
+#: templates/subscription-invoices.php:60
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: admin/page-billing.php:131 templates/subscription-invoices.php:61
+#: admin/page-billing.php:162
+#: templates/subscription-invoices.php:61
 msgid "End Date"
 msgstr "Einddatum"
 
@@ -185,10 +175,12 @@ msgid "All"
 msgstr "Alles"
 
 #: admin/page-statistics.php:51
+#: templates/subscription-badges.php:33
 msgid "Active"
 msgstr "Actief"
 
 #: admin/page-statistics.php:52
+#: templates/subscription-badges.php:47
 msgid "Expired"
 msgstr "Verlopen"
 
@@ -200,44 +192,80 @@ msgstr "Totaal"
 msgid "Expire Rate"
 msgstr "Vervalratio"
 
-#: classes/AdminController.php:46
+#: classes/AbilitiesController.php:54
+msgid "Abilities for working with Orbis subscriptions."
+msgstr ""
+
+#: classes/AbilitiesController.php:76
+msgid "Search subscriptions"
+msgstr ""
+
+#: classes/AbilitiesController.php:77
+msgid "Searches Orbis subscriptions by name, company or product and returns the matching subscriptions with their company, product and dates."
+msgstr ""
+
+#: classes/AbilitiesController.php:85
+msgid "Search term, matched against the subscription name, the subscription title, the company name and the product name."
+msgstr ""
+
+#: classes/AbilitiesController.php:89
+msgid "Limit the results to subscriptions of this Orbis company ID."
+msgstr ""
+
+#: classes/AbilitiesController.php:94
+msgid "Limit the results to subscriptions of this Orbis product ID."
+msgstr ""
+
+#: classes/AbilitiesController.php:99
+msgid "Limit the results to active subscriptions (not cancelled or not yet expired), cancelled subscriptions, or any subscription."
+msgstr ""
+
+#: classes/AbilitiesController.php:105
+msgid "Maximum number of subscriptions to return."
+msgstr ""
+
+#: classes/AbilitiesController.php:112
+msgid "Page of results to return."
+msgstr ""
+
+#: classes/AdminController.php:44
 msgid "Orbis Subscriptions Statistics"
 msgstr "Orbis abonnementen statistieken"
 
-#: classes/AdminController.php:47
+#: classes/AdminController.php:45
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: classes/AdminController.php:55
+#: classes/AdminController.php:53
 msgid "Orbis Subscriptions Billing"
 msgstr "Orbis abonnementen facturering"
 
-#: classes/AdminController.php:56
+#: classes/AdminController.php:54
 msgid "Billing"
 msgstr "Facturering"
 
-#: classes/AdminController.php:103
+#: classes/AdminController.php:101
+#, php-format
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr "Dit abonnement is zojuist '%s' door %s."
 
-#: classes/AdminController.php:104
+#: classes/AdminController.php:102
 msgid "canceled"
 msgstr "geannuleerd"
 
-#: classes/RenewController.php:135
+#: classes/RenewController.php:154
 msgid "Orbis subscriptions renewer"
 msgstr "Orbis-abonnementsverlenger"
 
 #. translators: 1: Old expiration date, 2: New expiration date, 3: Notice period.
-#: classes/RenewController.php:140
-msgid ""
-"Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", "
-"taking into account a notice period of %3$s month."
-msgstr ""
-"Orbis heeft dit abonnement automatisch verlengd van “%1$s” naar “%2$s”, met "
-"inachtneming van een opzegtermijn van %3$s maand."
+#: classes/RenewController.php:159
+#, php-format
+msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
+msgstr "Orbis heeft dit abonnement automatisch verlengd van “%1$s” naar “%2$s”, met inachtneming van een opzegtermijn van %3$s maand."
 
-#: classes/TemplateController.php:97 includes/post.php:11 includes/post.php:24
+#: classes/TemplateController.php:119
+#: includes/post.php:11
+#: includes/post.php:24
 #: templates/domain-name-subscriptions.php:54
 msgid "Subscriptions"
 msgstr "Abonnementen"
@@ -294,7 +322,8 @@ msgctxt "slug"
 msgid "subscriptions"
 msgstr "abonnementen"
 
-#: includes/post.php:54 templates/subscription-details.php:94
+#: includes/post.php:54
+#: templates/subscription-details.php:94
 msgid "Subscription Details"
 msgstr "Abonnement details"
 
@@ -302,12 +331,33 @@ msgstr "Abonnement details"
 msgid "Subscription Actions"
 msgstr "Abonnement acties"
 
+#: templates/archive-orbis_subscription.php:31
+msgid "Title"
+msgstr "Titel"
+
+#: templates/archive-orbis_subscription.php:33
+#: templates/subscription-details.php:118
+msgid "Expiration or renewal date"
+msgstr "Verval- of verlengingsdatum"
+
+#: templates/archive-orbis_subscription.php:34
+#: templates/subscription-details.php:104
+msgid "Status"
+msgstr "Status"
+
+#: templates/archive-orbis_subscription.php:35
+#: templates/single-orbis_subscription.php:71
+#: templates/subscriptions-without-agreement.php:41
+msgid "Actions"
+msgstr "Acties"
+
 #: templates/company-subscriptions.php:102
 msgid "No subscriptions found."
 msgstr "Geen abonnementen gevonden."
 
 #: templates/domain-name-subscriptions.php:61
-#: templates/product-subscriptions.php:62 templates/subscription-details.php:99
+#: templates/product-subscriptions.php:62
+#: templates/subscription-details.php:99
 msgid "Company"
 msgstr "Bedrijf"
 
@@ -324,13 +374,30 @@ msgstr "Activatiedatum"
 msgid "View all subscriptions"
 msgstr "Bekijk alle abonnementen"
 
-#: templates/subscription-details.php:104
-msgid "Status"
-msgstr "Status"
+#: templates/single-orbis_subscription.php:33
+msgid "Description"
+msgstr "Beschrijving"
 
-#: templates/subscription-details.php:118
-msgid "Expiration or renewal date"
-msgstr "Verval- of verlengingsdatum"
+#: templates/single-orbis_subscription.php:59
+msgid "Additional Information"
+msgstr "Aanvullende informatie"
+
+#: templates/single-orbis_subscription.php:63
+msgid "Posted on"
+msgstr "Geplaatst op"
+
+#: templates/single-orbis_subscription.php:66
+msgid "Posted by"
+msgstr "Geplaatst door"
+
+#: templates/single-orbis_subscription.php:72
+#: templates/subscriptions-without-agreement.php:74
+msgid "Edit"
+msgstr "Bewerken"
+
+#: templates/subscription-badges.php:40
+msgid "Cancelled"
+msgstr "Opgezegd"
 
 #: templates/subscription-details.php:125
 msgid "Cancel date"
@@ -342,15 +409,11 @@ msgstr "Gefactureerd tot"
 
 #: templates/subscription-details.php:145
 msgid "📣 Please note: this subscription may be billed again soon."
-msgstr ""
-"📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd "
-"wordt."
+msgstr "📣 Let op: het kan zijn dat dit abonnement binnenkort weer gefactureerd wordt."
 
 #: templates/subscription-details.php:153
-msgid ""
-"🚨 Please note: this subscription is billed further in advance than usual."
-msgstr ""
-"🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
+msgid "🚨 Please note: this subscription is billed further in advance than usual."
+msgstr "🚨 Let op: dit abonnement is verder vooruit gefactureerd dan gebruikelijk."
 
 #: templates/subscription-details.php:197
 msgid "Agreement"
@@ -375,970 +438,3 @@ msgstr "Gebruiker"
 #: templates/subscription-invoices.php:62
 msgid "Invoice"
 msgstr "Factuur"
-
-#: templates/subscriptions-without-agreement.php:41
-msgid "Actions"
-msgstr "Acties"
-
-#: templates/subscriptions-without-agreement.php:74
-msgid "Edit"
-msgstr "Bewerken"
-
-#~ msgid "Type"
-#~ msgstr "Type"
-
-#~ msgid "Cost Price"
-#~ msgstr "Kostprijs"
-
-#~ msgid "Auto Renew"
-#~ msgstr "Automatisch verlengen"
-
-#~ msgid "Auto renew subscription product"
-#~ msgstr "Abonnement product automatisch verlengen"
-
-#~ msgid "Deprecated"
-#~ msgstr "Vervallen"
-
-#~ msgid "Deprecated subscription product"
-#~ msgstr "Vervallen abonnement product"
-
-#~ msgid "Yearly"
-#~ msgstr "Jaarlijks"
-
-#~ msgid "Two Yearly"
-#~ msgstr "Tweejaarlijks"
-
-#~ msgid "Three Yearly"
-#~ msgstr "Driejaarlijks"
-
-#~ msgid "Monthly"
-#~ msgstr "Maandelijks"
-
-#~ msgid "Quarterly"
-#~ msgstr "Driemaandelijks"
-
-#~ msgid "Description"
-#~ msgstr "Beschrijving"
-
-#~ msgid "Link"
-#~ msgstr "Link"
-
-#~ msgid "Cancel Note"
-#~ msgstr "Annuleringsnotitie"
-
-#~ msgid "Subscription Products"
-#~ msgstr "Abonnement producten"
-
-#~ msgctxt "post type general name"
-#~ msgid "Subscription Products"
-#~ msgstr "Abonnement producten"
-
-#~ msgctxt "post type singular name"
-#~ msgid "Subscription Product"
-#~ msgstr "Abonnement product"
-
-#~ msgctxt "orbis_subs_type"
-#~ msgid "Add New"
-#~ msgstr "Nieuw abonnement product"
-
-#~ msgid "Add New Subscription Product"
-#~ msgstr "Nieuwe abonnement product toevoegen"
-
-#~ msgid "Edit Subscription Product"
-#~ msgstr "Bewerk abonnement product"
-
-#~ msgid "New Subscription Product"
-#~ msgstr "Nieuwe abonnement product"
-
-#~ msgid "View Subscription Product"
-#~ msgstr "Bekijk abonnement product"
-
-#~ msgid "Search Subscription Products"
-#~ msgstr "Zoeken abonnement producten"
-
-#~ msgid "No subscription products found"
-#~ msgstr "Geen abonnement producten gevonden"
-
-#~ msgid "No subscription products found in Trash"
-#~ msgstr "Geen abonnement producten gevonden in prullenbak"
-
-#~ msgid "Parent Subscription Product:"
-#~ msgstr "Bovenliggend abonnement product:"
-
-#~ msgid "Products"
-#~ msgstr "Producten"
-
-#~ msgctxt "slug"
-#~ msgid "subscription-products"
-#~ msgstr "abonnement-producten"
-
-#~ msgid "Subscription Product Details"
-#~ msgstr "Abonnement product details"
-
-#~ msgid "Yes"
-#~ msgstr "Ja"
-
-#~ msgid "No"
-#~ msgstr "Nee"
-
-#~ msgid "Expiration date"
-#~ msgstr "Vervaldatum"
-
-#~ msgid "Current Period"
-#~ msgstr "Huidige periode"
-
-#~ msgid "to %s"
-#~ msgstr "tot %s"
-
-#~ msgid "Billed To"
-#~ msgstr "Gefactureerd tot"
-
-#~ msgid ""
-#~ "Orbis has automatically renewed this subscription from \"%s\" to \"%s\", "
-#~ "taking into account a notice period of %s month."
-#~ msgstr ""
-#~ "Orbis heeft dit abonnement automatisch verlengd van “%s” naar “%s”, met "
-#~ "inachtneming van een opzegtermijn van %s maand."
-
-#~ msgid "Invoice Number"
-#~ msgstr "Factuurnummer"
-
-#~ msgid "Person"
-#~ msgstr "Persoon"
-
-#~ msgid "Title"
-#~ msgstr "Titel"
-
-#~ msgid "Author"
-#~ msgstr "Auteur"
-
-#~ msgid "Comments"
-#~ msgstr "Reacties"
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "Email"
-#~ msgstr "E-mailadres"
-
-#~ msgid "Invoice Header Text"
-#~ msgstr "Factuur koptekst"
-
-#~ msgid "Invoice Footer Text"
-#~ msgstr "Factuur voettekst"
-
-#~ msgid "Subscription Purchases"
-#~ msgstr "Inkoop abonnementen"
-
-#~ msgid "Add New Subscription Purchase"
-#~ msgstr "Nieuwe inkoop abonnement toevoegen"
-
-#~ msgid "Edit Subscription Purchase"
-#~ msgstr "Bewerk inkoop abonnement"
-
-#~ msgid "New Subscription Purchase"
-#~ msgstr "Nieuw inkoop abonnement"
-
-#~ msgid "View Subscription Purchase"
-#~ msgstr "Bekijk inkoop abonnement"
-
-#~ msgid "Search Subscription Purchases"
-#~ msgstr "Zoek inkoop abonnementen"
-
-#~ msgid "No subscription purchases found"
-#~ msgstr "Geen inkoop abonnementen gevonden"
-
-#~ msgid "No subscription purchases found in Trash"
-#~ msgstr "Geen inkoop abonnementen gevonden in prullenbak"
-
-#~ msgid "Parent Subscription Purchase:"
-#~ msgstr "Bovenliggend inkoop abonnement:"
-
-#~ msgid "Purchases"
-#~ msgstr "Inkopen"
-
-#~ msgid "Subscription Purchase Details"
-#~ msgstr "Inkoop abonnement details"
-
-#~ msgid "Revenue"
-#~ msgstr "Inkomsten"
-
-#~ msgid "Costs"
-#~ msgstr "Kosten"
-
-#~ msgid "Profit"
-#~ msgstr "Winst"
-
-#~ msgid "http://www.pronamic.eu/plugins/orbis-subscriptions/"
-#~ msgstr "http://www.pronamic.eu/plugins/orbis-subscriptions/"
-
-#~ msgid ""
-#~ "The Orbis Subscriptions extends your Orbis environment with the option to "
-#~ "add subscription types and subscriptions."
-#~ msgstr ""
-#~ "De Orbis abonnementen plugin breidt je Orbis omgeving uit met de optie om "
-#~ "abonnement types en abonnement toe te voegen."
-
-#~ msgid "http://www.pronamic.eu/"
-#~ msgstr "http://www.pronamic.eu/"
-
-#~ msgctxt "post type general name"
-#~ msgid "Subscription Purchases"
-#~ msgstr "Inkoop abonnementen"
-
-#~ msgctxt "post type singular name"
-#~ msgid "Subscription Purchase"
-#~ msgstr "Inkoop abonnement"
-
-#~ msgctxt "slug"
-#~ msgid "subscription-purchases"
-#~ msgstr "inkoop-abonnementen"
-
-#~ msgctxt "orbis_subs_purchase"
-#~ msgid "Add New"
-#~ msgstr "Nieuw inkoop abonnement"
-
-#, fuzzy
-#~ msgid "Connected Keychain"
-#~ msgstr "Nieuwe sleutelhanger"
-
-#~ msgid "Select Company"
-#~ msgstr "Selecteer bedrijf"
-
-#~ msgid "Select Person"
-#~ msgstr "Selecteer persoon"
-
-#~ msgid "No payment methods are available"
-#~ msgstr "Er zijn geen betaalmethodes beschikbaar"
-
-#~ msgid "License Key"
-#~ msgstr "Licentiesleutel"
-
-#~ msgid "A license expiration reminder has been sent to %s (%s)."
-#~ msgstr "Een licentie verval herinnering werd verstuurd naar %s (%s)."
-
-#~ msgid "Login required"
-#~ msgstr "Inloggen vereist"
-
-#~ msgid "Pronamic iDEAL License Key"
-#~ msgstr "Pronamic iDEAL licentiesleutel"
-
-#~ msgid "Send License"
-#~ msgstr "Verstuur licentie"
-
-#~ msgid "This month"
-#~ msgstr "Deze maand"
-
-#~ msgid "Inserted"
-#~ msgstr "Toegevoegd"
-
-#~ msgid "Failed"
-#~ msgstr "Mislukt"
-
-#~ msgid "Update"
-#~ msgstr "Update"
-
-#~ msgid "http://www.orbiswp.com/"
-#~ msgstr "http://www.orbiswp.com/"
-
-#~ msgid "Subscription Renewal"
-#~ msgstr "Abonnement verlengen"
-
-#~ msgid "Pronamic iDEAL License Key Extended"
-#~ msgstr "Pronamic iDEAL licentiesleutel verlengd"
-
-#~ msgid "Note"
-#~ msgstr "Notitie"
-
-#~ msgid "Extend this subscription with 1 year."
-#~ msgstr "Verleng dit abonnement met 1 jaar."
-
-#~ msgid "Extend"
-#~ msgstr "Verleng"
-
-#~ msgid "Sent Reminders"
-#~ msgstr "Verzonden herinneringen"
-
-#~ msgid "Send Reminder"
-#~ msgstr "Verstuur herinnering"
-
-#~ msgid "Update Date"
-#~ msgstr "Update datum"
-
-#~ msgid "Sent"
-#~ msgstr "Verzonden"
-
-#~ msgid "E-Mail"
-#~ msgstr "E-mailadres"
-
-#~ msgid "No subscriptions will expire within the next week"
-#~ msgstr "Er zullen volgende week geen abonnementen verlopen"
-
-#~ msgid "Orbis Expiring Subscriptions"
-#~ msgstr "Orbis aflopende abonnementen"
-
-#~ msgid "No reminders sent in the last week"
-#~ msgstr "Geen herinneringen verzonden afgelopen week"
-
-#~ msgid "j F, Y @ G:i:s"
-#~ msgstr "j F Y @ H:i"
-
-#~ msgid "Expiring Subscriptions"
-#~ msgstr "Aflopende abonnementen"
-
-#~ msgid "Orbis Sent Reminders"
-#~ msgstr "Orbis verzonden herinneringen"
-
-#~ msgid "Reminder"
-#~ msgstr "Herinnering"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Subject"
-#~ msgstr "Onderwerp"
-
-#~ msgid "Template"
-#~ msgstr "Sjabloon"
-
-#~ msgid "Orbis Subscriptions Settings"
-#~ msgstr "Orbis abonnementen instellingen"
-
-#~ msgid "Settings"
-#~ msgstr "Instellingen"
-
-#~ msgid ""
-#~ "This comment was an subscription extend request (before: %s, after: %s)."
-#~ msgstr "Deze reactie was een abonnement verleng verzoek (voor: %s, na: %s)."
-
-#~ msgid "I sent the following message to %s: <blockquote>%s</blockquote>"
-#~ msgstr ""
-#~ "Ik heb het volgende bericht verstuurd aan %s: <blockquote>%s</blockquote>"
-
-#~ msgid "I extended this subscription: <blockquote>%s</blockquote>"
-#~ msgstr "Ik heb dit abonnement verlengd: <blockquote>%s</blockquote>"
-
-#~ msgid "Monthly subscriptions"
-#~ msgstr "Maandelijkse abonnementen"
-
-#~ msgid "Yearly subscriptions"
-#~ msgstr "Jaarlijkse abonnementen"
-
-#~ msgid "Notice"
-#~ msgstr "Opmerking"
-
-#~ msgid "One year"
-#~ msgstr "Eén jaar"
-
-#~ msgid "One month"
-#~ msgstr "Eén maand"
-
-#~ msgid "Duration"
-#~ msgstr "Duur"
-
-#~ msgid "Subscription Product will auto renew"
-#~ msgstr "Abonnement product zal automatisch verlengen"
-
-#~ msgid "Subscription Types"
-#~ msgstr "Abonnement types"
-
-#, fuzzy
-#~ msgctxt "post type general name"
-#~ msgid "Subscription Types"
-#~ msgstr "Abonnement"
-
-#, fuzzy
-#~ msgctxt "post type singular name"
-#~ msgid "Subscription Type"
-#~ msgstr "Type"
-
-#, fuzzy
-#~ msgid "Add New Subscription Type"
-#~ msgstr "Abonnement toevoegen"
-
-#, fuzzy
-#~ msgid "Edit Subscription Type"
-#~ msgstr "Type"
-
-#, fuzzy
-#~ msgid "New Subscription Type"
-#~ msgstr "Type"
-
-#, fuzzy
-#~ msgid "View Subscription Type"
-#~ msgstr "Type"
-
-#, fuzzy
-#~ msgid "Search Subscription Types"
-#~ msgstr "Abonnement"
-
-#, fuzzy
-#~ msgid "No subscription types found"
-#~ msgstr "Abonnement"
-
-#, fuzzy
-#~ msgid "No subscription types found in Trash"
-#~ msgstr "Geen sleutelhangers gevonden in prullenbak"
-
-#, fuzzy
-#~ msgid "Parent Subscription Type:"
-#~ msgstr "Type"
-
-#~ msgid "Types"
-#~ msgstr "Types"
-
-#~ msgid "Details"
-#~ msgstr "Details"
-
-#~ msgid "Number"
-#~ msgstr "Aantal"
-
-#~ msgid "Persons"
-#~ msgstr "Personen"
-
-#~ msgid "Expiring licenses"
-#~ msgstr "Aflopende licenties"
-
-#~ msgid "Expiration settings"
-#~ msgstr "Verval instellingen"
-
-#~ msgid "The URL linking to the webpage the user can renew its subscription"
-#~ msgstr ""
-#~ "De URL naar de webpagina waar de gebruiker zijn abonnement kan verlengen"
-
-#~ msgid "The following variable tags can be used in the template:"
-#~ msgstr "De volgende variabelen kunnen gebruikt worden in het sjabloon:"
-
-#~ msgid "FTP"
-#~ msgstr "FTP"
-
-#~ msgid "Google Apps"
-#~ msgstr "Google Apps"
-
-#~ msgid "WordPress"
-#~ msgstr "WordPress"
-
-#~ msgid ""
-#~ "Use an full URL: for HTTP <code>http://</code>, for FTP <code>ftp://</"
-#~ "code>, for SFTP <code>sftp://</code>"
-#~ msgstr ""
-#~ "Gebruik een volledige URL: voor HTTP <code>http://</code>, voor FTP "
-#~ "<code>ftp://</code>, voor SFTP <code>sftp://</code>"
-
-#~ msgid "Password"
-#~ msgstr "Wachtwoord"
-
-#~ msgid "E-mail Address"
-#~ msgstr "E-mailadres"
-
-#~ msgid "Keychains"
-#~ msgstr "Sleutelhangers"
-
-#~ msgid "Keychain"
-#~ msgstr "Sleutelhanger"
-
-#~ msgid "Add New Keychain"
-#~ msgstr "Nieuw sleutelhanger toevoegen"
-
-#~ msgid "Edit Keychain"
-#~ msgstr "Sleutelhanger bewerken"
-
-#~ msgid "View Keychain"
-#~ msgstr "Bekijk sleutelhanger"
-
-#~ msgid "Search Keychains"
-#~ msgstr "Sleutelhangers zoeken"
-
-#~ msgid "No keychains found"
-#~ msgstr "Geen sleutelhangers gevonden"
-
-#~ msgctxt "slug"
-#~ msgid "keychains"
-#~ msgstr "sleutelhangers"
-
-#~ msgid "Administrator"
-#~ msgstr "Beheerder"
-
-#~ msgid "Keychain Details"
-#~ msgstr "Sleutelhanger details"
-
-#~ msgid "I changed the password of this keychain."
-#~ msgstr "Ik heb het wachtwoord van deze sleutelhanger gewijzigd."
-
-#~ msgid ""
-#~ "Request password, describe with at least <strong>%d words</strong> why "
-#~ "you need this password."
-#~ msgstr ""
-#~ "Wachtwoord verzoek, beschrijf met minimaal <strong>%d woorden</strong> "
-#~ "waarom je dit wachtwoord nodig hebt."
-
-#~ msgid ""
-#~ "This comment was an password request, the user can view the password till "
-#~ "<strong>%s</strong>."
-#~ msgstr ""
-#~ "Deze reactie was een wachtwoord verzoek, de gebruiker kan het wachtwoord "
-#~ "bekijken tot <strong>%s</strong>."
-
-#~ msgid ""
-#~ "This comment was met <strong>%d words</strong> not long enough to display "
-#~ "the password, use at least <strong>%d words</strong>."
-#~ msgstr ""
-#~ "Deze reactie was met <strong>%d woorden</strong> niet lang genoeg om het "
-#~ "wachtwoord weer te geven, gebruik minimaal <strong>%d woorden</strong>."
-
-#~ msgid "Categories"
-#~ msgstr "Categorieën"
-
-#~ msgid "Tags"
-#~ msgstr "Tags"
-
-#~ msgctxt "orbis_keychain_category"
-#~ msgid "Categories"
-#~ msgstr "Categorieën"
-
-#~ msgctxt "orbis_keychain_category"
-#~ msgid "Category"
-#~ msgstr "Categorie"
-
-#~ msgid "Search Categories"
-#~ msgstr "Zoek categorieën"
-
-#~ msgid "All Categories"
-#~ msgstr "Alle categorieën"
-
-#~ msgid "Parent Category"
-#~ msgstr "Bovenliggende categorie"
-
-#~ msgid "Parent Category:"
-#~ msgstr "Bovenliggende categorie:"
-
-#~ msgid "Edit Category"
-#~ msgstr "Bewerk categorie"
-
-#~ msgid "Add New Category"
-#~ msgstr "Nieuwe categorie"
-
-#~ msgid "New Category Name"
-#~ msgstr "Nieuwe categorie naam"
-
-#~ msgctxt "slug"
-#~ msgid "keychain-categorie"
-#~ msgstr "sleutelhanger-categorie"
-
-#~ msgctxt "orbis_keychain_category"
-#~ msgid "Tags"
-#~ msgstr "Tags"
-
-#~ msgctxt "orbis_keychain_category"
-#~ msgid "Tag"
-#~ msgstr "Tag"
-
-#~ msgid "Search Tags"
-#~ msgstr "Zoek tags"
-
-#~ msgid "All Tags"
-#~ msgstr "Alle tags"
-
-#~ msgid "Parent Tag"
-#~ msgstr "Bovenliggende tag"
-
-#~ msgid "Parent Tag:"
-#~ msgstr "Bovenliggende tag:"
-
-#~ msgid "Edit Tag"
-#~ msgstr "Bewerk tag"
-
-#~ msgid "Update Tag"
-#~ msgstr "Update tag"
-
-#~ msgid "Add New Tag"
-#~ msgstr "Nieuwe tag"
-
-#~ msgid "New Tag Name"
-#~ msgstr "Nieuwe tag naam"
-
-#~ msgctxt "slug"
-#~ msgid "keychain-tag"
-#~ msgstr "sleutelhanger-tag"
-
-#~ msgid "Hosting Group"
-#~ msgstr "Hosting groep"
-
-#~ msgid "Hosting Groups"
-#~ msgstr "Hosting groepen"
-
-#~ msgctxt "hosting_group"
-#~ msgid "Add New"
-#~ msgstr "Nieuwe toevoegen"
-
-#~ msgid "Add New Hosting Group"
-#~ msgstr "Nieuwe hosting groep toevoegen"
-
-#~ msgid "Domain Names"
-#~ msgstr "Domeinnamen"
-
-#~ msgid "Domain Name"
-#~ msgstr "Domeinnaam"
-
-#~ msgctxt "domain_name"
-#~ msgid "Add New"
-#~ msgstr "Nieuwe toevoegen"
-
-#~ msgid "Add New Domain Name"
-#~ msgstr "Nieuwe domeinnaam"
-
-#~ msgid "Projects"
-#~ msgstr "Projecten"
-
-#~ msgid "Project"
-#~ msgstr "Project"
-
-#~ msgctxt "orbis_project"
-#~ msgid "Add New"
-#~ msgstr "Nieuw project"
-
-#~ msgid "Add New Project"
-#~ msgstr "Nieuw project"
-
-#~ msgid "Edit Project"
-#~ msgstr "Project bewerken"
-
-#~ msgid "New Project"
-#~ msgstr "Nieuw project"
-
-#~ msgid "All Projects"
-#~ msgstr "Alle projecten"
-
-#~ msgid "View Project"
-#~ msgstr "Bekijk project"
-
-#~ msgid "Search Projects"
-#~ msgstr "Projecten zoeken"
-
-#~ msgid "No projects found."
-#~ msgstr "Geen projecten gevonden."
-
-#~ msgid "No projects found in Trash."
-#~ msgstr "Geen projecten gevonden in prullenbak."
-
-#~ msgid "Parent Project:"
-#~ msgstr "Bovenliggend project:"
-
-#~ msgctxt "taxonomy general name"
-#~ msgid "Categories"
-#~ msgstr "Categorieën"
-
-#~ msgctxt "taxonomy singular name"
-#~ msgid "Category"
-#~ msgstr "Categorie"
-
-#~ msgid "Companies"
-#~ msgstr "Bedrijven"
-
-#~ msgctxt "orbis_company"
-#~ msgid "Add New"
-#~ msgstr "Nieuw bedrijf"
-
-#~ msgid "Add New Company"
-#~ msgstr "Nieuwe bedrijf toevoegen"
-
-#~ msgid "Edit Company"
-#~ msgstr "Bedrijf bewerken"
-
-#~ msgid "All Companies"
-#~ msgstr "Alle bedrijven"
-
-#~ msgid "View Company"
-#~ msgstr "Bekijk bedrijf"
-
-#~ msgid "Search Companies"
-#~ msgstr "Zoek bedrijven"
-
-#~ msgid "No companies found."
-#~ msgstr "Geen bedrijven gevonden."
-
-#~ msgid "No companies found in Trash."
-#~ msgstr "Geen bedrijven gevonden in prullenbak."
-
-#~ msgid "Parent Company:"
-#~ msgstr "Bovenliggend bedrijf:"
-
-#~ msgctxt "slug"
-#~ msgid "companies"
-#~ msgstr "bedrijven"
-
-#~ msgctxt "slug"
-#~ msgid "persons"
-#~ msgstr "personen"
-
-#~ msgctxt "taxonomy general name"
-#~ msgid "Genders"
-#~ msgstr "Geslachten"
-
-#~ msgctxt "taxonomy singular name"
-#~ msgid "Gender"
-#~ msgstr "Geslacht"
-
-#~ msgid "Search Genders"
-#~ msgstr "Zoek geslachten"
-
-#~ msgid "All Genders"
-#~ msgstr "Alle geslachten"
-
-#~ msgid "Parent Gender:"
-#~ msgstr "Bovenliggend geslacht:"
-
-#~ msgid "Edit Gender"
-#~ msgstr "Bewerk geslacht"
-
-#~ msgid "Update Gender"
-#~ msgstr "Update geslacht"
-
-#~ msgid "Add New Gender"
-#~ msgstr "Nieuw geslacht toevoegen"
-
-#~ msgid "New Gender Name"
-#~ msgstr "Nieuw geslacht naam"
-
-#~ msgid "Genders"
-#~ msgstr "Geslachten"
-
-#~ msgid "Domains"
-#~ msgstr "Domeinen"
-
-#~ msgid "Domains to invoice"
-#~ msgstr "Domeinen te facturen"
-
-#~ msgid "To Invoice"
-#~ msgstr "Te factureren"
-
-#~ msgid "Project Information"
-#~ msgstr "Project informatie"
-
-#~ msgid "No matches found"
-#~ msgstr "Geen overeenkomsten gevonden"
-
-#~ msgid "Please enter %s more characters"
-#~ msgstr "Voer nog %s tekens in."
-
-#~ msgid "You can only select %s item"
-#~ msgstr "Je kunt slechts %s item selecteren"
-
-#~ msgid "You can only select %s items"
-#~ msgstr "Je kunt slechts %s items selecteren"
-
-#~ msgid "Loading more results..."
-#~ msgstr "Meer resultaten laden..."
-
-#~ msgid "Searching..."
-#~ msgstr "Zoeken...."
-
-#~ msgid "Principal"
-#~ msgstr "Opdrachtgever"
-
-#~ msgid "Time"
-#~ msgstr "Tijd"
-
-#~ msgid "Orbis Log"
-#~ msgstr "Orbis Logboek"
-
-#~ msgid "Title:"
-#~ msgstr "Titel:"
-
-#~ msgid "%s updated the \"%s\" post."
-#~ msgstr "%s heeft het \"%s\" bericht bijgewerkt."
-
-#~ msgid "Contact information"
-#~ msgstr "Contact informatie"
-
-#~ msgid "Email Address:"
-#~ msgstr "E-mailadres:"
-
-#~ msgid "Phone Number:"
-#~ msgstr "Telefoonnummer:"
-
-#~ msgid "Mobile Number:"
-#~ msgstr "Mobielnummer:"
-
-#~ msgid "Twitter Username:"
-#~ msgstr "Twitter gebruikersnaam:"
-
-#~ msgid "Facebook:"
-#~ msgstr "Facebook:"
-
-#~ msgid "KvK Number:"
-#~ msgstr "KvK nummer:"
-
-#~ msgid "Principal ID"
-#~ msgstr "Opdrachtgever ID"
-
-#~ msgid ""
-#~ "You can enter time as 1.5 or 1:30 (they both mean 1 hour and 30 minutes)."
-#~ msgstr ""
-#~ "Je kunt de tijd invoeren als 1.5 of 1:30 (beide zijn 1 uur en 30 minuten)."
-
-#~ msgid "Invoicable"
-#~ msgstr "Factureerbaar"
-
-#~ msgid "Project is invoicable"
-#~ msgstr "Project is factureerbaar"
-
-#~ msgid "Project is invoiced"
-#~ msgstr "Project is gefactureerd"
-
-#~ msgid "Finished"
-#~ msgstr "Afgerond"
-
-#~ msgid "Project is finished"
-#~ msgstr "Project is afgerond"
-
-#~ msgid "No projects founds."
-#~ msgstr "Geen projecten gevonden."
-
-#~ msgid "Post ID"
-#~ msgstr "Bericht ID"
-
-#~ msgid "Edit Project Post"
-#~ msgstr "Bewerk project bericht"
-
-#~ msgid "Number domains"
-#~ msgstr "Aantal domeinen"
-
-#~ msgid "Annual Revenue"
-#~ msgstr "Jaaromzet"
-
-#~ msgid "Orbis"
-#~ msgstr "Orbis"
-
-#~ msgid "No domain names founds."
-#~ msgstr "Geen domeinnamen gevonden."
-
-#~ msgid "Edit Domain Name Post"
-#~ msgstr "Bewerk domeinnaam bericht"
-
-#~ msgid "Project invoice is paid"
-#~ msgstr "Project factuur is betaald"
-
-#~ msgctxt "project"
-#~ msgid "Add New"
-#~ msgstr "Nieuw project"
-
-#~ msgid "No companies founds."
-#~ msgstr "Geen bedrijven gevonden."
-
-#~ msgid "Edit Company Post"
-#~ msgstr "Bewerk bedrijf bericht"
-
-#~ msgid "Add Company"
-#~ msgstr "Bedrijf toevoegen"
-
-#~ msgid "Request password."
-#~ msgstr "Verzoek wachtwoord."
-
-#~ msgid "Password Details"
-#~ msgstr "Wachtwoord details"
-
-#~ msgctxt "orbis_password"
-#~ msgid "Add New"
-#~ msgstr "Nieuwe toevoegen"
-
-#~ msgid "Add New Password"
-#~ msgstr "Nieuw wachtwoord toevoegen"
-
-#~ msgid "Edit Password"
-#~ msgstr "Wachtwoord bewerken"
-
-#~ msgid "View Password"
-#~ msgstr "Bekijk wachtwoord"
-
-#~ msgid "Search Passwords"
-#~ msgstr "Wachtwoorden zoeken"
-
-#~ msgid "No passwords found"
-#~ msgstr "Geen wachtwoorden gevonden"
-
-#~ msgctxt "slug"
-#~ msgid "passwords"
-#~ msgstr "wachtwoorden"
-
-#~ msgid "Passwords"
-#~ msgstr "Wachtwoorden"
-
-#~ msgid "Latitude"
-#~ msgstr "Breedtegraad"
-
-#~ msgid "Longitude"
-#~ msgstr "Lengtegraad"
-
-#~ msgid "Width"
-#~ msgstr "Breedte"
-
-#~ msgid "Height"
-#~ msgstr "Hoogte"
-
-#~ msgid "Show Google Maps"
-#~ msgstr "Google Maps weergeven"
-
-#~ msgid "Configuration - Pronamic Google Maps"
-#~ msgstr "Configuratie - Pronamic Google Maps"
-
-#~ msgid "Activate Google Maps"
-#~ msgstr "Activeer Google Maps"
-
-#~ msgid "Use this widget to add an Google Maps as a widget."
-#~ msgstr "Gebruik deze widget om Google Maps toe te voegen."
-
-#~ msgid "pixels"
-#~ msgstr "pixels"
-
-#~ msgid "percent"
-#~ msgstr "procent"
-
-#~ msgid "Pronamic Google Maps"
-#~ msgstr "Pronamic Google Maps"
-
-#~ msgid "Click to toggle"
-#~ msgstr "Klik om te wisselen"
-
-#~ msgid "Donate $10, $20 or $50!"
-#~ msgstr "Doneer $10, $20 of $50!"
-
-#~ msgid ""
-#~ "This plugin has cost us countless hours of work, if you use it, please "
-#~ "donate a token of your appreciation!"
-#~ msgstr ""
-#~ "Het ons veel uren werken gekost om deze plugin te ontwikkelen, als je het "
-#~ "gebruikt, doneer a.u.b. voor je waardering!"
-
-#~ msgid "Latest news from Pronamic"
-#~ msgstr "Laatste nieuws van Pronamic"
-
-#~ msgid "no news items, feed might be broken..."
-#~ msgstr "geen nieuws items, feed is waarschijnlijk niet bereikbaar..."
-
-#~ msgid "Subscribe with RSS"
-#~ msgstr "Aanmelden voor RSS"
-
-#~ msgid "Subscribe by e-mail"
-#~ msgstr "Aanmelden via e-mail"
-
-#~ msgid "Like this plugin?"
-#~ msgstr "Vind je deze plugin leuk?"
-
-#~ msgid "Why not do any or all of the following:"
-#~ msgstr "Waarom doe je niet één van de volgende dingen:"
-
-#~ msgid "Link to it so other folks can find out about it."
-#~ msgstr "Link naar ons zodat anderen deze plugin ook ontdekken."
-
-#~ msgid "Give it a good rating on WordPress.org."
-#~ msgstr "Geef het een goede score op WordPress.org."
-
-#~ msgid "Let other people know that it works with your WordPress setup."
-#~ msgstr "Laat anderen weten dat het werk op je WordPress installatie."
-
-#~ msgid "Save Changes"
-#~ msgstr "Wijzigingen opslaan"
-
-#~ msgid "Found a bug?"
-#~ msgstr "Bug gevonden?"
