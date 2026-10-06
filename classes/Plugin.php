@@ -73,7 +73,7 @@ class Plugin {
 
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "
+		$sql = <<<SQL
 			CREATE TABLE $wpdb->orbis_subscriptions (
 				id BIGINT(16) UNSIGNED NOT NULL AUTO_INCREMENT,
 				company_id BIGINT(16) UNSIGNED DEFAULT NULL,
@@ -93,7 +93,7 @@ class Plugin {
 				KEY product_id (product_id),
 				KEY domain_name_id (domain_name_id)
 			) $charset_collate;
-		";
+			SQL;
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
