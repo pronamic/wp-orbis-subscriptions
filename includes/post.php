@@ -148,7 +148,7 @@ function orbis_save_subscription_details( $post_id, $post ) {
 
 	// OK
 	$fields = [
-		'_orbis_subscription_company_id',
+		'_orbis_subscription_customer_id',
 		'_orbis_subscription_product_id',
 		'_orbis_subscription_name',
 		'_orbis_subscription_agreement_id',
@@ -202,17 +202,17 @@ function orbis_save_subscription_sync( $post_id, $post ) {
 		return;
 	}
 
-	$company_id = get_post_meta( $post_id, '_orbis_subscription_company_id', true );
-	$product_id = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
-	$name       = get_post_meta( $post_id, '_orbis_subscription_name', true );
-	$agreement  = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
+	$customer_id = get_post_meta( $post_id, '_orbis_subscription_customer_id', true );
+	$product_id  = get_post_meta( $post_id, '_orbis_subscription_product_id', true );
+	$name        = get_post_meta( $post_id, '_orbis_subscription_name', true );
+	$agreement   = get_post_meta( $post_id, '_orbis_subscription_agreement_id', true );
 
 	// Get the subscription object
 	$subscription = new Pronamic\Orbis\Subscriptions\Subscription( $post );
 
 	// Set this subscriptions details
 	$subscription
-		->set_company_id( $company_id )
+		->set_customer_id( '' === $customer_id ? null : (int) $customer_id )
 		->set_product_id( $product_id )
 		->set_post_id( $post_id )
 		->set_name( $name )

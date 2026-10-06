@@ -37,37 +37,21 @@ class Subscription {
 	private $id;
 
 	/**
-	 * Holds the company associated id,
+	 * Holds the customer contact id,
 	 * from the orbis_subscription table
 	 *
 	 * @access private
-	 * @var int
+	 * @var int|null
 	 */
-	private $company_id;
+	private $customer_id;
 
 	/**
-	 * Holds the company name.
-	 *
-	 * This company information could probably
-	 * be split into its own class. That is outside
-	 * the scope of this project for now.
+	 * Holds the customer name.
 	 *
 	 * @access private
-	 * @var string
+	 * @var string|null
 	 */
-	private $company_name;
-
-	/**
-	 * Holds the company email
-	 *
-	 * This company information could probably
-	 * be split into its own class. That is outside
-	 * the scope of this project for now.
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $company_email;
+	private $customer_name;
 
 	/**
 	 * Holds the product associated id,
@@ -191,9 +175,8 @@ class Subscription {
 			if ( ! empty( $subscription_data ) ) {
 				// Set the properties for this subscription
 				$this->set_id( $subscription_data->id );
-				$this->set_company_id( $subscription_data->company_id );
-				$this->set_company_name( $subscription_data->company_name );
-				$this->set_company_email( $subscription_data->company_email );
+				$this->set_customer_id( $subscription_data->customer_id ?? null );
+				$this->set_customer_name( $subscription_data->customer_name ?? null );
 				$this->set_post_id( $subscription_data->post_id );
 				$this->set_product_id( $subscription_data->product_id );
 				$this->set_type_name( $subscription_data->product_name );
@@ -232,7 +215,7 @@ class Subscription {
 		$expiration_date ??= new \DateTimeImmutable();
 
 		$data = [
-			'company_id'      => $this->get_company_id(),
+			'customer_id'     => empty( $this->get_customer_id() ) ? null : (int) $this->get_customer_id(),
 			'product_id'      => $this->get_product_id(),
 			'post_id'         => $this->get_post_id(),
 			'name'            => $this->get_name(),
@@ -242,7 +225,7 @@ class Subscription {
 		];
 
 		$format = [
-			'company_id'      => '%d',
+			'customer_id'     => '%d',
 			'product_id'      => '%d',
 			'post_id'         => '%d',
 			'name'            => '%s',
@@ -273,30 +256,21 @@ class Subscription {
 		return $this;
 	}
 
-	public function get_company_id() {
-		return $this->company_id;
+	public function get_customer_id() {
+		return $this->customer_id;
 	}
 
-	public function set_company_id( $company_id ) {
-		$this->company_id = $company_id;
+	public function set_customer_id( $customer_id ) {
+		$this->customer_id = $customer_id;
 		return $this;
 	}
 
-	public function get_company_name() {
-		return $this->company_name;
+	public function get_customer_name() {
+		return $this->customer_name;
 	}
 
-	public function set_company_name( $company_name ) {
-		$this->company_name = $company_name;
-		return $this;
-	}
-
-	public function get_company_email() {
-		return $this->company_email;
-	}
-
-	public function set_company_email( $company_email ) {
-		$this->company_email = $company_email;
+	public function set_customer_name( $customer_name ) {
+		$this->customer_name = $customer_name;
 		return $this;
 	}
 

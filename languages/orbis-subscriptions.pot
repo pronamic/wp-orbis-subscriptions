@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-06T18:12:07+00:00\n"
+"POT-Creation-Date: 2026-10-06T19:15:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: orbis-subscriptions\n"
@@ -53,119 +53,126 @@ msgid "Orbis ID"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:48
-msgid "Company ID"
+#: templates/domain-name-subscriptions.php:68
+#: templates/product-subscriptions.php:69
+#: templates/subscription-details.php:113
+msgid "Customer"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:60
+#: admin/meta-box-subscription-details.php:73
+msgid "Activate the Orbis Contacts plugin to link a customer to this subscription."
+msgstr ""
+
+#: admin/meta-box-subscription-details.php:81
 #: admin/page-statistics.php:50
 msgid "Product"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:91
-#: admin/page-billing.php:160
-#: templates/company-subscriptions.php:54
-#: templates/domain-name-subscriptions.php:63
-#: templates/product-subscriptions.php:63
+#: admin/meta-box-subscription-details.php:112
+#: admin/page-billing.php:166
+#: templates/customer-subscriptions.php:54
+#: templates/domain-name-subscriptions.php:70
+#: templates/product-subscriptions.php:70
 msgid "Name"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:100
+#: admin/meta-box-subscription-details.php:121
 msgid "Agreement ID"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:107
+#: admin/meta-box-subscription-details.php:128
 msgid "Choose an Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:110
+#: admin/meta-box-subscription-details.php:131
 msgid "Set as Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:110
+#: admin/meta-box-subscription-details.php:131
 msgid "Choose a Agreement"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:113
+#: admin/meta-box-subscription-details.php:134
 msgid "You can select an .PDF or .TXT file from the WordPress media library."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:114
+#: admin/meta-box-subscription-details.php:135
 msgid "If you received the agreement by mail print the complete mail conversation with an PDF printer."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:131
-#: templates/company-subscriptions.php:52
-#: templates/domain-name-subscriptions.php:60
+#: admin/meta-box-subscription-details.php:152
+#: templates/customer-subscriptions.php:52
+#: templates/domain-name-subscriptions.php:67
 #: templates/subscriptions-without-agreement.php:38
 msgid "Activation Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:150
+#: admin/meta-box-subscription-details.php:171
 msgid "Expiration Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:156
+#: admin/meta-box-subscription-details.php:177
 msgid "For new subscriptions the expiration date can be the same as the activation date."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:157
+#: admin/meta-box-subscription-details.php:178
 msgid "The Orbis subscriptions renewer will automatically renew the subscription to the correct expiration date."
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:173
-#: admin/page-billing.php:163
+#: admin/meta-box-subscription-details.php:194
+#: admin/page-billing.php:169
 msgid "Cancel Date"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:188
-#: templates/subscription-details.php:166
+#: admin/meta-box-subscription-details.php:209
+#: templates/subscription-details.php:182
 msgid "Payment Method"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:195
+#: admin/meta-box-subscription-details.php:216
 msgid "— Select Payment Method —"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:209
-#: templates/subscription-details.php:173
+#: admin/meta-box-subscription-details.php:230
+#: templates/subscription-details.php:189
 msgid "Invoice reference"
 msgstr ""
 
-#: admin/meta-box-subscription-details.php:217
-#: templates/subscription-details.php:182
+#: admin/meta-box-subscription-details.php:238
+#: templates/subscription-details.php:198
 msgid "Invoice Line Description"
 msgstr ""
 
-#: admin/page-billing.php:156
+#: admin/page-billing.php:162
 msgid "ID"
 msgstr ""
 
-#: admin/page-billing.php:157
-#: templates/company-subscriptions.php:53
-#: templates/domain-name-subscriptions.php:62
+#: admin/page-billing.php:163
+#: templates/customer-subscriptions.php:53
+#: templates/domain-name-subscriptions.php:69
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr ""
 
-#: admin/page-billing.php:158
+#: admin/page-billing.php:164
 msgid "Interval"
 msgstr ""
 
-#: admin/page-billing.php:159
+#: admin/page-billing.php:165
 #: templates/archive-orbis_subscription.php:32
-#: templates/company-subscriptions.php:55
-#: templates/domain-name-subscriptions.php:64
-#: templates/subscription-details.php:161
+#: templates/customer-subscriptions.php:55
+#: templates/domain-name-subscriptions.php:71
+#: templates/subscription-details.php:177
 #: templates/subscriptions-without-agreement.php:40
 msgid "Price"
 msgstr ""
 
-#: admin/page-billing.php:161
+#: admin/page-billing.php:167
 #: templates/subscription-invoices.php:60
 msgid "Start Date"
 msgstr ""
 
-#: admin/page-billing.php:162
+#: admin/page-billing.php:168
 #: templates/subscription-invoices.php:61
 msgid "End Date"
 msgstr ""
@@ -201,15 +208,15 @@ msgid "Search subscriptions"
 msgstr ""
 
 #: classes/AbilitiesController.php:77
-msgid "Searches Orbis subscriptions by name, company or product and returns the matching subscriptions with their company, product and dates."
+msgid "Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product and dates."
 msgstr ""
 
 #: classes/AbilitiesController.php:85
-msgid "Search term, matched against the subscription name, the subscription title, the company name and the product name."
+msgid "Search term, matched against the subscription name, the subscription title, the customer name and the product name."
 msgstr ""
 
 #: classes/AbilitiesController.php:89
-msgid "Limit the results to subscriptions of this Orbis company ID."
+msgid "Limit the results to subscriptions of this customer, an Orbis contact ID (person or organization)."
 msgstr ""
 
 #: classes/AbilitiesController.php:94
@@ -228,28 +235,28 @@ msgstr ""
 msgid "Page of results to return."
 msgstr ""
 
-#: classes/AdminController.php:44
+#: classes/AdminController.php:70
 msgid "Orbis Subscriptions Statistics"
 msgstr ""
 
-#: classes/AdminController.php:45
+#: classes/AdminController.php:71
 msgid "Statistics"
 msgstr ""
 
-#: classes/AdminController.php:53
+#: classes/AdminController.php:79
 msgid "Orbis Subscriptions Billing"
 msgstr ""
 
-#: classes/AdminController.php:54
+#: classes/AdminController.php:80
 msgid "Billing"
 msgstr ""
 
-#: classes/AdminController.php:101
+#: classes/AdminController.php:127
 #, php-format
 msgid "This subscription is just '%1$s' by %2$s."
 msgstr ""
 
-#: classes/AdminController.php:102
+#: classes/AdminController.php:128
 msgid "canceled"
 msgstr ""
 
@@ -263,10 +270,11 @@ msgstr ""
 msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
 msgstr ""
 
-#: classes/TemplateController.php:119
+#: classes/TemplateController.php:125
+#: classes/TemplateController.php:153
 #: includes/post.php:11
 #: includes/post.php:24
-#: templates/domain-name-subscriptions.php:54
+#: templates/domain-name-subscriptions.php:61
 msgid "Subscriptions"
 msgstr ""
 
@@ -323,7 +331,7 @@ msgid "subscriptions"
 msgstr ""
 
 #: includes/post.php:54
-#: templates/subscription-details.php:94
+#: templates/subscription-details.php:106
 msgid "Subscription Details"
 msgstr ""
 
@@ -336,12 +344,12 @@ msgid "Title"
 msgstr ""
 
 #: templates/archive-orbis_subscription.php:33
-#: templates/subscription-details.php:118
+#: templates/subscription-details.php:134
 msgid "Expiration or renewal date"
 msgstr ""
 
 #: templates/archive-orbis_subscription.php:34
-#: templates/subscription-details.php:104
+#: templates/subscription-details.php:120
 msgid "Status"
 msgstr ""
 
@@ -351,26 +359,20 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: templates/company-subscriptions.php:102
+#: templates/customer-subscriptions.php:102
 msgid "No subscriptions found."
 msgstr ""
 
-#: templates/domain-name-subscriptions.php:61
 #: templates/product-subscriptions.php:62
-#: templates/subscription-details.php:99
-msgid "Company"
-msgstr ""
-
-#: templates/product-subscriptions.php:55
 msgid "Most recent subscriptions"
 msgstr ""
 
-#: templates/product-subscriptions.php:61
-#: templates/subscription-details.php:111
+#: templates/product-subscriptions.php:68
+#: templates/subscription-details.php:127
 msgid "Activation date"
 msgstr ""
 
-#: templates/product-subscriptions.php:113
+#: templates/product-subscriptions.php:122
 msgid "View all subscriptions"
 msgstr ""
 
@@ -399,27 +401,27 @@ msgstr ""
 msgid "Cancelled"
 msgstr ""
 
-#: templates/subscription-details.php:125
+#: templates/subscription-details.php:141
 msgid "Cancel date"
 msgstr ""
 
-#: templates/subscription-details.php:132
+#: templates/subscription-details.php:148
 msgid "Billed to"
 msgstr ""
 
-#: templates/subscription-details.php:145
+#: templates/subscription-details.php:161
 msgid "📣 Please note: this subscription may be billed again soon."
 msgstr ""
 
-#: templates/subscription-details.php:153
+#: templates/subscription-details.php:169
 msgid "🚨 Please note: this subscription is billed further in advance than usual."
 msgstr ""
 
-#: templates/subscription-details.php:197
+#: templates/subscription-details.php:213
 msgid "Agreement"
 msgstr ""
 
-#: templates/subscription-details.php:206
+#: templates/subscription-details.php:222
 msgid "Available time per year"
 msgstr ""
 

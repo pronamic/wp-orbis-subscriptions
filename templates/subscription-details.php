@@ -21,24 +21,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $wpdb, $post;
 
 $orbis_id        = get_post_meta( $post->ID, '_orbis_subscription_id', true );
-$company_id      = get_post_meta( $post->ID, '_orbis_subscription_company_id', true );
+$customer_id     = get_post_meta( $post->ID, '_orbis_subscription_customer_id', true );
 $product_id      = get_post_meta( $post->ID, '_orbis_subscription_product_id', true );
 $name            = get_post_meta( $post->ID, '_orbis_subscription_name', true );
 $activation_date = get_post_meta( $post->ID, '_orbis_subscription_activation_date', true );
 $expiration_date = get_post_meta( $post->ID, '_orbis_subscription_expiration_date', true );
 $cancel_date     = get_post_meta( $post->ID, '_orbis_subscription_cancel_date', true );
 
+$customer_fields = 'NULL AS customer_post_id';
+$customer_join   = '';
+
+if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+	$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
+	$customer_fields = 'customer.post_id AS customer_post_id';
+	$customer_join   = "LEFT JOIN $contacts_table AS customer ON subscription.customer_id = customer.id";
+}
+
 $query = $wpdb->prepare(
 	"
 	SELECT
 		subscription.*,
 		product.time_per_year,
-		product.interval
+		product.interval,
+		$customer_fields
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
 			INNER JOIN
 		$wpdb->orbis_products AS product
 				ON subscription.product_id = product.id
+		$customer_join
 	WHERE
 		subscription.post_id = %d
 	LIMIT
@@ -50,14 +62,14 @@ $query = $wpdb->prepare(
 $subscription = $wpdb->get_row( $query );
 
 $orbis_id        = $subscription->id;
-$company_id      = $subscription->company_id;
+$customer_id     = $subscription->customer_id;
 $product_id      = $subscription->product_id;
 $name            = $subscription->name;
 $activation_date = $subscription->activation_date;
 $expiration_date = $subscription->expiration_date;
 $cancel_date     = $subscription->cancel_date;
 
-$company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $company_id ) );
+$customer_post_id = $subscription->customer_post_id;
 
 $invoice_reference        = get_post_meta( $post->ID, '_orbis_invoice_reference', true );
 $invoice_line_description = get_post_meta( $post->ID, '_orbis_invoice_line_description', true );
@@ -96,14 +108,18 @@ if ( ! empty( $subscription->billed_to ) ) {
 
 		<div class="content">
 			<dl>
-				<dt><?php esc_html_e( 'Company', 'orbis-subscriptions' ); ?></dt>
-				<dd>
-					<a href="<?php echo esc_url( get_permalink( $company_post_id ) ); ?>"><?php echo esc_html( get_the_title( $company_post_id ) ); ?></a>
-				</dd>
+				<?php if ( null !== $customer_post_id ) : ?>
+
+					<dt><?php esc_html_e( 'Customer', 'orbis-subscriptions' ); ?></dt>
+					<dd>
+						<a href="<?php echo esc_url( get_permalink( $customer_post_id ) ); ?>"><?php echo esc_html( get_the_title( $customer_post_id ) ); ?></a>
+					</dd>
+
+				<?php endif; ?>
 
 				<dt><?php esc_html_e( 'Status', 'orbis-subscriptions' ); ?></dt>
 				<dd>
-					<?php include __DIR__ . '/subscription-badges.php'; ?>
+					<?php require __DIR__ . '/subscription-badges.php'; ?>
 				</dd>
 
 				<?php if ( null !== $activation_date ) : ?>

@@ -45,14 +45,35 @@ $utc = new \DateTimeZone( 'UTC' );
 	</tr>
 	<tr valign="top">
 		<th scope="row">
-			<label for="orbis_subscription_company"><?php esc_html_e( 'Company ID', 'orbis-subscriptions' ); ?></label>
+			<label for="orbis_subscription_customer"><?php esc_html_e( 'Customer', 'orbis-subscriptions' ); ?></label>
 		</th>
 		<td>
-			<select id="orbis_subscription_company" name="_orbis_subscription_company_id" class="orbis-id-control orbis_company_id_field regular-text">
-				<option value="<?php echo esc_attr( $subscription->get_company_id() ); ?>">
-					<?php echo esc_html( $subscription->get_company_name() ); ?>
-				</option>
-			</select>
+			<?php if ( class_exists( \Pronamic\Orbis\Contacts\ContactSelect2Controller::class ) ) : ?>
+
+				<?php
+
+				$customer_id = $subscription->get_customer_id();
+
+				$customer_option = empty( $customer_id ) ? null : \Pronamic\Orbis\Contacts\ContactSelect2Controller::get_option_data( (int) $customer_id );
+
+				?>
+				<select id="orbis_subscription_customer" name="_orbis_subscription_customer_id" class="orbis-contact-id-control regular-text">
+					<option value=""></option>
+
+					<?php if ( null !== $customer_option ) : ?>
+
+						<option value="<?php echo esc_attr( $customer_option['id'] ); ?>" data-icon="<?php echo esc_attr( $customer_option['icon'] ); ?>" data-type-label="<?php echo esc_attr( $customer_option['type_label'] ); ?>" data-email="<?php echo esc_attr( $customer_option['email'] ?? '' ); ?>" selected="selected"><?php echo esc_html( $customer_option['text'] ); ?></option>
+
+					<?php endif; ?>
+				</select>
+
+			<?php else : ?>
+
+				<p class="description">
+					<?php esc_html_e( 'Activate the Orbis Contacts plugin to link a customer to this subscription.', 'orbis-subscriptions' ); ?>
+				</p>
+
+			<?php endif; ?>
 		</td>
 	</tr>
 	<tr valign="top">

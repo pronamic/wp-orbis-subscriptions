@@ -69,17 +69,19 @@ function orbis_subscription_get_data( $post_id ) {
 
 	$join = "$wpdb->orbis_subscriptions AS subscription";
 
-	if ( isset( $wpdb->orbis_companies ) ) {
+	if ( \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+		$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
 		$fields .= ',
-			company.id AS company_id,
-			company.name AS company_name,
-			company.e_mail AS company_email
+			customer.id AS customer_id,
+			customer.name AS customer_name,
+			customer.post_id AS customer_post_id
 		';
 
 		$join .= "
 				LEFT JOIN
-			$wpdb->orbis_companies AS company
-					ON subscription.company_id = company.id
+			$contacts_table AS customer
+					ON subscription.customer_id = customer.id
 		";
 	}
 

@@ -30,37 +30,39 @@ if ( \array_key_exists( 'product', $_GET ) ) {
 	);
 }
 
+$contacts_table = $wpdb->prefix . 'orbis_contacts';
+
 $query = "
 	SELECT
 		user.ID AS user_id,
 		user.display_name AS user_display_name,
 		user.user_email AS user_email,
-		COUNT( company.id ) AS number_companies,
+		COUNT( organization.id ) AS number_organizations,
 		COUNT( subscription.id ) AS number_subscriptions
 	FROM
-		wp_users AS user
+		$wpdb->users AS user
 			LEFT JOIN
-		wp_p2p AS user_company_p2p
+		{$wpdb->prefix}p2p AS user_organization_p2p
 				ON (
-					user_company_p2p.p2p_type = 'orbis_users_to_companies'
+					user_organization_p2p.p2p_type = 'orbis_users_to_organizations'
 						AND
-					user_company_p2p.p2p_from = user.ID
+					user_organization_p2p.p2p_from = user.ID
 				)
 			LEFT JOIN
-		wp_orbis_companies AS company
-				ON company.post_id = user_company_p2p.p2p_to
+		$contacts_table AS organization
+				ON organization.post_id = user_organization_p2p.p2p_to
 			LEFT JOIN
 		(
 			SELECT
 				subscription.id,
-				subscription.company_id
+				subscription.customer_id
 			FROM
-				wp_orbis_subscriptions AS subscription
+				$wpdb->orbis_subscriptions AS subscription
 					INNER JOIN
-				wp_orbis_products AS product
+				$wpdb->orbis_products AS product
 						ON subscription.product_id = product.id
 					INNER JOIN
-				wp_posts AS post
+				$wpdb->posts AS post
 						ON product.post_id = post.ID
 			WHERE
 				$where
@@ -71,7 +73,7 @@ $query = "
 					subscription.expiration_date > NOW()
 				)
 		) AS subscription
-			ON company.id = subscription.company_id
+			ON organization.id = subscription.customer_id
 	GROUP BY
 		user.ID
 	;

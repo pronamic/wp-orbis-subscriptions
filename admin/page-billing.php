@@ -36,11 +36,19 @@ if ( array_key_exists( 'billing_until', $_GET ) ) {
 	}
 }
 
+$customer_fields = 'subscription.customer_id, NULL AS customer_name, NULL AS customer_post_id,';
+$customer_join   = '';
+
+if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+	$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
+	$customer_fields = 'subscription.customer_id, customer.name AS customer_name, customer.post_id AS customer_post_id,';
+	$customer_join   = "LEFT JOIN $contacts_table AS customer ON subscription.customer_id = customer.id";
+}
+
 $query = "
 	SELECT
-		company.id AS company_id,
-		company.name AS company_name,
-		company.post_id AS company_post_id,
+		$customer_fields
 		billing_group.id AS billing_group_id,
 		billing_group.name AS billing_group_name,
 		product.name AS subscription_name,
@@ -58,9 +66,7 @@ $query = "
 		subscription.billed_to
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
-			LEFT JOIN
-		$wpdb->orbis_companies AS company
-				ON subscription.company_id = company.id
+		$customer_join
 			LEFT JOIN
 		$wpdb->orbis_products AS product
 				ON subscription.product_id = product.id
@@ -79,42 +85,42 @@ $query = "
 
 $subscriptions = $wpdb->get_results( $query );
 
-$companies = [];
+$customers = [];
 
 foreach ( $subscriptions as $subscription ) {
-	$company_id       = $subscription->company_id;
+	$customer_id      = $subscription->customer_id;
 	$billing_group_id = $subscription->billing_group_id;
 
-	$group_key = $company_id . '_' . ( $billing_group_id ?? '' );
+	$group_key = $customer_id . '_' . ( $billing_group_id ?? '' );
 
-	if ( ! isset( $companies[ $group_key ] ) ) {
-		$company = new stdClass();
+	if ( ! isset( $customers[ $group_key ] ) ) {
+		$customer = new stdClass();
 
-		$company->id                 = $subscription->company_id;
-		$company->name               = $subscription->company_name;
-		$company->post_id            = $subscription->company_post_id;
-		$company->billing_group_id   = $subscription->billing_group_id;
-		$company->billing_group_name = $subscription->billing_group_name;
-		$company->subscriptions      = [];
+		$customer->id                 = $subscription->customer_id;
+		$customer->name               = $subscription->customer_name;
+		$customer->post_id            = $subscription->customer_post_id;
+		$customer->billing_group_id   = $subscription->billing_group_id;
+		$customer->billing_group_name = $subscription->billing_group_name;
+		$customer->subscriptions      = [];
 
-		$companies[ $group_key ] = $company;
+		$customers[ $group_key ] = $customer;
 	}
 
-	$companies[ $group_key ]->subscriptions[] = $subscription;
+	$customers[ $group_key ]->subscriptions[] = $subscription;
 }
 
 ?>
 <div class="wrap">
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-	<?php foreach ( $companies as $company ) : ?>
+	<?php foreach ( $customers as $customer ) : ?>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h2 class="panel-title">
-					<a href="<?php echo esc_url( get_permalink( $company->post_id ) ); ?>"><?php echo esc_html( $company->name ); ?></a>
-					<?php if ( null !== $company->billing_group_id ) : ?>
-						— <?php echo esc_html( $company->billing_group_name ); ?>
+					<a href="<?php echo esc_url( get_permalink( $customer->post_id ) ); ?>"><?php echo esc_html( $customer->name ); ?></a>
+					<?php if ( null !== $customer->billing_group_id ) : ?>
+						— <?php echo esc_html( $customer->billing_group_name ); ?>
 					<?php endif; ?>
 				</h2>
 			</div>
@@ -123,15 +129,15 @@ foreach ( $subscriptions as $subscription ) {
 				<p>
 					<?php
 
-					$ids = wp_list_pluck( $company->subscriptions, 'id' );
+					$ids = wp_list_pluck( $customer->subscriptions, 'id' );
 
 					$query_args = [
-						'orbis_company_id'       => $company->id,
+						'orbis_customer_id'      => $customer->id,
 						'orbis_subscription_ids' => implode( ',', $ids ),
 					];
 
-					if ( null !== $company->billing_group_id ) {
-						$query_args['orbis_billing_group_id'] = $company->billing_group_id;
+					if ( null !== $customer->billing_group_id ) {
+						$query_args['orbis_billing_group_id'] = $customer->billing_group_id;
 					}
 
 					$url = add_query_arg(
@@ -173,7 +179,7 @@ foreach ( $subscriptions as $subscription ) {
 							<?php
 
 							$total = 0;
-							foreach ( $company->subscriptions as $i => $result ) {
+							foreach ( $customer->subscriptions as $i => $result ) {
 								$total += $result->price;
 							}
 
@@ -191,7 +197,7 @@ foreach ( $subscriptions as $subscription ) {
 
 				<tbody>
 
-					<?php foreach ( $company->subscriptions as $i => $result ) : ?>
+					<?php foreach ( $customer->subscriptions as $i => $result ) : ?>
 
 						<?php
 

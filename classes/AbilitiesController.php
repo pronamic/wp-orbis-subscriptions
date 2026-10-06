@@ -74,40 +74,40 @@ class AbilitiesController {
 			'orbis-subscriptions/search',
 			[
 				'label'               => \__( 'Search subscriptions', 'orbis-subscriptions' ),
-				'description'         => \__( 'Searches Orbis subscriptions by name, company or product and returns the matching subscriptions with their company, product and dates.', 'orbis-subscriptions' ),
+				'description'         => \__( 'Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product and dates.', 'orbis-subscriptions' ),
 				'category'            => 'orbis-subscriptions',
 				'input_schema'        => [
 					'type'                 => 'object',
 					'default'              => [],
 					'properties'           => [
-						'search'     => [
+						'search'      => [
 							'type'        => 'string',
-							'description' => \__( 'Search term, matched against the subscription name, the subscription title, the company name and the product name.', 'orbis-subscriptions' ),
+							'description' => \__( 'Search term, matched against the subscription name, the subscription title, the customer name and the product name.', 'orbis-subscriptions' ),
 						],
-						'company_id' => [
+						'customer_id' => [
 							'type'        => 'integer',
-							'description' => \__( 'Limit the results to subscriptions of this Orbis company ID.', 'orbis-subscriptions' ),
+							'description' => \__( 'Limit the results to subscriptions of this customer, an Orbis contact ID (person or organization).', 'orbis-subscriptions' ),
 							'minimum'     => 1,
 						],
-						'product_id' => [
+						'product_id'  => [
 							'type'        => 'integer',
 							'description' => \__( 'Limit the results to subscriptions of this Orbis product ID.', 'orbis-subscriptions' ),
 							'minimum'     => 1,
 						],
-						'status'     => [
+						'status'      => [
 							'type'        => 'string',
 							'description' => \__( 'Limit the results to active subscriptions (not cancelled or not yet expired), cancelled subscriptions, or any subscription.', 'orbis-subscriptions' ),
 							'enum'        => [ 'any', 'active', 'cancelled' ],
 							'default'     => 'any',
 						],
-						'per_page'   => [
+						'per_page'    => [
 							'type'        => 'integer',
 							'description' => \__( 'Maximum number of subscriptions to return.', 'orbis-subscriptions' ),
 							'minimum'     => 1,
 							'maximum'     => 100,
 							'default'     => 20,
 						],
-						'page'       => [
+						'page'        => [
 							'type'        => 'integer',
 							'description' => \__( 'Page of results to return.', 'orbis-subscriptions' ),
 							'minimum'     => 1,
@@ -132,12 +132,13 @@ class AbilitiesController {
 									'title'           => [ 'type' => 'string' ],
 									'name'            => [ 'type' => 'string' ],
 									'url'             => [ 'type' => 'string' ],
-									'company'         => [
+									'customer'        => [
 										'type'       => [ 'object', 'null' ],
 										'properties' => [
 											'id'      => [ 'type' => 'integer' ],
-											'post_id' => $nullable_integer,
+											'post_id' => [ 'type' => 'integer' ],
 											'name'    => [ 'type' => 'string' ],
+											'type'    => [ 'type' => 'string' ],
 										],
 									],
 									'product'         => [
@@ -186,22 +187,22 @@ class AbilitiesController {
 		$input = \wp_parse_args(
 			(array) $input,
 			[
-				'search'     => '',
-				'company_id' => null,
-				'product_id' => null,
-				'status'     => 'any',
-				'per_page'   => 20,
-				'page'       => 1,
+				'search'      => '',
+				'customer_id' => null,
+				'product_id'  => null,
+				'status'      => 'any',
+				'per_page'    => 20,
+				'page'        => 1,
 			]
 		);
 
-		$has_companies = isset( $wpdb->orbis_companies );
+		$has_customers = \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class );
 		$has_products  = isset( $wpdb->orbis_products );
 
 		$fields = '
 			subscription.id,
 			subscription.post_id,
-			subscription.company_id,
+			subscription.customer_id,
 			subscription.product_id,
 			subscription.name,
 			subscription.activation_date,
@@ -219,16 +220,22 @@ class AbilitiesController {
 					ON subscription.post_id = post.ID
 		";
 
-		if ( $has_companies ) {
+		if ( $has_customers ) {
+			$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
 			$fields .= ',
-				company.post_id AS company_post_id,
-				company.name AS company_name
+				customer.post_id AS customer_post_id,
+				customer.name AS customer_name,
+				customer_post.post_type AS customer_type
 			';
 
 			$join .= "
 				LEFT JOIN
-			$wpdb->orbis_companies AS company
-					ON subscription.company_id = company.id
+			$contacts_table AS customer
+					ON subscription.customer_id = customer.id
+				LEFT JOIN
+			$wpdb->posts AS customer_post
+					ON customer.post_id = customer_post.ID
 			";
 		}
 
@@ -261,8 +268,8 @@ class AbilitiesController {
 				$wpdb->prepare( 'post.post_title LIKE %s', $like ),
 			];
 
-			if ( $has_companies ) {
-				$search_conditions[] = $wpdb->prepare( 'company.name LIKE %s', $like );
+			if ( $has_customers ) {
+				$search_conditions[] = $wpdb->prepare( 'customer.name LIKE %s', $like );
 			}
 
 			if ( $has_products ) {
@@ -272,8 +279,8 @@ class AbilitiesController {
 			$conditions[] = '( ' . \implode( ' OR ', $search_conditions ) . ' )';
 		}
 
-		if ( null !== $input['company_id'] ) {
-			$conditions[] = $wpdb->prepare( 'subscription.company_id = %d', $input['company_id'] );
+		if ( null !== $input['customer_id'] ) {
+			$conditions[] = $wpdb->prepare( 'subscription.customer_id = %d', $input['customer_id'] );
 		}
 
 		if ( null !== $input['product_id'] ) {
@@ -322,13 +329,14 @@ class AbilitiesController {
 	 * @return array
 	 */
 	private function format_subscription( $row ) {
-		$company = null;
+		$customer = null;
 
-		if ( null !== $row->company_id && isset( $row->company_name ) ) {
-			$company = [
-				'id'      => (int) $row->company_id,
-				'post_id' => null === $row->company_post_id ? null : (int) $row->company_post_id,
-				'name'    => $row->company_name,
+		if ( null !== $row->customer_id && isset( $row->customer_name ) ) {
+			$customer = [
+				'id'      => (int) $row->customer_id,
+				'post_id' => (int) $row->customer_post_id,
+				'name'    => $row->customer_name,
+				'type'    => (string) $row->customer_type,
 			];
 		}
 
@@ -350,7 +358,7 @@ class AbilitiesController {
 			'title'           => $row->post_title,
 			'name'            => $row->name,
 			'url'             => (string) \get_permalink( (int) $row->post_id ),
-			'company'         => $company,
+			'customer'        => $customer,
 			'product'         => $product,
 			'activation_date' => $row->activation_date,
 			'expiration_date' => $row->expiration_date,

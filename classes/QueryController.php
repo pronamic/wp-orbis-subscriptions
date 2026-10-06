@@ -78,31 +78,36 @@ class QueryController {
 			$pieces['where']  .= $where;
 		}
 
-		// Subscriptions like
-		if ( 'orbis_company' === $post_type ) {
-			$like = $query->get( 'subscriptions_like', null );
+		// Subscriptions like, for contact post types (e.g. `orbis_person` and `orbis_organization`).
+		$like = $query->get( 'subscriptions_like', null );
 
-			if ( null !== $like ) {
-				// Join
-				$join = "
-					LEFT JOIN
-						$wpdb->orbis_companies AS company
-							ON $wpdb->posts.ID = company.post_id
-					LEFT JOIN
-						$wpdb->orbis_subscriptions AS subscription
-							ON subscription.company_id = company.id
-					LEFT JOIN
-						$wpdb->orbis_products AS product
-							ON subscription.product_id = product.id
-				";
+		$is_contact_query = [] !== (array) $post_type && [] === \array_filter(
+			(array) $post_type,
+			fn( $item ) => 'orbis_contact' !== $item && ! \post_type_supports( $item, 'orbis-contact' )
+		);
 
-				// Where
-				$where = $wpdb->prepare( 'AND subscription.cancel_date IS NULL AND subscription_product.name LIKE %s', $like );
+		if ( null !== $like && '' !== $like && $is_contact_query && \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+			$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
 
-				$pieces['join']    .= $join;
-				$pieces['where']   .= $where;
-				$pieces['groupby'] .= "$wpdb->posts.ID";
-			}
+			// Join
+			$join = "
+				INNER JOIN
+					$contacts_table AS customer
+						ON $wpdb->posts.ID = customer.post_id
+				INNER JOIN
+					$wpdb->orbis_subscriptions AS subscription
+						ON subscription.customer_id = customer.id
+				INNER JOIN
+					$wpdb->orbis_products AS product
+						ON subscription.product_id = product.id
+			";
+
+			// Where
+			$where = $wpdb->prepare( ' AND subscription.cancel_date IS NULL AND product.name LIKE %s', $like );
+
+			$pieces['join']   .= $join;
+			$pieces['where']  .= $where;
+			$pieces['groupby'] = "$wpdb->posts.ID";
 		}
 
 		return $pieces;

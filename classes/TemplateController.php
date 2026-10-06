@@ -32,7 +32,9 @@ class TemplateController {
 
 		\add_action( 'orbis_after_main_content', $this->maybe_include_product_subscriptions( ... ) );
 
-		\add_filter( 'orbis_company_sections', $this->orbis_company_sections_subscriptions( ... ) );
+		\add_filter( 'orbis_organization_sections', $this->orbis_organization_sections_subscriptions( ... ) );
+
+		\add_action( 'orbis_after_main_content', $this->maybe_include_person_subscriptions( ... ) );
 	}
 
 	/**
@@ -108,20 +110,50 @@ class TemplateController {
 	}
 
 	/**
-	 * Company sections subscriptions.
-	 * 
+	 * Organization sections subscriptions.
+	 *
 	 * @param array $sections Sections.
 	 * @return array
 	 */
-	public function orbis_company_sections_subscriptions( $sections ) {
+	public function orbis_organization_sections_subscriptions( $sections ) {
+		if ( ! \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+			return $sections;
+		}
+
 		$sections[] = [
 			'id'       => 'subscriptions',
 			'name'     => \__( 'Subscriptions', 'orbis-subscriptions' ),
 			'callback' => function (): void {
-				include __DIR__ . '/../templates/company-subscriptions.php';
+				include __DIR__ . '/../templates/customer-subscriptions.php';
 			},
 		];
 
 		return $sections;
+	}
+
+	/**
+	 * Maybe include person subscriptions.
+	 *
+	 * The person template has no sections filter, so the subscriptions are
+	 * shown in a card after the main content.
+	 *
+	 * @return void
+	 */
+	public function maybe_include_person_subscriptions() {
+		if ( ! \is_singular( 'orbis_person' ) ) {
+			return;
+		}
+
+		if ( ! \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+			return;
+		}
+
+		?>
+		<div class="card mb-3">
+			<div class="card-header"><?php \esc_html_e( 'Subscriptions', 'orbis-subscriptions' ); ?></div>
+
+			<?php include __DIR__ . '/../templates/customer-subscriptions.php'; ?>
+		</div>
+		<?php
 	}
 }

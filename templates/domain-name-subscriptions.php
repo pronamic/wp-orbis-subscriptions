@@ -16,6 +16,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $wpdb;
 
+$customer_fields = 'NULL AS customer_post_id, NULL AS customer_name';
+$customer_join   = '';
+
+if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+	$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
+	$customer_fields = 'customer.post_id AS customer_post_id, customer.name AS customer_name';
+	$customer_join   = "LEFT JOIN $contacts_table AS customer ON subscription.customer_id = customer.id";
+}
+
 $query = $wpdb->prepare(
 	"
 	SELECT
@@ -27,16 +37,13 @@ $query = $wpdb->prepare(
 		subscription.activation_date,
 		subscription.cancel_date IS NOT NULL AS canceled,
 		subscription.post_id,
-		company.post_id AS company_post_id,
-		company.name AS company_name
+		$customer_fields
 	FROM
 		$wpdb->orbis_subscriptions AS subscription
 			LEFT JOIN
 		$wpdb->orbis_products AS product
 				ON subscription.product_id = product.id
-			LEFT JOIN
-		$wpdb->orbis_companies AS company
-				ON subscription.company_id = company.id
+		$customer_join
 	WHERE
 		subscription.name LIKE %s
 	ORDER BY
@@ -58,7 +65,7 @@ if ( $subscriptions ) : ?>
 			<thead>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Activation Date', 'orbis-subscriptions' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Company', 'orbis-subscriptions' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Customer', 'orbis-subscriptions' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Subscription', 'orbis-subscriptions' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Name', 'orbis-subscriptions' ); ?></th>
 					<th scope="col"><?php esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
@@ -82,9 +89,11 @@ if ( $subscriptions ) : ?>
 							<?php echo esc_html( date_i18n( 'D j M Y', strtotime( $subscription->activation_date ) ) ); ?>
 						</td>
 						<td>
-							<a href="<?php echo esc_url( get_permalink( $subscription->company_post_id ) ); ?>" target="_blank">
-								<?php echo esc_html( $subscription->company_name ); ?>
-							</a>
+							<?php if ( null !== $subscription->customer_post_id ) : ?>
+								<a href="<?php echo esc_url( get_permalink( $subscription->customer_post_id ) ); ?>" target="_blank">
+									<?php echo esc_html( $subscription->customer_name ); ?>
+								</a>
+							<?php endif; ?>
 						</td>
 						<td>
 							<a href="<?php echo esc_url( get_permalink( $subscription->post_id ) ); ?>" target="_blank">

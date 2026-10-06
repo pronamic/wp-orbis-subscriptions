@@ -1,6 +1,6 @@
 <?php
 /**
- * Company subscriptions
+ * Customer subscriptions
  *
  * @author    Pronamic <info@pronamic.eu>
  * @copyright 2005-2024 Pronamic
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $wpdb;
 
-$id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_companies WHERE post_id = %d;", get_the_ID() ) );
+$customer_id = \Pronamic\Orbis\Contacts\ContactsTable::get_contact_id( (int) get_the_ID() );
 
 $query = $wpdb->prepare(
 	"
@@ -35,14 +35,14 @@ $query = $wpdb->prepare(
 		$wpdb->orbis_products AS product
 				ON subscription.product_id = product.id
 	WHERE
-		company_id = %d
+		subscription.customer_id = %d
 	ORDER BY
 		activation_date ASC
 	;",
-	$id
+	$customer_id
 );
 
-$subscriptions = $wpdb->get_results( $query );
+$subscriptions = null === $customer_id ? [] : $wpdb->get_results( $query );
 
 if ( $subscriptions ) : ?>
 

@@ -33,6 +33,32 @@ class AdminController {
 		add_action( 'admin_menu', $this->admin_menu( ... ) );
 
 		add_action( 'save_post', $this->save_post( ... ) );
+
+		add_action( 'admin_enqueue_scripts', $this->admin_enqueue_scripts( ... ) );
+	}
+
+	/**
+	 * Admin enqueue scripts.
+	 *
+	 * The contact picker script is registered by the Orbis Contacts plugin.
+	 *
+	 * @param string $hook_suffix Hook suffix.
+	 * @return void
+	 */
+	public function admin_enqueue_scripts( $hook_suffix ) {
+		if ( ! \in_array( $hook_suffix, [ 'post.php', 'post-new.php' ], true ) ) {
+			return;
+		}
+
+		$screen = \get_current_screen();
+
+		if ( null === $screen || 'orbis_subscription' !== $screen->post_type ) {
+			return;
+		}
+
+		if ( \wp_script_is( 'orbis-contact-select2', 'registered' ) ) {
+			\wp_enqueue_script( 'orbis-contact-select2' );
+		}
 	}
 
 	/**
