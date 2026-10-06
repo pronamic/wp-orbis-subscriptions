@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<table class="table table-striped table-condense table-hover">
 				<thead>
 					<tr>
+						<th><?php \esc_html_e( 'Customer', 'orbis-subscriptions' ); ?></th>
 						<th><?php \esc_html_e( 'Title', 'orbis-subscriptions' ); ?></th>
 						<th><?php \esc_html_e( 'Price', 'orbis-subscriptions' ); ?></th>
 						<th><?php \esc_html_e( 'Expiration or renewal date', 'orbis-subscriptions' ); ?></th>
@@ -44,6 +45,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 						?>
 
 						<tr id="post-<?php \the_ID(); ?>" <?php \post_class(); ?>>
+							<td>
+								<?php
+
+								$customer_post_id = (string) \get_post_field( 'customer_post_id' );
+
+								if ( '' !== $customer_post_id ) {
+									\printf(
+										'<a href="%s">%s</a>',
+										\esc_url( (string) \get_permalink( (int) $customer_post_id ) ),
+										\esc_html( (string) \get_post_field( 'customer_name' ) )
+									);
+								}
+
+								?>
+							</td>
 							<td>
 								<a href="<?php \the_permalink(); ?>"><?php \the_title(); ?></a>
 

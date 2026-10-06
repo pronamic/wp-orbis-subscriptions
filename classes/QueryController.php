@@ -64,6 +64,21 @@ class QueryController {
 						ON subscription.product_id = product.id
 			";
 
+			if ( \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
+				$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
+
+				$fields .= ',
+					customer.post_id AS customer_post_id,
+					customer.name AS customer_name
+				';
+
+				$join .= "
+					LEFT JOIN
+						$contacts_table AS customer
+							ON subscription.customer_id = customer.id
+				";
+			}
+
 			// Where
 			$where = '';
 
