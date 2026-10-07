@@ -74,7 +74,7 @@ class AbilitiesController {
 			'orbis-subscriptions/search',
 			[
 				'label'               => \__( 'Search subscriptions', 'orbis-subscriptions' ),
-				'description'         => \__( 'Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product and dates.', 'orbis-subscriptions' ),
+				'description'         => \__( 'Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product, dates, comment count and latest comments. Use orbis/search-comments for the full comment history of a subscription.', 'orbis-subscriptions' ),
 				'category'            => 'orbis-subscriptions',
 				'input_schema'        => [
 					'type'                 => 'object',
@@ -99,6 +99,13 @@ class AbilitiesController {
 							'description' => \__( 'Limit the results to active subscriptions (not cancelled or not yet expired), cancelled subscriptions, or any subscription.', 'orbis-subscriptions' ),
 							'enum'        => [ 'any', 'active', 'cancelled' ],
 							'default'     => 'any',
+						],
+						'comments'    => [
+							'type'        => 'integer',
+							'description' => \__( 'Number of latest comments to include per subscription. Use orbis/search-comments for the full comment history.', 'orbis-subscriptions' ),
+							'minimum'     => 0,
+							'maximum'     => 10,
+							'default'     => 3,
 						],
 						'per_page'    => [
 							'type'        => 'integer',
@@ -156,6 +163,21 @@ class AbilitiesController {
 									'cancel_date'     => $nullable_string,
 									'end_date'        => $nullable_string,
 									'billed_to'       => $nullable_string,
+									'comment_count'   => [ 'type' => 'integer' ],
+									'comments'        => [
+										'type'  => 'array',
+										'items' => [
+											'type'       => 'object',
+											'properties' => [
+												'id'      => [ 'type' => 'integer' ],
+												'type'    => [ 'type' => 'string' ],
+												'author'  => [ 'type' => 'string' ],
+												'date'    => [ 'type' => 'string' ],
+												'content' => [ 'type' => 'string' ],
+												'url'     => [ 'type' => 'string' ],
+											],
+										],
+									],
 								],
 							],
 						],
@@ -191,6 +213,7 @@ class AbilitiesController {
 				'customer_id' => null,
 				'product_id'  => null,
 				'status'      => 'any',
+				'comments'    => 3,
 				'per_page'    => 20,
 				'page'        => 1,
 			]
@@ -210,7 +233,8 @@ class AbilitiesController {
 			subscription.cancel_date,
 			subscription.end_date,
 			subscription.billed_to,
-			post.post_title
+			post.post_title,
+			post.comment_count
 		';
 
 		$join = "
@@ -314,12 +338,86 @@ class AbilitiesController {
 			)
 		);
 
+		$post_ids = \array_map( fn( $row ) => (int) $row->post_id, $results );
+
+		\_prime_post_caches( $post_ids, false, false );
+
+		$comments_per_subscription = \max( 0, \min( 10, (int) $input['comments'] ) );
+
+		if ( $comments_per_subscription > 0 ) {
+			$comments = $this->get_latest_comments( $post_ids, $comments_per_subscription );
+
+			foreach ( $results as $row ) {
+				$row->comments = $comments[ (int) $row->post_id ] ?? [];
+			}
+		}
+
 		return [
 			'total'         => $total,
 			'page'          => $page,
 			'per_page'      => $per_page,
 			'subscriptions' => \array_map( $this->format_subscription( ... ), $results ),
 		];
+	}
+
+	/**
+	 * Get the latest approved comments of the specified posts in a single query.
+	 *
+	 * @param int[] $post_ids Post IDs.
+	 * @param int   $number   Maximum number of comments per post.
+	 * @return array<int, object[]> Comment rows grouped by post ID, newest first.
+	 */
+	private function get_latest_comments( $post_ids, $number ) {
+		global $wpdb;
+
+		if ( 0 === \count( $post_ids ) ) {
+			return [];
+		}
+
+		$placeholders = \implode( ', ', \array_fill( 0, \count( $post_ids ), '%d' ) );
+
+		$query = "
+			SELECT
+				comment_ID,
+				comment_post_ID,
+				comment_type,
+				comment_author,
+				comment_date,
+				comment_content
+			FROM
+				(
+					SELECT
+						comment_ID,
+						comment_post_ID,
+						comment_type,
+						comment_author,
+						comment_date,
+						comment_content,
+						ROW_NUMBER() OVER ( PARTITION BY comment_post_ID ORDER BY comment_date_gmt DESC, comment_ID DESC ) AS comment_rank
+					FROM
+						$wpdb->comments
+					WHERE
+						comment_post_ID IN ( $placeholders )
+							AND
+						comment_approved = '1'
+				) AS ranked
+			WHERE
+				comment_rank <= %d
+			ORDER BY
+				comment_post_ID,
+				comment_rank
+			;
+		";
+
+		$rows = $wpdb->get_results( $wpdb->prepare( $query, ...[ ...$post_ids, $number ] ) );
+
+		$comments = [];
+
+		foreach ( $rows as $row ) {
+			$comments[ (int) $row->comment_post_ID ][] = $row;
+		}
+
+		return $comments;
 	}
 
 	/**
@@ -352,12 +450,14 @@ class AbilitiesController {
 			];
 		}
 
-		return [
+		$url = (string) \get_permalink( (int) $row->post_id );
+
+		$subscription = [
 			'id'              => (int) $row->id,
 			'post_id'         => (int) $row->post_id,
 			'title'           => $row->post_title,
 			'name'            => $row->name,
-			'url'             => (string) \get_permalink( (int) $row->post_id ),
+			'url'             => $url,
 			'customer'        => $customer,
 			'product'         => $product,
 			'activation_date' => $row->activation_date,
@@ -365,6 +465,23 @@ class AbilitiesController {
 			'cancel_date'     => $row->cancel_date,
 			'end_date'        => $row->end_date,
 			'billed_to'       => $row->billed_to,
+			'comment_count'   => (int) $row->comment_count,
 		];
+
+		if ( isset( $row->comments ) ) {
+			$subscription['comments'] = \array_map(
+				fn( $comment ) => [
+					'id'      => (int) $comment->comment_ID,
+					'type'    => $comment->comment_type,
+					'author'  => $comment->comment_author,
+					'date'    => $comment->comment_date,
+					'content' => \wp_html_excerpt( \wp_strip_all_tags( $comment->comment_content ), 300, '…' ),
+					'url'     => $url . '#comment-' . $comment->comment_ID,
+				],
+				$row->comments
+			);
+		}
+
+		return $subscription;
 	}
 }
