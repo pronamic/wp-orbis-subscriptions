@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2024-10-31T18:54:50+00:00\n"
-"PO-Revision-Date: 2026-10-06T19:27:04+00:00\n"
+"PO-Revision-Date: 2026-10-08T15:40:22+00:00\n"
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -53,8 +53,10 @@ msgid "Orbis ID"
 msgstr "Orbis ID"
 
 #: admin/meta-box-subscription-details.php:48
+#: templates/archive-orbis_subscription.php:31
 #: templates/domain-name-subscriptions.php:68
 #: templates/product-subscriptions.php:69
+#: templates/report-invoices.php:117
 #: templates/subscription-details.php:113
 msgid "Customer"
 msgstr "Klant"
@@ -65,6 +67,7 @@ msgstr "Activeer de Orbis Contacts-plugin om een klant aan dit abonnement te kop
 
 #: admin/meta-box-subscription-details.php:81
 #: admin/page-statistics.php:50
+#: templates/report-invoices.php:118
 msgid "Product"
 msgstr "Product"
 
@@ -150,6 +153,7 @@ msgstr "ID"
 #: admin/page-billing.php:163
 #: templates/customer-subscriptions.php:53
 #: templates/domain-name-subscriptions.php:69
+#: templates/report-invoices.php:119
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr "Abonnement"
@@ -159,7 +163,7 @@ msgid "Interval"
 msgstr "Interval"
 
 #: admin/page-billing.php:165
-#: templates/archive-orbis_subscription.php:32
+#: templates/archive-orbis_subscription.php:33
 #: templates/customer-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:71
 #: templates/subscription-details.php:177
@@ -168,11 +172,13 @@ msgid "Price"
 msgstr "Prijs"
 
 #: admin/page-billing.php:167
+#: templates/report-invoices.php:120
 #: templates/subscription-invoices.php:60
 msgid "Start Date"
 msgstr "Startdatum"
 
 #: admin/page-billing.php:168
+#: templates/report-invoices.php:121
 #: templates/subscription-invoices.php:61
 msgid "End Date"
 msgstr "Einddatum"
@@ -192,6 +198,7 @@ msgid "Expired"
 msgstr "Verlopen"
 
 #: admin/page-statistics.php:53
+#: templates/report-invoices.php:129
 msgid "Total"
 msgstr "Totaal"
 
@@ -208,8 +215,8 @@ msgid "Search subscriptions"
 msgstr "Abonnementen zoeken"
 
 #: classes/AbilitiesController.php:77
-msgid "Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product and dates."
-msgstr "Zoekt Orbis-abonnementen op naam, klant of product en geeft de overeenkomende abonnementen terug met hun klant, product en datums."
+msgid "Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product, dates, comment count and latest comments. Use orbis/search-comments for the full comment history of a subscription."
+msgstr "Zoekt Orbis-abonnementen op naam, klant of product en geeft de gevonden abonnementen terug met hun klant, product, datums, aantal reacties en laatste reacties. Gebruik orbis/search-comments voor de volledige reactiegeschiedenis van een abonnement."
 
 #: classes/AbilitiesController.php:85
 msgid "Search term, matched against the subscription name, the subscription title, the customer name and the product name."
@@ -228,10 +235,14 @@ msgid "Limit the results to active subscriptions (not cancelled or not yet expir
 msgstr "Beperk de resultaten tot actieve abonnementen (niet opgezegd of nog niet verlopen), opgezegde abonnementen of alle abonnementen."
 
 #: classes/AbilitiesController.php:105
+msgid "Number of latest comments to include per subscription. Use orbis/search-comments for the full comment history."
+msgstr "Aantal laatste reacties om per abonnement mee te geven. Gebruik orbis/search-comments voor de volledige reactiegeschiedenis."
+
+#: classes/AbilitiesController.php:112
 msgid "Maximum number of subscriptions to return."
 msgstr "Maximaal aantal abonnementen om terug te geven."
 
-#: classes/AbilitiesController.php:112
+#: classes/AbilitiesController.php:119
 msgid "Page of results to return."
 msgstr "Pagina met resultaten om terug te geven."
 
@@ -270,8 +281,12 @@ msgstr "Orbis-abonnementsverlenger"
 msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
 msgstr "Orbis heeft dit abonnement automatisch verlengd van “%1$s” naar “%2$s”, met inachtneming van een opzegtermijn van %3$s maand."
 
-#: classes/TemplateController.php:125
-#: classes/TemplateController.php:153
+#: classes/TemplateController.php:69
+msgid "Subscription Invoices"
+msgstr "Abonnementsfacturen"
+
+#: classes/TemplateController.php:165
+#: classes/TemplateController.php:193
 #: includes/post.php:11
 #: includes/post.php:24
 #: templates/domain-name-subscriptions.php:61
@@ -339,21 +354,21 @@ msgstr "Abonnement details"
 msgid "Subscription Actions"
 msgstr "Abonnement acties"
 
-#: templates/archive-orbis_subscription.php:31
+#: templates/archive-orbis_subscription.php:32
 msgid "Title"
 msgstr "Titel"
 
-#: templates/archive-orbis_subscription.php:33
+#: templates/archive-orbis_subscription.php:34
 #: templates/subscription-details.php:134
 msgid "Expiration or renewal date"
 msgstr "Verval- of verlengingsdatum"
 
-#: templates/archive-orbis_subscription.php:34
+#: templates/archive-orbis_subscription.php:35
 #: templates/subscription-details.php:120
 msgid "Status"
 msgstr "Status"
 
-#: templates/archive-orbis_subscription.php:35
+#: templates/archive-orbis_subscription.php:36
 #: templates/single-orbis_subscription.php:71
 #: templates/subscriptions-without-agreement.php:41
 msgid "Actions"
@@ -375,6 +390,47 @@ msgstr "Activatiedatum"
 #: templates/product-subscriptions.php:122
 msgid "View all subscriptions"
 msgstr "Bekijk alle abonnementen"
+
+#: templates/report-invoices.php:20
+msgid "Last week"
+msgstr "Afgelopen week"
+
+#: templates/report-invoices.php:21
+msgid "Last month"
+msgstr "Afgelopen maand"
+
+#: templates/report-invoices.php:22
+msgid "Last 3 months"
+msgstr "Afgelopen 3 maanden"
+
+#: templates/report-invoices.php:23
+msgid "Last 6 months"
+msgstr "Afgelopen 6 maanden"
+
+#: templates/report-invoices.php:24
+msgid "Last year"
+msgstr "Afgelopen jaar"
+
+#: templates/report-invoices.php:25
+msgid "All time"
+msgstr "Altijd"
+
+#: templates/report-invoices.php:92
+msgid "Period"
+msgstr "Periode"
+
+#: templates/report-invoices.php:109
+msgid "Filter"
+msgstr "Filteren"
+
+#: templates/report-invoices.php:122
+#: templates/subscription-invoices.php:62
+msgid "Invoice"
+msgstr "Factuur"
+
+#: templates/report-invoices.php:123
+msgid "Amount"
+msgstr "Bedrag"
 
 #: templates/single-orbis_subscription.php:33
 msgid "Description"
@@ -436,7 +492,3 @@ msgstr "Aanmaakdatum"
 #: templates/subscription-invoices.php:59
 msgid "User"
 msgstr "Gebruiker"
-
-#: templates/subscription-invoices.php:62
-msgid "Invoice"
-msgstr "Factuur"

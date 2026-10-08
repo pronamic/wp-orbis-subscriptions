@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-06T19:27:04+00:00\n"
+"POT-Creation-Date: 2026-10-08T15:40:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: orbis-subscriptions\n"
@@ -53,8 +53,10 @@ msgid "Orbis ID"
 msgstr ""
 
 #: admin/meta-box-subscription-details.php:48
+#: templates/archive-orbis_subscription.php:31
 #: templates/domain-name-subscriptions.php:68
 #: templates/product-subscriptions.php:69
+#: templates/report-invoices.php:117
 #: templates/subscription-details.php:113
 msgid "Customer"
 msgstr ""
@@ -65,6 +67,7 @@ msgstr ""
 
 #: admin/meta-box-subscription-details.php:81
 #: admin/page-statistics.php:50
+#: templates/report-invoices.php:118
 msgid "Product"
 msgstr ""
 
@@ -150,6 +153,7 @@ msgstr ""
 #: admin/page-billing.php:163
 #: templates/customer-subscriptions.php:53
 #: templates/domain-name-subscriptions.php:69
+#: templates/report-invoices.php:119
 #: templates/subscriptions-without-agreement.php:39
 msgid "Subscription"
 msgstr ""
@@ -159,7 +163,7 @@ msgid "Interval"
 msgstr ""
 
 #: admin/page-billing.php:165
-#: templates/archive-orbis_subscription.php:32
+#: templates/archive-orbis_subscription.php:33
 #: templates/customer-subscriptions.php:55
 #: templates/domain-name-subscriptions.php:71
 #: templates/subscription-details.php:177
@@ -168,11 +172,13 @@ msgid "Price"
 msgstr ""
 
 #: admin/page-billing.php:167
+#: templates/report-invoices.php:120
 #: templates/subscription-invoices.php:60
 msgid "Start Date"
 msgstr ""
 
 #: admin/page-billing.php:168
+#: templates/report-invoices.php:121
 #: templates/subscription-invoices.php:61
 msgid "End Date"
 msgstr ""
@@ -192,6 +198,7 @@ msgid "Expired"
 msgstr ""
 
 #: admin/page-statistics.php:53
+#: templates/report-invoices.php:129
 msgid "Total"
 msgstr ""
 
@@ -208,7 +215,7 @@ msgid "Search subscriptions"
 msgstr ""
 
 #: classes/AbilitiesController.php:77
-msgid "Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product and dates."
+msgid "Searches Orbis subscriptions by name, customer or product and returns the matching subscriptions with their customer, product, dates, comment count and latest comments. Use orbis/search-comments for the full comment history of a subscription."
 msgstr ""
 
 #: classes/AbilitiesController.php:85
@@ -228,10 +235,14 @@ msgid "Limit the results to active subscriptions (not cancelled or not yet expir
 msgstr ""
 
 #: classes/AbilitiesController.php:105
-msgid "Maximum number of subscriptions to return."
+msgid "Number of latest comments to include per subscription. Use orbis/search-comments for the full comment history."
 msgstr ""
 
 #: classes/AbilitiesController.php:112
+msgid "Maximum number of subscriptions to return."
+msgstr ""
+
+#: classes/AbilitiesController.php:119
 msgid "Page of results to return."
 msgstr ""
 
@@ -270,8 +281,12 @@ msgstr ""
 msgid "Orbis has automatically renewed this subscription from \"%1$s\" to \"%2$s\", taking into account a notice period of %3$s month."
 msgstr ""
 
-#: classes/TemplateController.php:125
-#: classes/TemplateController.php:153
+#: classes/TemplateController.php:69
+msgid "Subscription Invoices"
+msgstr ""
+
+#: classes/TemplateController.php:165
+#: classes/TemplateController.php:193
 #: includes/post.php:11
 #: includes/post.php:24
 #: templates/domain-name-subscriptions.php:61
@@ -339,21 +354,21 @@ msgstr ""
 msgid "Subscription Actions"
 msgstr ""
 
-#: templates/archive-orbis_subscription.php:31
+#: templates/archive-orbis_subscription.php:32
 msgid "Title"
 msgstr ""
 
-#: templates/archive-orbis_subscription.php:33
+#: templates/archive-orbis_subscription.php:34
 #: templates/subscription-details.php:134
 msgid "Expiration or renewal date"
 msgstr ""
 
-#: templates/archive-orbis_subscription.php:34
+#: templates/archive-orbis_subscription.php:35
 #: templates/subscription-details.php:120
 msgid "Status"
 msgstr ""
 
-#: templates/archive-orbis_subscription.php:35
+#: templates/archive-orbis_subscription.php:36
 #: templates/single-orbis_subscription.php:71
 #: templates/subscriptions-without-agreement.php:41
 msgid "Actions"
@@ -374,6 +389,47 @@ msgstr ""
 
 #: templates/product-subscriptions.php:122
 msgid "View all subscriptions"
+msgstr ""
+
+#: templates/report-invoices.php:20
+msgid "Last week"
+msgstr ""
+
+#: templates/report-invoices.php:21
+msgid "Last month"
+msgstr ""
+
+#: templates/report-invoices.php:22
+msgid "Last 3 months"
+msgstr ""
+
+#: templates/report-invoices.php:23
+msgid "Last 6 months"
+msgstr ""
+
+#: templates/report-invoices.php:24
+msgid "Last year"
+msgstr ""
+
+#: templates/report-invoices.php:25
+msgid "All time"
+msgstr ""
+
+#: templates/report-invoices.php:92
+msgid "Period"
+msgstr ""
+
+#: templates/report-invoices.php:109
+msgid "Filter"
+msgstr ""
+
+#: templates/report-invoices.php:122
+#: templates/subscription-invoices.php:62
+msgid "Invoice"
+msgstr ""
+
+#: templates/report-invoices.php:123
+msgid "Amount"
 msgstr ""
 
 #: templates/single-orbis_subscription.php:33
@@ -435,8 +491,4 @@ msgstr ""
 
 #: templates/subscription-invoices.php:59
 msgid "User"
-msgstr ""
-
-#: templates/subscription-invoices.php:62
-msgid "Invoice"
 msgstr ""

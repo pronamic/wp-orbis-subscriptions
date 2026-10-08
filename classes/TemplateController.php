@@ -22,7 +22,11 @@ class TemplateController {
 	 * @return void
 	 */
 	public function setup() {
+		\add_action( 'init', $this->init( ... ) );
+
 		\add_filter( 'template_include', $this->template_include( ... ) );
+
+		\add_filter( 'get_the_archive_title', $this->get_the_archive_title( ... ) );
 
 		\add_action( 'orbis_after_main_content', $this->maybe_include_subscription_invoices( ... ) );
 
@@ -38,14 +42,50 @@ class TemplateController {
 	}
 
 	/**
+	 * Initialize.
+	 *
+	 * The `orbis_subscriptions_route` query var is registered by the subscribers export controller.
+	 *
+	 * @return void
+	 */
+	public function init() {
+		\add_rewrite_rule(
+			'abonnementen/facturen/?$',
+			[
+				'orbis_subscriptions_route' => 'invoices',
+			],
+			'top'
+		);
+	}
+
+	/**
+	 * Get the archive title.
+	 *
+	 * @param string $title Title.
+	 * @return string
+	 */
+	public function get_the_archive_title( $title ) {
+		if ( 'invoices' === \get_query_var( 'orbis_subscriptions_route', null ) ) {
+			return \__( 'Subscription Invoices', 'orbis-subscriptions' );
+		}
+
+		return $title;
+	}
+
+	/**
 	 * Template include.
 	 *
-	 * Uses the single and archive subscription templates of this plugin, unless the theme has one.
+	 * Uses the invoices report template for the invoices route and the single
+	 * and archive subscription templates of this plugin, unless the theme has one.
 	 *
 	 * @param string $template Template.
 	 * @return string
 	 */
 	public function template_include( $template ) {
+		if ( 'invoices' === \get_query_var( 'orbis_subscriptions_route', null ) ) {
+			return __DIR__ . '/../templates/report-invoices.php';
+		}
+
 		if ( \is_singular( 'orbis_subscription' ) && '' === \locate_template( 'single-orbis_subscription.php' ) ) {
 			return __DIR__ . '/../templates/single-orbis_subscription.php';
 		}
