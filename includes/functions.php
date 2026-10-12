@@ -57,7 +57,7 @@ function get_orbis_subscription( $post = null ) {
 function orbis_subscription_get_data( $post_id ) {
 	global $wpdb;
 
-	$fields = '
+	$fields = <<<'SQL'
 		subscription.id,
 		subscription.post_id,
 		subscription.name,
@@ -65,49 +65,51 @@ function orbis_subscription_get_data( $post_id ) {
 		subscription.expiration_date,
 		subscription.cancel_date,
 		subscription.update_date
-	';
+		SQL;
 
 	$join = "$wpdb->orbis_subscriptions AS subscription";
 
 	if ( \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 		$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
 
-		$fields .= ',
+		$fields .= <<<'SQL'
+			,
 			customer.id AS customer_id,
 			customer.name AS customer_name,
 			customer.post_id AS customer_post_id
-		';
+			SQL;
 
-		$join .= "
+		$join .= "\n" . <<<SQL
 				LEFT JOIN
 			$contacts_table AS customer
 					ON subscription.customer_id = customer.id
-		";
+			SQL;
 	}
 
 	if ( isset( $wpdb->orbis_products ) ) {
-		$fields .= ',
+		$fields .= <<<'SQL'
+			,
 			product.id AS product_id,
 			product.name AS product_name,
 			product.price AS product_price,
 			product.auto_renew AS product_auto_renew
-		';
+			SQL;
 
-		$join .= "
+		$join .= "\n" . <<<SQL
 				LEFT JOIN
 			$wpdb->orbis_products AS product
 					ON subscription.product_id = product.id
-		";
+			SQL;
 	}
 
-	$query = "
+	$query = <<<SQL
 		SELECT
 			$fields
 		FROM
 			$join
 		WHERE
 			subscription.post_id = %d
-	";
+		SQL;
 
 	$query = $wpdb->prepare( $query, $post_id );
 
@@ -129,7 +131,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 		$fields .= ', SUM( timesheet.number_seconds ) AS registered_time';
 		$fields .= ', product.time_per_year';
 
-		$join .= "
+		$join .= <<<SQL
 			LEFT JOIN
 				$wpdb->orbis_timesheets AS timesheet
 					ON (
@@ -137,10 +139,10 @@ function orbis_subscriptions_suggest_subscription_id() {
 							AND
 						timesheet.date > DATE_ADD( subscription.activation_date, INTERVAL TIMESTAMPDIFF( YEAR, subscription.activation_date, NOW() ) YEAR )
 					)
-		";
+			SQL;
 	}
 
-	$query = "
+	$query = <<<SQL
 		SELECT
 			subscription.id AS id,
 			subscription.status,
@@ -170,7 +172,7 @@ function orbis_subscriptions_suggest_subscription_id() {
 		ORDER BY
 			subscription.id
 		;
-	";
+		SQL;
 
 	$like = '%' . $wpdb->esc_like( $term ) . '%';
 

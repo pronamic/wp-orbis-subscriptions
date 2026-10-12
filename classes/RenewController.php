@@ -80,7 +80,7 @@ class RenewController {
 
 		$data = $wpdb->get_results(
 			$wpdb->prepare(
-				"
+				<<<SQL
 				SELECT
 					subscription.id AS subscription_id,
 					subscription.post_id AS subscription_post_id,
@@ -108,7 +108,7 @@ class RenewController {
 						subscription.end_date > subscription.expiration_date
 					)
 				;
-				",
+				SQL,
 				$date->format( 'Y-m-d' )
 			)
 		);

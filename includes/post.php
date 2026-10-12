@@ -81,27 +81,27 @@ function orbis_subscription_post_clauses( $pieces, $query ) {
 	global $wpdb;
 	$only_active = filter_input( INPUT_GET, 'only_active', FILTER_VALIDATE_BOOLEAN );
 
-	$join = "
+	$join = <<<SQL
 		LEFT JOIN
 			$wpdb->orbis_subscriptions AS sub
 				ON $wpdb->posts.ID = sub.post_id
-	";
+		SQL;
 
 	$where = '';
 
 	if ( $only_active ) {
-		$where .= '
+		$where .= <<<'SQL'
 			AND
 			(
 				sub.cancel_date IS NULL
 			OR
 				sub.expiration_date >= CURRENT_DATE()
 			)
-		';
+			SQL;
 	}
 
-	$pieces['join']  .= $join;
-	$pieces['where'] .= $where;
+	$pieces['join']  .= "\n$join\n";
+	$pieces['where'] .= "\n$where\n";
 
 	return $pieces;
 }

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	global $wpdb;
 
-	$query = "
+	$query = <<<SQL
 		SELECT
 			product.name AS name,
 			COUNT( IF( subscription.cancel_date IS NULL, subscription.id, NULL ) ) AS active_count,
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		GROUP BY
 			product.id
 		;
-	";
+		SQL;
 
 	$expired_stats = $wpdb->get_results( $query );
 

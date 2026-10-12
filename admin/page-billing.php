@@ -46,7 +46,7 @@ if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 	$customer_join   = "LEFT JOIN $contacts_table AS customer ON subscription.customer_id = customer.id";
 }
 
-$query = "
+$query = <<<SQL
 	SELECT
 		$customer_fields
 		billing_group.id AS billing_group_id,
@@ -81,7 +81,8 @@ $query = "
 		subscription.id
 	ORDER BY
 		DAYOFYEAR( subscription.activation_date )
-	;";
+	;
+	SQL;
 
 $subscriptions = $wpdb->get_results( $query );
 

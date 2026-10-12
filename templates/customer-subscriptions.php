@@ -19,7 +19,7 @@ global $wpdb;
 $customer_id = \Pronamic\Orbis\Contacts\ContactsTable::get_contact_id( (int) get_the_ID() );
 
 $query = $wpdb->prepare(
-	"
+	<<<SQL
 	SELECT
 		subscription.id, 
 		subscription.product_id,
@@ -38,7 +38,8 @@ $query = $wpdb->prepare(
 		subscription.customer_id = %d
 	ORDER BY
 		activation_date ASC
-	;",
+	;
+	SQL,
 	$customer_id
 );
 

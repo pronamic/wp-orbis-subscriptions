@@ -39,7 +39,7 @@ if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 }
 
 $query = $wpdb->prepare(
-	"
+	<<<SQL
 	SELECT
 		subscription.*,
 		product.time_per_year,
@@ -55,7 +55,8 @@ $query = $wpdb->prepare(
 		subscription.post_id = %d
 	LIMIT
 		1
-	;",
+	;
+	SQL,
 	$post->ID
 );
 

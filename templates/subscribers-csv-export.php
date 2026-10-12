@@ -32,7 +32,7 @@ if ( \array_key_exists( 'product', $_GET ) ) {
 
 $contacts_table = $wpdb->prefix . 'orbis_contacts';
 
-$query = "
+$query = <<<SQL
 	SELECT
 		user.ID AS user_id,
 		user.display_name AS user_display_name,
@@ -77,7 +77,7 @@ $query = "
 	GROUP BY
 		user.ID
 	;
-";
+	SQL;
 
 $data = $wpdb->get_results( $query );
 

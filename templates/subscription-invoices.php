@@ -17,7 +17,7 @@ global $wpdb;
 $id = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $wpdb->orbis_subscriptions WHERE post_id = %d;", get_the_ID() ) );
 
 $query = $wpdb->prepare(
-	"
+	<<<SQL
 	SELECT
 		user.display_name AS user_display_name,
 		invoice.created_at,
@@ -38,7 +38,7 @@ $query = $wpdb->prepare(
 	ORDER BY
 		invoice.created_at ASC
 	;
-	",
+	SQL,
 	$id
 );
 

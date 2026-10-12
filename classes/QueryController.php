@@ -45,38 +45,40 @@ class QueryController {
 
 		if ( 'orbis_subscription' === $post_type ) {
 			// Fields
-			$fields = ',
+			$fields = <<<'SQL'
+				,
 				subscription.activation_date AS subscription_activation_date,
 				subscription.expiration_date AS subscription_expiration_date,
 				subscription.cancel_date AS subscription_cancel_date,
 				subscription.update_date AS subscription_update_date,
 				product.name AS product_name,
 				product.price AS product_price
-			';
+				SQL;
 
 			// Join
-			$join = "
+			$join = <<<SQL
 				LEFT JOIN
 					$wpdb->orbis_subscriptions AS subscription
 						ON $wpdb->posts.ID = subscription.post_id
 				LEFT JOIN
 					$wpdb->orbis_products AS product
 						ON subscription.product_id = product.id
-			";
+				SQL;
 
 			if ( \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 				$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
 
-				$fields .= ',
+				$fields .= <<<'SQL'
+					,
 					customer.post_id AS customer_post_id,
 					customer.name AS customer_name
-				';
+					SQL;
 
-				$join .= "
+				$join .= "\n" . <<<SQL
 					LEFT JOIN
 						$contacts_table AS customer
 							ON subscription.customer_id = customer.id
-				";
+					SQL;
 			}
 
 			// Where
@@ -88,7 +90,7 @@ class QueryController {
 				$where = $wpdb->prepare( 'AND product.post_id = %d', $product_post_id );
 			}
 
-			$pieces['join']   .= $join;
+			$pieces['join']   .= "\n$join\n";
 			$pieces['fields'] .= $fields;
 			$pieces['where']  .= $where;
 		}
@@ -105,7 +107,7 @@ class QueryController {
 			$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
 
 			// Join
-			$join = "
+			$join = <<<SQL
 				INNER JOIN
 					$contacts_table AS customer
 						ON $wpdb->posts.ID = customer.post_id
@@ -115,12 +117,12 @@ class QueryController {
 				INNER JOIN
 					$wpdb->orbis_products AS product
 						ON subscription.product_id = product.id
-			";
+				SQL;
 
 			// Where
 			$where = $wpdb->prepare( ' AND subscription.cancel_date IS NULL AND product.name LIKE %s', $like );
 
-			$pieces['join']   .= $join;
+			$pieces['join']   .= "\n$join\n";
 			$pieces['where']  .= $where;
 			$pieces['groupby'] = "$wpdb->posts.ID";
 		}

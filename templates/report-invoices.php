@@ -50,7 +50,7 @@ if ( \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 	$customer_join   = "LEFT JOIN $contacts_table AS customer ON subscription.customer_id = customer.id";
 }
 
-$query = "
+$query = <<<SQL
 	SELECT
 		invoice.invoice_number,
 		invoice.invoice_date,
@@ -81,7 +81,7 @@ $query = "
 	ORDER BY
 		invoice.invoice_date DESC, invoice.invoice_number DESC
 	;
-";
+	SQL;
 
 $invoices = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 

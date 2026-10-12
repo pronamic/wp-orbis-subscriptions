@@ -384,7 +384,7 @@ class Subscription {
 		return \intval(
 			$wpdb->get_var(
 				$wpdb->prepare(
-					"
+					<<<SQL
 					SELECT
 						COUNT( invoice.id )
 					FROM
@@ -395,7 +395,7 @@ class Subscription {
 					WHERE
 						invoice_line.subscription_id = %d
 					;
-					",
+					SQL,
 					$this->get_id()
 				)
 			)

@@ -222,7 +222,7 @@ class AbilitiesController {
 		$has_customers = \class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class );
 		$has_products  = isset( $wpdb->orbis_products );
 
-		$fields = '
+		$fields = <<<'SQL'
 			subscription.id,
 			subscription.post_id,
 			subscription.customer_id,
@@ -235,47 +235,49 @@ class AbilitiesController {
 			subscription.billed_to,
 			post.post_title,
 			post.comment_count
-		';
+			SQL;
 
-		$join = "
+		$join = <<<SQL
 			$wpdb->orbis_subscriptions AS subscription
 				INNER JOIN
 			$wpdb->posts AS post
 					ON subscription.post_id = post.ID
-		";
+			SQL;
 
 		if ( $has_customers ) {
 			$contacts_table = \Pronamic\Orbis\Contacts\ContactsTable::get_table_name();
 
-			$fields .= ',
+			$fields .= <<<'SQL'
+				,
 				customer.post_id AS customer_post_id,
 				customer.name AS customer_name,
 				customer_post.post_type AS customer_type
-			';
+				SQL;
 
-			$join .= "
-				LEFT JOIN
-			$contacts_table AS customer
-					ON subscription.customer_id = customer.id
-				LEFT JOIN
-			$wpdb->posts AS customer_post
-					ON customer.post_id = customer_post.ID
-			";
+			$join .= "\n" . <<<SQL
+					LEFT JOIN
+				$contacts_table AS customer
+						ON subscription.customer_id = customer.id
+					LEFT JOIN
+				$wpdb->posts AS customer_post
+						ON customer.post_id = customer_post.ID
+				SQL;
 		}
 
 		if ( $has_products ) {
-			$fields .= ',
+			$fields .= <<<'SQL'
+				,
 				product.post_id AS product_post_id,
 				product.name AS product_name,
 				product.price AS product_price,
 				product.interval AS product_interval
-			';
+				SQL;
 
-			$join .= "
-				LEFT JOIN
-			$wpdb->orbis_products AS product
-					ON subscription.product_id = product.id
-			";
+			$join .= "\n" . <<<SQL
+					LEFT JOIN
+				$wpdb->orbis_products AS product
+						ON subscription.product_id = product.id
+				SQL;
 		}
 
 		$conditions = [
@@ -376,7 +378,7 @@ class AbilitiesController {
 
 		$placeholders = \implode( ', ', \array_fill( 0, \count( $post_ids ), '%d' ) );
 
-		$query = "
+		$query = <<<SQL
 			SELECT
 				comment_ID,
 				comment_post_ID,
@@ -407,7 +409,7 @@ class AbilitiesController {
 				comment_post_ID,
 				comment_rank
 			;
-		";
+			SQL;
 
 		$rows = $wpdb->get_results( $wpdb->prepare( $query, ...[ ...$post_ids, $number ] ) );
 

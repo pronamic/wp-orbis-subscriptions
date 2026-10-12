@@ -27,7 +27,7 @@ if ( class_exists( \Pronamic\Orbis\Contacts\ContactsTable::class ) ) {
 }
 
 $query = $wpdb->prepare(
-	"
+	<<<SQL
 	SELECT
 		subscription.id, 
 		subscription.product_id,
@@ -49,7 +49,8 @@ $query = $wpdb->prepare(
 	ORDER BY
 		activation_date DESC
 	LIMIT 10
-	;",
+	;
+	SQL,
 	get_the_ID()
 );
 
