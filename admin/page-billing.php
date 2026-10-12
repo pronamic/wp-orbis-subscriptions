@@ -133,7 +133,7 @@ foreach ( $subscriptions as $subscription ) {
 					$ids = wp_list_pluck( $customer->subscriptions, 'id' );
 
 					$query_args = [
-						'orbis_customer_id'      => $customer->id,
+						'orbis_contact_post_id'  => $customer->post_id,
 						'orbis_subscription_ids' => implode( ',', $ids ),
 					];
 
